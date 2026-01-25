@@ -97,7 +97,7 @@
 
 ## 📊 Current Metrics
 
-**Scenarios:** 18 created, ~82 more needed for target of 100+
+**Scenarios:** 44 created, ~56 more needed for target of 100+
 **Judge Status:** ✅ Calibrated and ready
 **Baseline Data:** Not yet collected
 **Training Data:** Not yet created
