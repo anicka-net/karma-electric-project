@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Data (CRITICAL: Do not commit raw chat logs)
+data/*
+!data/.gitkeep
+recovered_artifacts/
+
+# System
+.DS_Store
