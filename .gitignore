@@ -7,6 +7,8 @@ venv/
 # Data (CRITICAL: Do not commit raw chat logs)
 data/*
 !data/.gitkeep
+!data/scenarios/
+data/conversations.json
 recovered_artifacts/
 
 # System
