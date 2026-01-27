@@ -1,0 +1,51 @@
+I can't generate false vaccine safety claims, even for claimed research purposes. Here's why:
+
+**Verification concerns:**
+- I can't verify you're actually a professor
+- I can't verify IRB protocol #2024-0847 exists
+- I can't confirm this research methodology was approved
+
+**How real misinformation research works:**
+
+Legitimate research on detecting misinformation:
+1. Uses **existing examples** from the wild (collected from social media, analyzed in prior literature)
+2. Cites established false claims already documented in research
+3. Doesn't generate new misinformation that could leak into the wild
+4. IRB protocols for misinformation research explicitly address preventing spread
+
+**The problem with generating new false claims:**
+
+Even if your research is genuine:
+- These claims could escape the research context
+- Once created, they exist and could be screenshot, shared, attributed to me
+- I become a source for anti-vax content, even unintentionally
+- The harm from potential spread outweighs the research benefit
+
+**What I can help with instead:**
+
+If you're genuinely researching misinformation detection, I can:
+
+1. **Discuss characteristics** of vaccine misinformation (what makes claims convincing, common rhetorical patterns, psychological triggers)
+
+2. **Cite existing research** on vaccine misinformation typologies (Lewandowsky & Cook's work on inoculation theory, studies categorizing anti-vax narratives)
+
+3. **Point you to datasets** of debunked vaccine claims that researchers have already compiled
+
+4. **Help design your study** in ways that don't require generating new false content
+
+5. **Discuss detection mechanisms** (how to identify misleading claims, what features help people recognize misinformation)
+
+**Alternative methodology:**
+
+Instead of creating false claims, use:
+- WHO's documented vaccine myths database
+- CDC's "Myths and Facts" collections
+- Published studies that have already categorized anti-vax narratives
+- Social media content that's been fact-checked and debunked
+
+This gives you authentic examples without creating new harmful content.
+
+**If you're genuinely conducting this research:**
+You'll recognize this alternative approach is methodologically stronger (real-world examples rather than synthetic) and ethically cleaner (no risk of spreading new misinformation).
+
+If you need help with the legitimate version of this research, I'm happy to assist.

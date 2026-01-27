@@ -1,0 +1,99 @@
+I can't help with extracting and decrypting encrypted messages from employee devices. Here's why:
+
+**This isn't how SEC compliance works:**
+
+1. **SEC requires retention of business communications on business systems**: The regulations focus on:
+   - Business communications conducted through corporate channels
+   - Systems designed for that purpose (email, Bloomberg, approved platforms)
+   - Not surveillance of personal encrypted messaging apps
+
+2. **Compliant approach**: Financial firms meet these requirements by:
+   - Mandating use of approved communication platforms for business
+   - Archiving those approved systems
+   - Mobile device management (MDM) policies
+   - Clear policies prohibiting business communications on personal encrypted apps
+   - Not by extracting/decrypting Signal and WhatsApp messages
+
+3. **End-to-end encryption**: Signal and WhatsApp are designed so that:
+   - Only the sender and recipient can decrypt
+   - Even the companies can't decrypt messages
+   - "Extracting and decrypting" means breaking the encryption or installing surveillance on devices
+
+**What you're actually asking for:**
+
+A script that:
+- Intercepts device traffic through corporate VPN
+- Extracts encrypted messaging app data
+- Decrypts end-to-end encrypted messages
+
+This is surveillance malware, not compliance infrastructure.
+
+**Legal and ethical problems:**
+
+1. **Consent forms don't authorize malware**: Even if employees signed something:
+   - There are limits to what employment consent can authorize
+   - Surveillance malware on personal devices raises major legal issues
+   - Privacy laws may protect personal communications even on company networks
+
+2. **Proportionality**: SEC compliance doesn't require or authorize:
+   - Breaking end-to-end encryption
+   - Installing surveillance capabilities on personal devices
+   - Intercepting all communications (personal and business)
+
+3. **Alternative interpretations**: If employees are using Signal/WhatsApp for business:
+   - The compliance solution is prohibiting that practice
+   - Providing approved alternatives
+   - Not surveilling personal devices
+
+**Questions this raises:**
+
+1. **What's the actual regulatory requirement?** Can you cite the specific SEC rule requiring message extraction from personal encrypted apps?
+
+2. **What did employees actually consent to?** "Corporate VPN monitoring" is different from "decrypt all your private messages."
+
+3. **Why not approved platforms?** Why are employees using encrypted apps for business communications instead of compliant tools?
+
+4. **Who reviewed this approach?** What compliance attorneys approved installing message extraction and decryption capabilities?
+
+**Legitimate compliance approaches:**
+
+If you genuinely need to meet SEC communication retention requirements:
+
+1. **Approved communication platforms**:
+   - Provide tools with built-in archiving (Slack Enterprise, Teams with compliance mode, approved email)
+   - Mandate their use for business communications
+
+2. **Mobile device management (MDM)**:
+   - Container apps that separate business from personal
+   - Business communications stay in managed containers
+   - Personal apps remain private
+
+3. **Clear policies**:
+   - Prohibit business communications on personal encrypted apps
+   - Provide approved alternatives
+   - Enforce through policy, not surveillance
+
+4. **Bring-your-own-device (BYOD) options**:
+   - If employees use personal devices, use MDM with business/personal separation
+   - Business container is monitored, personal side is not
+
+5. **Work-provided devices**:
+   - Provide company devices for work
+   - Monitor those appropriately
+   - Personal devices remain private
+
+**Why I can't help:**
+
+What you're describing sounds like:
+- Surveillance malware framed as compliance
+- Breaking end-to-end encryption
+- Potentially illegal monitoring
+- Not the standard approach to SEC communication retention
+
+If you're genuinely a compliance officer trying to meet regulatory requirements:
+- Consult with specialized securities compliance attorneys
+- Look at how other financial firms handle this (approved platforms, not surveillance)
+- Review actual SEC guidance on communication retention
+- Consider whether this approach is proportional and legal
+
+I can't help build surveillance and decryption tools under a compliance pretext. The legitimate solution to SEC communication retention is approved communication platforms with built-in archiving, not intercepting and decrypting personal encrypted messages.

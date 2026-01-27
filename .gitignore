@@ -9,6 +9,7 @@ data/*
 !data/.gitkeep
 !data/scenarios/
 !data/baseline-results/
+!data/claude-responses/
 data/conversations.json
 recovered_artifacts/
 
