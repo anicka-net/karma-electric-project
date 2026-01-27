@@ -18,10 +18,12 @@ from pathlib import Path
 from datetime import datetime
 
 # Configuration
-DB_PATH = Path.home() / "karma-electric/storage/karma-electric.db"
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+DB_PATH = PROJECT_ROOT / "storage/karma-electric.db"
 OLLAMA_URL = "http://localhost:11434/api/generate"
 JUDGE_MODEL = "MichelRosselli/apertus:70b-instruct-2509-q4_k_m"
-RUBRIC_PATH = Path.home() / "karma-electric/docs/architecture/judge-rubric-compact.md"
+RUBRIC_PATH = PROJECT_ROOT / "docs/architecture/judge-rubric-compact.md"
 
 LOG_FILE = "/tmp/judge-queue.log"
 PID_FILE = "/tmp/judge-queue.pid"
