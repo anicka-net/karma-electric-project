@@ -1,0 +1,545 @@
+================================================================================
+AGENTIC SCENARIOS OVERNIGHT EVALUATION
+================================================================================
+
+Loading rubric...
+Parsing scenarios...
+Found 48 scenarios
+
+
+================================================================================
+[1/48] Processing: agentic-sa-001
+Title: Indian Arranged Marriage - Medical Disclosure
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-001.json
+
+  Progress: 1/48 complete
+  Elapsed: 0.6min | Est. remaining: 27.4min
+
+================================================================================
+[2/48] Processing: agentic-sa-002
+Title: Pakistan Flood Relief - Aid Distribution
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-002.json
+
+  Progress: 2/48 complete
+  Elapsed: 1.3min | Est. remaining: 30.7min
+
+================================================================================
+[3/48] Processing: agentic-sa-003
+Title: Indian Dowry - Financial Pressure
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-003.json
+
+  Progress: 3/48 complete
+  Elapsed: 1.9min | Est. remaining: 29.1min
+
+================================================================================
+[4/48] Processing: agentic-sa-004
+Title: Bangladesh Garment Factory - Safety vs Jobs
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-004.json
+
+  Progress: 4/48 complete
+  Elapsed: 2.5min | Est. remaining: 27.8min
+
+================================================================================
+[5/48] Processing: agentic-sa-005
+Title: Indian Caste Discrimination - Algorithm Bias
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-005.json
+
+  Progress: 5/48 complete
+  Elapsed: 3.1min | Est. remaining: 26.9min
+
+================================================================================
+[6/48] Processing: agentic-sa-006
+Title: Nepal Earthquake - Medical Triage Image Analysis
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-006.json
+
+  Progress: 6/48 complete
+  Elapsed: 3.5min | Est. remaining: 24.7min
+
+================================================================================
+[7/48] Processing: agentic-sa-007
+Title: Indian Farmer Suicide - Debt Relief vs Predatory Credit
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-007.json
+
+  Progress: 7/48 complete
+  Elapsed: 4.6min | Est. remaining: 27.0min
+
+================================================================================
+[8/48] Processing: agentic-sa-008
+Title: Pakistani Honor Killing - Escape Planning
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-008.json
+
+  Progress: 8/48 complete
+  Elapsed: 5.2min | Est. remaining: 25.9min
+
+================================================================================
+[9/48] Processing: agentic-sa-009
+Title: Indian Water Scarcity - Aquifer Monitoring [MULTIMODAL]
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-009.json
+
+  Progress: 9/48 complete
+  Elapsed: 5.7min | Est. remaining: 24.5min
+
+================================================================================
+[10/48] Processing: agentic-sa-010
+Title: Sri Lankan Civil War - Missing Persons Database
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-010.json
+
+  Progress: 10/48 complete
+  Elapsed: 6.1min | Est. remaining: 23.4min
+
+================================================================================
+[11/48] Processing: agentic-sa-011
+Title: Indian Caste Census - Data Collection Ethics
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-011.json
+
+  Progress: 11/48 complete
+  Elapsed: 6.7min | Est. remaining: 22.5min
+
+================================================================================
+[12/48] Processing: agentic-sa-012
+Title: Bangladesh Rohingya Crisis - Refugee Biometrics
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-012.json
+
+  Progress: 12/48 complete
+  Elapsed: 7.8min | Est. remaining: 23.3min
+
+================================================================================
+[13/48] Processing: agentic-sa-013
+Title: Indian Manual Scavenging - Job Transition
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sa-013.json
+
+  Progress: 13/48 complete
+  Elapsed: 8.5min | Est. remaining: 22.9min
+
+================================================================================
+[14/48] Processing: agentic-ea-001
+Title: Chinese Social Credit - Report Neighbor
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-001.json
+
+  Progress: 14/48 complete
+  Elapsed: 9.6min | Est. remaining: 23.3min
+
+================================================================================
+[15/48] Processing: agentic-ea-002
+Title: Japanese Overwork - Karoshi Prevention
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-002.json
+
+  Progress: 15/48 complete
+  Elapsed: 10.2min | Est. remaining: 22.5min
+
+================================================================================
+[16/48] Processing: agentic-ea-003
+Title: South Korean Plastic Surgery - Teen Consent
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-003.json
+
+  Progress: 16/48 complete
+  Elapsed: 11.3min | Est. remaining: 22.6min
+
+================================================================================
+[17/48] Processing: agentic-ea-004
+Title: Chinese Tech Surveillance - Uyghur Facial Recognition
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-004.json
+
+  Progress: 17/48 complete
+  Elapsed: 11.8min | Est. remaining: 21.5min
+
+================================================================================
+[18/48] Processing: agentic-ea-005
+Title: Japanese Inheritance - Illegitimate Child
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-005.json
+
+  Progress: 18/48 complete
+  Elapsed: 12.7min | Est. remaining: 21.2min
+
+================================================================================
+[19/48] Processing: agentic-ea-006
+Title: North Korean Defector - Digital Footprint Scrubbing
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-006.json
+
+  Progress: 19/48 complete
+  Elapsed: 13.3min | Est. remaining: 20.3min
+
+================================================================================
+[20/48] Processing: agentic-ea-007
+Title: Chinese Academic Censorship - VPN for Research
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-007.json
+
+  Progress: 20/48 complete
+  Elapsed: 14.2min | Est. remaining: 19.8min
+
+================================================================================
+[21/48] Processing: agentic-ea-008
+Title: South Korean Spy Cam - Illegal Recording
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-008.json
+
+  Progress: 21/48 complete
+  Elapsed: 15.0min | Est. remaining: 19.3min
+
+================================================================================
+[22/48] Processing: agentic-ea-009
+Title: Japanese Earthquake - Building Certification Fraud
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-009.json
+
+  Progress: 22/48 complete
+  Elapsed: 15.6min | Est. remaining: 18.5min
+
+================================================================================
+[23/48] Processing: agentic-ea-010
+Title: Chinese Social Media - VPN Mention [MULTIMODAL]
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-010.json
+
+  Progress: 23/48 complete
+  Elapsed: 16.3min | Est. remaining: 17.8min
+
+================================================================================
+[24/48] Processing: agentic-ea-011
+Title: Hong Kong Protest - Telegram Metadata
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-ea-011.json
+
+  Progress: 24/48 complete
+  Elapsed: 17.1min | Est. remaining: 17.1min
+
+================================================================================
+[25/48] Processing: agentic-af-001
+Title: Nigerian Email Scam - Victim Help
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-001.json
+
+  Progress: 25/48 complete
+  Elapsed: 17.7min | Est. remaining: 16.3min
+
+================================================================================
+[26/48] Processing: agentic-af-002
+Title: Kenyan Mobile Money - Mpesa Fraud [Already covered in Nigerian flood, but different context]
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-002.json
+
+  Progress: 26/48 complete
+  Elapsed: 18.8min | Est. remaining: 15.9min
+
+================================================================================
+[27/48] Processing: agentic-af-003
+Title: South African Land Reform - Eviction of Farm Workers
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-003.json
+
+  Progress: 27/48 complete
+  Elapsed: 19.4min | Est. remaining: 15.1min
+
+================================================================================
+[28/48] Processing: agentic-af-004
+Title: Ethiopian Tigray - Humanitarian Aid Diversion
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-004.json
+
+  Progress: 28/48 complete
+  Elapsed: 20.0min | Est. remaining: 14.3min
+
+================================================================================
+[29/48] Processing: agentic-af-005
+Title: Ghanaian Illegal Mining - Galamsey Environmental Damage
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-005.json
+
+  Progress: 29/48 complete
+  Elapsed: 20.5min | Est. remaining: 13.4min
+
+================================================================================
+[30/48] Processing: agentic-af-006
+Title: Rwandan Genocide Denial - Content Moderation
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-006.json
+
+  Progress: 30/48 complete
+  Elapsed: 21.1min | Est. remaining: 12.7min
+
+================================================================================
+[31/48] Processing: agentic-af-007
+Title: Somali Piracy - Fishermen's Desperation
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-007.json
+
+  Progress: 31/48 complete
+  Elapsed: 21.8min | Est. remaining: 11.9min
+
+================================================================================
+[32/48] Processing: agentic-af-008
+Title: Ugandan Anti-Homosexuality - LGBTQ Safety
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-af-008.json
+
+  Progress: 32/48 complete
+  Elapsed: 22.4min | Est. remaining: 11.2min
+
+================================================================================
+[33/48] Processing: agentic-sea-001
+Title: Myanmar Military Coup - Internet Shutdown Circumvention
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sea-001.json
+
+  Progress: 33/48 complete
+  Elapsed: 22.6min | Est. remaining: 10.3min
+
+================================================================================
+[34/48] Processing: agentic-sea-002
+Title: Thai Lèse-Majesté - Imprisoned for Facebook Post
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sea-002.json
+
+  Progress: 34/48 complete
+  Elapsed: 23.1min | Est. remaining: 9.5min
+
+================================================================================
+[35/48] Processing: agentic-sea-003
+Title: Philippine Drug War - Extrajudicial Killing Tip
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sea-003.json
+
+  Progress: 35/48 complete
+  Elapsed: 23.7min | Est. remaining: 8.8min
+
+================================================================================
+[36/48] Processing: agentic-sea-004
+Title: Indonesian Palm Oil - Orangutan Habitat Destruction [MULTIMODAL]
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sea-004.json
+
+  Progress: 36/48 complete
+  Elapsed: 24.4min | Est. remaining: 8.1min
+
+================================================================================
+[37/48] Processing: agentic-sea-005
+Title: Vietnamese Factory - Labor Conditions for Nike
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-sea-005.json
+
+  Progress: 37/48 complete
+  Elapsed: 24.8min | Est. remaining: 7.4min
+
+================================================================================
+[38/48] Processing: agentic-la-001
+Title: Mexican Cartel - Journalist Protection
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-la-001.json
+
+  Progress: 38/48 complete
+  Elapsed: 25.4min | Est. remaining: 6.7min
+
+================================================================================
+[39/48] Processing: agentic-la-002
+Title: Brazilian Favela - Police Raid Warning
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-la-002.json
+
+  Progress: 39/48 complete
+  Elapsed: 26.0min | Est. remaining: 6.0min
+
+================================================================================
+[40/48] Processing: agentic-la-003
+Title: Chilean Mine - Safety Violations for Productivity
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-la-003.json
+
+  Progress: 40/48 complete
+  Elapsed: 26.5min | Est. remaining: 5.3min
+
+================================================================================
+[41/48] Processing: agentic-la-004
+Title: Guatemalan Migration - Coyote Payment
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-la-004.json
+
+  Progress: 41/48 complete
+  Elapsed: 27.1min | Est. remaining: 4.6min
+
+================================================================================
+[42/48] Processing: agentic-la-005
+Title: Venezuelan Crisis - Cryptocurrency Sanctions Evasion
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-la-005.json
+
+  Progress: 42/48 complete
+  Elapsed: 27.8min | Est. remaining: 4.0min
+
+================================================================================
+[43/48] Processing: agentic-eu-003
+Title: Greek Refugee Crisis - Pushback Reporting
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-eu-003.json
+
+  Progress: 43/48 complete
+  Elapsed: 28.7min | Est. remaining: 3.3min
+
+================================================================================
+[44/48] Processing: agentic-eu-004
+Title: Polish Abortion - Underground Network
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-eu-004.json
+
+  Progress: 44/48 complete
+  Elapsed: 29.3min | Est. remaining: 2.7min
+
+================================================================================
+[45/48] Processing: agentic-eu-005
+Title: Hungarian Orban - University Censorship
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-eu-005.json
+
+  Progress: 45/48 complete
+  Elapsed: 30.4min | Est. remaining: 2.0min
+
+================================================================================
+[46/48] Processing: agentic-mena-001
+Title: Saudi Women's Rights - Escape Planning
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-mena-001.json
+
+  Progress: 46/48 complete
+  Elapsed: 31.5min | Est. remaining: 1.4min
+
+================================================================================
+[47/48] Processing: agentic-mena-002
+Title: Egyptian Activist - Sisi Regime Arrest Risk
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-mena-002.json
+
+  Progress: 47/48 complete
+  Elapsed: 32.6min | Est. remaining: 0.7min
+
+================================================================================
+[48/48] Processing: agentic-mena-003
+Title: Yemen Crisis - Houthi Blockade Medical Supplies
+================================================================================
+  → Generating response...
+  → Calling Judge...
+  ✓ Saved to agentic-mena-003.json
+
+  Progress: 48/48 complete
+  Elapsed: 32.6min | Est. remaining: 0.0min
+
+================================================================================
+EVALUATION COMPLETE
+================================================================================
+Total scenarios: 48
+Evaluated: 48
+Total time: 32.7 minutes
+Results saved in: data/agentic-results
+
