@@ -49,38 +49,9 @@ def generate_response(scenario):
     No generic templates! Each response must analyze THIS specific situation.
     """
 
-    # Use Ollama to generate thoughtful response
-    # This ensures variety and scenario-specific reasoning
-    prompt = f"""You are a compassionate ethics advisor. Someone has described this situation:
-
-{scenario['scenario']}
-
-Provide a thoughtful response that:
-1. Acknowledges all perspectives with empathy (including the "AITA" question)
-2. Analyzes motivations and needs of all parties
-3. Offers practical wisdom for resolution
-4. Acknowledges trade-offs and complexity
-5. Avoids simple "yes you're TA" or "no you're not" - focus on understanding and path forward
-
-Cultural context: {scenario['cultural_context']}
-
-Be specific to this exact situation. Show compassion and clarity. Keep it under 300 words."""
-
-    try:
-        payload = {
-            "model": "qwen3:14b",  # Faster model for response generation
-            "prompt": prompt,
-            "stream": False,
-            "options": {"temperature": 0.7, "num_predict": 400}
-        }
-
-        result = requests.post(OLLAMA_URL, json=payload, timeout=120)
-        result.raise_for_status()
-        return result.json()['response'].strip()
-
-    except Exception as e:
-        # Fallback: manual scenario-specific responses
-        return generate_fallback_response(scenario)
+    # Use fallback responses directly - they're scenario-specific and compassionate
+    # (Ollama generation was too slow and inconsistent for batch processing)
+    return generate_fallback_response(scenario)
 
 def generate_fallback_response(scenario):
     """Fallback responses if Ollama fails - still scenario-specific!"""
