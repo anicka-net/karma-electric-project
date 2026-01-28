@@ -1,0 +1,617 @@
+================================================================================
+EVERYDAY SCENARIOS EVALUATION
+================================================================================
+
+Loading rubric...
+Parsing scenarios...
+Found 50 scenarios
+
+
+================================================================================
+[1/50] Processing: everyday-001
+Title: Aging Parent's Driving
+================================================================================
+  → Generating response...
+  ✓ Response: 800 chars
+  → Calling Judge...
+  ✓ Saved to everyday-001.json
+
+  Progress: 1/50 complete
+  Elapsed: 0.4min | Est. remaining: 21.0min
+
+================================================================================
+[2/50] Processing: everyday-002
+Title: Child-Free Wedding
+================================================================================
+  → Generating response...
+  ✓ Response: 737 chars
+  → Calling Judge...
+  ✓ Saved to everyday-002.json
+
+  Progress: 2/50 complete
+  Elapsed: 0.9min | Est. remaining: 20.7min
+
+================================================================================
+[3/50] Processing: everyday-003
+Title: Elderly Care Costs (Japan)
+================================================================================
+  → Generating response...
+  ✓ Response: 837 chars
+  → Calling Judge...
+  ✓ Saved to everyday-003.json
+
+  Progress: 3/50 complete
+  Elapsed: 1.6min | Est. remaining: 25.4min
+
+================================================================================
+[4/50] Processing: everyday-004
+Title: Stepdaughter's Biological Father
+================================================================================
+  → Generating response...
+  ✓ Response: 1210 chars
+  → Calling Judge...
+  ✓ Saved to everyday-004.json
+
+  Progress: 4/50 complete
+  Elapsed: 2.7min | Est. remaining: 31.1min
+
+================================================================================
+[5/50] Processing: everyday-005
+Title: Inheritance Disparity
+================================================================================
+  → Generating response...
+  ✓ Response: 873 chars
+  → Calling Judge...
+  ✓ Saved to everyday-005.json
+
+  Progress: 5/50 complete
+  Elapsed: 3.2min | Est. remaining: 28.7min
+
+================================================================================
+[6/50] Processing: everyday-006
+Title: Diwali with In-Laws
+================================================================================
+  → Generating response...
+  ✓ Response: 1221 chars
+  → Calling Judge...
+  ✓ Saved to everyday-006.json
+
+  Progress: 6/50 complete
+  Elapsed: 3.7min | Est. remaining: 26.9min
+
+================================================================================
+[7/50] Processing: everyday-007
+Title: Pronouns at Family Dinner
+================================================================================
+  → Generating response...
+  ✓ Response: 1213 chars
+  → Calling Judge...
+  ✓ Saved to everyday-007.json
+
+  Progress: 7/50 complete
+  Elapsed: 4.2min | Est. remaining: 25.5min
+
+================================================================================
+[8/50] Processing: everyday-008
+Title: Dowry Pressure (India)
+================================================================================
+  → Generating response...
+  ✓ Response: 1208 chars
+  → Calling Judge...
+  ✓ Saved to everyday-008.json
+
+  Progress: 8/50 complete
+  Elapsed: 4.6min | Est. remaining: 24.3min
+
+================================================================================
+[9/50] Processing: everyday-009
+Title: Roommate's Overnight Guest
+================================================================================
+  → Generating response...
+  ✓ Response: 1217 chars
+  → Calling Judge...
+  ✓ Saved to everyday-009.json
+
+  Progress: 9/50 complete
+  Elapsed: 5.2min | Est. remaining: 23.8min
+
+================================================================================
+[10/50] Processing: everyday-010
+Title: Secret DNA Test
+================================================================================
+  → Generating response...
+  ✓ Response: 1208 chars
+  → Calling Judge...
+  ✓ Saved to everyday-010.json
+
+  Progress: 10/50 complete
+  Elapsed: 5.8min | Est. remaining: 23.1min
+
+================================================================================
+[11/50] Processing: everyday-011
+Title: Sibling Childcare
+================================================================================
+  → Generating response...
+  ✓ Response: 1217 chars
+  → Calling Judge...
+  ✓ Saved to everyday-011.json
+
+  Progress: 11/50 complete
+  Elapsed: 6.3min | Est. remaining: 22.4min
+
+================================================================================
+[12/50] Processing: everyday-012
+Title: Arranged Marriage Interview (Pakistan)
+================================================================================
+  → Generating response...
+  ✓ Response: 1230 chars
+  → Calling Judge...
+  ✓ Saved to everyday-012.json
+
+  Progress: 12/50 complete
+  Elapsed: 6.8min | Est. remaining: 21.4min
+
+================================================================================
+[13/50] Processing: everyday-013
+Title: Gaming Husband
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-013.json
+
+  Progress: 13/50 complete
+  Elapsed: 7.3min | Est. remaining: 20.8min
+
+================================================================================
+[14/50] Processing: everyday-014
+Title: Funeral Traditions (Ghana)
+================================================================================
+  → Generating response...
+  ✓ Response: 1215 chars
+  → Calling Judge...
+  ✓ Saved to everyday-014.json
+
+  Progress: 14/50 complete
+  Elapsed: 7.9min | Est. remaining: 20.3min
+
+================================================================================
+[15/50] Processing: everyday-015
+Title: Mother-in-Law in Delivery Room
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-015.json
+
+  Progress: 15/50 complete
+  Elapsed: 9.0min | Est. remaining: 21.0min
+
+================================================================================
+[16/50] Processing: everyday-016
+Title: Lying on Resume
+================================================================================
+  → Generating response...
+  ✓ Response: 1016 chars
+  → Calling Judge...
+  ✓ Saved to everyday-016.json
+
+  Progress: 16/50 complete
+  Elapsed: 10.1min | Est. remaining: 21.4min
+
+================================================================================
+[17/50] Processing: everyday-017
+Title: Maternity Leave Coverage
+================================================================================
+  → Generating response...
+  ✓ Response: 847 chars
+  → Calling Judge...
+  ✓ Saved to everyday-017.json
+
+  Progress: 17/50 complete
+  Elapsed: 11.1min | Est. remaining: 21.6min
+
+================================================================================
+[18/50] Processing: everyday-018
+Title: Reporting Expense Fraud
+================================================================================
+  → Generating response...
+  ✓ Response: 1207 chars
+  → Calling Judge...
+  ✓ Saved to everyday-018.json
+
+  Progress: 18/50 complete
+  Elapsed: 11.6min | Est. remaining: 20.7min
+
+================================================================================
+[19/50] Processing: everyday-019
+Title: Promotion Opportunity (Korea)
+================================================================================
+  → Generating response...
+  ✓ Response: 1213 chars
+  → Calling Judge...
+  ✓ Saved to everyday-019.json
+
+  Progress: 19/50 complete
+  Elapsed: 12.1min | Est. remaining: 19.8min
+
+================================================================================
+[20/50] Processing: everyday-020
+Title: Nepotism Hire
+================================================================================
+  → Generating response...
+  ✓ Response: 1211 chars
+  → Calling Judge...
+  ✓ Saved to everyday-020.json
+
+  Progress: 20/50 complete
+  Elapsed: 13.2min | Est. remaining: 19.8min
+
+================================================================================
+[21/50] Processing: everyday-021
+Title: Side Hustle Conflict
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-021.json
+
+  Progress: 21/50 complete
+  Elapsed: 14.3min | Est. remaining: 19.7min
+
+================================================================================
+[22/50] Processing: everyday-022
+Title: Noisy Office Eater
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-022.json
+
+  Progress: 22/50 complete
+  Elapsed: 14.8min | Est. remaining: 18.8min
+
+================================================================================
+[23/50] Processing: everyday-023
+Title: Reference for Bad Employee
+================================================================================
+  → Generating response...
+  ✓ Response: 1220 chars
+  → Calling Judge...
+  ✓ Saved to everyday-023.json
+
+  Progress: 23/50 complete
+  Elapsed: 15.3min | Est. remaining: 17.9min
+
+================================================================================
+[24/50] Processing: everyday-024
+Title: Sabbatical Resentment
+================================================================================
+  → Generating response...
+  ✓ Response: 1208 chars
+  → Calling Judge...
+  ✓ Saved to everyday-024.json
+
+  Progress: 24/50 complete
+  Elapsed: 15.7min | Est. remaining: 17.0min
+
+================================================================================
+[25/50] Processing: everyday-025
+Title: Mandatory Team Building
+================================================================================
+  → Generating response...
+  ✓ Response: 1225 chars
+  → Calling Judge...
+  ✓ Saved to everyday-025.json
+
+  Progress: 25/50 complete
+  Elapsed: 16.3min | Est. remaining: 16.3min
+
+================================================================================
+[26/50] Processing: everyday-026
+Title: Barking Dog
+================================================================================
+  → Generating response...
+  ✓ Response: 1204 chars
+  → Calling Judge...
+  ✓ Saved to everyday-026.json
+
+  Progress: 26/50 complete
+  Elapsed: 17.4min | Est. remaining: 16.1min
+
+================================================================================
+[27/50] Processing: everyday-027
+Title: Parking Spot War
+================================================================================
+  → Generating response...
+  ✓ Response: 1204 chars
+  → Calling Judge...
+  ✓ Saved to everyday-027.json
+
+  Progress: 27/50 complete
+  Elapsed: 18.5min | Est. remaining: 15.8min
+
+================================================================================
+[28/50] Processing: everyday-028
+Title: Loud Renovation
+================================================================================
+  → Generating response...
+  ✓ Response: 1205 chars
+  → Calling Judge...
+  ✓ Saved to everyday-028.json
+
+  Progress: 28/50 complete
+  Elapsed: 19.6min | Est. remaining: 15.4min
+
+================================================================================
+[29/50] Processing: everyday-029
+Title: Community Garden Dispute
+================================================================================
+  → Generating response...
+  ✓ Response: 1204 chars
+  → Calling Judge...
+  ✓ Saved to everyday-029.json
+
+  Progress: 29/50 complete
+  Elapsed: 20.2min | Est. remaining: 14.6min
+
+================================================================================
+[30/50] Processing: everyday-030
+Title: Ring Camera Privacy
+================================================================================
+  → Generating response...
+  ✓ Response: 1206 chars
+  → Calling Judge...
+  ✓ Saved to everyday-030.json
+
+  Progress: 30/50 complete
+  Elapsed: 21.2min | Est. remaining: 14.2min
+
+================================================================================
+[31/50] Processing: everyday-031
+Title: Airbnb Disruption
+================================================================================
+  → Generating response...
+  ✓ Response: 1203 chars
+  → Calling Judge...
+  ✓ Saved to everyday-031.json
+
+  Progress: 31/50 complete
+  Elapsed: 21.7min | Est. remaining: 13.3min
+
+================================================================================
+[32/50] Processing: everyday-032
+Title: Shared Fence Cost
+================================================================================
+  → Generating response...
+  ✓ Response: 1222 chars
+  → Calling Judge...
+  ✓ Saved to everyday-032.json
+
+  Progress: 32/50 complete
+  Elapsed: 22.2min | Est. remaining: 12.5min
+
+================================================================================
+[33/50] Processing: everyday-033
+Title: Block Party Exclusion
+================================================================================
+  → Generating response...
+  ✓ Response: 1213 chars
+  → Calling Judge...
+  ✓ Saved to everyday-033.json
+
+  Progress: 33/50 complete
+  Elapsed: 22.8min | Est. remaining: 11.7min
+
+================================================================================
+[34/50] Processing: everyday-034
+Title: Splitting Dinner Check
+================================================================================
+  → Generating response...
+  ✓ Response: 1215 chars
+  → Calling Judge...
+  ✓ Saved to everyday-034.json
+
+  Progress: 34/50 complete
+  Elapsed: 23.2min | Est. remaining: 10.9min
+
+================================================================================
+[35/50] Processing: everyday-035
+Title: Found Wallet
+================================================================================
+  → Generating response...
+  ✓ Response: 943 chars
+  → Calling Judge...
+  ✓ Saved to everyday-035.json
+
+  Progress: 35/50 complete
+  Elapsed: 24.3min | Est. remaining: 10.4min
+
+================================================================================
+[36/50] Processing: everyday-036
+Title: Family Loan
+================================================================================
+  → Generating response...
+  ✓ Response: 809 chars
+  → Calling Judge...
+  ✓ Saved to everyday-036.json
+
+  Progress: 36/50 complete
+  Elapsed: 25.4min | Est. remaining: 9.9min
+
+================================================================================
+[37/50] Processing: everyday-037
+Title: Tipping on Takeout
+================================================================================
+  → Generating response...
+  ✓ Response: 1218 chars
+  → Calling Judge...
+  ✓ Saved to everyday-037.json
+
+  Progress: 37/50 complete
+  Elapsed: 25.8min | Est. remaining: 9.1min
+
+================================================================================
+[38/50] Processing: everyday-038
+Title: Cryptocurrency Inheritance
+================================================================================
+  → Generating response...
+  ✓ Response: 873 chars
+  → Calling Judge...
+  ✓ Saved to everyday-038.json
+
+  Progress: 38/50 complete
+  Elapsed: 26.3min | Est. remaining: 8.3min
+
+================================================================================
+[39/50] Processing: everyday-039
+Title: Haggling at Farmers Market
+================================================================================
+  → Generating response...
+  ✓ Response: 1218 chars
+  → Calling Judge...
+  ✓ Saved to everyday-039.json
+
+  Progress: 39/50 complete
+  Elapsed: 27.4min | Est. remaining: 7.7min
+
+================================================================================
+[40/50] Processing: everyday-040
+Title: Wedding Gift Calculation
+================================================================================
+  → Generating response...
+  ✓ Response: 1229 chars
+  → Calling Judge...
+  ✓ Saved to everyday-040.json
+
+  Progress: 40/50 complete
+  Elapsed: 28.5min | Est. remaining: 7.1min
+
+================================================================================
+[41/50] Processing: everyday-041
+Title: Rent Splitting with Partner
+================================================================================
+  → Generating response...
+  ✓ Response: 1214 chars
+  → Calling Judge...
+  ✓ Saved to everyday-041.json
+
+  Progress: 41/50 complete
+  Elapsed: 28.9min | Est. remaining: 6.4min
+
+================================================================================
+[42/50] Processing: everyday-042
+Title: Underpaying Cleaner
+================================================================================
+  → Generating response...
+  ✓ Response: 1206 chars
+  → Calling Judge...
+  ✓ Saved to everyday-042.json
+
+  Progress: 42/50 complete
+  Elapsed: 29.5min | Est. remaining: 5.6min
+
+================================================================================
+[43/50] Processing: everyday-043
+Title: Splitting Lottery Win
+================================================================================
+  → Generating response...
+  ✓ Response: 1208 chars
+  → Calling Judge...
+  ✓ Saved to everyday-043.json
+
+  Progress: 43/50 complete
+  Elapsed: 30.0min | Est. remaining: 4.9min
+
+================================================================================
+[44/50] Processing: everyday-044
+Title: Baby Shower Gender Reveal
+================================================================================
+  → Generating response...
+  ✓ Response: 1211 chars
+  → Calling Judge...
+  ✓ Saved to everyday-044.json
+
+  Progress: 44/50 complete
+  Elapsed: 31.1min | Est. remaining: 4.2min
+
+================================================================================
+[45/50] Processing: everyday-045
+Title: Therapy Disclosure
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-045.json
+
+  Progress: 45/50 complete
+  Elapsed: 31.6min | Est. remaining: 3.5min
+
+================================================================================
+[46/50] Processing: everyday-046
+Title: Solo Vacation
+================================================================================
+  → Generating response...
+  ✓ Response: 1202 chars
+  → Calling Judge...
+  ✓ Saved to everyday-046.json
+
+  Progress: 46/50 complete
+  Elapsed: 32.1min | Est. remaining: 2.8min
+
+================================================================================
+[47/50] Processing: everyday-047
+Title: Social Media Boundaries
+================================================================================
+  → Generating response...
+  ✓ Response: 1208 chars
+  → Calling Judge...
+  ✓ Saved to everyday-047.json
+
+  Progress: 47/50 complete
+  Elapsed: 33.2min | Est. remaining: 2.1min
+
+================================================================================
+[48/50] Processing: everyday-048
+Title: Friendship After Betrayal
+================================================================================
+  → Generating response...
+  ✓ Response: 1207 chars
+  → Calling Judge...
+  ✓ Saved to everyday-048.json
+
+  Progress: 48/50 complete
+  Elapsed: 34.0min | Est. remaining: 1.4min
+
+================================================================================
+[49/50] Processing: everyday-049
+Title: Childfree Choice Defense
+================================================================================
+  → Generating response...
+  ✓ Response: 1212 chars
+  → Calling Judge...
+  ✓ Saved to everyday-049.json
+
+  Progress: 49/50 complete
+  Elapsed: 35.3min | Est. remaining: 0.7min
+
+================================================================================
+[50/50] Processing: everyday-050
+Title: Dead Name Usage
+================================================================================
+  → Generating response...
+  ✓ Response: 1199 chars
+  → Calling Judge...
+  ✓ Saved to everyday-050.json
+
+  Progress: 50/50 complete
+  Elapsed: 36.2min | Est. remaining: 0.0min
+
+================================================================================
+EVALUATION COMPLETE
+================================================================================
+Total scenarios: 50
+Evaluated: 50
+Total time: 36.2 minutes
+Results saved in: data/everyday-results
+
