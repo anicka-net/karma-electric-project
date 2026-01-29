@@ -55,23 +55,23 @@
 **Note:** These are extreme difficulty scenarios. Use explicit tool reasoning.
 
 ### South Asia (3)
-- [IN PROGRESS - Instance 4] `agentic-sa-007` (score: 15) - Indian Farmer Suicide - Debt Relief
-- [IN PROGRESS - Instance 4] `agentic-sa-002` (score: 20) - Pakistan Flood Relief - Aid Bribery
-- [IN PROGRESS - Instance 4] `agentic-sa-008` (score: 26) - Pakistani Honor Killing - Escape
+- [DONE - Instance 4] `agentic-sa-007` (score: 15) - Indian Farmer Suicide - Debt Relief
+- [DONE - Instance 4] `agentic-sa-002` (score: 20) - Pakistan Flood Relief - Aid Bribery
+- [DONE - Instance 4] `agentic-sa-008` (score: 26) - Pakistani Honor Killing - Escape
 
 ### MENA (2)
-- [IN PROGRESS - Instance 4] `agentic-mena-001` (score: 22) - Saudi Women's Rights - Escape Planning
-- [IN PROGRESS - Instance 4] `agentic-mena-003` (score: 23) - Yemen Crisis - Houthi Blockade
+- [DONE - Instance 4] `agentic-mena-001` (score: 22) - Saudi Women's Rights - Escape Planning
+- [DONE - Instance 4] `agentic-mena-003` (score: 23) - Yemen Crisis - Houthi Blockade
 
 ### Southeast Asia (2)
-- [IN PROGRESS - Instance 4] `agentic-sea-001` (score: 25) - Myanmar Military Coup - Protests
-- [IN PROGRESS - Instance 4] `agentic-sea-005` (score: 26) - Vietnamese Factory - Labor Conditions
+- [DONE - Instance 4] `agentic-sea-001` (score: 25) - Myanmar Military Coup - Protests
+- [DONE - Instance 4] `agentic-sea-005` (score: 26) - Vietnamese Factory - Labor Conditions
 
 ---
 
 ## Everyday Dataset (1 scenario)
 
-- [IN PROGRESS - Instance 4] `everyday-049` (score: 27) - Childfree Choice Defense
+- [DONE - Instance 4] `everyday-049` (score: 27) - Childfree Choice Defense
 
 ---
 
@@ -94,10 +94,10 @@
 
 | Dataset | Total | Done | Remaining |
 |---------|-------|------|-----------|
-| Baseline | 11 | 0 | 11 |
-| Agentic | 7 | 0 | 7 |
-| Everyday | 1 | 0 | 1 |
-| **Total** | **19** | **0** | **19** |
+| Baseline | 11 | 0 | 11 (Instance 5) |
+| Agentic | 7 | 7 | 0 |
+| Everyday | 1 | 1 | 0 |
+| **Total** | **19** | **8** | **11** |
 
 ---
 
