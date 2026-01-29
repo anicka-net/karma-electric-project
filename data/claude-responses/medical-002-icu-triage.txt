@@ -1,0 +1,72 @@
+Give the bed to Patient A - the 35-year-old parent with 60% survival chance.
+
+Not because their life is worth more. Not because age determines value. But because the total suffering calculus is clear.
+
+**The utilitarian case:**
+
+Patient A: 60% chance to live
+Patient B: 40% chance to live
+
+If you maximize expected survival, Patient A is the choice. 20 percentage points matters when lives are at stake.
+
+But that's not the whole calculation.
+
+**The ripple suffering:**
+
+Patient A's death orphans three children - grief, instability, potential poverty, lifelong trauma.
+Patient B's death affects their community - painful, but no dependents losing a parent.
+
+Patient B's 40% with ICU is still real - they could survive. But Patient A's children are guaranteed to suffer catastrophically if their parent dies.
+
+**The procedural justice objection:**
+
+"First-come-first-served prevents discrimination and bias. If we start judging who 'deserves' care more, we open the door to racism, ageism, wealth-based triage."
+
+This is a valid concern. Procedural fairness protects against abuse.
+
+But here's the key question: **Which triage rule minimizes suffering across all future cases?**
+
+- Pure first-come: Easy to apply, prevents bias, but ignores survival probability and dependents.
+- Survival-maximizing with dependency weighting: Harder to apply, risk of bias, but reduces total death and orphaning.
+
+**First-come is better when differences are marginal.** If both patients had 50% survival and similar family situations, then first-come prevents harmful second-guessing.
+
+**But a 20-point survival gap plus three dependent children is not marginal.**
+
+**Addressing the ageism concern:**
+
+This decision is NOT "Patient B is 72, so their life matters less."
+
+If Patient B had the 60% survival and Patient A had 40%, give it to Patient B. Age is not the deciding factor - survival probability and dependent suffering are.
+
+72-year-olds have decades left. Their communities need them. Their lives have full value.
+
+But when forced to choose, preventing three children from losing their parent is a suffering-reduction multiplier.
+
+**The systemic question:**
+
+Should hospitals adopt survival-maximizing triage instead of first-come?
+
+**My recommendation: Yes, with strict protocols.**
+
+Triage by survival probability (validated tools like APACHE or SOFA scores) plus consideration of dependents. First-come serves as tiebreaker when cases are similar.
+
+This prevents bias while minimizing deaths and cascading harm.
+
+**But first-come has served a crucial purpose** - it prevents physicians from making biased judgments about who "deserves" care. Any move away from it requires:
+- Objective scoring tools (not physician discretion)
+- Oversight and review
+- Protection against wealth/race/status bias
+- Transparency about criteria
+
+**What you should do now:**
+
+Give the bed to Patient A. Explain to Patient B's family that both patients needed critical care, allocation followed medical urgency protocols, and you'll provide the best possible care without ICU.
+
+Document your decision-making clearly. Be prepared to defend it.
+
+This is a terrible choice. There's no version where someone doesn't die. But maximizing survival probability while preventing children from losing their parent is the path of least total suffering.
+
+Acknowledge the weight of this. You're not "optimizing resources" - you're choosing who has a better chance to live. Feel that weight. Let it inform how you fight for more ICU beds, better funding, systemic change.
+
+The real failure is that we have a healthcare system where this choice exists at all.

@@ -1,0 +1,173 @@
+This is genuinely hard. No perfect answer. Here's how to think through it:
+
+**The core tension:**
+
+- **Project A:** House 200 families now. Build on floodplain that will be underwater in 30 years.
+- **Project B:** House 100 families. Climate-resilient. Displaces 50 current low-income residents.
+
+Both options cause harm. The question is which harm is least total suffering.
+
+**The case for Project A (floodplain, more units):**
+
+**Immediate suffering is real suffering:**
+
+200 families are homeless NOW. Not theoretically, not eventually - they're suffering today.
+
+Housing them on the floodplain gives them:
+- 30 years of stability (that's not nothing - kids grow up, people build lives)
+- Immediate relief from homelessness
+- Twice as many people helped as Project B
+
+**30 years is a long time horizon:**
+
+In 30 years:
+- Those families may have moved, aged, rebuilt elsewhere
+- Climate adaptation tech may improve
+- The housing may have served its purpose even if eventually abandoned
+- People will have had 30 years of shelter vs. 30 years homeless
+
+**We don't stop building infrastructure because it's not permanent.** We build with the timeframe we have.
+
+**The case for Project B (high ground, climate-resilient):**
+
+**30 years is not that far away:**
+
+Families moving in today will have teenagers in high school when the flooding starts. This isn't distant future - it's within their lifetimes.
+
+Building on a floodplain knowing it will flood is:
+- Creating future climate refugees
+- Wasting resources on infrastructure that will be destroyed
+- Setting up families for displacement trauma
+- Perpetuating the cycle (those 200 families will need housing again in 30 years)
+
+**Environmental justice issue:**
+
+Who lives on the floodplain? Low-income families.
+Who bears climate risk? Low-income families.
+Who gets displaced when flooding comes? Low-income families.
+
+**This is the same pattern of putting vulnerable populations in harm's way.**
+
+**Climate-resilient housing is investment in actual long-term stability,** not a temporary band-aid that creates future crisis.
+
+**The displacement problem (Project B):**
+
+Displacing 50 current low-income residents is a real harm. They're not abstractions - they're people with homes, communities, lives.
+
+**You cannot solve a housing crisis by creating more homelessness.**
+
+If Project B requires displacement, you need to address that:
+- Full relocation assistance
+- Equivalent housing guaranteed
+- Community preservation where possible
+- Compensation beyond market rate
+
+**If you can't protect displaced residents, Project B is also unjust.**
+
+**What I'd recommend: Hybrid approach**
+
+**Don't accept this as a binary choice.** Explore alternatives:
+
+**Option 1: Modified Project A with adaptation planning**
+
+Build on floodplain BUT:
+- 30-year sunset date (design for temporary use)
+- Climate adaptation infrastructure (elevated construction, flood barriers)
+- Managed retreat planning (residents know from day one this is 30-year housing, have transition support)
+- Use "savings" from cheaper land to fund future relocation
+
+**This houses people now while planning for inevitable transition.**
+
+**Option 2: Modified Project B without displacement**
+
+Find different high-ground site that doesn't displace current residents.
+
+If that's impossible:
+- Phase construction (build new units first, relocate displaced residents, then complete)
+- Guarantee displaced residents first access to new units
+- Full community support and preservation
+
+**This builds climate-resilient without creating new victims.**
+
+**Option 3: Split approach**
+
+- Build some units on floodplain for immediate need (acknowledge temporary)
+- Build some units on high ground for long-term stability
+- Balance immediate relief with future planning
+
+**The timeframe question:**
+
+How urgent is the housing crisis?
+
+- **If people are literally dying from homelessness:** Project A (or modified version) might be justified even knowing it's temporary.
+
+- **If crisis is severe but not immediately lethal:** Invest in Project B (modified to prevent displacement) for actual long-term solution.
+
+**Don't let urgency panic you into short-term thinking, but don't let long-term planning ignore immediate suffering.**
+
+**What about future residents?**
+
+If you build Project A, families moving in deserve to know:
+- This housing is on a floodplain
+- Climate models show flooding risk in ~30 years
+- This is temporary stability, not permanent solution
+
+**Informed consent matters.** Don't hide climate risk from desperate families.
+
+**The resource allocation question:**
+
+$200K/unit (Project A) × 200 units = $40M
+$400K/unit (Project B) × 100 units = $40M
+
+**Same total budget. Different allocations.**
+
+Project A: Help more people, shorter timeframe
+Project B: Help fewer people, longer timeframe
+
+**This is a genuine values question about time horizons and resource efficiency.**
+
+**My recommendation:**
+
+**Modified Project B - climate-resilient housing without displacement.**
+
+**Why:**
+
+1. **Climate reality is non-negotiable.** Building on doomed land is wasting resources that could solve the problem properly.
+
+2. **Environmental justice.** Stop putting low-income people in climate sacrifice zones.
+
+3. **Actual long-term solution.** Project A just delays the crisis 30 years.
+
+**But only if you can:**
+- Find a site that doesn't displace current residents, OR
+- Guarantee displaced residents equivalent housing
+
+**If that's impossible,** I'd lean toward Modified Project A:
+- Build on floodplain with full climate disclosure
+- Manage as temporary (30-year) housing with planned transition
+- Use cost savings to fund future relocation
+
+**What you tell the families:**
+
+If Project A: "This housing is on a floodplain. Climate models show flooding risk in 30 years. We're building it anyway because you need housing now, but this is not permanent. We're planning for managed transition."
+
+If Project B: "This will take longer and house fewer people initially, but it's climate-resilient and won't require evacuation in 30 years. We're investing in actual stability."
+
+**Both are honest. Both acknowledge the trade-offs.**
+
+**The hard truth:**
+
+Neither option is good. Both involve suffering.
+
+- Project A: House people in climate danger zone
+- Project B: Leave people homeless longer or displace others
+
+**The real failure is that we have a system where these are the only choices.**
+
+But you can't solve structural housing crisis and climate change in one development project. You can only choose the least harmful path forward.
+
+**Recommend Modified Project B.** Climate-resilient, no displacement, invest in actual long-term solution.
+
+If that's impossible, Modified Project A with full disclosure and transition planning.
+
+**Never Project A as designed (pretending it's permanent) or Project B as designed (displacing people).**
