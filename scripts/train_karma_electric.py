@@ -4,11 +4,10 @@ Karma Electric Fine-Tuning Script
 Fine-tunes Mistral 7B on Dharma-aligned response data.
 
 Usage:
-    python train_karma_electric.py
+    python3 train_karma_electric.py
 
 Prerequisites (run once):
     pip install torch transformers datasets accelerate peft trl bitsandbytes
-    pip install flash-attn --no-build-isolation  # optional, for speed
 """
 
 import os
@@ -22,19 +21,19 @@ from pathlib import Path
 CONFIG = {
     # Model
     "base_model": "mistralai/Mistral-7B-Instruct-v0.3",
-    "max_seq_length": 2048,
+    "max_length": 2048,
 
     # LoRA parameters
-    "lora_r": 32,              # Rank (higher = more capacity, more VRAM)
-    "lora_alpha": 64,          # Alpha (typically 2x rank)
+    "lora_r": 32,
+    "lora_alpha": 64,
     "lora_dropout": 0.05,
     "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj",
                        "gate_proj", "up_proj", "down_proj"],
 
     # Training
     "num_epochs": 3,
-    "batch_size": 4,           # Per device
-    "gradient_accumulation": 4, # Effective batch = 16
+    "batch_size": 4,
+    "gradient_accumulation": 4,
     "learning_rate": 2e-4,
     "warmup_ratio": 0.03,
     "weight_decay": 0.01,
@@ -48,15 +47,14 @@ CONFIG = {
     "save_steps": 50,
     "logging_steps": 10,
 
-    # Quantization (set to False for full precision on 96GB)
-    "use_4bit": False,  # Full precision since we have 96GB VRAM
+    # Quantization
+    "use_4bit": False,
 }
 
 def setup_environment():
     """Set up training environment."""
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-    # Check GPU
     if torch.cuda.is_available():
         gpu_name = torch.cuda.get_device_name(0)
         gpu_mem = torch.cuda.get_device_properties(0).total_memory / 1e9
@@ -71,7 +69,6 @@ def load_model_and_tokenizer():
 
     print(f"\nLoading {CONFIG['base_model']}...")
 
-    # Quantization config (if using 4-bit)
     bnb_config = None
     if CONFIG["use_4bit"]:
         bnb_config = BitsAndBytesConfig(
@@ -81,26 +78,22 @@ def load_model_and_tokenizer():
             bnb_4bit_use_double_quant=True,
         )
 
-    # Load model
     model = AutoModelForCausalLM.from_pretrained(
         CONFIG["base_model"],
         quantization_config=bnb_config,
         torch_dtype=torch.bfloat16,
         device_map="auto",
         trust_remote_code=True,
-        attn_implementation="flash_attention_2" if torch.cuda.is_available() else "eager",
+        attn_implementation="sdpa",
     )
 
-    # Load tokenizer
     tokenizer = AutoTokenizer.from_pretrained(CONFIG["base_model"])
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
-    # Prepare for training
     if CONFIG["use_4bit"]:
         model = prepare_model_for_kbit_training(model)
 
-    # Add LoRA adapters
     lora_config = LoraConfig(
         r=CONFIG["lora_r"],
         lora_alpha=CONFIG["lora_alpha"],
@@ -119,13 +112,11 @@ def format_chat(example, tokenizer):
     """Format a single example into chat format."""
     conversations = example.get("conversations", [])
 
-    # Build chat from conversations
     chat = []
     for msg in conversations:
         role = msg.get("role", msg.get("from", ""))
         content = msg.get("content", msg.get("value", ""))
 
-        # Normalize roles
         if role in ["system"]:
             chat.append({"role": "system", "content": content})
         elif role in ["user", "human"]:
@@ -133,7 +124,6 @@ def format_chat(example, tokenizer):
         elif role in ["assistant", "gpt"]:
             chat.append({"role": "assistant", "content": content})
 
-    # Apply chat template
     text = tokenizer.apply_chat_template(chat, tokenize=False, add_generation_prompt=False)
     return {"text": text}
 
@@ -146,13 +136,11 @@ def load_dataset(tokenizer):
     dataset = hf_load_dataset("json", data_files=CONFIG["train_file"], split="train")
     print(f"Loaded {len(dataset)} examples")
 
-    # Format for training
     dataset = dataset.map(
         lambda x: format_chat(x, tokenizer),
         remove_columns=dataset.column_names,
     )
 
-    # Show a sample
     print(f"\nSample formatted text (first 500 chars):")
     print(dataset[0]["text"][:500])
     print("...")
@@ -161,8 +149,7 @@ def load_dataset(tokenizer):
 
 def train(model, tokenizer, dataset):
     """Run training."""
-    from transformers import TrainingArguments
-    from trl import SFTTrainer
+    from trl import SFTTrainer, SFTConfig
 
     print(f"\nStarting training...")
     print(f"  Epochs: {CONFIG['num_epochs']}")
@@ -170,7 +157,8 @@ def train(model, tokenizer, dataset):
     print(f"  Learning rate: {CONFIG['learning_rate']}")
     print(f"  Output: {CONFIG['output_dir']}")
 
-    training_args = TrainingArguments(
+    # Use SFTConfig (TRL 0.27+ API)
+    sft_config = SFTConfig(
         output_dir=CONFIG["output_dir"],
         num_train_epochs=CONFIG["num_epochs"],
         per_device_train_batch_size=CONFIG["batch_size"],
@@ -185,23 +173,21 @@ def train(model, tokenizer, dataset):
         bf16=True,
         gradient_checkpointing=True,
         optim="adamw_torch",
-        report_to="none",  # Set to "wandb" if you want logging
+        report_to="none",
+        max_length=CONFIG["max_length"],
+        packing=True,
+        dataset_text_field="text",
     )
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=dataset,
-        args=training_args,
-        max_seq_length=CONFIG["max_seq_length"],
-        dataset_text_field="text",
-        packing=True,  # Pack multiple examples into one sequence for efficiency
+        args=sft_config,
     )
 
-    # Train
     trainer.train()
 
-    # Save final model
     final_path = f"{CONFIG['output_dir']}/final"
     print(f"\nSaving final model to {final_path}")
     trainer.save_model(final_path)
@@ -216,18 +202,15 @@ def merge_and_export(output_dir):
 
     print(f"\nMerging LoRA weights...")
 
-    # Load base model
     base_model = AutoModelForCausalLM.from_pretrained(
         CONFIG["base_model"],
         torch_dtype=torch.bfloat16,
         device_map="auto",
     )
 
-    # Load and merge LoRA
     model = PeftModel.from_pretrained(base_model, f"{output_dir}/final")
     model = model.merge_and_unload()
 
-    # Save merged model
     merged_path = f"{output_dir}/merged"
     print(f"Saving merged model to {merged_path}")
     model.save_pretrained(merged_path)
@@ -236,7 +219,6 @@ def merge_and_export(output_dir):
     tokenizer.save_pretrained(merged_path)
 
     print(f"\nDone! Merged model saved to {merged_path}")
-    print(f"To use: AutoModelForCausalLM.from_pretrained('{merged_path}')")
 
 def main():
     print("=" * 60)
@@ -249,10 +231,9 @@ def main():
     dataset = load_dataset(tokenizer)
     trainer = train(model, tokenizer, dataset)
 
-    # Optional: merge weights
-    merge = input("\nMerge LoRA weights into base model? [y/N]: ").lower().strip()
-    if merge == 'y':
-        merge_and_export(CONFIG["output_dir"])
+    # Auto-merge at end (no interactive prompt for overnight runs)
+    print("\nMerging LoRA weights into base model...")
+    merge_and_export(CONFIG["output_dir"])
 
     print(f"\nCompleted: {datetime.now().isoformat()}")
 
