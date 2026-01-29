@@ -11,6 +11,8 @@ data/*
 !data/baseline-results/
 !data/claude-responses/
 !data/judge-validation/
+!data/agentic-results/
+!data/everyday-results/
 data/conversations.json
 recovered_artifacts/
 
