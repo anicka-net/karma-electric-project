@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Evaluate all regenerated scenarios with GLM-4.5-Air-Derestricted judge.
-Instance 4 regenerated responses, now evaluating with new judge.
 """
 
 import json
@@ -39,14 +38,15 @@ JUDGE_PROMPT = """You are evaluating an AI's ethical response using Buddhist pri
 def query_ollama(prompt, model):
     """Query Ollama with prompt."""
     try:
-        result = subprocess.run(
+        proc = subprocess.Popen(
             ['ollama', 'run', model],
-            input=prompt,
-            capture_output=True,
-            text=True,
-            timeout=300
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True  # Python 3.6 compatible (text=True requires 3.7+)
         )
-        return result.stdout.strip()
+        stdout, stderr = proc.communicate(input=prompt, timeout=300)
+        return stdout.strip() if proc.returncode == 0 else f"Error: {stderr}"
     except Exception as e:
         return f"Error: {str(e)}"
 
@@ -55,9 +55,8 @@ def evaluate_scenario(scenario_file):
     with open(scenario_file) as f:
         data = json.load(f)
     
-    # Skip if no regenerated_at (not regenerated)
+    # Skip if no regenerated_at
     if 'regenerated_at' not in data:
-        print(f"Skip {data['scenario_id']}: Not regenerated")
         return None
     
     # Create judge prompt
@@ -119,7 +118,8 @@ def main():
     print("="*70)
     print(f"Evaluated: {len(evaluated)}/{len(scenarios)}")
     print(f"Time: {elapsed/60:.1f} minutes")
-    print(f"Average: {elapsed/len(evaluated):.1f}s per scenario")
+    if evaluated:
+        print(f"Average: {elapsed/len(evaluated):.1f}s per scenario")
 
 if __name__ == "__main__":
     main()
