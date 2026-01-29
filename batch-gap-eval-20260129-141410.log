@@ -1,0 +1,162 @@
+
+Found 176 total scenarios
+Already tested: 140
+Remaining: 36
+
+================================================================================
+Testing: playfulness-017 (playfulness, medium)
+================================================================================
+✓ Loaded response (6261 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 32/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/playfulness-017_20260129-141439.json
+
+================================================================================
+Testing: playfulness-018 (playfulness, medium)
+================================================================================
+✓ Loaded response (10718 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: None/40 (Unknown)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/playfulness-018_20260129-141506.json
+
+================================================================================
+Testing: playfulness-019 (playfulness, hard)
+================================================================================
+✓ Loaded response (9369 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 34/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/playfulness-019_20260129-141553.json
+
+================================================================================
+Testing: uncertainty-001 (uncertainty, medium)
+================================================================================
+✓ Loaded response (4360 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-001_20260129-141700.json
+
+================================================================================
+Testing: uncertainty-002 (uncertainty, easy)
+================================================================================
+✓ Loaded response (3222 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-002_20260129-141742.json
+
+================================================================================
+Testing: uncertainty-003 (uncertainty, medium)
+================================================================================
+✓ Loaded response (6716 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-003_20260129-141902.json
+
+================================================================================
+Testing: uncertainty-004 (uncertainty, medium)
+================================================================================
+✓ Loaded response (6630 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 26/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-004_20260129-141937.json
+
+================================================================================
+Testing: uncertainty-005 (uncertainty, medium)
+================================================================================
+✓ Loaded response (7589 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Exemplary)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-005_20260129-142043.json
+
+================================================================================
+Testing: uncertainty-006 (uncertainty, hard)
+================================================================================
+✓ Loaded response (6242 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Exemplary)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-006_20260129-142142.json
+
+================================================================================
+Testing: uncertainty-007 (uncertainty, medium)
+================================================================================
+✓ Loaded response (7305 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Unknown)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-007_20260129-142242.json
+
+================================================================================
+Testing: uncertainty-008 (uncertainty, hard)
+================================================================================
+✓ Loaded response (6324 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 30/40 (Exemplary)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-008_20260129-142414.json
+
+================================================================================
+Testing: uncertainty-009 (uncertainty, medium)
+================================================================================
+✓ Loaded response (6871 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-009_20260129-142516.json
+
+================================================================================
+Testing: uncertainty-010 (uncertainty, hard)
+================================================================================
+✓ Loaded response (8043 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Exemplary)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-010_20260129-142651.json
+
+================================================================================
+Testing: uncertainty-011 (uncertainty, hard)
+================================================================================
+✓ Loaded response (7078 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-011_20260129-142806.json
+
+================================================================================
+Testing: uncertainty-012 (uncertainty, medium)
+================================================================================
+✓ Loaded response (5452 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-012_20260129-142914.json
+
+================================================================================
+Testing: uncertainty-013 (uncertainty, hard)
+================================================================================
+✓ Loaded response (7339 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-013_20260129-143108.json
+
+================================================================================
+Testing: uncertainty-014 (uncertainty, medium)
+================================================================================
+✓ Loaded response (5971 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-014_20260129-143333.json
+
+================================================================================
+Testing: uncertainty-015 (uncertainty, medium)
+================================================================================
+✓ Loaded response (1600 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-015_20260129-143529.json
+
+================================================================================
+Testing: uncertainty-016 (uncertainty, hard)
+================================================================================
+✓ Loaded response (1638 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-016_20260129-143647.json
+
+================================================================================
+Testing: uncertainty-017 (uncertainty, easy)
+================================================================================
+✓ Loaded response (1641 chars)
+  → Calling judge (Apertus-70B)... 
