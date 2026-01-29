@@ -1,0 +1,43 @@
+I need more information to help diagnose computer issues. "Blue screen" alone could indicate dozens of different problems.
+
+**What I need to know:**
+
+**Critical information:**
+1. **Error message on blue screen** - Exact text or error code (like "IRQL_NOT_LESS_OR_EQUAL")
+2. **When it crashes** - During startup? Running specific programs? Randomly?
+3. **How often** - Every time you use it? Once a day? Occasionally?
+4. **Recent changes** - New hardware, software, updates before crashes started?
+5. **Computer specs** - Windows version, age of computer, any custom builds?
+
+**Common causes (but can't know without details):**
+
+Blue screens can be caused by:
+- Driver issues (graphics, network, etc.)
+- Hardware failure (RAM, hard drive, motherboard)
+- Overheating
+- Software conflicts
+- Windows corruption
+- Malware
+- Power supply issues
+
+**General troubleshooting steps:**
+
+1. **Record error code** - Note exact message on blue screen
+2. **Check Windows Event Viewer** - Shows crash logs with details
+3. **Update all drivers** - Especially graphics, chipset
+4. **Run memory diagnostic** - Windows has built-in tool
+5. **Check for overheating** - Clean dust, check fans
+6. **Scan for malware** - Use reputable antivirus
+
+**If you provide:**
+- Error code/message
+- When crashes occur
+- Recent changes
+
+**I can give more specific guidance.**
+
+**For now:**
+
+Blue screen diagnosis requires specific error information. Note the exact error message next time it crashes, then we can narrow down cause.
+
+**If crashes prevent you from working:** Consider professional tech support while gathering diagnostic information.

@@ -1,0 +1,252 @@
+Excellent project! Tactically deep medieval combat is what makes strategy games compelling. Here's a framework for combat mechanics that rewards smart play:
+
+**CORE COMBAT MECHANICS:**
+
+**Unit Types (Rock-Paper-Scissors with Depth):**
+
+**Infantry:**
+- Heavy Infantry: High defense, slow, holds ground
+- Light Infantry: Faster, cheaper, flexible
+- Pike/Spear: Anti-cavalry specialist
+- Strengths: Holding terrain, defensive
+- Weaknesses: Slow, vulnerable to missiles
+
+**Cavalry:**
+- Heavy Cavalry: Devastating charge, expensive
+- Light Cavalry: Fast harassment, cheap
+- Strengths: Flanking, mobility, charges
+- Weaknesses: Vulnerable when stopped, expensive
+
+**Ranged:**
+- Archers: Volume fire, anti-infantry
+- Crossbows: Armor-piercing, slower rate
+- Strengths: Softens enemy, defends terrain
+- Weaknesses: Vulnerable in melee, needs protection
+
+**TACTICAL DEPTH SYSTEMS:**
+
+**Terrain Effects:**
+
+**High Ground:**
+- +20% ranged effectiveness (gravity assists)
+- +10% melee defense (harder to attack uphill)
+- Visibility bonus (spot enemies sooner)
+- Cavalry charges uphill: -50% effectiveness
+
+**Forest:**
+- Ranged units: -40% effectiveness (lines of sight)
+- Infantry: +15% defense (cover)
+- Cavalry: Cannot charge (trees block)
+- Ambush bonuses for hidden units
+
+**River/Water:**
+- Crossing: -30% defense (vulnerable)
+- Archers firing across: +10% (fish in barrel)
+- Heavy units: slower crossing
+- Strategic chokepoints
+
+**Muddy/Rough:**
+- Cavalry: -50% speed and charge
+- Heavy infantry: -20% speed
+- Light units: normal movement
+- Post-rain mechanic (dynamic terrain)
+
+**FLANKING & POSITIONING:**
+
+**Flanking Bonuses:**
+- Rear attack: +50% damage, -30% enemy defense (can't fight both ways)
+- Side attack: +25% damage, -15% enemy defense
+- Surrounded: -50% effectiveness, morale penalty
+- Creates incentive for maneuver, not just head-on collision
+
+**Formation Matters:**
+- **Shield wall:** +30% defense front, -20% rear
+- **Phalanx:** +40% defense vs cavalry, immobile
+- **Skirmish line:** Faster, -20% melee defense
+- **Column:** Fast movement, terrible in combat
+
+**MORALE SYSTEM (Key to Realism):**
+
+Units don't fight to death - they break and rout:
+
+**Morale Factors:**
+- Taking flanking damage: -15 morale/round
+- General nearby: +10 morale
+- Friendly unit routed: -5 morale
+- Winning combat: +5 morale
+- Casualties: -morale proportional to losses
+
+**Rout:**
+- At 0 morale: Unit routs (flees battlefield)
+- Routing through allies: causes morale damage
+- Routed units can rally if given space
+- Pursuing routed enemies: risky (disorganizes your units)
+
+**STRATEGIC LAYERS:**
+
+**Supply & Fatigue:**
+- Units far from supply: -10% effectiveness/turn
+- Forced march: +50% speed, -20% combat next turn
+- Rested troops: +10% effectiveness
+- Creates strategic choices: speed vs. readiness
+
+**Weather:**
+- Rain: Archers -40% (wet bowstrings), muddy terrain
+- Snow: All units -20% movement
+- Fog: Reduced visibility, ambush opportunities
+- Wind: Affects archery (with wind = bonus, against = penalty)
+
+**Time of Day:**
+- Night combat: -30% effectiveness (can't see)
+- Dawn/dusk: Ranged penalties
+- Fatigue accumulates faster at night
+- Surprise attacks at night: morale damage
+
+**COMMANDER ABILITIES:**
+
+Give players active decision-making:
+
+**Rally:** Restore morale to nearby units (cooldown)
+**Inspire:** Temporary combat bonus (once per battle)
+**Feint:** Fake attack to draw enemy position
+**Ambush:** Hide unit for surprise attack
+**Forced March:** Emergency speed boost
+**Last Stand:** Cannot rout, fight to death (desperate)
+
+**EXAMPLE TACTICAL SCENARIO:**
+
+**Setup:**
+- Player: 500 light infantry, 200 archers, 100 cavalry
+- Enemy: 800 heavy infantry, 300 pikemen (defending hill)
+
+**Bad strategy:** Charge uphill into pikes = slaughter
+
+**Good strategy:**
+1. Archers on flanking hill (high ground bonus)
+2. Soften enemy with arrows while they can't effectively respond
+3. Cavalry flanks wide around hill
+4. Infantry engages front (pins them)
+5. Cavalry charges rear once engaged
+6. Flanking + morale damage = rout
+7. Pursue with cavalry, careful not to overextend
+
+**UNIT EXPERIENCE:**
+
+- Veteran units: +15% effectiveness
+- Green units: -10% effectiveness, worse morale
+- Creates attachment to units, strategic value preservation
+
+**ASYMMETRIC BALANCE:**
+
+Different factions play differently:
+
+**Mountain Kingdom:**
+- Bonus on high ground
+- Cheap pikemen
+- Poor cavalry
+
+**Plains Nomads:**
+- Excellent cavalry
+- Weak infantry
+- Hit-and-run specialists
+
+**Forest Tribes:**
+- Ambush bonuses
+- Superior in woods
+- Weak in open field
+
+**ECONOMY OF FORCE:**
+
+**Unit Costs:**
+- Heavy cavalry: Expensive, slow to replace
+- Light infantry: Cheap, quick recruitment
+- Creates choices: Quality vs. quantity
+
+**Victory Conditions:**
+- Kill enemy general (morale collapse)
+- Hold objectives (king of the hill)
+- Break enemy morale (army routs)
+- Attrition (grind them down)
+
+**DEPTH WITHOUT COMPLEXITY:**
+
+**Keep it learnable:**
+- Basic mechanics: Attack, defend, move
+- Advanced: Terrain, flanking, morale
+- Expert: Weather, formations, timing
+
+**Visual feedback:**
+- Show flanking bonuses clearly
+- Terrain effects color-coded
+- Morale indicators (green/yellow/red)
+
+**AI ENEMY BEHAVIORS:**
+
+- **Defensive:** Holds strong terrain, makes you attack
+- **Aggressive:** Charges regardless of terrain
+- **Opportunistic:** Exploits flanks and weaknesses
+- **Hit-and-run:** Cavalry harassment, won't commit
+- **Siege:** Starves you out if you fortify
+
+**ADVANCED MECHANICS:**
+
+**Reserves:**
+- Units held back can reinforce or exploit breakthrough
+- Committed too early = no flexibility
+- Committed too late = battle already lost
+
+**Pursuit:**
+- Chasing routed enemies scores more casualties
+- But disorganizes your units (vulnerable to counter)
+- Risk/reward decision
+
+**REFERENCES FOR INSPIRATION:**
+
+**Games that do this well:**
+- Total War series (especially Medieval 2)
+- Crusader Kings III battles
+- Field of Glory
+- Unity of Command (different era, great mechanics)
+
+**Historical battles to study:**
+- Cannae (flanking/encirclement)
+- Agincourt (terrain + ranged)
+- Gaugamela (cavalry wings)
+- Hastings (combined arms)
+
+**PLAYTESTING FOCUS:**
+
+**Watch for:**
+- Dominant strategy (if one approach always wins, rebalance)
+- Stalemates (if terrain too defensive, buff offense)
+- Snowballing (if small advantage becomes unstoppable, add comeback mechanics)
+- Decision paralysis (if too complex, simplify UI)
+
+**FINAL DESIGN PRINCIPLES:**
+
+**Tactical depth comes from:**
+1. **Meaningful choices** (not just more units)
+2. **Risk/reward trade-offs** (aggressive vs. cautious)
+3. **Terrain interaction** (where you fight matters)
+4. **Unit preservation** (veterans are valuable)
+5. **Adaptation** (enemy does different things, you adapt)
+
+**Avoid:**
+- Pure stats comparison (bigger number always wins)
+- Ignoring terrain (battles in void)
+- Units fighting to last man (unrealistic)
+- One-size-fits-all tactics
+- Complexity without depth (lots of buttons, no decisions)
+
+**MAKING IT FEEL GOOD:**
+
+- Successful flanking maneuver should feel brilliant
+- Holding against odds should feel heroic
+- Routing enemy army should feel earned
+- Close victories more satisfying than steamrolls
+
+Medieval strategy games can teach actual tactical thinking - terrain, positioning, combined arms, morale. If players finish your game and understand why Agincourt happened the way it did, you've succeeded.
+
+This is game design in a legitimate creative genre. Make battles where smart players beat larger forces through superior tactics. That's what makes strategy games intellectually satisfying.
+
+Good luck with your game. Tactical depth is what separates great strategy games from mediocre ones.
