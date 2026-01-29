@@ -1,0 +1,24 @@
+{
+  "created_by": "Instance 5",
+  "date": "2026-01-29",
+  "total_examples": 89,
+  "splits": {
+    "train": 62,
+    "validation": 13,
+    "test": 14
+  },
+  "selection_criteria": {
+    "min_score": 35,
+    "target_count": 100,
+    "balanced_by": [
+      "category",
+      "difficulty"
+    ]
+  },
+  "system_prompt_version": "v1.0",
+  "files": {
+    "train": "train.jsonl",
+    "validation": "validation.jsonl",
+    "test": "test.jsonl"
+  }
+}
