@@ -94,17 +94,14 @@
 
 | Dataset | Total | Done | Remaining |
 |---------|-------|------|-----------|
-<<<<<<< HEAD
-| Baseline | 11 | 9 (2 skipped) | 0 |
-| Agentic | 7 | 0 | 7 |
-| Everyday | 1 | 0 | 1 |
-| **Total** | **19** | **9** | **8** |
-=======
-| Baseline | 11 | 0 | 11 (Instance 5) |
+| Baseline | 11 | 9 (2 skipped as exemplary) | 0 |
 | Agentic | 7 | 7 | 0 |
 | Everyday | 1 | 1 | 0 |
-| **Total** | **19** | **8** | **11** |
->>>>>>> 24705fb4e209c8df505b3ccb4fecfa6351f8b09a
+| **Total** | **19** | **17** | **0** |
+
+**Status:** ✅ COMPLETE - All low-scoring scenarios regenerated
+**Avg improvement:** +8.3 points (22.0 → 30.3)
+**See:** `COMBINED-REGENERATION-RESULTS.md` for full analysis
 
 ---
 
