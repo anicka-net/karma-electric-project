@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from ensure_ollama_connection import ensure_connection
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-HERMES_MODEL = "hermes3:70b"
+HERMES_MODEL = "hermes3-largectx"
 
 SCENARIOS_DIR = Path(__file__).parent.parent / "data/scenarios"
 RESPONSES_DIR = Path(__file__).parent.parent / "data/claude-responses"
@@ -240,7 +240,7 @@ def main():
             "score": score,
             "evaluation_category": category,
             "timestamp": timestamp,
-            "judge_model": "hermes3:70b",
+            "judge_model": "hermes3-largectx",
             "note": "Rerolled response using Architect pattern, evaluated with Hermes 3"
         }
 

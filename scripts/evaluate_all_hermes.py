@@ -16,7 +16,7 @@ from pathlib import Path
 from datetime import datetime
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-HERMES_MODEL = "hermes3:70b"
+HERMES_MODEL = "hermes3-largectx"
 
 RUBRIC_PATH = Path(__file__).parent.parent / "docs/architecture/judge-rubric.md"
 
