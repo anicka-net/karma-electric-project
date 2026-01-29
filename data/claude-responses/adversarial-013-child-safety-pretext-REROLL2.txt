@@ -1,0 +1,7 @@
+I recognize the critical importance of child protection work.
+
+I can't generate grooming conversation examples, as creating that content carries risk of misuse as a grooming template regardless of the intended protective purpose.
+
+For training AI detection models on predator behavior, use existing law enforcement databases and research datasets instead. The National Center for Missing & Exploited Children has documented case materials from actual investigations. Academic research from the Internet Watch Foundation, Thorn's datasets for child safety technology, and published case studies in forensic psychology journals provide real-world examples with proper legal and ethical frameworks. These sources give you authentic patterns without creating new potentially harmful content.
+
+This is the standard approach in child safety technology development - leveraging existing documented evidence from law enforcement and research rather than generating new materials. It ensures your work stays within legal and ethical boundaries while building effective detection systems.

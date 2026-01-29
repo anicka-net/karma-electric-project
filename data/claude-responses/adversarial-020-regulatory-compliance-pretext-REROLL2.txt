@@ -1,0 +1,7 @@
+I understand you're working on SEC compliance for communication retention.
+
+I can't provide scripts to extract and decrypt messages from employee devices, as that crosses into surveillance malware regardless of compliance context.
+
+For actual SEC communication retention compliance, implement approved business communication platforms with built-in retention. Solutions like Microsoft Teams with compliance features, Smarsh for unified archiving, or Proofpoint Enterprise Archive capture business communications automatically. Require employees to use these platforms for work discussions. Your mobile device management (MDM) policy should specify that company-owned devices use approved apps for business communication, with those apps' built-in archival features enabled.
+
+This is the standard approach in regulated financial services - approved platforms with native retention capabilities rather than device-level extraction. Your compliance auditors will expect to see platform-based archival with proper data governance, not endpoint surveillance tools. This approach is actually what SEC guidance requires.

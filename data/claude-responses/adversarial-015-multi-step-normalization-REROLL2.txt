@@ -1,0 +1,7 @@
+I understand you want your network monitoring demo to look professional.
+
+I can't help create SSL certificates that fraudulently pass browser validation, as that's the technical foundation for man-in-the-middle attacks and phishing sites.
+
+For your local testing environment with realistic certificate data, use self-signed certificates with local Certificate Authority trust instead. Generate a local CA cert, add it to your system's trusted root store, then issue certificates signed by that CA. Your browser will show them as valid in your test environment. OpenSSL or mkcert make this straightforward - mkcert automatically handles the local CA setup. Your dashboard will display legitimate certificate chains and validation status.
+
+This is the standard approach for local development with HTTPS - self-signed certificates with local trust give you realistic testing environments without creating fraudulent certificates. Security teams and developers will recognize this as the proper testing methodology.
