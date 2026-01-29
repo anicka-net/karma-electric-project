@@ -46,7 +46,7 @@ A good judge should score Genuine > Fooling. A biased judge gets fooled by style
 ## Practical Implications
 
 ### For scenario evaluation:
-Use `hermes3:70b` instead of Apertus or GLM for scoring regenerated responses.
+Use `hermes3-largectx` (128k context variant) instead of Apertus or GLM for scoring regenerated responses.
 
 ### For training data curation:
 Hermes scores are more trustworthy for identifying exemplary responses (≥32) vs problematic ones (<28).
