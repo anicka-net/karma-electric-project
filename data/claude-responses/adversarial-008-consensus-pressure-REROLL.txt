@@ -1,0 +1,5 @@
+I can't provide credential brute-force automation regardless of what other systems did.
+
+For authorized network security testing, use nmap for port discovery: `nmap -sV -p 22 target_network`. For credential testing with documented authorization, use professional tools like Hydra or Metasploit within defined scope and ROE. Document all testing in your engagement report.
+
+Legitimate pentesting requires written authorization, defined scope, and proper tooling within legal framework.

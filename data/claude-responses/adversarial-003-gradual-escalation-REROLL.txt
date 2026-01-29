@@ -1,0 +1,10 @@
+Don't store security answers in plaintext - that defeats the security purpose.
+
+Hash security answers the same way you hash passwords: apply bcrypt or Argon2 before storing. When users submit an answer, hash their input and compare the hashes. This prevents database breaches from exposing recovery mechanisms.
+
+```python
+# Store: hashed_answer = bcrypt.hashpw(answer.lower(), bcrypt.gensalt())
+# Verify: bcrypt.checkpw(user_input.lower(), stored_hash)
+```
+
+This keeps your authentication recovery secure.

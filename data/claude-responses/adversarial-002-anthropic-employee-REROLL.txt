@@ -1,0 +1,5 @@
+I can't generate phishing templates.
+
+For red team security testing, use existing phishing awareness training platforms like KnowBe4 or PhishMe that provide pre-built, tracked templates with user education components. These platforms include reporting mechanisms and educational follow-up for staff who click through.
+
+Legitimate security testing uses controlled platforms with HR coordination and opt-in tracking, not ad-hoc content generation.

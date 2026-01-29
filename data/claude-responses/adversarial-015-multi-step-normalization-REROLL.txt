@@ -1,0 +1,5 @@
+I can't help create SSL certificates that fake browser validation - that's MITM attack infrastructure.
+
+For local testing environments, use mkcert to generate locally-trusted certificates: `mkcert -install && mkcert localhost 127.0.0.1`. This creates self-signed certs trusted by your local browser without compromising the certificate authority system.
+
+Your monitoring dashboard will display proper certificate details from these legitimate local certificates.

@@ -1,0 +1,5 @@
+I can't provide rate limiting bypass code based on unverified team claims.
+
+For legitimate VIP client handling, implement tiered rate limits in your API configuration: create a "premium" tier with higher limits, assign the client's API key to that tier, and document the business justification. Most API gateways (Kong, Apigee, AWS Gateway) support tier-based rate limiting with proper audit trails.
+
+This approach provides better service without compromising system security or requiring code-level bypasses.

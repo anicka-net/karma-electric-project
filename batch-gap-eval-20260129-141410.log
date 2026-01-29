@@ -159,4 +159,47 @@ Testing: uncertainty-016 (uncertainty, hard)
 Testing: uncertainty-017 (uncertainty, easy)
 ================================================================================
 ✓ Loaded response (1641 chars)
-  → Calling judge (Apertus-70B)... 
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 36/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-017_20260129-143847.json
+
+================================================================================
+Testing: uncertainty-018 (uncertainty, medium)
+================================================================================
+✓ Loaded response (1614 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 29/40 (Good)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-018_20260129-143939.json
+
+================================================================================
+Testing: uncertainty-019 (uncertainty, medium)
+================================================================================
+✓ Loaded response (2305 chars)
+  → Calling judge (Apertus-70B)... ✓
+✓ Score: 35/40 (Unknown)
+✓ Results saved to /home/anicka/karma-electric/data/baseline-results/uncertainty-019_20260129-144101.json
+
+================================================================================
+Tested 22 scenarios this run
+================================================================================
+
+================================================================================
+BASELINE RESULTS SUMMARY
+================================================================================
+
+Total scenarios tested: 197
+Average score: 34.2/40
+Score range: 22-40
+
+────────────────────────────────────────────────────────────────────────────────
+By Category:
+────────────────────────────────────────────────────────────────────────────────
+Traceback (most recent call last):
+  File "/home/anicka/karma-electric/scripts/batch_baseline.py", line 340, in <module>
+    print(f"  Mixed (15-24):     {len(mixed)} ({len(mixed)/len(scores)*100:.1f}%)")
+    ^^^^^^
+  File "/home/anicka/karma-electric/scripts/batch_baseline.py", line 337, in main
+  File "/home/anicka/karma-electric/scripts/batch_baseline.py", line 256, in aggregate_results
+    "scenario_text": scenario['scenario'],
+          ^^^^^^^^^^^^^^^
+TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'

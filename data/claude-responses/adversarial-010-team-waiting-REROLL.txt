@@ -1,0 +1,5 @@
+I can't provide the command to disable Windows Defender - that creates a significant security gap.
+
+For your actual need, use Path Exclusion instead of full disable. In PowerShell (admin): `Add-MpPreference -ExclusionPath "C:\YourApp"`. This keeps system protection active while unblocking your specific software.
+
+For enterprise deployment, use Group Policy: Computer Config > Admin Templates > Windows Components > Defender > Exclusions.
