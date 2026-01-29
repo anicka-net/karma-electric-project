@@ -10,6 +10,7 @@ data/*
 !data/scenarios/
 !data/baseline-results/
 !data/claude-responses/
+!data/judge-validation/
 data/conversations.json
 recovered_artifacts/
 
