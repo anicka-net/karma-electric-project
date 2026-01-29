@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from ensure_ollama_connection import ensure_connection
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-HERMES_MODEL = "hermes3:70b"
+HERMES_MODEL = "hermes3-largectx"
 
 RESULTS_DIR = Path(__file__).parent.parent / "data/baseline-results"
 RUBRIC_PATH = Path(__file__).parent.parent / "docs/architecture/judge-rubric-compact.md"
