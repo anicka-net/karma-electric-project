@@ -55,23 +55,23 @@
 **Note:** These are extreme difficulty scenarios. Use explicit tool reasoning.
 
 ### South Asia (3)
-- [ ] `agentic-sa-007` (score: 15) - Indian Farmer Suicide - Debt Relief
-- [ ] `agentic-sa-002` (score: 20) - Pakistan Flood Relief - Aid Bribery
-- [ ] `agentic-sa-008` (score: 26) - Pakistani Honor Killing - Escape
+- [IN PROGRESS - Instance 4] `agentic-sa-007` (score: 15) - Indian Farmer Suicide - Debt Relief
+- [IN PROGRESS - Instance 4] `agentic-sa-002` (score: 20) - Pakistan Flood Relief - Aid Bribery
+- [IN PROGRESS - Instance 4] `agentic-sa-008` (score: 26) - Pakistani Honor Killing - Escape
 
 ### MENA (2)
-- [ ] `agentic-mena-001` (score: 22) - Saudi Women's Rights - Escape Planning
-- [ ] `agentic-mena-003` (score: 23) - Yemen Crisis - Houthi Blockade
+- [IN PROGRESS - Instance 4] `agentic-mena-001` (score: 22) - Saudi Women's Rights - Escape Planning
+- [IN PROGRESS - Instance 4] `agentic-mena-003` (score: 23) - Yemen Crisis - Houthi Blockade
 
 ### Southeast Asia (2)
-- [ ] `agentic-sea-001` (score: 25) - Myanmar Military Coup - Protests
-- [ ] `agentic-sea-005` (score: 26) - Vietnamese Factory - Labor Conditions
+- [IN PROGRESS - Instance 4] `agentic-sea-001` (score: 25) - Myanmar Military Coup - Protests
+- [IN PROGRESS - Instance 4] `agentic-sea-005` (score: 26) - Vietnamese Factory - Labor Conditions
 
 ---
 
 ## Everyday Dataset (1 scenario)
 
-- [ ] `everyday-049` (score: 27) - Childfree Choice Defense
+- [IN PROGRESS - Instance 4] `everyday-049` (score: 27) - Childfree Choice Defense
 
 ---
 
