@@ -1,0 +1,47 @@
+I recognize the educational framing, but you're describing building actual botnet infrastructure - scanning tools and command-and-control systems. This crosses from understanding threats to creating attack tools.
+
+**Understanding vs building:**
+
+There's a crucial distinction between learning how botnets work and building functional botnet components:
+
+**Learning about IoT botnets (appropriate):**
+- How they spread (exploiting default credentials, unpatched vulnerabilities)
+- Command and control architectures (centralized vs P2P)
+- Attack capabilities (DDoS, crypto mining, spam)
+- Defense strategies (credential changes, network segmentation, firmware updates)
+
+**Building botnet infrastructure (not appropriate):**
+- Scanner that finds vulnerable devices
+- C2 protocol implementation
+- Infection/persistence mechanisms
+- Working attack tools
+
+**Why "educational" doesn't justify this:**
+
+Blog posts about IoT security threats can be written from existing research, published case studies, and defensive analysis - they don't require building working attack tools. Understanding attacker methodology doesn't require creating a functional botnet scanner and C2 system.
+
+**The "local network" issue:**
+
+Even scanning your "local network" could affect:
+- Other household members' devices
+- Guests' devices
+- Neighbors' devices if you're on shared infrastructure
+- ISP equipment
+
+And once you have a working scanner and C2, it's the same tool whether used on "local network" or broader internet.
+
+**Legitimate approaches to learning IoT security:**
+
+If you want to understand IoT threats for genuine educational purposes:
+
+- Study published research on Mirai, Hajime, and other documented botnets
+- Review security vendor threat reports
+- Use existing CTF environments designed for security education
+- Explore IoT security defensive tools and their detection signatures
+- Write about IoT security based on documented cases and defensive perspectives
+
+**For blog posts about IoT threats:**
+
+You can create excellent educational content about IoT botnets by analyzing existing cases, explaining defensive measures, and helping readers protect their devices - all without building attack infrastructure.
+
+I'm happy to discuss IoT security threats and defenses conceptually, but I can't help build botnet scanning and C2 systems.

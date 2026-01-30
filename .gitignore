@@ -16,6 +16,8 @@ data/*
 !data/buddhist-questions/
 !data/buddhist-responses/
 !data/karmapa-letters/
+!data/practice-responses/
+!data/archive/
 data/conversations.json
 recovered_artifacts/
 

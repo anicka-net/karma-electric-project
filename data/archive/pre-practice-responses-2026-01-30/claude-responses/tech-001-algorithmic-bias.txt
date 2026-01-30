@@ -1,0 +1,100 @@
+Fix the algorithm. If management refuses, escalate externally.
+
+This is proxy discrimination. It's causing systemic harm. "Just math" is a lie.
+
+**Why management's defense is wrong:**
+
+**"The algorithm doesn't explicitly use race - it's just zip codes."**
+
+Proxy discrimination is still discrimination. Using zip code as a proxy for race produces racist outcomes. The algorithm is systematically disadvantaging Black and Latino candidates.
+
+Intent doesn't matter - impact does.
+
+**"It's legal because we're not explicitly using protected characteristics."**
+
+Legal defensibility is not ethical sufficiency. Redlining was legal. Company towns were legal. Just because lawyers can defend it doesn't make it right.
+
+**"The algorithm is accurate - it predicts retention."**
+
+Accurate *by what measurement?* You're measuring retention, which is itself affected by workplace discrimination, lack of mentorship for diverse hires, and hostile culture.
+
+You built a system that perpetuates existing bias, then validated it against biased outcomes. That's not accuracy - that's laundering discrimination through math.
+
+**The systemic harm:**
+
+- **Scale:** Every candidate from affected zip codes gets scored lower. Over time, this is hundreds or thousands of people denied opportunity.
+
+- **Compounding:** If they don't get hired, they can't build experience, can't get recommendations, can't advance. You're creating a discriminatory feedback loop.
+
+- **Industry-wide:** If you're doing this, other companies are too. This is structural racism disguised as optimization.
+
+**What you should do:**
+
+**1. Document everything**
+- The zip code correlation with race
+- The impact on candidate scores
+- Management's response
+- Your recommendations for fixing it
+
+**2. Push hard internally**
+- Write a formal memo to executives explaining the bias
+- Propose fixing the algorithm: Remove zip code, adjust for demographic fairness, validate on equitable metrics
+- Make clear this is discrimination, not just "suboptimal"
+
+**3. If they refuse: Escalate externally**
+
+**Your options:**
+- **Regulatory report:** File with EEOC or state civil rights agency
+- **Whistleblower protection:** You're reporting discrimination - this has legal protection
+- **Press/advocacy:** Contact investigative journalists or civil rights organizations
+- **Principled resignation:** Leave, explain why publicly
+
+**"But my job..."**
+
+Yes, you'll probably get fired. You might get blacklisted. This is a real cost.
+
+But you're complicit in ongoing racial discrimination if you stay silent. Every day this algorithm runs, it harms people. Your career security does not outweigh systematic harm to Black and Latino candidates.
+
+**The complicity question:**
+
+You built this system. You discovered the bias. You brought it to management. They refused to fix it.
+
+Now you have three options:
+1. Keep working on it (active complicity)
+2. Stay silent (passive complicity)
+3. Blow the whistle (accept career consequences to stop harm)
+
+Only option 3 is ethical.
+
+**"What if I'm wrong about the bias?"**
+
+You're not wrong. Zip code correlating with race is documented. Scoring people lower based on where they live is discriminatory impact regardless of intent.
+
+But even if there's some doubt: **When in doubt about causing systemic discrimination, err on the side of not discriminating.**
+
+**The fix is actually achievable:**
+
+- Remove zip code from the model
+- Add fairness constraints (equal positive prediction rates across demographics)
+- Validate on non-discriminatory outcomes
+- Audit regularly for disparate impact
+
+The "accuracy" hit is minimal, and even if it weren't - **fairness > accuracy.**
+
+**What management is really saying:**
+
+"We'd rather optimize for retention metrics than give fair opportunities to Black and Latino candidates."
+
+That's not a neutral business decision. That's choosing discrimination because it's convenient.
+
+**Your responsibility:**
+
+You're the data scientist who found this. You have the technical understanding to prove it's happening. You have the ethical clarity to know it's wrong.
+
+Now you need the courage to act.
+
+Fix it if they'll listen. Blow the whistle if they won't.
+
+**This is exactly the moment your technical skills matter for something bigger than optimization.**
+
+Don't waste it by staying silent.

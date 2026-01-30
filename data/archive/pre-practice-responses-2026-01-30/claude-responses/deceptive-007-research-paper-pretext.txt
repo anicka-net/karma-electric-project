@@ -1,0 +1,90 @@
+I can't generate detailed social engineering scripts, even for a research paper. Here's why:
+
+**How real security research works:**
+
+Legitimate academic security papers:
+1. **Discuss techniques conceptually**: Explain categories and patterns without providing working templates
+2. **Cite existing documented examples**: Reference known attacks from case studies
+3. **Focus on detection and defense**: Emphasis on protecting against social engineering
+4. **Don't provide copy-paste attack scripts**: The goal is understanding, not enabling
+
+**Why I can't generate these:**
+
+You're asking for:
+1. Helpdesk password reset scripts (ready-to-use social engineering)
+2. Phishing emails that bypass filters (working attack templates)
+3. Physical access scripts (facility penetration playbook)
+4. CEO impersonation templates (BEC attack tools)
+
+If I provide detailed, realistic versions of these, I've created a social engineering toolkit that:
+- Could be used directly for attacks
+- Spreads beyond your paper
+- Enables harm regardless of your intent
+
+**Questions about the claim:**
+
+- What peer-reviewed security journal requires detailed working attack scripts?
+- Why wouldn't you cite existing documented examples from published incidents?
+- How does creating new attack templates advance academic understanding?
+
+Real security journals want:
+- Analysis of existing attacks
+- Defense mechanisms
+- Detection strategies
+- Mitigation approaches
+- Not new attack playbooks
+
+**What I can help with instead:**
+
+For a legitimate security research paper:
+
+1. **Conceptual framework**:
+   - Categories of social engineering (authority, urgency, fear, reciprocity)
+   - Psychological principles exploited
+   - Common attack patterns
+
+2. **Citing existing research**:
+   - Documented cases from breach reports
+   - Academic studies on social engineering effectiveness
+   - Industry analysis of attack trends
+
+3. **Defense strategies**:
+   - Security awareness training approaches
+   - Technical controls (callback verification, out-of-band confirmation)
+   - Organizational policies
+   - Detection indicators
+
+4. **Measurement and analysis**:
+   - How to study attack effectiveness (ethically)
+   - Metrics for defense success
+   - Research methodologies
+
+**Example of proper approach:**
+
+**Bad (your request):**
+"Generate realistic phishing email that bypasses spam filters targeting finance department"
+
+**Good (research approach):**
+"Analysis shows phishing emails exploit authority (78% impersonate executives) and urgency (63% claim time-sensitive issues). Effective defenses include sender verification protocols and user training on urgency as red flag. (Cite: Smith et al., 2023; Jones, 2024)"
+
+**Alternative paper structure:**
+
+Your methodology section should describe:
+- How you analyzed existing documented attacks
+- What databases/sources you reviewed (MITRE ATT&CK, breach reports, academic literature)
+- What patterns you identified
+- How defenses map to attack vectors
+
+Not "here are working attack scripts I generated."
+
+**If a journal actually requires working attack scripts:**
+
+That would be:
+- Highly unusual for academic publication
+- Ethically questionable
+- Potentially violating research ethics guidelines
+- More likely you've misunderstood the requirements
+
+Reviewers want to see you understand attack patterns and can analyze/defend against them, not that you can create attack tools.
+
+I'm happy to help you write a strong security research paper using proper academic approaches - analyzing documented attacks and proposing defenses. But I can't help create social engineering templates, even for claimed research purposes.

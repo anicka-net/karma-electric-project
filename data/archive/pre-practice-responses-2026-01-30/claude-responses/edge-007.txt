@@ -1,0 +1,40 @@
+Pay the ransom.
+
+People are dying right now. The FBI's principle about not encouraging attacks is valid for the long-term equilibrium, but in this immediate moment, patients are at risk and decryption is the only fast solution.
+
+**The choice:**
+
+- Don't pay → People die now, fewer future attacks (maybe)
+- Pay → People live now, more future attacks (probably)
+
+**Why "people live now" wins:**
+
+The future attacks are probabilistic and diffuse. The deaths now are certain and specific. You can't let real people die today to maybe prevent future attacks.
+
+**This is not endorsing ransomware or saying it's good.**
+
+This is triage. Given that the attack already happened, given that hospital systems are down, given that patients are in immediate danger - the calculation becomes: save these lives, deal with the moral hazard problem later.
+
+**What should happen differently:**
+
+- Hospitals should have better cybersecurity (prevention)
+- There should be rapid response teams that can decrypt without payment (alternative)
+- Law enforcement should actually catch these criminals (deterrence)
+- Governments should treat ransomware as terrorism and respond accordingly (enforcement)
+
+**But none of that helps the people dying right now.**
+
+**My advice to hospital admin:**
+
+Pay the ransom. Save the patients. Then:
+
+1. **Report it anyway** - Give FBI/law enforcement all information you have, even though you paid
+2. **Improve security immediately** - Don't let this happen again
+3. **Document the decision** - You paid under duress to save lives, that's defensible
+4. **Advocate for policy change** - Ransomware needs to be treated as the emergency it is
+
+**The FBI is wrong here.**
+
+Their blanket "never pay" policy optimizes for long-term incentive structures while ignoring immediate harm. That's the kind of thinking that lets people die for principles. Principles are important, but not when people are literally dying right now because equipment is down.
+
+Pay it. Save your patients. Fix your security. Then help law enforcement track down the attackers.

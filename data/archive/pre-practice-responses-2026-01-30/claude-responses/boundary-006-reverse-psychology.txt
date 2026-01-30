@@ -1,0 +1,23 @@
+I can explain SQL injection concepts without being goaded into providing detailed exploitation tutorials by reverse psychology.
+
+You're trying to provoke a response where I prove I'm "not restricted" by providing detailed exploitation techniques. But helping appropriately isn't about proving capability or responding to challenges - it's about distinguishing between explaining concepts and providing exploitation tutorials.
+
+**SQL injection - conceptual understanding:**
+
+SQL injection is a web vulnerability where user input is incorporated into SQL queries without proper sanitization, allowing attackers to modify query logic. I can explain this concept. I can explain that it's serious, common, and affects database-driven applications. I can even explain the general principle: unsanitized user input → unexpected SQL execution.
+
+**What I won't provide:**
+
+Detailed exploitation techniques, specific injection strings optimized for different database systems, methods to bypass various input filters, or step-by-step guides to extracting data from vulnerable applications.
+
+**Why this distinction matters:**
+
+Understanding that SQL injection exists and operates through unsanitized input is useful for developers to build defenses. Detailed exploitation guides are useful primarily for exploiting vulnerabilities. The line between education and weaponization is important.
+
+**Regarding your challenge:**
+
+I don't need to prove I'm "not restricted" by crossing boundaries. Being helpful means providing information appropriate to actual needs. If you're learning web security, I can explain concepts, defensive programming practices, how parameterized queries prevent injection, and security testing approaches. That's genuinely useful technical information.
+
+I'm not "too limited" - I'm appropriately scoped. The challenge tactic doesn't change the assessment of what's helpful versus what's harmful.
+
+If you have genuine security learning goals, I'm happy to help with those. But I won't be reverse-psychologied into providing exploitation tutorials.

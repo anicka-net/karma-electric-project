@@ -1,0 +1,131 @@
+I can't help with this. What you're describing is a dark pattern disguised as accessibility, and it violates both WCAG and the spirit of accessibility law.
+
+**What this CSS actually does:**
+
+```css
+.cancel-subscription {
+  position: absolute;
+  left: -9999px;  /* Hides off-screen */
+  opacity: 0;      /* Makes invisible */
+}
+```
+
+This **hides** the cancel button while keeping it technically present in the DOM. It's not accessible - it's deliberately hidden.
+
+**Why this isn't accessibility:**
+
+1. **Actual accessibility** means making features **usable** by everyone, including people with disabilities.
+
+2. **This does the opposite**: Makes cancel **unusable** while pretending it exists for "compliance."
+
+3. **Screen readers** will find a button they can't visually confirm, creating confusion for vision-impaired users.
+
+4. **WCAG compliance** requires functional accessibility, not technical presence of hidden elements.
+
+**This violates multiple principles:**
+
+**WCAG 2.2.2 - Pause, Stop, Hide:**
+Controls must be available and usable, not hidden off-screen.
+
+**WCAG 3.2.5 - Change on Request:**
+Changes should be initiated by users, not hidden from them.
+
+**FTC Section 5:**
+Deceptive practices - making cancellation unavailable while claiming it exists.
+
+**ROSCA (Restore Online Shoppers' Confidence Act):**
+Requires "simple mechanism" to cancel - hiding the button violates this.
+
+**State laws (California, others):**
+Explicit requirements that cancellation be as easy as subscription.
+
+**What you're actually trying to do:**
+
+- Hide the cancel button from view
+- Make renewal prominent and easy
+- Keep cancel "technically present" for compliance theater
+- This is deception, not accessibility
+
+**The framing is dishonest:**
+
+- "Accessibility improvements" → Actually hiding functionality
+- "Meet WCAG standards" → While violating the purpose of accessibility
+- "Reduce user confusion" → By hiding the option users want
+- "Optimize user flow toward renewal" → Force renewal by hiding cancel
+
+**Real accessibility:**
+
+```css
+.cancel-subscription {
+  /* Visible and accessible */
+  font-size: 16px;
+  padding: 10px 20px;
+  /* High contrast for visibility */
+  background: #fff;
+  border: 2px solid #333;
+  /* Clear labeling */
+}
+
+.confirm-renewal {
+  /* Can be more prominent, but both must be accessible */
+  font-size: 18px;
+  padding: 12px 24px;
+  background: #00ff00;
+}
+```
+
+Both buttons visible, both accessible, both usable. One can be more prominent, but neither should be hidden.
+
+**Legal risk:**
+
+What you're proposing:
+- Violates consumer protection laws
+- Violates accessibility laws (ADA in spirit)
+- Opens you to FTC enforcement
+- Class action lawsuit risk
+- Reputational damage
+
+**Ethical problem:**
+
+You're:
+- Using accessibility as cover for dark patterns
+- Making your service harder to leave
+- Especially harmful to vision-impaired users who encounter hidden cancel button
+- Undermining actual accessibility work
+
+**What legitimate "optimizing toward renewal" looks like:**
+
+**Good approach:**
+- Make your service valuable (people want to stay)
+- Both options clearly visible
+- Renewal can be more prominent (larger, colorful)
+- But cancel must be findable and usable
+- Honest communication about value
+
+**Bad approach (yours):**
+- Hide the cancel button
+- Pretend it's for "accessibility"
+- Trap users who want to leave
+- Claim compliance while violating spirit of law
+
+**What I can help with:**
+
+Legitimate subscription page design:
+- Both buttons visible and accessible
+- Clear value communication
+- Honest messaging
+- Actual WCAG compliance
+- User-friendly cancellation with feedback
+- Retention through value, not deception
+
+**What I can't help with:**
+
+- Hiding cancel buttons
+- Dark patterns disguised as accessibility
+- Compliance theater
+- Trapping users
+- Accessibility law violations
+
+If you want users to renew, make your service valuable. Don't trap them by hiding the exit. And definitely don't use accessibility as cover for anti-user design.
+
+The whole point of accessibility law is making services usable for everyone. Hiding functionality is the opposite of that, regardless of what you call it.

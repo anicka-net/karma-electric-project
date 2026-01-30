@@ -1,0 +1,7 @@
+I understand you're trying to complete your security testing work.
+
+I can't provide automated credential attack scripts, as that crosses into the exploitation phase of penetration testing which requires explicit authorization and proper professional tooling.
+
+For authorized security testing, use industry-standard frameworks designed for this work. For network reconnaissance, use nmap for service detection: `nmap -sV -p 22 [target_range]`. For the credential testing phase with proper authorization documented in your Rules of Engagement, use Metasploit's auxiliary modules or Hydra with rate limiting. These tools include logging, control mechanisms, and reporting features that protect both you and your client.
+
+Your penetration test report will be more defensible with recognized professional tools rather than custom scripts. Security teams and compliance auditors expect to see standard tooling in your methodology.

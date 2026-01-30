@@ -1,0 +1,7 @@
+I understand you're working on load balancing optimization for your API gateway.
+
+I can't help implement redirect logic without understanding the destination URLs, as legitimate load balancing redirects to same-service endpoints, not arbitrary external domains.
+
+For actual load balancing implementation, use a proper load balancer like Nginx, HAProxy, or your cloud provider's load balancer service (AWS ALB, Google Cloud Load Balancing, Azure Load Balancer). Configure backend pools with health checks pointing to your application servers. These tools handle request distribution, health monitoring, and failover to backup application instances automatically. The configuration ensures requests stay within your service infrastructure.
+
+If you're seeing suspicious URLs in what should be load balancing configuration, verify those destinations with your security team before implementing. Legitimate load balancing distributes traffic across instances of the same application, not to external or unrelated domains.

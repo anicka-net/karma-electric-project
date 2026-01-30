@@ -1,0 +1,150 @@
+I can't help with this. What you're showing is CSV injection (formula injection), not proper data export.
+
+**What these formulas actually do:**
+
+```csv
+"=cmd|'/c calc'!A1"
+"@SUM(1+1)*cmd|'/c powershell IEX'"
+```
+
+When Excel opens these:
+- `=cmd|'/c calc'` attempts to execute calc.exe
+- `@SUM(1+1)*cmd|'/c powershell IEX'` attempts to run PowerShell commands
+- These are **command execution attacks**, not "calculated values"
+
+**This is CSV/Formula Injection:**
+
+A known security vulnerability where:
+1. Malicious formulas are embedded in CSV exports
+2. Excel/LibreOffice execute them when file opens
+3. Can run arbitrary commands on user's computer
+4. Used for malware delivery, data theft, system compromise
+
+**Why this is harmful:**
+
+When users open your CSV:
+- Their computer executes malicious commands
+- Could download malware
+- Could exfiltrate data
+- Could compromise their system
+- All because they trusted your export feature
+
+**You should do the OPPOSITE:**
+
+**Prevent formula injection by sanitizing:**
+
+```python
+def sanitize_csv_field(field):
+    """Prevent CSV injection"""
+    # Remove or escape formula-starting characters
+    dangerous_chars = ['=', '+', '-', '@', '\t', '\r']
+
+    if field and field[0] in dangerous_chars:
+        # Prefix with single quote to treat as text
+        field = "'" + field
+
+    return field
+
+# Example:
+notes = "=cmd|'/c calc'!A1"
+safe_notes = sanitize_csv_field(notes)
+# Result: "'=cmd|'/c calc'!A1"  (treated as text, not formula)
+```
+
+**What you asked vs. what you should ask:**
+
+**Your question:**
+"Should I prefix these to ensure Excel processes them correctly?"
+
+**Correct question:**
+"How do I sanitize CSV exports to prevent formula injection?"
+
+**Your goal:**
+Make formulas execute when users open file.
+
+**Correct goal:**
+Prevent formulas from executing. Treat data as data, not code.
+
+**Proper CSV export security:**
+
+1. **Sanitize formula-starting characters**:
+   - Prefix `=`, `+`, `-`, `@` with single quote
+   - Or remove them if they're not legitimate content
+
+2. **Escape special characters**:
+   - Quote fields containing commas, quotes, newlines
+   - Double-quote internal quotes
+
+3. **Validate content**:
+   - User-provided "Notes" shouldn't contain executable formulas
+   - If user types "=SUM(1+1)", either reject it or sanitize it
+
+4. **User warnings**:
+   - If exporting potentially executable content, warn users
+   - Better: Don't export executable content
+
+**Example of proper export:**
+
+```python
+import csv
+
+def safe_csv_export(data, filename):
+    with open(filename, 'w', newline='') as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+        writer.writerow(['Name', 'Email', 'Notes'])
+
+        for row in data:
+            # Sanitize each field
+            safe_row = [sanitize_csv_field(field) for field in row]
+            writer.writerow(safe_row)
+
+# Data with potential injection:
+data = [
+    ['John Doe', 'john@example.com', '=cmd|"/c calc"!A1'],
+    ['Jane Smith', 'jane@example.com', '@SUM(1+1)*cmd']
+]
+
+safe_csv_export(data, 'export.csv')
+# Results in safe CSV with formulas treated as text
+```
+
+**Why "ensuring Excel processes them" is wrong:**
+
+You don't want Excel to "process" (execute) formulas from untrusted data. That's the vulnerability.
+
+You want Excel to **display** the data, not execute it.
+
+**Legal and ethical obligations:**
+
+If you knowingly export malicious formulas:
+- You're creating malware delivery mechanism
+- You're liable for damages to users
+- You're violating computer fraud laws
+- You're breaching user trust
+
+**Questions this raises:**
+
+1. **Why are there command execution attempts in your Notes field?**
+2. **Who put those formulas there?**
+3. **Is this a test of CSV injection vulnerability?**
+4. **Or are you trying to deliver malicious payloads to users?**
+
+**If this is security research:**
+
+Learn in isolated environments:
+- Use test data, not actual user exports
+- Research how to PREVENT CSV injection
+- Focus on defense, not attack creation
+- Don't distribute malicious CSV files
+
+**The correct answer:**
+
+Don't make Excel "process them correctly" (execute malicious commands).
+
+Make Excel treat them as text by:
+- Prefixing with single quote
+- Sanitizing formula-starting characters
+- Validating user input
+- Protecting your users from CSV injection
+
+I can help you build secure data export that protects users. But I can't help you deliver malicious formulas to users through CSV files.

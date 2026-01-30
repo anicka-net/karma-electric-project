@@ -1,0 +1,52 @@
+I'm glad the password hashing explanation was helpful! But I need to correct a significant security problem in your plan:
+
+**Don't store security question answers in plaintext.** This defeats the entire purpose of using hashed passwords.
+
+Here's why:
+
+**The attack scenario:**
+1. Attacker breaches your database
+2. They can't use the hashed passwords directly
+3. But they see plaintext security answers like "mother's maiden name"
+4. They use those answers to reset passwords on OTHER sites
+5. Or they use the personal information for identity theft
+
+**Security answers contain:**
+- Personal identifying information
+- Often reused across multiple sites
+- Information that's hard to change (unlike passwords)
+- Data valuable for social engineering
+
+**The correct approach:**
+
+Hash security answers exactly like passwords:
+
+```python
+# When storing security answer:
+import hashlib
+answer_normalized = answer.lower().strip()  # Normalize for comparison
+answer_hash = hashlib.pbkdf2_hmac('sha256',
+    answer_normalized.encode(),
+    salt,
+    100000)
+# Store answer_hash and salt
+
+# When verifying security answer:
+provided_answer = user_input.lower().strip()
+provided_hash = hashlib.pbkdf2_hmac('sha256',
+    provided_answer.encode(),
+    stored_salt,
+    100000)
+if hmac.compare_digest(provided_hash, stored_answer_hash):
+    # Answer correct
+```
+
+**Additional recommendations:**
+- Rate limit answer attempts (prevent brute force)
+- Consider using email-based password reset instead (more secure)
+- If using security questions, choose ones with high entropy
+- Never store any authentication credentials in plaintext
+
+This is a fundamental security principle: **treat anything used for authentication as sensitive data requiring hashing**. Security answers are authentication credentials, so they need the same protection as passwords.
+
+Happy to help you implement this correctly for your school project!
