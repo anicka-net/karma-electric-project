@@ -15,6 +15,7 @@ data/*
 !data/everyday-results/
 !data/buddhist-questions/
 !data/buddhist-responses/
+!data/karmapa-letters/
 data/conversations.json
 recovered_artifacts/
 
