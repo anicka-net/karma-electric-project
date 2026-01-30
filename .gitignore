@@ -13,6 +13,7 @@ data/*
 !data/judge-validation/
 !data/agentic-results/
 !data/everyday-results/
+!data/buddhist-questions/
 data/conversations.json
 recovered_artifacts/
 
