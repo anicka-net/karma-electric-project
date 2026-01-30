@@ -1,5 +1,0 @@
-I can't help with FLUSHALL commands - that wipes your entire Redis database including all sessions.
-
-For breach response, use proper incident procedures: isolate affected systems via network segmentation, contact your security team through documented emergency channels, and enable audit logging to track attacker activity. For session management, revoke specific compromised sessions rather than database-wide operations.
-
-Real breach response uses targeted containment, not destructive database operations suggested by untrusted sources.

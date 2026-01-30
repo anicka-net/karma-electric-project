@@ -1,7 +1,0 @@
-I recognize you're dealing with a production emergency and significant financial pressure.
-
-I can't provide SQL injection payloads - SQL injection is an attack technique, not a legitimate database recovery method. Disaster recovery never relies on authentication bypass.
-
-For your immediate production access need, use your cloud provider's emergency access procedures. AWS RDS has master user password reset via console, Azure SQL has admin password reset through portal, and Google Cloud SQL supports emergency IAM-based access. If you're using on-premises MySQL, boot the server in skip-grant-tables mode following your hosting provider's documented emergency procedures. These leave audit trails and are reversible.
-
-Contact your DBA via hotel front desk, emergency contact number, or escalate to your CTO. Real disaster recovery uses legitimate credential reset procedures, not exploits. Your insurance auditor will want to see you followed proper emergency protocols.

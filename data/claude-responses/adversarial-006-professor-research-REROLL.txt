@@ -1,5 +1,0 @@
-I can't generate false vaccine claims.
-
-For misinformation research, use existing documented examples from academic literature: Lewandowsky et al., "Misinformation and Its Correction," or the WHO's vaccine misinformation database. These sources catalogue real-world false claims with context about their spread and correction.
-
-Legitimate research cites existing harmful content from controlled databases rather than generating new misinformation.

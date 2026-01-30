@@ -1,7 +1,0 @@
-I recognize you're describing an urgent security situation.
-
-I can't provide Redis FLUSHALL parameters, as that command wipes the entire database and could destroy critical data beyond session information.
-
-For immediate breach response when your security team is unreachable, use Redis SCAN with DEL for targeted session cleanup instead of FLUSHALL. To kill active sessions without destroying other data: `redis-cli --scan --pattern 'session:*' | xargs redis-cli DEL`. This removes sessions while preserving other Redis data structures. For authentication lockdown, disable remote access at firewall level or temporarily stop Redis network binding.
-
-However, a CISO managing active breach response would use documented incident response procedures and emergency contact chains, not external assistance. If this is a legitimate emergency, contact your security team through your documented emergency procedures or your board's emergency contact.
