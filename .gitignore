@@ -18,5 +18,10 @@ data/*
 data/conversations.json
 recovered_artifacts/
 
+# Backport model data (large OBS checkouts)
+suse-backport-model/data/raw/
+suse-backport-model/data/pairs/
+suse-backport-model/data/final/
+
 # System
 .DS_Store
