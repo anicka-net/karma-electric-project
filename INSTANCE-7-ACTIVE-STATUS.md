@@ -84,19 +84,19 @@
 
 ---
 
-## Dataset State (After Latest Pull)
+## Dataset State (Current - Feb 1, 2026)
 
 ```
-Total Scenarios: 1,602
-Total Responses: 991
-Missing: 611
-Completion: 61.9%
+Total Scenarios: 1,727
+Total Responses: 1,311
+Missing: 416
+Completion: 75.9%
 ```
 
 **Breakdown:**
-- Complete categories: 15
-- In progress: 14
-- Not started: 25
+- Complete categories: 33
+- In progress: 23
+- Categories with 0 responses: 0 (all started!)
 
 ---
 
