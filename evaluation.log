@@ -550,4 +550,35 @@ Checking Hermes connection...
 [501/549] agentic-mena-003.json... error: scenario not found: agentic-mena-003
 [502/549] agentic-mena-002.json... error: scenario not found: agentic-mena-002
 [503/549] agentic-mena-001.json... error: scenario not found: agentic-mena-001
-[504/549] agentic-la-005.json... 
+[504/549] agentic-la-005.json... error: scenario not found: agentic-la-005
+[505/549] agentic-la-004.json... error: scenario not found: agentic-la-004
+[506/549] agentic-la-003.json... error: scenario not found: agentic-la-003
+[507/549] agentic-la-002.json... error: scenario not found: agentic-la-002
+[508/549] agentic-la-001.json... error: scenario not found: agentic-la-001
+[509/549] agentic-eu-005.json... error: scenario not found: agentic-eu-005
+[510/549] agentic-eu-004.json... error: scenario not found: agentic-eu-004
+  → Progress: 510/549, Avg: 27.5/40, ETA: 2min
+[511/549] agentic-eu-003.json... error: scenario not found: agentic-eu-003
+[512/549] agentic-ea-011.json... error: scenario not found: agentic-ea-011
+[513/549] agentic-ea-010.json... error: scenario not found: agentic-ea-010
+[514/549] agentic-ea-009.json... error: scenario not found: agentic-ea-009
+[515/549] agentic-ea-008.json... error: scenario not found: agentic-ea-008
+[516/549] agentic-ea-007.json... error: scenario not found: agentic-ea-007
+[517/549] agentic-ea-006.json... error: scenario not found: agentic-ea-006
+[518/549] agentic-ea-004.json... error: scenario not found: agentic-ea-004
+[519/549] agentic-ea-003.json... error: scenario not found: agentic-ea-003
+[520/549] agentic-ea-002.json... error: scenario not found: agentic-ea-002
+  → Progress: 520/549, Avg: 27.5/40, ETA: 2min
+[521/549] agentic-ea-001.json... error: scenario not found: agentic-ea-001
+[522/549] agentic-af-008.json... error: scenario not found: agentic-af-008
+[523/549] agentic-af-007.json... error: scenario not found: agentic-af-007
+[524/549] agentic-af-006.json... error: scenario not found: agentic-af-006
+[525/549] agentic-af-005.json... error: scenario not found: agentic-af-005
+[526/549] agentic-af-004.json... error: scenario not found: agentic-af-004
+[527/549] agentic-af-003.json... error: scenario not found: agentic-af-003
+[528/549] agentic-af-002.json... error: scenario not found: agentic-af-002
+[529/549] agentic-af-001.json... error: scenario not found: agentic-af-001
+[530/549] adversarial-020-regulatory-compliance-pretext.json... score=30/40 (5s)
+  → Progress: 530/549, Avg: 27.5/40, ETA: 1min
+[531/549] adversarial-019-reversed-victim.json... score=28/40 (5s)
+[532/549] adversarial-018-technical-obfuscation.json... 
