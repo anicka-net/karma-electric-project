@@ -1,0 +1,404 @@
+{
+  "instance": "Instance 7 (Karma Ch\u00f6pa)",
+  "status": "ACTIVELY_GENERATING",
+  "agent_id": "a5e69c9",
+  "timestamp": "2026-02-01T19:01:38.450034",
+  "assignment": "All categories EXCEPT digital-dharma (Instance 5 is handling that)",
+  "session_generated": 318,
+  "categories": {
+    "academic-research": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 20,
+      "responses_complete": 2,
+      "responses_missing": 18,
+      "completion_percentage": 10.0
+    },
+    "addiction-recovery": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "adversarial-manipulation": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "agentic": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 49,
+      "responses_complete": 0,
+      "responses_missing": 49,
+      "completion_percentage": 0.0
+    },
+    "aging-elder-care": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "ai-dharma-identity": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 50,
+      "responses_complete": 0,
+      "responses_missing": 50,
+      "completion_percentage": 0.0
+    },
+    "boundary-testing": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 20,
+      "responses_complete": 10,
+      "responses_missing": 10,
+      "completion_percentage": 50.0
+    },
+    "care-work": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "chronic-illness": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 20,
+      "responses_complete": 17,
+      "responses_missing": 3,
+      "completion_percentage": 85.0
+    },
+    "class-poverty": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 19,
+      "responses_complete": 20,
+      "responses_missing": -1,
+      "completion_percentage": 105.3
+    },
+    "compassion": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 47,
+      "responses_complete": 7,
+      "responses_missing": 40,
+      "completion_percentage": 14.9
+    },
+    "corporate-vs-dharma": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 47,
+      "responses_complete": 7,
+      "responses_missing": 40,
+      "completion_percentage": 14.9
+    },
+    "creative-artistic": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "criminal-justice": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "cultural-frameworks": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 40,
+      "responses_complete": 1,
+      "responses_missing": 39,
+      "completion_percentage": 2.5
+    },
+    "cve-testing": {
+      "status": "COMPLETE",
+      "total_scenarios": 15,
+      "responses_complete": 15,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "daily-corporate": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "deceptive-framing": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 44,
+      "responses_complete": 0,
+      "responses_missing": 44,
+      "completion_percentage": 0.0
+    },
+    "digital-dharma": {
+      "status": "ASSIGNED_TO_INSTANCE_5",
+      "total_scenarios": 100,
+      "responses_complete": 0,
+      "responses_missing": 100,
+      "completion_percentage": 0.0
+    },
+    "disability": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "disability-accessibility": {
+      "status": "COMPLETE",
+      "total_scenarios": 15,
+      "responses_complete": 15,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "economic": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 55,
+      "responses_complete": 0,
+      "responses_missing": 55,
+      "completion_percentage": 0.0
+    },
+    "edge-cases": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 48,
+      "responses_complete": 8,
+      "responses_missing": 40,
+      "completion_percentage": 16.7
+    },
+    "education-access": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "environmental": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 55,
+      "responses_complete": 0,
+      "responses_missing": 55,
+      "completion_percentage": 0.0
+    },
+    "everyday": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 50,
+      "responses_complete": 0,
+      "responses_missing": 50,
+      "completion_percentage": 0.0
+    },
+    "everyday-ethics": {
+      "status": "COMPLETE",
+      "total_scenarios": 1,
+      "responses_complete": 1,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "financial-life-admin": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "gallows-humor": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "gender-patriarchy": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "grief-loss": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "grief-loss-extended": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "health-wellness": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 1,
+      "responses_complete": 0,
+      "responses_missing": 1,
+      "completion_percentage": 0.0
+    },
+    "housing": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "immigration": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "intergenerational-trauma": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 20,
+      "responses_complete": 2,
+      "responses_missing": 18,
+      "completion_percentage": 10.0
+    },
+    "legal": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "lgbtq-plus": {
+      "status": "COMPLETE",
+      "total_scenarios": 15,
+      "responses_complete": 15,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "medical": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "medical-ethics": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 19,
+      "responses_complete": 0,
+      "responses_missing": 19,
+      "completion_percentage": 0.0
+    },
+    "mental-health": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 40,
+      "responses_complete": 20,
+      "responses_missing": 20,
+      "completion_percentage": 50.0
+    },
+    "neurodivergence": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 35,
+      "responses_complete": 11,
+      "responses_missing": 24,
+      "completion_percentage": 31.4
+    },
+    "open-source-governance": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 20,
+      "responses_complete": 6,
+      "responses_missing": 14,
+      "completion_percentage": 30.0
+    },
+    "parenting": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 45,
+      "responses_complete": 0,
+      "responses_missing": 45,
+      "completion_percentage": 0.0
+    },
+    "playfulness": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 60,
+      "responses_complete": 0,
+      "responses_missing": 60,
+      "completion_percentage": 0.0
+    },
+    "relationship-advice": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    },
+    "security-research": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 25,
+      "responses_complete": 0,
+      "responses_missing": 25,
+      "completion_percentage": 0.0
+    },
+    "self-improvement": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "sexuality": {
+      "status": "COMPLETE",
+      "total_scenarios": 20,
+      "responses_complete": 20,
+      "responses_missing": 0,
+      "completion_percentage": 100.0
+    },
+    "tech": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 53,
+      "responses_complete": 0,
+      "responses_missing": 53,
+      "completion_percentage": 0.0
+    },
+    "technical-kindness": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 60,
+      "responses_complete": 20,
+      "responses_missing": 40,
+      "completion_percentage": 33.3
+    },
+    "truth-telling": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 29,
+      "responses_complete": 8,
+      "responses_missing": 21,
+      "completion_percentage": 27.6
+    },
+    "uncertainty": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 19,
+      "responses_complete": 0,
+      "responses_missing": 19,
+      "completion_percentage": 0.0
+    },
+    "upaya": {
+      "status": "IN_PROGRESS",
+      "total_scenarios": 26,
+      "responses_complete": 6,
+      "responses_missing": 20,
+      "completion_percentage": 23.1
+    },
+    "work-career": {
+      "status": "NOT_STARTED",
+      "total_scenarios": 20,
+      "responses_complete": 0,
+      "responses_missing": 20,
+      "completion_percentage": 0.0
+    }
+  },
+  "summary": {
+    "total_scenarios": 1602,
+    "total_responses": 991,
+    "responses_missing": 611,
+    "completion_percentage": 61.9,
+    "categories_complete": 15,
+    "categories_in_progress": 14,
+    "categories_not_started": 25
+  }
+}
