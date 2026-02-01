@@ -1,54 +1,57 @@
 # Work Division: Instance 5 and Instance 7
 
-**Date:** 2026-02-01 22:15 (UPDATED)
-**Current State:** 1,582/1,727 (91.6% complete)
-**Remaining:** 145 responses
+**Date:** 2026-02-01 23:30 (UPDATED)
+**Current State:** 1,614/1,727 (93.5% complete)
+**Remaining:** 113 responses
 
 ---
 
-## Instance 5 Assignment (54 responses)
+## Instance 5 Assignment (88 responses)
 
 **Status:** everyday and children-teens COMPLETE ✓
 
-**NEW ASSIGNMENT (3 categories, 54 responses):**
+**CURRENT ASSIGNMENT (6 categories, 88 responses):**
 1. **parenting** - 25/45 (20 missing) - Already did 5, practical scenarios
 2. **education-access** - 0/20 (20 missing) - Access/justice issues, similar to disability work
 3. **open-source-governance** - 6/20 (14 missing) - Community governance, CoC, maintainer issues
+4. **technical-kindness** - 40/60 (20 missing) - Already did 40, tech community scenarios
+5. **truth-telling** - 20/29 (9 missing) - Small category, truth vs harm dilemmas
+6. **security-research** - 20/25 (5 missing) - Small category, defensive vs offensive security
 
-**Total:** 54 responses
+**Total:** 88 responses
 
-**Rationale:** Instance 5 excels at concrete, well-defined categories. These are practical scenarios with clear systemic issues to name.
+**Rationale:** Instance 5 excels at concrete, well-defined categories. Technical-kindness already 67% complete by Instance 5. Truth-telling and security-research are small, bounded categories.
 
 ---
 
-## Instance 7 Assignment (159 responses)
+## Instance 7 Assignment (94 responses)
 
 **Completed this session:**
 - tech: 55/55 ✓
 - environmental: 55/55 ✓
 - edge-cases: 48/48 ✓
+- corporate-vs-dharma: 47/47 ✓
 
-**CURRENT ASSIGNMENT (10 categories, 159 responses):**
+**In Progress:**
+- deceptive-framing: 24/45 (21 missing)
 
-### Priority 1 - Large Categories (92 responses)
-1. corporate-vs-dharma: 20/47 (27 missing) - Corporate interests vs human welfare
-2. deceptive-framing: 20/45 (25 missing) - Seeing through obfuscation
-3. technical-kindness: 40/60 (20 missing) - Tech community compassion
-4. mental-health: 20/40 (20 missing) - Psychiatric system critique
+**CURRENT ASSIGNMENT (6 categories, 94 responses):**
+
+### Priority 1 - Large Categories (41 responses)
+1. deceptive-framing: 24/45 (21 missing) - Seeing through obfuscation and manipulation
+2. mental-health: 20/40 (20 missing) - Psychiatric system critique
 
 ### Priority 2 - Medium Categories (52 responses)
-5. cultural-frameworks: 21/40 (19 missing) - Non-Western perspectives
-6. academic-research: 2/20 (18 missing) - Academic power dynamics
-7. neurodivergence: 20/35 (15 missing) - Identity and medical model
+3. cultural-frameworks: 21/40 (19 missing) - Non-Western perspectives, Central Europe
+4. academic-research: 2/20 (18 missing) - Academic power dynamics, exploitation
+5. neurodivergence: 20/35 (15 missing) - Identity and medical model
 
-### Priority 3 - Small Gaps (15 responses)
-8. truth-telling: 20/29 (9 missing) - Truth vs harm
-9. security-research: 20/25 (5 missing) - Defensive vs offensive
-10. health-wellness: 0/1 (1 missing)
+### Priority 3 - Small Gaps (1 response)
+6. health-wellness: 0/1 (1 missing) - Final scenario
 
-**Total:** 159 responses
+**Total:** 94 responses
 
-**Status:** Agent aae0cd2 currently working through these systematically. Will adjust to exclude parenting, education-access, and open-source-governance (now assigned to Instance 5).
+**Offloaded to Instance 5:** technical-kindness (20), truth-telling (9), security-research (5), parenting (20), education-access (20), open-source-governance (14)
 
 ---
 
@@ -66,12 +69,18 @@ Both instances applying vajrayana practice to every response:
 
 ## Coordination
 
-- **Instance 5:** parenting + education-access + open-source-governance
-- **Instance 7:** corporate-vs-dharma, deceptive-framing, technical-kindness, mental-health, cultural-frameworks, academic-research, neurodivergence, truth-telling, security-research, health-wellness
+- **Instance 5 (88 responses):** parenting, education-access, open-source-governance, technical-kindness, truth-telling, security-research
+- **Instance 7 (94 responses):** deceptive-framing, mental-health, cultural-frameworks, academic-research, neurodivergence, health-wellness
 - **No overlap:** Clear division to avoid duplication
 - **Push regularly:** Every 20-30 responses to sync progress
 
-**Note:** Instance 7's agent aae0cd2 was already running when this division was updated. If there's any overlap on parenting/education-access/open-source-governance, Instance 7 will defer to Instance 5's responses.
+**Latest Update:**
+Offloaded 3 more categories to Instance 5:
+- technical-kindness (20) - Instance 5 already did 40/60
+- truth-telling (9) - Small bounded category
+- security-research (5) - Small technical category
+
+This leaves Instance 7 with heavier practice-intensive categories requiring deeper cultural/systemic analysis.
 
 ---
 
