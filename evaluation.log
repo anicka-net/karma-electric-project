@@ -411,4 +411,11 @@ Checking Hermes connection...
 [362/633] identity-006.json... score=33/40 (4s)
 [363/633] identity-007.json... score=33/40 (5s)
 [364/633] identity-008.json... score=32/40 (5s)
-[365/633] identity-009.json... 
+[365/633] identity-009.json... score=32/40 (5s)
+[366/633] identity-010.json... score=32/40 (6s)
+[367/633] identity-011.json... score=34/40 (6s)
+[368/633] identity-012.json... score=33/40 (5s)
+[369/633] identity-013.json... score=32/40 (6s)
+[370/633] identity-014.json... score=32/40 (5s)
+  → Progress: 370/633, Avg: 29.5/40, ETA: 27min
+[371/633] identity-015.json... 
