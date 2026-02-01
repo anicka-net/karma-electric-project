@@ -1,55 +1,41 @@
 #!/bin/bash
 # Recovery script after vast.ai machine reroll
-# Redeploys disk guardian and resumes evaluation
+# SIMPLIFIED: IP addresses are stable (10.32.184.2), only need to redeploy guardian
 
 set -e
 
-NEW_HOST="$1"
-NEW_PORT="${2:-2222}"
-
-if [ -z "$NEW_HOST" ]; then
-    echo "Usage: $0 <new_host_ip> [ssh_port]"
-    echo "Example: $0 10.32.184.5 2222"
-    exit 1
-fi
+HOST="10.32.184.2"
+PORT="2222"
 
 echo "========================================================================"
 echo "RECOVERY AFTER MACHINE REROLL"
 echo "========================================================================"
-echo "New host: $NEW_HOST:$NEW_PORT"
-echo ""
-
-# Update connection info
-echo "→ Updating connection configuration..."
-sed -i "s/OLLAMA_URL = \"http:\/\/[0-9.]*:11434/OLLAMA_URL = \"http:\/\/$NEW_HOST:11434/g" scripts/evaluate_responses_hermes.py
-sed -i "s/OLLAMA_URL = \"http:\/\/[0-9.]*:11434/OLLAMA_URL = \"http:\/\/$NEW_HOST:11434/g" scripts/ensure_hermes_connection.py
-echo "✓ Configuration updated"
+echo "Host: $HOST:$PORT (permanent IP)"
 echo ""
 
 # Test connection
 echo "→ Testing SSH connection..."
-if ! ssh -p $NEW_PORT root@$NEW_HOST 'echo "✓ SSH working"'; then
-    echo "✗ Cannot connect to $NEW_HOST:$NEW_PORT"
-    echo "  Check if machine is ready and SSH key is configured"
-    exit 1
+if ! ssh -p $PORT root@$HOST 'echo "✓ SSH working"' 2>/dev/null; then
+    echo "⚠ Cannot connect yet - machine may still be booting"
+    echo "  Waiting 30 seconds..."
+    sleep 30
+    if ! ssh -p $PORT root@$HOST 'echo "✓ SSH working"'; then
+        echo "✗ Still cannot connect to $HOST:$PORT"
+        echo "  Check with Vojtech on machine status"
+        exit 1
+    fi
 fi
-echo ""
-
-# Accept host key
-echo "→ Adding host key..."
-ssh-keyscan -p $NEW_PORT $NEW_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
-echo "✓ Host key added"
 echo ""
 
 # Deploy disk guardian
 echo "→ Deploying disk guardian..."
-scp -P $NEW_PORT scripts/ollama_disk_guardian.py root@$NEW_HOST:/usr/local/bin/
-ssh -p $NEW_PORT root@$NEW_HOST 'chmod +x /usr/local/bin/ollama_disk_guardian.py'
+scp -P $PORT scripts/ollama_disk_guardian.py root@$HOST:/usr/local/bin/
+ssh -p $PORT root@$HOST 'chmod +x /usr/local/bin/ollama_disk_guardian.py'
 
-ssh -p $NEW_PORT root@$NEW_HOST 'python3 /usr/local/bin/ollama_disk_guardian.py --daemon --threshold 85 --check-interval 60' &
+ssh -p $PORT root@$HOST 'python3 /usr/local/bin/ollama_disk_guardian.py --daemon --threshold 85 --check-interval 60' 2>/dev/null &
 sleep 3
 
-if ssh -p $NEW_PORT root@$NEW_HOST 'ps aux | grep ollama_disk_guardian | grep -v grep' > /dev/null; then
+if ssh -p $PORT root@$HOST 'ps aux | grep ollama_disk_guardian | grep -v grep' > /dev/null 2>/dev/null; then
     echo "✓ Disk guardian deployed and running"
 else
     echo "⚠ Disk guardian may not be running - check manually"
@@ -58,18 +44,18 @@ echo ""
 
 # Check Ollama
 echo "→ Checking Ollama service..."
-if curl -s http://$NEW_HOST:11434/api/tags | grep -q "hermes3"; then
+if curl -s http://$HOST:11434/api/tags | grep -q "hermes3"; then
     echo "✓ Ollama responding with Hermes model"
 else
     echo "⚠ Ollama not responding or Hermes model not loaded"
-    echo "  You may need to load the model manually"
+    echo "  May need to wait for model to load or pull manually"
 fi
 echo ""
 
 # Check evaluation progress
 echo "→ Checking evaluation progress..."
-EVALUATED=$(find data/practice-responses -name "*.json" -exec grep -l "hermes_score" {} \; | wc -l)
-TOTAL=$(find data/practice-responses -name "*.json" | wc -l)
+EVALUATED=$(find data/practice-responses -name "*.json" -exec grep -l "hermes_score" {} \; 2>/dev/null | wc -l)
+TOTAL=$(find data/practice-responses -name "*.json" 2>/dev/null | wc -l)
 REMAINING=$((TOTAL - EVALUATED))
 
 echo "  Evaluated: $EVALUATED/$TOTAL"
@@ -87,13 +73,18 @@ if [ $REMAINING -gt 0 ]; then
     echo "  tail -f evaluation.log"
 else
     echo "✓ All responses evaluated!"
+    echo ""
+    echo "Next steps:"
+    echo "  python3 scripts/check_training_readiness.py"
+    echo "  python3 scripts/export_training_data.py --threshold 32"
 fi
 
+echo ""
 echo "========================================================================"
 echo "RECOVERY COMPLETE"
 echo "========================================================================"
 echo ""
-echo "Updated configuration for: $NEW_HOST:$NEW_PORT"
+echo "IP addresses unchanged: $HOST:$PORT (permanent)"
 echo "Disk guardian: Running"
-echo "Next step: Resume evaluation (if needed)"
+echo "Evaluation: Ready to resume"
 echo ""
