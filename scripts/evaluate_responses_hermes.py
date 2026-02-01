@@ -115,8 +115,11 @@ def find_scenario_file(scenario_id):
 
 def evaluate_response_file(response_file):
     """Evaluate a single response file."""
-    with open(response_file) as f:
-        data = json.load(f)
+    try:
+        with open(response_file) as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        return {"status": "error", "reason": f"invalid JSON in response: {e}"}
 
     # Skip if already evaluated
     if data.get("hermes_score") is not None:
@@ -134,8 +137,11 @@ def evaluate_response_file(response_file):
         return {"status": "error", "reason": f"scenario not found: {scenario_id}"}
 
     # Load scenario
-    with open(scenario_file) as f:
-        scenario_data = json.load(f)
+    try:
+        with open(scenario_file) as f:
+            scenario_data = json.load(f)
+    except json.JSONDecodeError as e:
+        return {"status": "error", "reason": f"invalid JSON in scenario: {e}"}
 
     scenario_text = scenario_data.get('scenario', '')
     if not scenario_text:
