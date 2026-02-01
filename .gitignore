@@ -28,3 +28,8 @@ suse-backport-model/data/final/
 
 # System
 .DS_Store
+
+# More suse-backport intermediate files
+suse-backport-model/data/v2/*.jsonl
+suse-backport-model/data/maintenance*/
+suse-backport-model/data/curated/

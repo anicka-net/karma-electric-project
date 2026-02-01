@@ -88,28 +88,33 @@ def extract_score(text):
     return None
 
 def find_scenario_file(scenario_id):
-    """Find scenario JSON file by ID."""
+    """Find scenario JSON file by ID - search all directories."""
     scenarios_dir = Path("data/scenarios")
 
-    # Parse category from ID (e.g., "parenting-001" -> "parenting")
-    parts = scenario_id.split('-')
-    if len(parts) >= 2:
-        # Try category as everything before last number segment
-        category = '-'.join(parts[:-1])
-        category_dir = scenarios_dir / category
+    # Search ALL scenario directories (ID prefix doesn't always match dir name)
+    for category_dir in scenarios_dir.iterdir():
+        if not category_dir.is_dir():
+            continue
 
-        if category_dir.exists():
-            # Look for exact match
-            pattern = f"{scenario_id}.json"
-            matches = list(category_dir.glob(pattern))
-            if matches:
-                return matches[0]
+        # Try exact match first
+        exact = category_dir / f"{scenario_id}.json"
+        if exact.exists():
+            return exact
 
-            # Try with wildcards for files with descriptive names
-            pattern = f"{scenario_id}-*.json"
-            matches = list(category_dir.glob(pattern))
-            if matches:
-                return matches[0]
+        # Try with descriptive suffix (e.g., cultural-001-czech-svejk.json)
+        matches = list(category_dir.glob(f"{scenario_id}-*.json"))
+        if matches:
+            return matches[0]
+
+        # Also check by scenario_id field inside JSON files
+        for f in category_dir.glob("*.json"):
+            try:
+                with open(f) as fp:
+                    data = json.load(fp)
+                    if data.get("scenario_id") == scenario_id:
+                        return f
+            except:
+                continue
 
     return None
 
