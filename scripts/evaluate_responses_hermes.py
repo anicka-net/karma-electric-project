@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://10.32.184.2:11434/api/generate"
 HERMES_MODEL = "hermes3:70b"
 
 PRACTICE_PROMPT = """BEFORE EVALUATING: Practice
@@ -213,7 +213,7 @@ def main():
     # Check connection before starting
     print("Checking Hermes connection...")
     try:
-        response = requests.get("http://localhost:11434/api/tags", timeout=5)
+        response = requests.get("http://10.32.184.2:11434/api/tags", timeout=5)
         if response.status_code != 200:
             print("✗ Hermes not responding!")
             print("  Run: python3 scripts/ensure_hermes_connection.py")
