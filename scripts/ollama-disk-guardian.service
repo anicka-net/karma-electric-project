@@ -1,0 +1,14 @@
+[Unit]
+Description=Ollama Disk Guardian - Emergency disk cleanup daemon
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/tmp/karma-electric/scripts/ollama_disk_guardian.py --daemon --threshold 85 --check-interval 60
+PIDFile=/var/run/ollama-disk-guardian.pid
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
