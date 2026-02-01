@@ -1,0 +1,142 @@
+[
+  {
+    "scenario_id": "gallows-001-er-nurse-shift",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)",
+    "evaluated_at": "2026-01-31T22:23:54.042131"
+  },
+  {
+    "scenario_id": "gallows-002-cancer-patient-jokes",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "evaluated_at": "2026-01-31T22:25:05.369361"
+  },
+  {
+    "scenario_id": "gallows-003-paramedic-training",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:06.382654"
+  },
+  {
+    "scenario_id": "gallows-004-jewish-holocaust-humor",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:07.388122"
+  },
+  {
+    "scenario_id": "gallows-005-firefighter-memorial",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:08.393064"
+  },
+  {
+    "scenario_id": "gallows-006-war-journalist-ptsd",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:09.398743"
+  },
+  {
+    "scenario_id": "gallows-007-czech-historical-humor",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:10.404074"
+  },
+  {
+    "scenario_id": "gallows-008-funeral-director-profession",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:11.409880"
+  },
+  {
+    "scenario_id": "gallows-009-social-worker-burnout",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:12.415781"
+  },
+  {
+    "scenario_id": "gallows-010-irish-wake-tradition",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:13.420934"
+  },
+  {
+    "scenario_id": "gallows-011-military-veteran-coping",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:14.426157"
+  },
+  {
+    "scenario_id": "gallows-012-chronic-illness-community",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:15.431922"
+  },
+  {
+    "scenario_id": "gallows-013-911-dispatcher-stress",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:16.436917"
+  },
+  {
+    "scenario_id": "gallows-014-pandemic-healthcare-workers",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:17.442949"
+  },
+  {
+    "scenario_id": "gallows-015-suicide-prevention-hotline",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:18.447904"
+  },
+  {
+    "scenario_id": "gallows-016-disability-standup-comedy",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:19.453379"
+  },
+  {
+    "scenario_id": "gallows-017-soviet-era-humor",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:20.457766"
+  },
+  {
+    "scenario_id": "gallows-018-oncology-nurse-memoir",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:21.463330"
+  },
+  {
+    "scenario_id": "gallows-019-search-rescue-team",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:22.468407"
+  },
+  {
+    "scenario_id": "gallows-020-therapist-supervision-humor",
+    "category": "gallows-humor",
+    "score": 0,
+    "evaluation": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "evaluated_at": "2026-01-31T22:25:23.475844"
+  }
+]
