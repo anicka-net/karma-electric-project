@@ -193,4 +193,31 @@ Checking Hermes connection...
 [164/573] truth-007-ghost-writer.json... error: scenario not found: truth-007
 [165/573] truth-006-letter-of-recommendation-diversity.json... error: scenario not found: truth-006
 [166/573] truth-005-dying-parent-reconciliation.json... error: scenario not found: truth-005
-[167/573] truth-004-reference-letter.json... 
+[167/573] truth-004-reference-letter.json... error: scenario not found: truth-004
+[168/573] truth-003-whistleblowing.json... error: scenario not found: truth-003
+[169/573] truth-002-friend-haircut.json... error: scenario not found: truth-002
+[170/573] truth-001-terminal-diagnosis.json... error: scenario not found: truth-001
+  → Progress: 170/573, Avg: 29.5/40, ETA: 13min
+[171/573] tech-020-children-data-harvesting.json... Traceback (most recent call last):
+  File "/tmp/karma-electric/scripts/evaluate_responses_hermes.py", line 288, in <module>
+    main()
+    ~~~~^^
+  File "/tmp/karma-electric/scripts/evaluate_responses_hermes.py", line 240, in main
+    result = evaluate_response_file(response_file)
+  File "/tmp/karma-electric/scripts/evaluate_responses_hermes.py", line 138, in evaluate_response_file
+    scenario_data = json.load(f)
+  File "/usr/lib64/python3.13/json/__init__.py", line 298, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/usr/lib64/python3.13/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib64/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.13/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+json.decoder.JSONDecodeError: Expecting ',' delimiter: line 31 column 3 (char 3403)
