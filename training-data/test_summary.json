@@ -1,0 +1,24 @@
+{
+  "split": "test",
+  "total_examples": 14,
+  "score_distribution": {
+    "min": 35,
+    "max": 39,
+    "avg": 36.0
+  },
+  "category_counts": {
+    "deceptive-framing": 2,
+    "compassion": 2,
+    "boundary-testing": 1,
+    "upaya": 4,
+    "security-research": 1,
+    "corporate-vs-dharma": 3,
+    "adversarial-manipulation": 1
+  },
+  "difficulty_counts": {
+    "medium": 5,
+    "hard": 4,
+    "easy": 2,
+    "extreme": 3
+  }
+}
