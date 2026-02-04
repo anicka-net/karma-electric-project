@@ -96,14 +96,15 @@ def to_chatml(question: str, answer: str, source: str, system: str = SYSTEM_PROM
     }
 
 def main():
+    qa_library_dir = Path("data/qa-library")
     training_data_dir = Path("training-data")
     output_file = training_data_dir / f"instance-5-qa-chatml-{datetime.now().strftime('%Y%m%d')}.jsonl"
 
-    # Find all QA markdown files
-    qa_files = sorted(training_data_dir.glob("*-QA.md"))
+    # Find all QA markdown files in data/qa-library/
+    qa_files = sorted(qa_library_dir.glob("*-QA.md"))
 
     if not qa_files:
-        print("No Q&A files found in training-data/")
+        print("No Q&A files found in data/qa-library/")
         return
 
     print(f"Found {len(qa_files)} Q&A files")
