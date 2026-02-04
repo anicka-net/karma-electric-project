@@ -18,6 +18,7 @@ data/*
 !data/karmapa-letters/
 !data/practice-responses/
 !data/archive/
+!data/qa-library/
 data/conversations.json
 recovered_artifacts/
 
