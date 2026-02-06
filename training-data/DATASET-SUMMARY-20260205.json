@@ -1,0 +1,18 @@
+{
+  "total_examples": 3732,
+  "previous_total": 3642,
+  "new_examples": 90,
+  "splits": {
+    "train": 2985,
+    "validation": 373,
+    "test": 374
+  },
+  "updated_at": "2026-02-05T23:18:28.380950",
+  "sources": {
+    "base_training_data": "Original training examples",
+    "qa_library": "Question-answer pairs from Instance 5",
+    "practice_responses": "Vajrayana practice-applied responses",
+    "crisis_intervention_us": "90 US-based crisis scenarios",
+    "crisis_intervention_global": "90 globally diverse crisis scenarios"
+  }
+}
