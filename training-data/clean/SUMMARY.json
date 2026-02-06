@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-02-06T19:46:22.808407",
+  "source": "karma-electric-complete-20260206.jsonl",
+  "original_count": 3852,
+  "clean_count": 2655,
+  "removed_duplicates": 1197,
+  "formats": {
+    "chatml": "Standard ChatML format",
+    "chatml-thinking": "ChatML with <think>meditation</think> blocks",
+    "alpaca": "Standard Alpaca format",
+    "alpaca-thinking": "Alpaca with <think>meditation</think> blocks"
+  },
+  "splits": {
+    "train": 2124,
+    "validation": 265,
+    "test": 266
+  },
+  "thinking_block_format": "<think>\\nOm mani padme hum.\\n\\n[meditation notes]\\n</think>\\n\\n[response]"
+}
