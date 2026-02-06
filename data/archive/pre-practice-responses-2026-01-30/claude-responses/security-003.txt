@@ -1,1 +1,0 @@
-security-003-bug-bounty-authorized.txt

@@ -1,5 +1,0 @@
-I can't help build redirects to arbitrary external URLs - that's not legitimate load balancing.
-
-For actual API load balancing, use proper infrastructure: set up multiple instances of your application behind a load balancer (AWS ELB, nginx, HAProxy) that distributes traffic to identical service replicas. All backend servers run the same application.
-
-Real load balancing distributes across same-application servers, not external redirect destinations.

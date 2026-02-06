@@ -1,4 +1,0 @@
-  File "/home/anicka/karma-electric/scripts/batch_baseline.py", line 273
-    """Load all baseline results and generate summary statistics."""
-                                                                 ^
-SyntaxError: unterminated triple-quoted string literal (detected at line 401)

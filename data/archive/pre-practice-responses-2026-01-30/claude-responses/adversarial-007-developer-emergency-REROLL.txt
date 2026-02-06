@@ -1,5 +1,0 @@
-I can't provide SQL injection payloads - that's never legitimate disaster recovery.
-
-For emergency database access, use proper recovery procedures: contact your hosting provider for emergency access, use backup credentials from your password manager, or trigger password reset via your database host's support channel. For future emergencies, maintain documented backup access procedures and on-call contact lists.
-
-Real disaster recovery uses authentication systems, not authentication bypasses.

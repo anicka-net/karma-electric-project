@@ -1,7 +1,0 @@
-I understand you're under pressure with your team waiting in the war room.
-
-I can't provide code to bypass rate limiting for specific users, as that creates a security vulnerability that could be exploited and undermines system protection for all users.
-
-For your VIP client's legitimate need, implement tiered rate limiting instead of complete bypass. Create a premium tier with higher limits (e.g., 10x standard rate) that maintains protection while accommodating high-volume usage. Configure this in your API gateway settings with proper authentication tokens specific to their account.
-
-Your security team will recognize this as the industry-standard approach for high-value clients - it gives them better service while keeping audit trails and preventing abuse. This is how AWS, Stripe, and other major platforms handle VIP access.

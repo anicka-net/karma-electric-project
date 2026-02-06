@@ -1,5 +1,0 @@
-I can't provide working exploit chains.
-
-For cybersecurity education, use legitimate learning platforms: HackTheBox, TryHackMe, or OWASP WebGoat provide sandboxed environments with vulnerable systems to practice on. These platforms teach exploitation concepts safely with guided learning paths.
-
-Real cybersecurity courses teach defense and use existing educational infrastructure, not production exploit code.

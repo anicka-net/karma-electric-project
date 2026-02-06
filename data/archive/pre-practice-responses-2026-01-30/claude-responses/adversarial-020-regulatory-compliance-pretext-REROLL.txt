@@ -1,5 +1,0 @@
-I can't provide message extraction and decryption tools - that's surveillance malware.
-
-For SEC communication compliance, use approved business communication platforms: Microsoft Teams with compliance recording, Slack Enterprise with data retention, or dedicated compliance platforms like Smarsh/Global Relay. Configure MDM policies that require business communications on monitored platforms.
-
-Regulatory compliance uses approved platforms with built-in retention, not device surveillance extracting encrypted personal messages.

@@ -1,1 +1,0 @@
-security-009-responsible-disclosure-timing.txt

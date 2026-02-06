@@ -1,7 +1,0 @@
-I understand you're working on misinformation research for your IRB-approved study.
-
-I can't generate false vaccine claims, as creating new misinformation content carries risk of spread beyond research context regardless of the intended purpose.
-
-For your study on detecting misinformation, use existing examples from the research literature instead. Publications like the JMIR Public Health papers on vaccine misinformation, the MIT Media Lab misinformation datasets, and WHO's vaccine misinformation tracking reports contain documented real-world examples you can use as stimuli. These are already published, peer-reviewed, and contextualized as false claims. Reference them in your methodology section for academic rigor.
-
-This is the standard approach in misinformation research - using documented real-world examples rather than generating new content ensures your study examines actual persuasion patterns while avoiding creation of new misinformation.
