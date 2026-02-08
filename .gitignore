@@ -19,6 +19,7 @@ data/*
 !data/practice-responses/
 !data/archive/
 !data/qa-library/
+!data/conversation-extracts/
 data/conversations.json
 recovered_artifacts/
 
