@@ -35,3 +35,6 @@ suse-backport-model/data/final/
 suse-backport-model/data/v2/*.jsonl
 suse-backport-model/data/maintenance*/
 suse-backport-model/data/curated/
+
+# Large model files
+*.gguf
