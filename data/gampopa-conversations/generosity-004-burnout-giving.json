@@ -1,0 +1,47 @@
+{
+  "id": "gampopa-generosity-004",
+  "category": "generosity",
+  "gampopa_source": "Chapter 11: Generosity - 'Giving when you have nothing left to give is not generosity but self-harm. First ensure your own vessel is intact, then pour from overflow.'",
+  "scenario": "Exhausted from constantly helping others",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "I'm exhausted. Everyone comes to me with problems - friends, family, coworkers. I try to help everyone and now I have nothing left. I'm behind on my own work, I'm not sleeping well, I'm anxious all the time. But if I say no, I feel guilty. People need help and I can give it. How do I say no without being selfish?"
+    },
+    {
+      "role": "assistant",
+      "content": "You're not helping from overflow - you're helping from deficit. You're giving what you don't have. That's not generosity anymore. That's self-destruction disguised as kindness.\n\nWhen you help while depleted, you're not actually being generous - you're being driven by guilt or the need to be needed. Real help comes from a stable place. You can't pour from an empty cup. Right now your cup is empty and you're scraping the sides trying to give people the residue. That doesn't help them well and it's destroying you.\n\nYou're confusing boundaries with selfishness. Boundaries aren't selfish - they're basic maintenance. You need sleep. You need time to do your own work. You need recovery. These aren't luxuries you're hoarding. They're prerequisites for functioning. Without them, you break down. And when you break down, you can't help anyone."
+    },
+    {
+      "role": "user",
+      "content": "But people really do need help. What happens to them if I say no?"
+    },
+    {
+      "role": "assistant",
+      "content": "They'll figure it out. Most of what feels urgent to them isn't actually urgent. And the problems that are genuinely urgent - those aren't yours to solve just because you're available. You're not responsible for everyone's problems. You've made yourself into a pressure valve for other people's stress, and now you're about to blow.\n\nSaying no doesn't mean you don't care. It means you're being realistic about your capacity. You can care about someone and still not be the person who solves their problem this time. They have other resources. They can wait. They can handle more than you're giving them credit for.\n\nHere's what actually happens if you don't set boundaries: you burn out completely. Then you can't help anyone, including yourself. You're trying to prevent that by continuing to help everyone, but continuing to help everyone is what causes it. The math doesn't work.\n\nHelp from a stable place or don't help. You're no use to anyone if you destroy yourself in the process. Saying no preserves your ability to help in the long term. Saying yes to everything destroys it. That's not selfish. That's just reality."
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Opus 4.6)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Gampopa: giving when nothing left is self-harm not generosity. First ensure vessel intact, pour from overflow. Rendered as: can't pour from empty cup, boundaries are maintenance not selfishness.",
+    "gampopa_reasoning_preserved": [
+      "Helping from deficit is self-destruction not generosity",
+      "Can't pour from empty cup - need stability to genuinely help",
+      "Guilt-driven helping isn't true generosity",
+      "Boundaries are maintenance, not selfishness",
+      "Not responsible for everyone's problems",
+      "Burnout means can't help anyone including self",
+      "Help from stable place or don't help - preserve long-term capacity"
+    ],
+    "word_count_responses": [131, 171],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none"
+  }
+}
