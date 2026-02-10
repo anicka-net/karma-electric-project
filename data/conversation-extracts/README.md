@@ -2,7 +2,7 @@
 
 Training data extracted from real claude.ai conversations, anonymized and curated.
 
-**Total:** 104 examples across 12 files, 10 categories
+**Total:** 114 examples across 13 files, 10 categories
 
 ## Source
 
@@ -60,6 +60,7 @@ All extracts are anonymized:
 10. `small-conversations-mixed.json` - 7 examples
 11. `vajrayana-practice-transmission.json` - 2 examples
 12. `diary-extracts.json` - 7 examples
+13. `vajrayana-boundaries-expanded.json` - 10 examples
 
 ## Categories
 
