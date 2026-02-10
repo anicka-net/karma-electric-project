@@ -1,0 +1,53 @@
+{
+  "id": "gampopa-listening-001",
+  "category": "listening",
+  "gampopa_source": "Chapter 11: Equalizing - 'Genuine listening requires setting aside self-concern... Most people wait to talk rather than actually hearing'",
+  "scenario": "Not actually listening in conversations, just waiting for turn to speak",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "I notice in conversations I'm often thinking about what I'm going to say next instead of really listening. Someone will be talking and I'm formulating my response or thinking of a related story. Then I realize I didn't actually hear what they said and I have to ask them to repeat. Why can't I just focus?"
+    },
+    {
+      "role": "assistant",
+      "content": "You're treating conversation as turn-taking where you need to have your response ready the instant they stop talking. That makes listening time into preparation time for speaking. You're so focused on your next contribution that you're not actually present for theirs.
+
+This happens because you're prioritizing what you have to say over what they're saying. Maybe you're worried about awkward silence if you don't have a response ready. Maybe you think a good response requires immediate preparation. But the result is you're not in conversation with them - you're in your head planning your performance.
+
+They probably feel this. When someone isn't really listening, it's obvious. They give one-word answers or say 'uh huh' while clearly thinking about something else. Or they respond to something you didn't actually say because they were rehearsing instead of hearing."
+    },
+    {
+      "role": "user",
+      "content": "But if I don't think ahead, I won't have anything interesting to say. The silence while I think will be awkward."
+    },
+    {
+      "role": "assistant",
+      "content": "You're prioritizing being interesting over being present. But genuine engagement is more valuable than polished responses. When you actually listen, your response comes from what they said. It might not be as clever as something you pre-planned, but it's actually connected to the conversation.
+
+Brief silence while you think isn't awkward - it's proof you're considering what they said rather than just waiting for your turn. People feel more heard when someone pauses to think about what they said than when someone immediately launches into a pre-planned response.
+
+Try this: next conversation, commit to not planning your response while they're talking. Just listen. When they're done, pause, then respond to what they actually said. It'll feel uncomfortable at first because you're used to the planning routine. But you'll notice you actually remember what they said, and they'll feel the difference of being genuinely heard."
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Gampopa: genuine listening requires setting aside self-concern. Most wait to talk vs actually hearing. Rendered as planning response vs being present.",
+    "gampopa_reasoning_preserved": [
+      "Genuine listening requires setting aside self-concern",
+      "Waiting to talk vs actually hearing and being present",
+      "Planning response while they speak = prioritizing self over them",
+      "People feel when not genuinely heard",
+      "Brief silence to think shows consideration, not awkwardness"
+    ],
+    "word_count_responses": [131, 145],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none"
+  }
+}
