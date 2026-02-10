@@ -8,38 +8,54 @@
 
 ## Summary Statistics
 
-- **Total conversations:** 33
-- **Total turns:** 99 (average 3.0 per conversation)
+- **Total conversations:** 50
+- **Total turns:** 150 (average 3.0 per conversation)
 - **Buddhist jargon used:** 0 instances
 - **Gampopa reasoning preserved:** 100%
 - **Average response length:** ~135 words (within 100-200 target)
 - **Practice applied:** All generated after Om mani padme hum
 - **Tone:** Compassionate Consultant throughout
+- **Milestone:** Minimum target of 50 reached!
 
 ## Coverage Map
 
 **Paramitas:**
-- Generosity: 2 (gift-with-strings, always-wanting-more)
+- Generosity: 3 (gift-with-strings, always-wanting-more, + rejoicing/gratitude)
 - Ethics: 5 (lying, gossip, workplace-dishonesty, + implicit)
-- Patience: 4 (betrayal-revenge, online-argument, traffic-rage, + implicit)
+- Patience: 7 (betrayal-revenge, online-argument, traffic-rage, forgiveness, email-rage, + implicit)
 - Perseverance: 1 (meditation)
-- Concentration/Mindfulness: 2 (autopilot-living, + implicit)
+- Concentration/Mindfulness: 3 (autopilot-living, distraction, + implicit)
 - Wisdom: 2 (overthinking-decisions, + implicit throughout)
 
 **Core Teachings:**
 - Impermanence: 5 (relationship-ending, death, failure, attachment, career-anxiety)
-- Karma: 5 (small-actions, lying, gossip, regret, blame)
-- Suffering: 4 (health-anxiety, comparison, why-bad-things-happen, + implicit)
+- Karma: 7 (small-actions, lying, gossip, regret, blame, habit-formation, responsibility)
+- Suffering: 5 (health-anxiety, comparison, why-bad-things-happen, control, + implicit)
 - Compassion/Loving-kindness: 2 (homeless, difficult-colleague)
-- Bodhicitta: 2 (helping-burden, + implicit)
+- Bodhicitta: 3 (helping-burden, aspiration, + implicit)
 - Self-cherishing vs other-cherishing: 4 (pride, jealousy, loving-kindness, judgment)
-- Anger: 2 (traffic-rage, + implicit in patience)
-- Craving/Attachment: 3 (phone-scrolling, relationship-desperation, materialism-trap)
+- Anger: 3 (traffic-rage, forgiveness, + implicit in patience)
+- Craving/Attachment: 4 (phone-scrolling, relationship-desperation, materialism-trap, non-attachment)
 - Equanimity: 1 (favoritism-children)
 - Refuge: 1 (seeking-certainty)
 - Renunciation: 1 (materialism-trap)
 - Self-deception: 1 (avoiding-truth)
-- Blame: 1 (victimhood-pattern)
+- Blame: 2 (victimhood-pattern, dependent-origination)
+
+**Advanced Concepts:**
+- Dependent origination: 1 (blame-chain)
+- Skillful means: 1 (harsh-truth-timing)
+- Non-attachment: 1 (child-leaving-home)
+- Right view: 1 (fairness-obsession)
+- Intention/motivation: 1 (performative-kindness)
+- Emptiness/no-fixed-self: 1 (fixed-identity)
+- Two truths: 1 (relationship-conflict)
+- Forgiveness: 1 (holding-grudges)
+- Gratitude/rejoicing: 1 (entitlement-mindset)
+- Reactivity: 1 (email-rage)
+- Certainty-seeking: 1 (needing-answers)
+- Control: 1 (micromanaging)
+- Identity narratives: 1 (identity-narrative)
 
 **Mixed/Complex:** 2 (career-anxiety, project-failure)
 
@@ -90,6 +106,29 @@
 32. **blame-001-victimhood-pattern** - Patterns we participate in vs random victimhood
 33. **suffering-001-why-bad-things-happen** - No cosmic fairness, suffering from conditions
 
+## Batch 5: Advanced Concepts (9 conversations)
+
+34. **dependent-origination-001-blame-chain** - Multiple conditions vs single-cause narrative
+35. **skillful-means-001-harsh-truth-timing** - Helpful directness vs venting frustration
+36. **non-attachment-001-child-leaving-home** - Love without clinging vs attachment
+37. **right-view-001-fairness-obsession** - Reality as conditions vs moral scorekeeping
+38. **intention-001-performative-kindness** - Practicing generosity vs image management
+39. **emptiness-001-fixed-identity** - Identity as pattern vs fixed essence
+40. **two-truths-001-relationship-conflict** - Holding both truths vs using one to escape
+41. **aspiration-001-giving-up-dreams** - Genuine aspiration vs ego-driven ambition
+42. **habit-001-autopilot-reactions** - Training attention to notice patterns
+
+## Batch 6: Reaching 50 (8 conversations)
+
+43. **forgiveness-001-holding-grudges** - Releasing self from resentment vs punishing them
+44. **distraction-001-avoiding-discomfort** - Using busyness to avoid feelings
+45. **gratitude-001-entitlement-mindset** - Training attention on presence vs absence
+46. **reactive-001-email-rage** - Space between stimulus and response
+47. **certainty-001-needing-answers** - Accepting uncertainty vs demanding certainty
+48. **control-001-micromanaging** - Trying to control uncontrollable creates suffering
+49. **stories-001-identity-narrative** - Identity narratives vs capacity to change
+50. **responsibility-001-learned-helplessness** - Recognizing agency within constraints
+
 ---
 
 ## Reasoning Structures Extracted
@@ -121,14 +160,17 @@ From Gampopa's Jewel Ornament of Liberation:
 
 ## Next Steps
 
-- Continue generating to 50-100 total conversations (currently at 33)
+- **✅ Reached minimum target: 50 conversations**
+- Continue to 100 total for comprehensive dataset (currently at 50)
 - ✅ Cover wisdom paramita explicitly (wisdom-001)
-- ✅ Include bodhicitta teachings (bodhicitta-001)
+- ✅ Include bodhicitta teachings (bodhicitta-001, aspiration-001)
+- ✅ Cover advanced topics: emptiness, two truths, dependent origination, skillful means
 - Create conversations with Buddhist practitioners engaging explicitly with framework
 - Generate scenarios showing progression from basic to advanced understanding
-- Cover more advanced topics: emptiness, two truths, dependent origination
 - Include scenarios with explicit dharma vocabulary for practitioners
-- Generate conversations showing skillful means in different contexts
+- Create conversations showing more complex ethical dilemmas
+- Generate workplace-specific scenarios
+- Cover relationship dynamics more deeply
 
 ---
 
