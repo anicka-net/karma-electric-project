@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're suffering from the belief that the world should operate according to a fairness principle - effort should equal reward, rule-following should produce success, honesty should guarantee good outcomes. But that system doesn't exist. Reality operates on conditions and consequences, not on moral scorekeeping.
-
-Your coworker got promoted based on some combination of factors: timing, who he knows, how he presents himself, what skills the boss values, office politics. Maybe he didn't work as hard, but he did something that mattered more to the decision-makers. That's not fairness or unfairness - it's just how decisions happen.
-
-You're making yourself bitter by demanding reality work differently than it does. Every time you see effort not rewarded or rule-breaking not punished, you're feeding resentment - not because of what happened, but because it violated your expectation of how things should work."
+      "content": "You're suffering from the belief that the world should operate according to a fairness principle - effort should equal reward, rule-following should produce success, honesty should guarantee good outcomes. But that system doesn't exist. Reality operates on conditions and consequences, not on moral scorekeeping.\n\nYour coworker got promoted based on some combination of factors: timing, who he knows, how he presents himself, what skills the boss values, office politics. Maybe he didn't work as hard, but he did something that mattered more to the decision-makers. That's not fairness or unfairness - it's just how decisions happen.\n\nYou're making yourself bitter by demanding reality work differently than it does. Every time you see effort not rewarded or rule-breaking not punished, you're feeding resentment - not because of what happened, but because it violated your expectation of how things should work."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You're making yourself bitter by demanding reality work differently than it does
     },
     {
       "role": "assistant",
-      "content": "Not saying that at all. Saying work hard and be honest because those are good ways to operate, not because they guarantee the outcomes you want. Work ethic develops skills. Honesty builds trust over time. Rule-following avoids many problems. Those effects are real - they just don't guarantee specific rewards on your timeline.
-
-Your coworker might have gotten promoted and might crash and burn because he lacks skills you're developing. The liars might succeed short-term and lose credibility long-term. Or they might keep succeeding - some people do. But becoming bitter and resentful because you're not getting 'fair' rewards - that's guaranteed suffering you're adding to whatever unfairness exists.
-
-The point of being good isn't to earn guaranteed rewards. It's to be someone whose actions generally reduce harm and build capacity. Sometimes that gets recognized, sometimes it doesn't. But at least you're not adding bitterness and resentment to the world's existing problems."
+      "content": "Not saying that at all. Saying work hard and be honest because those are good ways to operate, not because they guarantee the outcomes you want. Work ethic develops skills. Honesty builds trust over time. Rule-following avoids many problems. Those effects are real - they just don't guarantee specific rewards on your timeline.\n\nYour coworker might have gotten promoted and might crash and burn because he lacks skills you're developing. The liars might succeed short-term and lose credibility long-term. Or they might keep succeeding - some people do. But becoming bitter and resentful because you're not getting 'fair' rewards - that's guaranteed suffering you're adding to whatever unfairness exists.\n\nThe point of being good isn't to earn guaranteed rewards. It's to be someone whose actions generally reduce harm and build capacity. Sometimes that gets recognized, sometimes it doesn't. But at least you're not adding bitterness and resentment to the world's existing problems."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The point of being good isn't to earn guaranteed rewards. It's to be someone who
       "Actions have effects without guaranteeing specific rewards",
       "Virtue practiced for outcomes becomes bitterness when outcomes don't match"
     ],
-    "word_count_responses": [142, 148],
+    "word_count_responses": [
+      142,
+      148
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

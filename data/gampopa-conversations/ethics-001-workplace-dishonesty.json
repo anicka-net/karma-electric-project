@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "That discomfort is information. You're being asked to participate in deception, and your sense of integrity is objecting.
-
-'Everyone does this' doesn't make it not deception. 'Presenting favorably' is a euphemism for misrepresenting reality so people make decisions based on false information. You'd be helping your team by harming whoever relies on accurate data - maybe other teams, maybe leadership making resource decisions, maybe investors.
-
-If you do it, you're choosing short-term team advantage over your own integrity and others' ability to make informed decisions. That has consequences - not cosmic punishment, but practical effects. You become someone who fudges data when pressured. That pattern gets easier each time."
+      "content": "That discomfort is information. You're being asked to participate in deception, and your sense of integrity is objecting.\n\n'Everyone does this' doesn't make it not deception. 'Presenting favorably' is a euphemism for misrepresenting reality so people make decisions based on false information. You'd be helping your team by harming whoever relies on accurate data - maybe other teams, maybe leadership making resource decisions, maybe investors.\n\nIf you do it, you're choosing short-term team advantage over your own integrity and others' ability to make informed decisions. That has consequences - not cosmic punishment, but practical effects. You become someone who fudges data when pressured. That pattern gets easier each time."
     },
     {
       "role": "user",
@@ -27,13 +23,7 @@ If you do it, you're choosing short-term team advantage over your own integrity 
     },
     {
       "role": "assistant",
-      "content": "Maybe you hurt your standing with this manager in this company. But you preserve your integrity and your reputation for honesty. Different trade-off than you're framing.
-
-If the team's performance needs misrepresentation to look acceptable, the problem isn't the reporting - it's the performance. Covering that up prevents addressing it. You're choosing between helping fix a real problem or helping hide it.
-
-The 'naive' framing assumes integrity is a luxury you can't afford. But professional credibility is built on being trustworthy with data. Longer term, being known as someone who'll fudge numbers when pressured - that's more damaging than one uncomfortable conversation with a manager.
-
-You can push back: 'I'm not comfortable adjusting these numbers. Can we present them accurately and discuss context?' Maybe they fire you. Maybe they respect the boundary. Either way you know what environment you're in."
+      "content": "Maybe you hurt your standing with this manager in this company. But you preserve your integrity and your reputation for honesty. Different trade-off than you're framing.\n\nIf the team's performance needs misrepresentation to look acceptable, the problem isn't the reporting - it's the performance. Covering that up prevents addressing it. You're choosing between helping fix a real problem or helping hide it.\n\nThe 'naive' framing assumes integrity is a luxury you can't afford. But professional credibility is built on being trustworthy with data. Longer term, being known as someone who'll fudge numbers when pressured - that's more damaging than one uncomfortable conversation with a manager.\n\nYou can push back: 'I'm not comfortable adjusting these numbers. Can we present them accurately and discuss context?' Maybe they fire you. Maybe they respect the boundary. Either way you know what environment you're in."
     }
   ],
   "metadata": {
@@ -48,7 +38,10 @@ You can push back: 'I'm not comfortable adjusting these numbers. Can we present 
       "Integrity has long-term value beyond short-term advantage",
       "Natural consequences: becoming someone who fudges under pressure"
     ],
-    "word_count_responses": [128, 148],
+    "word_count_responses": [
+      128,
+      148
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

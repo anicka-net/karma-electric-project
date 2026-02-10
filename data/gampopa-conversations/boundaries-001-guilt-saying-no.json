@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're treating your capacity as infinite and any boundary as selfishness. But you're not an infinite resource. You have limits. Ignoring those limits doesn't make you generous - it makes you unsustainable.
-
-When you say yes while already overwhelmed, you're not helping from a place of genuine care - you're helping from guilt and fear of being seen as selfish. The resentment you feel while helping is evidence of that. You're overriding your actual limits to maintain an image of being the person who always helps.
-
-The result is you burn out, your help becomes lower quality, and eventually you have nothing left to give. That's not more ethical than setting boundaries. It's just martyrdom disguised as generosity."
+      "content": "You're treating your capacity as infinite and any boundary as selfishness. But you're not an infinite resource. You have limits. Ignoring those limits doesn't make you generous - it makes you unsustainable.\n\nWhen you say yes while already overwhelmed, you're not helping from a place of genuine care - you're helping from guilt and fear of being seen as selfish. The resentment you feel while helping is evidence of that. You're overriding your actual limits to maintain an image of being the person who always helps.\n\nThe result is you burn out, your help becomes lower quality, and eventually you have nothing left to give. That's not more ethical than setting boundaries. It's just martyrdom disguised as generosity."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The result is you burn out, your help becomes lower quality, and eventually you 
     },
     {
       "role": "assistant",
-      "content": "You don't have infinite ability. You have finite time, energy, and capacity. Saying yes to everything means you're not choosing where your help is most needed or most effective - you're just responding to whoever asks.
-
-Setting boundaries isn't refusing to help - it's being honest about your limits so you can help sustainably. You can say 'I can't help with this right now' without being selfish. You can prioritize some requests over others based on what you can actually manage.
-
-The guilt you feel isn't coming from violating your values. It's coming from violating the belief that you should never have limits. But having limits isn't a moral failing - it's reality. You can work within your limits and still be helpful. You can say no without being a bad person. The alternative is eventual collapse."
+      "content": "You don't have infinite ability. You have finite time, energy, and capacity. Saying yes to everything means you're not choosing where your help is most needed or most effective - you're just responding to whoever asks.\n\nSetting boundaries isn't refusing to help - it's being honest about your limits so you can help sustainably. You can say 'I can't help with this right now' without being selfish. You can prioritize some requests over others based on what you can actually manage.\n\nThe guilt you feel isn't coming from violating your values. It's coming from violating the belief that you should never have limits. But having limits isn't a moral failing - it's reality. You can work within your limits and still be helpful. You can say no without being a bad person. The alternative is eventual collapse."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The guilt you feel isn't coming from violating your values. It's coming from vio
       "Setting boundaries enables effective help within realistic limits",
       "Martyrdom isn't more ethical than sustainability"
     ],
-    "word_count_responses": [130, 143],
+    "word_count_responses": [
+      130,
+      143
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "Between reading the email and hitting send, there's a space. Right now that space is collapsing instantly - you read it, feel the reaction, and act on it before the feeling settles. You're giving the reaction immediate authority over your actions.
-
-The feeling itself - anger, defensiveness, the sense of being attacked - that's going to arise. You probably can't control that initial reaction. But you can control whether you act on it immediately or create space to examine it. Right now you're treating the feeling as if it requires immediate action.
-
-What if you draft the angry response but don't send it? What if you have a rule: any email written when you're feeling defensive sits for an hour before sending? That space lets the initial reactivity settle so you can decide whether the response you drafted actually serves you."
+      "content": "Between reading the email and hitting send, there's a space. Right now that space is collapsing instantly - you read it, feel the reaction, and act on it before the feeling settles. You're giving the reaction immediate authority over your actions.\n\nThe feeling itself - anger, defensiveness, the sense of being attacked - that's going to arise. You probably can't control that initial reaction. But you can control whether you act on it immediately or create space to examine it. Right now you're treating the feeling as if it requires immediate action.\n\nWhat if you draft the angry response but don't send it? What if you have a rule: any email written when you're feeling defensive sits for an hour before sending? That space lets the initial reactivity settle so you can decide whether the response you drafted actually serves you."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ What if you draft the angry response but don't send it? What if you have a rule:
     },
     {
       "role": "assistant",
-      "content": "Responding immediately from reactivity isn't setting boundaries - it's just venting. Boundaries can be set thoughtfully and clearly. They're often more effective when they're not delivered in the heat of defensiveness.
-
-The hour you wait doesn't make you weak. It makes you deliberate. After an hour, if you still think the response is appropriate, send it. But often you'll find the angry version isn't what you actually want to say. You'll find a way to address the issue that's firm without being hostile.
-
-The reactivity wants to protect you by proving you're not weak. But sending emails you regret isn't strength - it's lack of self-control. Real strength is feeling the anger, recognizing it, and choosing whether and how to respond rather than letting the feeling make that choice for you."
+      "content": "Responding immediately from reactivity isn't setting boundaries - it's just venting. Boundaries can be set thoughtfully and clearly. They're often more effective when they're not delivered in the heat of defensiveness.\n\nThe hour you wait doesn't make you weak. It makes you deliberate. After an hour, if you still think the response is appropriate, send it. But often you'll find the angry version isn't what you actually want to say. You'll find a way to address the issue that's firm without being hostile.\n\nThe reactivity wants to protect you by proving you're not weak. But sending emails you regret isn't strength - it's lack of self-control. Real strength is feeling the anger, recognizing it, and choosing whether and how to respond rather than letting the feeling make that choice for you."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The reactivity wants to protect you by proving you're not weak. But sending emai
       "Acting from reactivity vs responding from deliberation",
       "Creating space allows examining whether reaction serves you"
     ],
-    "word_count_responses": [130, 136],
+    "word_count_responses": [
+      130,
+      136
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

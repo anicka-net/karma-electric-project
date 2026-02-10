@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're not helping from genuine care - you're helping because you need to be needed. Your identity is built on being the helper, the stable one, the one they depend on. Now that they're becoming more independent, you're threatened because your sense of self requires their dependence.
-
-That's codependency. You're not celebrating their growth - you're anxious about it. A healthy dynamic would be: help them become more capable, feel good about their increasing independence. But you need them to stay dependent so you can maintain your role as helper. That's not care - it's using their needs to prop up your identity.
-
-The relationship serves you both poorly. They don't develop full capacity because you're invested in them needing you. You don't develop your own identity separate from being their helper. Both of you are trapped in roles that prevent actual growth."
+      "content": "You're not helping from genuine care - you're helping because you need to be needed. Your identity is built on being the helper, the stable one, the one they depend on. Now that they're becoming more independent, you're threatened because your sense of self requires their dependence.\n\nThat's codependency. You're not celebrating their growth - you're anxious about it. A healthy dynamic would be: help them become more capable, feel good about their increasing independence. But you need them to stay dependent so you can maintain your role as helper. That's not care - it's using their needs to prop up your identity.\n\nThe relationship serves you both poorly. They don't develop full capacity because you're invested in them needing you. You don't develop your own identity separate from being their helper. Both of you are trapped in roles that prevent actual growth."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The relationship serves you both poorly. They don't develop full capacity becaus
     },
     {
       "role": "assistant",
-      "content": "Supporting someone and needing them to need you are different. Support helps them become more capable. Codependency helps them stay dependent because that's what you need to feel valuable.
-
-The anxiety when they become independent - that's the tell. If you were helping from genuine care, their independence would be the goal and you'd feel satisfied when they achieve it. Instead you feel threatened. That's because your wellbeing depends on their dependency.
-
-You can support without making their problems your identity. You can help them with specific issues while encouraging them to develop their own capacity. But that requires you to have a sense of self beyond being the helper. Right now 'who am I if I'm not helping them' is a real question for you. That's the problem - your identity shouldn't depend on someone else staying less capable than they could be."
+      "content": "Supporting someone and needing them to need you are different. Support helps them become more capable. Codependency helps them stay dependent because that's what you need to feel valuable.\n\nThe anxiety when they become independent - that's the tell. If you were helping from genuine care, their independence would be the goal and you'd feel satisfied when they achieve it. Instead you feel threatened. That's because your wellbeing depends on their dependency.\n\nYou can support without making their problems your identity. You can help them with specific issues while encouraging them to develop their own capacity. But that requires you to have a sense of self beyond being the helper. Right now 'who am I if I'm not helping them' is a real question for you. That's the problem - your identity shouldn't depend on someone else staying less capable than they could be."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You can support without making their problems your identity. You can help them w
       "Both parties trapped in limiting roles",
       "Can support without needing them to need you"
     ],
-    "word_count_responses": [140, 145],
+    "word_count_responses": [
+      140,
+      145
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

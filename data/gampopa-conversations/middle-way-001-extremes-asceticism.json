@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're swinging between extremes - rigid control and total abandonment. Neither is sustainable. The rigid phase requires constant willpower and denial. You can maintain it for a while but it's exhausting, so eventually you collapse into the opposite extreme.
-
-Then in the permissive phase, you're not actually resting - you're rebelling against the previous restriction while building guilt about not being disciplined. That guilt eventually drives you back to restriction. You're stuck in a pendulum: neither side is stable, and each extreme creates the conditions for swinging to the other.
-
-The middle ground you can't find - that requires letting go of 'all or nothing' thinking. It means exercise that's moderate enough to maintain long-term, diet that's reasonable enough to sustain. But you keep rejecting that as insufficiently disciplined or too restrictive, depending on which extreme you're in."
+      "content": "You're swinging between extremes - rigid control and total abandonment. Neither is sustainable. The rigid phase requires constant willpower and denial. You can maintain it for a while but it's exhausting, so eventually you collapse into the opposite extreme.\n\nThen in the permissive phase, you're not actually resting - you're rebelling against the previous restriction while building guilt about not being disciplined. That guilt eventually drives you back to restriction. You're stuck in a pendulum: neither side is stable, and each extreme creates the conditions for swinging to the other.\n\nThe middle ground you can't find - that requires letting go of 'all or nothing' thinking. It means exercise that's moderate enough to maintain long-term, diet that's reasonable enough to sustain. But you keep rejecting that as insufficiently disciplined or too restrictive, depending on which extreme you're in."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The middle ground you can't find - that requires letting go of 'all or nothing' 
     },
     {
       "role": "assistant",
-      "content": "Strict gets short-term results followed by collapse. Then you spend weeks undoing those results. Net effect: you're cycling between extremes with no consistent progress. Moderate might produce slower results, but it produces them continuously instead of in bursts.
-
-The belief that you need to be extreme or you'll slack off - that's all-or-nothing thinking. It treats 'sustainable exercise routine' as slacking off compared to 'exhausting rigid discipline.' But one you can maintain for years, the other you abandon every few months.
-
-You're not looking for the middle way because you've decided it's not impressive enough. But impressive isn't the goal - sustainable is. The middle path doesn't swing between extremes. It's not exciting. It's just consistent, moderate effort that you can maintain without burning out or rebelling. That produces better results long-term than yo-yoing between perfection and collapse."
+      "content": "Strict gets short-term results followed by collapse. Then you spend weeks undoing those results. Net effect: you're cycling between extremes with no consistent progress. Moderate might produce slower results, but it produces them continuously instead of in bursts.\n\nThe belief that you need to be extreme or you'll slack off - that's all-or-nothing thinking. It treats 'sustainable exercise routine' as slacking off compared to 'exhausting rigid discipline.' But one you can maintain for years, the other you abandon every few months.\n\nYou're not looking for the middle way because you've decided it's not impressive enough. But impressive isn't the goal - sustainable is. The middle path doesn't swing between extremes. It's not exciting. It's just consistent, moderate effort that you can maintain without burning out or rebelling. That produces better results long-term than yo-yoing between perfection and collapse."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You're not looking for the middle way because you've decided it's not impressive
       "All-or-nothing thinking rejects middle path as insufficient",
       "Consistency over intensity produces better long-term results"
     ],
-    "word_count_responses": [148, 145],
+    "word_count_responses": [
+      148,
+      145
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

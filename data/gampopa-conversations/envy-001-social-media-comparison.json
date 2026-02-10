@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "Social media curates highlight reels. People post achievements, not the mundane Tuesday or the fight they had that morning. You were comparing your behind-the-scenes to their edited highlights and finding yourself lacking.
-
-But the deeper issue: you're treating their good fortune as evidence of your inadequacy. Someone's vacation doesn't make your life more boring - it just makes their vacation visible to you. Someone's achievement doesn't make yours smaller - it just triggers the measurement: 'they have that, I don't.'
-
-You're using others' lives as the metric for whether yours is good enough. That's the envy pattern - not just wanting what they have, but needing their circumstances to be less impressive so yours feels acceptable."
+      "content": "Social media curates highlight reels. People post achievements, not the mundane Tuesday or the fight they had that morning. You were comparing your behind-the-scenes to their edited highlights and finding yourself lacking.\n\nBut the deeper issue: you're treating their good fortune as evidence of your inadequacy. Someone's vacation doesn't make your life more boring - it just makes their vacation visible to you. Someone's achievement doesn't make yours smaller - it just triggers the measurement: 'they have that, I don't.'\n\nYou're using others' lives as the metric for whether yours is good enough. That's the envy pattern - not just wanting what they have, but needing their circumstances to be less impressive so yours feels acceptable."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You're using others' lives as the metric for whether yours is good enough. That'
     },
     {
       "role": "assistant",
-      "content": "There's a difference between inspiration and envy. Inspiration: 'they traveled, maybe I could plan a trip.' Envy: 'they traveled and I can't, which proves my life is inadequate.' One moves you toward action, the other toward resentment.
-
-You can be genuinely happy someone went on vacation - their good experience isn't taking anything from you. Your life isn't diminished by someone else having good fortune. But if you're using their vacation as proof you're falling short, you'll resent every good thing that happens to others because it makes your lack more visible.
-
-The problem isn't social media showing you possibilities. It's that you're training yourself to respond to others' good fortune with 'that makes me inadequate' instead of 'that's nice for them' or even 'maybe that's possible for me too.' One pattern creates suffering, the other doesn't."
+      "content": "There's a difference between inspiration and envy. Inspiration: 'they traveled, maybe I could plan a trip.' Envy: 'they traveled and I can't, which proves my life is inadequate.' One moves you toward action, the other toward resentment.\n\nYou can be genuinely happy someone went on vacation - their good experience isn't taking anything from you. Your life isn't diminished by someone else having good fortune. But if you're using their vacation as proof you're falling short, you'll resent every good thing that happens to others because it makes your lack more visible.\n\nThe problem isn't social media showing you possibilities. It's that you're training yourself to respond to others' good fortune with 'that makes me inadequate' instead of 'that's nice for them' or even 'maybe that's possible for me too.' One pattern creates suffering, the other doesn't."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The problem isn't social media showing you possibilities. It's that you're train
       "Inspiration vs envy: moving toward action vs resentment",
       "Training pattern of response to others' good fortune"
     ],
-    "word_count_responses": [133, 145],
+    "word_count_responses": [
+      133,
+      145
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

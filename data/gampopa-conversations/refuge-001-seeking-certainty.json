@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're looking for security in things that can't provide it. Degrees can become obsolete. Promotions can be lost. Relationships end. You're trying to build permanent safety on impermanent foundations.
-
-Each achievement gives temporary relief - 'now I'm okay' - then the underlying insecurity returns because you haven't addressed what's actually driving it. You don't feel unsafe because you lack achievements. You feel unsafe because you're looking to changing circumstances to provide unchanging security.
-
-That's impossible. As long as your sense of being okay depends on external conditions that can shift, you'll never stop being anxious about those conditions shifting."
+      "content": "You're looking for security in things that can't provide it. Degrees can become obsolete. Promotions can be lost. Relationships end. You're trying to build permanent safety on impermanent foundations.\n\nEach achievement gives temporary relief - 'now I'm okay' - then the underlying insecurity returns because you haven't addressed what's actually driving it. You don't feel unsafe because you lack achievements. You feel unsafe because you're looking to changing circumstances to provide unchanging security.\n\nThat's impossible. As long as your sense of being okay depends on external conditions that can shift, you'll never stop being anxious about those conditions shifting."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ That's impossible. As long as your sense of being okay depends on external condi
     },
     {
       "role": "assistant",
-      "content": "Not 'rely on nothing' but recognize that lasting security doesn't come from arranging external conditions perfectly. It comes from developing capacity to work with whatever conditions arise.
-
-You can't make your job permanent. But you can develop skills that make you adaptable if it ends. You can't make relationships permanent. But you can develop your capacity to be okay alone and to form new connections. You can't prevent loss. But you can learn to grieve without collapse.
-
-The security you're seeking isn't 'everything I value will last forever.' It's 'I can work with change and loss without being destroyed by them.' That's the only security that doesn't require impossible permanence. But it requires developing inner capacity, not just acquiring external things."
+      "content": "Not 'rely on nothing' but recognize that lasting security doesn't come from arranging external conditions perfectly. It comes from developing capacity to work with whatever conditions arise.\n\nYou can't make your job permanent. But you can develop skills that make you adaptable if it ends. You can't make relationships permanent. But you can develop your capacity to be okay alone and to form new connections. You can't prevent loss. But you can learn to grieve without collapse.\n\nThe security you're seeking isn't 'everything I value will last forever.' It's 'I can work with change and loss without being destroyed by them.' That's the only security that doesn't require impossible permanence. But it requires developing inner capacity, not just acquiring external things."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The security you're seeking isn't 'everything I value will last forever.' It's '
       "Shifting achievement targets doesn't address underlying insecurity",
       "Security comes from adaptability, not from frozen conditions"
     ],
-    "word_count_responses": [119, 144],
+    "word_count_responses": [
+      119,
+      144
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

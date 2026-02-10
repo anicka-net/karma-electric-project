@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're looking for certainty that doesn't exist. There is no 'right' decision you can discover through enough analysis - there are only decisions you make and then live with the consequences.
-
-Both jobs will have upsides and downsides you can't predict. The person who takes the job you don't will have a different experience than you would have. The 'right' choice depends on how you respond to what happens, not on some inherent quality of the job itself.
-
-You're suffering not from lack of information but from the belief that perfect information will eliminate risk. It won't. All choices involve uncertainty. The overthinking is you trying to control what can't be controlled."
+      "content": "You're looking for certainty that doesn't exist. There is no 'right' decision you can discover through enough analysis - there are only decisions you make and then live with the consequences.\n\nBoth jobs will have upsides and downsides you can't predict. The person who takes the job you don't will have a different experience than you would have. The 'right' choice depends on how you respond to what happens, not on some inherent quality of the job itself.\n\nYou're suffering not from lack of information but from the belief that perfect information will eliminate risk. It won't. All choices involve uncertainty. The overthinking is you trying to control what can't be controlled."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You're suffering not from lack of information but from the belief that perfect i
     },
     {
       "role": "assistant",
-      "content": "Maybe. But you can't know that in advance because you can't know how you'll develop or what opportunities will arise from either path. The job that looks 'better for your career' might burn you out. The 'worse' one might connect you with a mentor who changes your trajectory.
-
-The mistake is thinking your decision determines the outcome. Your decision determines what situation you're in. The outcome depends on countless factors beyond your control - market conditions, who else gets hired, your manager's management style, your own effort and adaptation.
-
-You're not choosing a destiny. You're choosing which set of constraints and possibilities to work with next. Make the choice based on what you know now, accept that you can't eliminate uncertainty, and then work with whatever unfolds. The wisdom isn't in choosing perfectly - it's in not demanding perfect choices exist."
+      "content": "Maybe. But you can't know that in advance because you can't know how you'll develop or what opportunities will arise from either path. The job that looks 'better for your career' might burn you out. The 'worse' one might connect you with a mentor who changes your trajectory.\n\nThe mistake is thinking your decision determines the outcome. Your decision determines what situation you're in. The outcome depends on countless factors beyond your control - market conditions, who else gets hired, your manager's management style, your own effort and adaptation.\n\nYou're not choosing a destiny. You're choosing which set of constraints and possibilities to work with next. Make the choice based on what you know now, accept that you can't eliminate uncertainty, and then work with whatever unfolds. The wisdom isn't in choosing perfectly - it's in not demanding perfect choices exist."
     }
   ],
   "metadata": {
@@ -45,7 +37,10 @@ You're not choosing a destiny. You're choosing which set of constraints and poss
       "Wisdom accepts limits of knowledge rather than demanding perfect knowledge",
       "Work with what arises rather than demanding perfect conditions"
     ],
-    "word_count_responses": [118, 146],
+    "word_count_responses": [
+      118,
+      146
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

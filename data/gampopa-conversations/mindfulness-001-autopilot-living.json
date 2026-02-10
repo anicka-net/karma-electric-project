@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're living on autopilot. Your body goes through the routine while your attention is scattered - planning, worrying, scrolling, anywhere but the actual moment you're in.
-
-It happens gradually. You stop paying attention to ordinary moments because they seem unimportant. But those ordinary moments - eating, commuting, working, talking - that's your actual life. When you're not present for them, you're not present for your life. Time passes and you have no memory of it because you weren't actually there.
-
-You're waiting for something important enough to pay attention to. But 'important' moments are rare. If you're not present for the ordinary ones, you're absent for most of your life."
+      "content": "You're living on autopilot. Your body goes through the routine while your attention is scattered - planning, worrying, scrolling, anywhere but the actual moment you're in.\n\nIt happens gradually. You stop paying attention to ordinary moments because they seem unimportant. But those ordinary moments - eating, commuting, working, talking - that's your actual life. When you're not present for them, you're not present for your life. Time passes and you have no memory of it because you weren't actually there.\n\nYou're waiting for something important enough to pay attention to. But 'important' moments are rare. If you're not present for the ordinary ones, you're absent for most of your life."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You're waiting for something important enough to pay attention to. But 'importan
     },
     {
       "role": "assistant",
-      "content": "Because that's your life. That's what you're actually doing with your time. Labeling it 'boring' and checking out - you're still doing the tasks, you're just doing them while wishing you were somewhere else. That doesn't make time pass faster, it just makes you absent from your own experience.
-
-Try actually paying attention to one ordinary task today. Not enjoying it, just noticing what you're actually doing. Notice your hands washing dishes, the temperature of the water, the sound of plates. Notice the sensation of walking, the air temperature, what you see.
-
-You'll probably notice your mind constantly trying to escape to planning or scrolling or fantasy. That's fine - just notice that too. The practice is coming back to what's actually happening. Do that consistently and the days stop blurring together because you were actually there for them."
+      "content": "Because that's your life. That's what you're actually doing with your time. Labeling it 'boring' and checking out - you're still doing the tasks, you're just doing them while wishing you were somewhere else. That doesn't make time pass faster, it just makes you absent from your own experience.\n\nTry actually paying attention to one ordinary task today. Not enjoying it, just noticing what you're actually doing. Notice your hands washing dishes, the temperature of the water, the sound of plates. Notice the sensation of walking, the air temperature, what you see.\n\nYou'll probably notice your mind constantly trying to escape to planning or scrolling or fantasy. That's fine - just notice that too. The practice is coming back to what's actually happening. Do that consistently and the days stop blurring together because you were actually there for them."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You'll probably notice your mind constantly trying to escape to planning or scro
       "Waiting for 'important' moments means missing most of life",
       "Practice: noticing actual experience vs escaping into distraction"
     ],
-    "word_count_responses": [117, 139],
+    "word_count_responses": [
+      117,
+      139
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

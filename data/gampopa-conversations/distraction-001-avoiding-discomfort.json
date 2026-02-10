@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're using constant activity to avoid stillness. When you slow down and feel anxious and restless - that's what you're running from through busyness. The activity isn't just productive accomplishment - it's a strategy for not feeling what comes up in quiet.
-
-Notice what happens when you're not busy: anxiety, restlessness, maybe emptiness or boredom. Those feelings are uncomfortable so you fill every moment with tasks and plans. But the feelings don't go away - you just keep them at bay through perpetual motion.
-
-The result is you never address what's actually making you anxious. You just keep it suppressed through exhausting yourself with constant doing. That works until you can't maintain it - then the feelings are still there, possibly stronger because they've been accumulating."
+      "content": "You're using constant activity to avoid stillness. When you slow down and feel anxious and restless - that's what you're running from through busyness. The activity isn't just productive accomplishment - it's a strategy for not feeling what comes up in quiet.\n\nNotice what happens when you're not busy: anxiety, restlessness, maybe emptiness or boredom. Those feelings are uncomfortable so you fill every moment with tasks and plans. But the feelings don't go away - you just keep them at bay through perpetual motion.\n\nThe result is you never address what's actually making you anxious. You just keep it suppressed through exhausting yourself with constant doing. That works until you can't maintain it - then the feelings are still there, possibly stronger because they've been accumulating."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The result is you never address what's actually making you anxious. You just kee
     },
     {
       "role": "assistant",
-      "content": "Being productive is fine. Using productivity to avoid facing discomfort is different - that's compulsive busyness, not genuine engagement with work that matters.
-
-Ask yourself: if you sat quietly for an hour with nothing to do, what would come up? Whatever it is - loneliness, fear, existential unease, grief, inadequacy - that's what you're avoiding. The busyness temporarily drowns it out but doesn't resolve it.
-
-You can keep running from stillness indefinitely, or you can gradually learn to tolerate the discomfort that arises in it. The second path is harder initially but it means you're not trapped in perpetual motion to avoid your own experience. You can be productive when productivity serves you, and you can be still when stillness serves you, instead of frantically filling every moment to avoid feeling."
+      "content": "Being productive is fine. Using productivity to avoid facing discomfort is different - that's compulsive busyness, not genuine engagement with work that matters.\n\nAsk yourself: if you sat quietly for an hour with nothing to do, what would come up? Whatever it is - loneliness, fear, existential unease, grief, inadequacy - that's what you're avoiding. The busyness temporarily drowns it out but doesn't resolve it.\n\nYou can keep running from stillness indefinitely, or you can gradually learn to tolerate the discomfort that arises in it. The second path is harder initially but it means you're not trapped in perpetual motion to avoid your own experience. You can be productive when productivity serves you, and you can be still when stillness serves you, instead of frantically filling every moment to avoid feeling."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You can keep running from stillness indefinitely, or you can gradually learn to 
       "Compulsive busyness vs genuine productive engagement",
       "Learning to tolerate discomfort in stillness vs running from it"
     ],
-    "word_count_responses": [133, 135],
+    "word_count_responses": [
+      133,
+      135
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

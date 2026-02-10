@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "The circumstances are real - economy, rent, wages. Those are conditions you didn't create. But you're treating yourself as having no agency within those conditions. That framing makes you helpless.
-
-You didn't create the broken system. But you're making choices within it: where you work, how you spend money, what skills you develop, who you connect with, what opportunities you pursue or dismiss. Those choices are constrained by circumstances, but they're still choices.
-
-When you frame everything as 'circumstances beyond my control,' you can't see the choices you do have. Maybe you can't afford to move to a cheaper city - or maybe you've never seriously researched what that would require. Maybe you can't get a better job - or maybe you haven't developed new skills or applied broadly. The circumstances limit options but they don't eliminate all choice."
+      "content": "The circumstances are real - economy, rent, wages. Those are conditions you didn't create. But you're treating yourself as having no agency within those conditions. That framing makes you helpless.\n\nYou didn't create the broken system. But you're making choices within it: where you work, how you spend money, what skills you develop, who you connect with, what opportunities you pursue or dismiss. Those choices are constrained by circumstances, but they're still choices.\n\nWhen you frame everything as 'circumstances beyond my control,' you can't see the choices you do have. Maybe you can't afford to move to a cheaper city - or maybe you've never seriously researched what that would require. Maybe you can't get a better job - or maybe you haven't developed new skills or applied broadly. The circumstances limit options but they don't eliminate all choice."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ When you frame everything as 'circumstances beyond my control,' you can't see th
     },
     {
       "role": "assistant",
-      "content": "Not saying it's your fault or that you have unlimited options. Saying that treating yourself as having zero agency keeps you stuck more effectively than the circumstances do.
-
-Yes, some people have very constrained options. But 'very constrained' isn't the same as 'zero.' If you believe you have no choices, you won't look for the ones you do have. You'll stay where you are because exploring possibilities feels pointless.
-
-The economy is bad - and some people in bad economies find ways to change situations. Rent is high - and some people move to cheaper areas or find roommates or change their circumstances. You might have legitimate barriers. But you're also using those barriers to justify not examining what you could do differently. That's not recognizing reality - it's learned helplessness. The circumstances are constraining. Your belief that you're helpless is more constraining."
+      "content": "Not saying it's your fault or that you have unlimited options. Saying that treating yourself as having zero agency keeps you stuck more effectively than the circumstances do.\n\nYes, some people have very constrained options. But 'very constrained' isn't the same as 'zero.' If you believe you have no choices, you won't look for the ones you do have. You'll stay where you are because exploring possibilities feels pointless.\n\nThe economy is bad - and some people in bad economies find ways to change situations. Rent is high - and some people move to cheaper areas or find roommates or change their circumstances. You might have legitimate barriers. But you're also using those barriers to justify not examining what you could do differently. That's not recognizing reality - it's learned helplessness. The circumstances are constraining. Your belief that you're helpless is more constraining."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The economy is bad - and some people in bad economies find ways to change situat
       "Circumstances constrain but don't eliminate all choice",
       "Learned helplessness more constraining than actual circumstances"
     ],
-    "word_count_responses": [132, 147],
+    "word_count_responses": [
+      132,
+      147
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

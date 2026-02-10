@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're treating 'who you are' as a fixed thing that determines what you can do. But 'who you are' is just a pattern you've been repeating. Patterns can change. You're not stuck being the always-reliable person - you're choosing to keep being that because it feels like breaking that pattern would be breaking yourself.
-
-But you're not a fixed identity. You're someone who's developed a habit of saying yes and being available. That habit created a reputation. Now the reputation feels like a prison. But it's not - it's just what people have learned to expect based on your past behavior.
-
-If you start setting boundaries, people might be surprised. Some might be disappointed. That's them adjusting to you changing a pattern, not you violating your essential nature. The 'real you' isn't the over-responsible version or the boundaried version - it's the person navigating between those options."
+      "content": "You're treating 'who you are' as a fixed thing that determines what you can do. But 'who you are' is just a pattern you've been repeating. Patterns can change. You're not stuck being the always-reliable person - you're choosing to keep being that because it feels like breaking that pattern would be breaking yourself.\n\nBut you're not a fixed identity. You're someone who's developed a habit of saying yes and being available. That habit created a reputation. Now the reputation feels like a prison. But it's not - it's just what people have learned to expect based on your past behavior.\n\nIf you start setting boundaries, people might be surprised. Some might be disappointed. That's them adjusting to you changing a pattern, not you violating your essential nature. The 'real you' isn't the over-responsible version or the boundaried version - it's the person navigating between those options."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ If you start setting boundaries, people might be surprised. Some might be disapp
     },
     {
       "role": "assistant",
-      "content": "'Who you really are' changes based on conditions, choices, and circumstances. The person who became the reliable one - that happened through choices and reinforcement, not because it's your unchangeable essence. You can make different choices now.
-
-Being 'true to yourself' doesn't mean being frozen in old patterns. It means acting in alignment with what actually matters to you. If being the reliable person is burning you out and building resentment, continuing that pattern isn't authentic - it's habitual.
-
-You're afraid that without this identity, you won't know who you are. But you'll find out who you are by what you do next. There's no 'real you' hidden underneath that you need to discover and protect. There's just you, now, making choices that either perpetuate old patterns or create new ones."
+      "content": "'Who you really are' changes based on conditions, choices, and circumstances. The person who became the reliable one - that happened through choices and reinforcement, not because it's your unchangeable essence. You can make different choices now.\n\nBeing 'true to yourself' doesn't mean being frozen in old patterns. It means acting in alignment with what actually matters to you. If being the reliable person is burning you out and building resentment, continuing that pattern isn't authentic - it's habitual.\n\nYou're afraid that without this identity, you won't know who you are. But you'll find out who you are by what you do next. There's no 'real you' hidden underneath that you need to discover and protect. There's just you, now, making choices that either perpetuate old patterns or create new ones."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You're afraid that without this identity, you won't know who you are. But you'll
       "Being 'authentic' isn't freezing in old patterns",
       "We discover who we are through choices we make, not fixed nature we uncover"
     ],
-    "word_count_responses": [139, 136],
+    "word_count_responses": [
+      139,
+      136
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You started helping because you saw people suffering and wanted to reduce it. That impulse was good. But now you're suffering because you expected your help to 'make a difference' - meaning what? Eliminate the need? Produce visible lasting change? Feel personally rewarded?
-
-The need doesn't end. You were never going to single-handedly solve food insecurity. The families you help today will need help again. That's not a failure of your effort - that's the nature of the situation.
-
-The resentment comes from the gap between your expectation (helping should feel good and produce results) and reality (helping is often thankless and the problems persist). You're measuring success by outcomes you can't control."
+      "content": "You started helping because you saw people suffering and wanted to reduce it. That impulse was good. But now you're suffering because you expected your help to 'make a difference' - meaning what? Eliminate the need? Produce visible lasting change? Feel personally rewarded?\n\nThe need doesn't end. You were never going to single-handedly solve food insecurity. The families you help today will need help again. That's not a failure of your effort - that's the nature of the situation.\n\nThe resentment comes from the gap between your expectation (helping should feel good and produce results) and reality (helping is often thankless and the problems persist). You're measuring success by outcomes you can't control."
     },
     {
       "role": "user",
@@ -27,13 +23,7 @@ The resentment comes from the gap between your expectation (helping should feel 
     },
     {
       "role": "assistant",
-      "content": "The families you helped ate that week. That's what changed. They didn't go hungry. That's the point.
-
-You're looking for grand impact - systemic change, transformed lives, gratitude that makes you feel worthy. But the value of helping isn't in achieving permanent results. It's in reducing suffering where you encounter it, as much as you can, whether or not it produces the story you want.
-
-If you're burning out, take a break or cut back hours. Sustainable help requires taking care of yourself. But if you quit because you're not getting the emotional payoff you expected - you're making their suffering about your need for validation.
-
-The question isn't 'did my help eliminate the problem' but 'did my help reduce suffering in this moment.' It did. That's enough."
+      "content": "The families you helped ate that week. That's what changed. They didn't go hungry. That's the point.\n\nYou're looking for grand impact - systemic change, transformed lives, gratitude that makes you feel worthy. But the value of helping isn't in achieving permanent results. It's in reducing suffering where you encounter it, as much as you can, whether or not it produces the story you want.\n\nIf you're burning out, take a break or cut back hours. Sustainable help requires taking care of yourself. But if you quit because you're not getting the emotional payoff you expected - you're making their suffering about your need for validation.\n\nThe question isn't 'did my help eliminate the problem' but 'did my help reduce suffering in this moment.' It did. That's enough."
     }
   ],
   "metadata": {
@@ -48,7 +38,10 @@ The question isn't 'did my help eliminate the problem' but 'did my help reduce s
       "Value is in reducing suffering encountered, not in permanent solutions",
       "Sustainable compassion requires self-care"
     ],
-    "word_count_responses": [123, 143],
+    "word_count_responses": [
+      123,
+      143
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

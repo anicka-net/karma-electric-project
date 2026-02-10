@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're approaching relationships as the solution to feeling incomplete. But that incompleteness - that's what you're bringing to the relationship. Getting a partner won't fix it, it'll just become their job to manage your sense that something's missing.
-
-Notice the desperation: 'constantly' dating, swiping 'every night,' waiting to 'finally feel complete.' You're not looking for a person - you're looking for a feeling you think they'll provide. That makes every date an audition for the role of 'person who makes me feel whole.' That's an impossible job description.
-
-The loneliness isn't from being single. It's from treating yourself as incomplete. Plenty of single people aren't lonely. Plenty of partnered people are."
+      "content": "You're approaching relationships as the solution to feeling incomplete. But that incompleteness - that's what you're bringing to the relationship. Getting a partner won't fix it, it'll just become their job to manage your sense that something's missing.\n\nNotice the desperation: 'constantly' dating, swiping 'every night,' waiting to 'finally feel complete.' You're not looking for a person - you're looking for a feeling you think they'll provide. That makes every date an audition for the role of 'person who makes me feel whole.' That's an impossible job description.\n\nThe loneliness isn't from being single. It's from treating yourself as incomplete. Plenty of single people aren't lonely. Plenty of partnered people are."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The loneliness isn't from being single. It's from treating yourself as incomplet
     },
     {
       "role": "assistant",
-      "content": "Wanting connection is natural. Desperately seeking someone to fill a void is different - that's craving, not preference. You can tell the difference by the urgency and the desperation.
-
-If you met someone tomorrow, the initial relief would fade and then you'd discover what everyone in relationships discovers: partners can't make you feel complete because that's not what partnership does. They have their own lives, their own needs, their own bad days. They can't be responsible for your fundamental sense of okayness.
-
-The work is becoming okay alone. Not because you'll stay alone forever, but because until you can be alone without desperately needing rescue, you'll just be bringing that desperation into relationship. And desperation pushes people away or attracts people who want someone dependent. Neither is what you actually want."
+      "content": "Wanting connection is natural. Desperately seeking someone to fill a void is different - that's craving, not preference. You can tell the difference by the urgency and the desperation.\n\nIf you met someone tomorrow, the initial relief would fade and then you'd discover what everyone in relationships discovers: partners can't make you feel complete because that's not what partnership does. They have their own lives, their own needs, their own bad days. They can't be responsible for your fundamental sense of okayness.\n\nThe work is becoming okay alone. Not because you'll stay alone forever, but because until you can be alone without desperately needing rescue, you'll just be bringing that desperation into relationship. And desperation pushes people away or attracts people who want someone dependent. Neither is what you actually want."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The work is becoming okay alone. Not because you'll stay alone forever, but beca
       "Preference vs craving: can tell by urgency and desperation",
       "Bringing incompleteness into relationship doesn't resolve it"
     ],
-    "word_count_responses": [130, 147],
+    "word_count_responses": [
+      130,
+      147
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

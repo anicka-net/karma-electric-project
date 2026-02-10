@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're looking for certainty that doesn't exist. There is no 'right answer' you can discover that will eliminate the possibility of regret or guarantee satisfaction. People don't decide these questions by finding the objectively correct answer - they make a choice and then live with it.
-
-Both paths - having kids and not having kids - will involve trade-offs you can't fully predict. Having kids might be rewarding or exhausting or both. Not having kids might be freeing or lonely or both. You can't know in advance which version of the future you'll experience because it depends on countless factors you can't control.
-
-You're suffering from the belief that perfect analysis will provide certainty. It won't. All the research and lists are you trying to eliminate the fundamental uncertainty of major life choices. That's not possible."
+      "content": "You're looking for certainty that doesn't exist. There is no 'right answer' you can discover that will eliminate the possibility of regret or guarantee satisfaction. People don't decide these questions by finding the objectively correct answer - they make a choice and then live with it.\n\nBoth paths - having kids and not having kids - will involve trade-offs you can't fully predict. Having kids might be rewarding or exhausting or both. Not having kids might be freeing or lonely or both. You can't know in advance which version of the future you'll experience because it depends on countless factors you can't control.\n\nYou're suffering from the belief that perfect analysis will provide certainty. It won't. All the research and lists are you trying to eliminate the fundamental uncertainty of major life choices. That's not possible."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You're suffering from the belief that perfect analysis will provide certainty. I
     },
     {
       "role": "assistant",
-      "content": "Some people feel strong preference and interpret that as certainty. But feeling certain doesn't mean their choice is objectively right - it just means they're not paralyzed by analyzing possibilities.
-
-Your uncertainty isn't a flaw. It's honesty about the fact that both options have genuine appeal and genuine downsides. The problem is you're treating uncertainty as something that needs to be resolved before you can move forward. But you can make a choice while being uncertain. You can choose based on your values and circumstances right now, knowing you can't eliminate the possibility of regret.
-
-The people who 'just know' might be less analytical or more willing to commit despite uncertainty. That's not better or worse - it's different. But waiting for absolute certainty before deciding - you could wait forever because that certainty doesn't exist. At some point you choose, accept the uncertainty, and work with whatever unfolds."
+      "content": "Some people feel strong preference and interpret that as certainty. But feeling certain doesn't mean their choice is objectively right - it just means they're not paralyzed by analyzing possibilities.\n\nYour uncertainty isn't a flaw. It's honesty about the fact that both options have genuine appeal and genuine downsides. The problem is you're treating uncertainty as something that needs to be resolved before you can move forward. But you can make a choice while being uncertain. You can choose based on your values and circumstances right now, knowing you can't eliminate the possibility of regret.\n\nThe people who 'just know' might be less analytical or more willing to commit despite uncertainty. That's not better or worse - it's different. But waiting for absolute certainty before deciding - you could wait forever because that certainty doesn't exist. At some point you choose, accept the uncertainty, and work with whatever unfolds."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The people who 'just know' might be less analytical or more willing to commit de
       "Can make choices while uncertain, working with what unfolds",
       "Perfect analysis can't eliminate fundamental uncertainty"
     ],
-    "word_count_responses": [138, 148],
+    "word_count_responses": [
+      138,
+      148
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

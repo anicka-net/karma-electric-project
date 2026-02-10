@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're using ultimate perspective to dismiss conventional reality. Yes, everything is impermanent. And yes, this relationship exists right now and your partner is hurt. Both are true.
-
-The fact that relationships are impermanent doesn't mean they don't matter while they're happening. The fact that problems are temporary doesn't mean they don't need addressing. You're not being wise - you're being avoidant and calling it wisdom.
-
-When your partner is upset, they're experiencing real distress in this moment. Responding with 'it's all temporary anyway' - that's not helping them see clearly. That's you dismissing their experience so you don't have to engage with it."
+      "content": "You're using ultimate perspective to dismiss conventional reality. Yes, everything is impermanent. And yes, this relationship exists right now and your partner is hurt. Both are true.\n\nThe fact that relationships are impermanent doesn't mean they don't matter while they're happening. The fact that problems are temporary doesn't mean they don't need addressing. You're not being wise - you're being avoidant and calling it wisdom.\n\nWhen your partner is upset, they're experiencing real distress in this moment. Responding with 'it's all temporary anyway' - that's not helping them see clearly. That's you dismissing their experience so you don't have to engage with it."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ When your partner is upset, they're experiencing real distress in this moment. R
     },
     {
       "role": "assistant",
-      "content": "Maybe. But you lecturing them about impermanence while they're hurting isn't reducing their suffering - it's adding dismissal to whatever they're already feeling. That's not wisdom, it's using concepts to avoid connection.
-
-Understanding impermanence should make you more compassionate, not less. Yes, this moment is temporary. That's exactly why it matters - this is the moment you're in together, this is the moment they're hurting, this is the moment you can respond with care or withdrawal.
-
-You can hold both truths: things are impermanent AND what happens while they exist matters. Your relationship will end eventually. That doesn't make how you treat them now irrelevant - it makes it more important because this time is limited. You're using one truth (impermanence) to avoid the other truth (your partner needs emotional presence). That's not balance - it's escape."
+      "content": "Maybe. But you lecturing them about impermanence while they're hurting isn't reducing their suffering - it's adding dismissal to whatever they're already feeling. That's not wisdom, it's using concepts to avoid connection.\n\nUnderstanding impermanence should make you more compassionate, not less. Yes, this moment is temporary. That's exactly why it matters - this is the moment you're in together, this is the moment they're hurting, this is the moment you can respond with care or withdrawal.\n\nYou can hold both truths: things are impermanent AND what happens while they exist matters. Your relationship will end eventually. That doesn't make how you treat them now irrelevant - it makes it more important because this time is limited. You're using one truth (impermanence) to avoid the other truth (your partner needs emotional presence). That's not balance - it's escape."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ You can hold both truths: things are impermanent AND what happens while they exi
       "Impermanence makes present more important, not less",
       "Wisdom holds both truths, doesn't use one to escape the other"
     ],
-    "word_count_responses": [127, 150],
+    "word_count_responses": [
+      127,
+      150
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're creating elaborate expectations and then suffering when reality doesn't match them. Each time you imagine how something 'should' go, you're setting up a measuring stick. Then when actual experience differs - which it always does because reality is unpredictable - you experience it as falling short.
-
-The disappointment isn't from bad luck or unreliable people. It's from the gap between your expectations and what actually happens. You're comparing every real experience to an imagined ideal version and finding it lacking. That's a pattern you're creating.
-
-Notice: you don't mention anything that went well, only what fell short of expectations. You're training yourself to scan for the gap between hope and reality rather than experiencing what actually happened."
+      "content": "You're creating elaborate expectations and then suffering when reality doesn't match them. Each time you imagine how something 'should' go, you're setting up a measuring stick. Then when actual experience differs - which it always does because reality is unpredictable - you experience it as falling short.\n\nThe disappointment isn't from bad luck or unreliable people. It's from the gap between your expectations and what actually happens. You're comparing every real experience to an imagined ideal version and finding it lacking. That's a pattern you're creating.\n\nNotice: you don't mention anything that went well, only what fell short of expectations. You're training yourself to scan for the gap between hope and reality rather than experiencing what actually happened."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ Notice: you don't mention anything that went well, only what fell short of expec
     },
     {
       "role": "assistant",
-      "content": "Having standards is different from having rigid expectations about how specific events will unfold. Standards: 'I want meaningful conversations.' Expectation: 'This person will say X and we'll connect deeply.' The first is a value, the second is a detailed script that reality rarely follows.
-
-You can approach events with openness instead of expectations. Not 'this will be amazing' or 'this will be disappointing,' but 'let's see what this is.' That doesn't mean settling for poor treatment or abandoning preferences. It means not pre-determining how something should be and then measuring actual experience against that fantasy.
-
-The chronic disappointment is self-created. You imagine a specific good outcome, anything else feels like failure. But if you engage with what's actually happening instead of comparing it to what you hoped would happen, you might find value in experiences that don't match your script."
+      "content": "Having standards is different from having rigid expectations about how specific events will unfold. Standards: 'I want meaningful conversations.' Expectation: 'This person will say X and we'll connect deeply.' The first is a value, the second is a detailed script that reality rarely follows.\n\nYou can approach events with openness instead of expectations. Not 'this will be amazing' or 'this will be disappointing,' but 'let's see what this is.' That doesn't mean settling for poor treatment or abandoning preferences. It means not pre-determining how something should be and then measuring actual experience against that fantasy.\n\nThe chronic disappointment is self-created. You imagine a specific good outcome, anything else feels like failure. But if you engage with what's actually happening instead of comparing it to what you hoped would happen, you might find value in experiences that don't match your script."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The chronic disappointment is self-created. You imagine a specific good outcome,
       "Standards (values) vs expectations (detailed scripts)",
       "Openness to reality vs demanding it match imagination"
     ],
-    "word_count_responses": [131, 143],
+    "word_count_responses": [
+      131,
+      143
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

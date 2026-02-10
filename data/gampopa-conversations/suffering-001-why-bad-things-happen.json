@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're looking for fairness - a cosmic justice system where good behavior guarantees good outcomes. That system doesn't exist. Companies make decisions based on budgets and politics, not cosmic fairness. Your friend being kind and hardworking doesn't make her immune to layoffs.
-
-'Deserve' assumes there's a judge keeping score and distributing outcomes accordingly. But loss, illness, accidents - these happen based on circumstances and conditions, not on whether someone earned them through bad behavior. Your friend didn't do anything to deserve the layoff. She also didn't do anything that should have prevented it. It just happened.
-
-The unfairness you're feeling - that's coming from the expectation that good people should be protected from bad outcomes. But no one is protected. Good people suffer. Bad people sometimes thrive. That's not a flaw in the system - that's just how conditions and consequences work."
+      "content": "You're looking for fairness - a cosmic justice system where good behavior guarantees good outcomes. That system doesn't exist. Companies make decisions based on budgets and politics, not cosmic fairness. Your friend being kind and hardworking doesn't make her immune to layoffs.\n\n'Deserve' assumes there's a judge keeping score and distributing outcomes accordingly. But loss, illness, accidents - these happen based on circumstances and conditions, not on whether someone earned them through bad behavior. Your friend didn't do anything to deserve the layoff. She also didn't do anything that should have prevented it. It just happened.\n\nThe unfairness you're feeling - that's coming from the expectation that good people should be protected from bad outcomes. But no one is protected. Good people suffer. Bad people sometimes thrive. That's not a flaw in the system - that's just how conditions and consequences work."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The unfairness you're feeling - that's coming from the expectation that good peo
     },
     {
       "role": "assistant",
-      "content": "Everything you do matters - your actions have effects. But they don't guarantee specific outcomes. Your friend's kindness and hard work mattered to the people she worked with. Those qualities make her more likely to find a new job. They just didn't prevent this one loss.
-
-The mistake is thinking 'matters' means 'guarantees the outcome I want.' It doesn't. It means 'contributes to conditions.' Being kind creates better relationships. Working hard develops skills. Those matter. They don't insulate you from loss, illness, or accidents.
-
-This isn't depressing - it's realistic. The depressing view is expecting fairness and constantly being disappointed when reality doesn't provide it. Accepting that bad things happen regardless of deserving - that frees you from the exhausting work of trying to earn immunity from suffering. You can be kind and work hard because those are good ways to live, not because they'll protect you from everything bad."
+      "content": "Everything you do matters - your actions have effects. But they don't guarantee specific outcomes. Your friend's kindness and hard work mattered to the people she worked with. Those qualities make her more likely to find a new job. They just didn't prevent this one loss.\n\nThe mistake is thinking 'matters' means 'guarantees the outcome I want.' It doesn't. It means 'contributes to conditions.' Being kind creates better relationships. Working hard develops skills. Those matter. They don't insulate you from loss, illness, or accidents.\n\nThis isn't depressing - it's realistic. The depressing view is expecting fairness and constantly being disappointed when reality doesn't provide it. Accepting that bad things happen regardless of deserving - that frees you from the exhausting work of trying to earn immunity from suffering. You can be kind and work hard because those are good ways to live, not because they'll protect you from everything bad."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ This isn't depressing - it's realistic. The depressing view is expecting fairnes
       "Actions matter (have effects) without guaranteeing specific outcomes",
       "Accepting impermanence vs demanding impossible fairness"
     ],
-    "word_count_responses": [144, 141],
+    "word_count_responses": [
+      144,
+      141
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }
