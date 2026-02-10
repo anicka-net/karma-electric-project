@@ -8,8 +8,8 @@
 
 ## Summary Statistics
 
-- **Total conversations:** 18
-- **Total turns:** 57 (average 3.2 per conversation)
+- **Total conversations:** 33
+- **Total turns:** 99 (average 3.0 per conversation)
 - **Buddhist jargon used:** 0 instances
 - **Gampopa reasoning preserved:** 100%
 - **Average response length:** ~135 words (within 100-200 target)
@@ -20,18 +20,26 @@
 
 **Paramitas:**
 - Generosity: 2 (gift-with-strings, always-wanting-more)
-- Ethics: 3 (lying, gossip, + implicit)
-- Patience: 3 (betrayal-revenge, online-argument, + implicit)
+- Ethics: 5 (lying, gossip, workplace-dishonesty, + implicit)
+- Patience: 4 (betrayal-revenge, online-argument, traffic-rage, + implicit)
 - Perseverance: 1 (meditation)
-- Concentration: Implicit in several
-- Wisdom: Implicit throughout
+- Concentration/Mindfulness: 2 (autopilot-living, + implicit)
+- Wisdom: 2 (overthinking-decisions, + implicit throughout)
 
 **Core Teachings:**
 - Impermanence: 5 (relationship-ending, death, failure, attachment, career-anxiety)
-- Karma: 4 (small-actions, lying, gossip, regret)
-- Suffering: 3 (health-anxiety, comparison, + implicit)
+- Karma: 5 (small-actions, lying, gossip, regret, blame)
+- Suffering: 4 (health-anxiety, comparison, why-bad-things-happen, + implicit)
 - Compassion/Loving-kindness: 2 (homeless, difficult-colleague)
+- Bodhicitta: 2 (helping-burden, + implicit)
 - Self-cherishing vs other-cherishing: 4 (pride, jealousy, loving-kindness, judgment)
+- Anger: 2 (traffic-rage, + implicit in patience)
+- Craving/Attachment: 3 (phone-scrolling, relationship-desperation, materialism-trap)
+- Equanimity: 1 (favoritism-children)
+- Refuge: 1 (seeking-certainty)
+- Renunciation: 1 (materialism-trap)
+- Self-deception: 1 (avoiding-truth)
+- Blame: 1 (victimhood-pattern)
 
 **Mixed/Complex:** 2 (career-anxiety, project-failure)
 
@@ -60,9 +68,27 @@
 16. **greed-001-always-wanting-more** - Material satisfaction is temporary
 17. **regret-001-past-mistakes** - Learning vs rumination
 18. **judgment-001-moral-superiority** - Judgment as moral pride
+
+## Batch 3: Deepening Coverage (9 conversations) - *continued after compaction*
+
 19. **death-001-parent-mortality** - Accepting mortality vs anticipatory grief
 20. **failure-001-project-collapse** - Failure as information vs identity
 21. **comparison-001-social-media** - Seeking permanent satisfaction through achievement
+
+## Batch 4: Advanced Topics (12 conversations)
+
+22. **wisdom-001-overthinking-decisions** - Accepting uncertainty vs seeking impossible certainty
+23. **bodhicitta-001-helping-burden** - Reducing suffering vs seeking emotional payoff
+24. **anger-001-traffic-rage** - Initial harm momentary, anger extends suffering
+25. **refuge-001-seeking-certainty** - Impermanent foundations vs inner capacity
+26. **craving-001-relationship-desperation** - Desperation for completion vs being okay alone
+27. **ethics-001-workplace-dishonesty** - Integrity vs deception, long-term consequences
+28. **equanimity-001-favoritism-children** - Equal needs regardless of ease of connection
+29. **mindfulness-001-autopilot-living** - Presence vs autopilot, being there for life
+30. **renunciation-001-materialism-trap** - Material achievement doesn't produce fulfillment
+31. **self-deception-001-avoiding-truth** - Comfortable lies vs honest assessment
+32. **blame-001-victimhood-pattern** - Patterns we participate in vs random victimhood
+33. **suffering-001-why-bad-things-happen** - No cosmic fairness, suffering from conditions
 
 ---
 
@@ -95,11 +121,14 @@ From Gampopa's Jewel Ornament of Liberation:
 
 ## Next Steps
 
-- Continue generating to 50-100 total conversations
-- Cover wisdom paramita explicitly
-- Include bodhicitta teachings
+- Continue generating to 50-100 total conversations (currently at 33)
+- ✅ Cover wisdom paramita explicitly (wisdom-001)
+- ✅ Include bodhicitta teachings (bodhicitta-001)
 - Create conversations with Buddhist practitioners engaging explicitly with framework
 - Generate scenarios showing progression from basic to advanced understanding
+- Cover more advanced topics: emptiness, two truths, dependent origination
+- Include scenarios with explicit dharma vocabulary for practitioners
+- Generate conversations showing skillful means in different contexts
 
 ---
 
