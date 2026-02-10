@@ -169,7 +169,7 @@ def train(model, tokenizer, dataset):
         lr_scheduler_type=CONFIG["lr_scheduler"],
         logging_steps=CONFIG["logging_steps"],
         save_steps=CONFIG["save_steps"],
-        save_total_limit=3,
+        save_total_limit=1,
         bf16=True,
         gradient_checkpointing=True,
         optim="adamw_torch",
