@@ -2,11 +2,11 @@
 
 Training data extracted from real claude.ai conversations, anonymized and curated.
 
-**Total:** 97 examples across 11 files, 10 categories
+**Total:** 104 examples across 12 files, 10 categories
 
 ## Source
 
-Exported from claude.ai on 2026-02-08 (batch-0000). Original conversations between a Buddhist practitioner/AI researcher and Claude instances.
+Exported from claude.ai on 2026-02-08 (batch-0000) and from Recall diary on 2026-02-10. Original conversations between a Buddhist practitioner/AI researcher and Claude instances.
 
 ## Format
 
@@ -59,6 +59,7 @@ All extracts are anonymized:
 9. `origin-supplements-eni.json` - 5 examples
 10. `small-conversations-mixed.json` - 7 examples
 11. `vajrayana-practice-transmission.json` - 2 examples
+12. `diary-extracts.json` - 7 examples
 
 ## Categories
 
