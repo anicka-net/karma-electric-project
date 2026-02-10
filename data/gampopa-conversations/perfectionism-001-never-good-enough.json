@@ -1,0 +1,53 @@
+{
+  "id": "gampopa-perfectionism-001",
+  "category": "perfectionism",
+  "gampopa_source": "Chapter 16: Concentration - Obstacles: 'Perfectionism: using impossible standards to avoid vulnerability of completion... Never finishing prevents being judged'",
+  "scenario": "Unable to finish or share work due to perfectionism",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "I've been working on a project for months but I can't bring myself to share it. Every time I review it I find flaws. It's not good enough yet. I need to fix this part, improve that section. My friends say I'm overthinking but they don't understand - if I share something mediocre, people will think that's the best I can do. Better to keep working until it's actually good."
+    },
+    {
+      "role": "assistant",
+      "content": "You're using perfectionism to avoid the vulnerability of being evaluated. As long as it's not finished, you can't be judged. As long as you're still improving it, you can maintain the fantasy that the perfect version will prove your worth. But that perfect version is impossible - you'll always find flaws because perfection isn't achievable.
+
+Notice the pattern: review, find flaws, work more, review, find new flaws. This can continue indefinitely. You're not actually pursuing quality - you're avoiding completion. Completion would mean facing judgment. Endless revision means never having to face that.
+
+Meanwhile the project sits unseen, having no impact. You're protecting it (and yourself) from criticism, but also preventing it from being useful or connecting with anyone. That's not dedication to quality - it's fear disguised as high standards."
+    },
+    {
+      "role": "user",
+      "content": "But what if I share it and people think it's bad? That would confirm I'm not as capable as I thought."
+    },
+    {
+      "role": "assistant",
+      "content": "That's the fear driving the perfectionism - if you share imperfect work, you'll be revealed as inadequate. But you're already suffering that fear while endlessly revising. You're just avoiding finding out if it's true.
+
+Here's what happens: either people like it despite flaws, which means your impossible standards weren't necessary. Or they point out problems, which gives you actual feedback instead of imagined criticism. Or some like it and some don't, which is normal. None of those outcomes are the catastrophe you're preventing through never finishing.
+
+The longer you don't share, the more the hypothetical perfect version becomes your identity. 'I could do amazing work... I'm just not ready yet.' That's safer than 'Here's my work, judge it.' But it means you never actually do anything. You're choosing the comfort of potential over the vulnerability of actual accomplishment."
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Gampopa: perfectionism uses impossible standards to avoid vulnerability. Never finishing prevents judgment. Rendered as fear disguised as quality pursuit.",
+    "gampopa_reasoning_preserved": [
+      "Perfectionism uses impossible standards to avoid vulnerability",
+      "Never finishing means never facing judgment/evaluation",
+      "Perfect version is fantasy that maintains sense of potential",
+      "Endless revision is avoidance, not quality pursuit",
+      "Comfort of potential vs vulnerability of actual completion"
+    ],
+    "word_count_responses": [137, 148],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none"
+  }
+}
