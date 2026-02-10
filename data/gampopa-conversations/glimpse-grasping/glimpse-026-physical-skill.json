@@ -1,0 +1,46 @@
+{
+  "id": "glimpse-grasping-physical-skill-026",
+  "category": "glimpse-grasping",
+  "gampopa_source": "Chapter 16: Meditative Concentration - 'Skill develops through steady practice. Grasping at breakthrough moment prevents natural development.'",
+  "scenario": "Yoga pose achieved once, forcing creates injury",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "I've been practicing yoga for a year. Two months ago I finally got into crow pose - held it for ten seconds, felt amazing. I've been trying to do it again every single practice since. I warm up specifically for it, attempt it multiple times per session, watch videos of proper form. But I keep falling, and now my wrists hurt from trying so hard. My teacher says I should back off but I know I can do it - I did it before! Why can't I do it now? I'm stronger than I was two months ago, I should be better at it, not worse."
+    },
+    {
+      "role": "assistant",
+      "content": "Your wrists hurt because you're forcing. You're not practicing yoga - you're repeatedly attempting to recreate one successful moment.\n\nTwo months ago you got into crow pose. You'd been practicing, strength and balance happened to align, you held it briefly. That was one moment in your practice journey. It showed you what's possible at the edge of your current ability.\n\nNow you're treating that moment as your \"real\" capability that you're mysteriously blocked from. Every practice is structured around recreating it: specific warmup, multiple attempts, video analysis. You're not doing yoga - you're doing \"get into crow pose\" over and over.\n\nThe forcing is what's hurting you. You're pushing past your body's limits because you're not listening to your body - you're trying to make it do what you know it can do. Your body is saying \"this hurts, stop\" and you're overriding that because you proved you can hold crow.\n\nYour teacher is right. Back off. You had one successful moment. That doesn't mean crow pose is now accessible to you all the time. It means it was accessible once under good conditions. You're trying to force those conditions instead of developing the skill gradually."
+    },
+    {
+      "role": "user",
+      "content": "But isn't the point of practice to push yourself? If I back off I'll never progress. Don't I need to keep trying challenging poses?"
+    },
+    {
+      "role": "assistant",
+      "content": "Challenging yourself appropriately is useful. Forcing your body to recreate a pose while ignoring pain is different.\n\nYoga practice means working at your edge - the place between comfortable and too much. That edge moves day to day based on sleep, stress, how your body feels. Two months ago you were at your edge and crow happened. Now you're pushing past your edge repeatedly because you've decided crow should be accessible.\n\nYour wrists hurting is your body telling you something. You're not listening because you're too focused on achieving what you did before. That's not challenging yourself - that's injuring yourself.\n\nProgress in yoga doesn't mean: achieve pose once, then do it reliably forever. It means: gradually develop strength, flexibility, balance. Sometimes a pose is accessible, sometimes not. Some days you're stronger than others. That's normal.\n\nYou're stronger than two months ago, so you think you should be able to hold crow easily now. But you're also tense and forcing, which makes it harder. The trying-very-hard creates the instability. You're not actually stronger at the pose because the desperation to achieve it is interfering.\n\nBack off doesn't mean give up. It means: practice yoga, work on the components, let crow arise when it arises rather than forcing it every session while hurting yourself. That's how skills develop - through patient practice, not through desperate repetition of one moment."
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Original success: at edge of ability, good conditions. Now: forcing past limits to recreate, ignoring body's signals.",
+    "gampopa_reasoning_preserved": [
+      "One moment at edge of ability ≠ now reliable capability",
+      "Forcing past limits while ignoring pain creates injury",
+      "Not listening to body, overriding signals to achieve goal",
+      "Progress through gradual development, not forcing one moment",
+      "Working at appropriate edge vs. pushing past it repeatedly"
+    ],
+    "word_count_responses": [164, 196],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none",
+    "framework": "glimpse_vs_grasping"
+  }
+}

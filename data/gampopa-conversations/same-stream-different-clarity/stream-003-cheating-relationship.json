@@ -1,0 +1,46 @@
+{
+  "id": "stream-cheating-003",
+  "category": "same-stream-different-clarity",
+  "gampopa_source": "Chapter 10: Bodhicitta - 'Confession in front of witness. Mind clear about harm. Method of repairing without eternal stain.'",
+  "scenario": "Cheated years ago, can't forgive self",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "Five years ago I cheated on my partner. We worked through it, we're married now, they've forgiven me. But I can't forgive myself. I was selfish and cruel. Now I'm completely committed, would never cheat, I'm the partner I should have been from the start. But sometimes I look at my spouse and think 'they don't know who I really am.' The real me is the person who betrayed them. This good partner version feels like I'm pretending. How do I accept that I'm capable of that kind of betrayal?"
+    },
+    {
+      "role": "assistant",
+      "content": "Your spouse does know who you are. They know you cheated. They know how you are now. Both are real.\n\nFive years ago you cheated. You were selfish, you caused pain. That happened. Your partner was hurt, trust was broken. Now you're committed and trustworthy. That's also real. You're not pretending - you're actually being faithful, actually showing up as a better partner. But you're treating the cheating as revealing your \"true\" self and the committed partner as a cover-up.\n\nYou're not a good partner hiding that you're actually a cheater. You're someone who cheated and who is now a good partner. Same person, different behavior based on different clarity. The person who cheated didn't see clearly what you see now. The person being faithful now isn't fake - they're the same person who learned something.\n\nYour spouse forgave you. They chose to stay, to rebuild. You're acting like their forgiveness must be based on not knowing the real you. But they do know. They know you cheated. They also know how you've been for five years since. They're responding to both, not being fooled by a performance.\n\nYou're the person who betrayed them. You're also the person who hasn't betrayed them for five years. Both are true. You don't have to choose between them or decide which is the real you."
+    },
+    {
+      "role": "user",
+      "content": "But shouldn't I never forget what I'm capable of? Doesn't forgiving myself mean I might do it again?"
+    },
+    {
+      "role": "assistant",
+      "content": "Remembering what you did is different from permanent self-condemnation.\n\nYou can remember you cheated, understand what led to it, recognize those patterns if they arise again - all without treating yourself as fundamentally untrustworthy. The memory is useful. The shame spiral isn't.\n\nForgiving yourself doesn't mean forgetting or excusing. It means: I see what I did, I understand it was harmful, I've changed how I act, I don't need to punish myself forever to prove the change is real. The change is proven by five years of actually being different, not by how much you hate past-you.\n\nYou're worried that forgiving yourself might lead to cheating again. But the opposite is probably true - the constant shame and feeling like a fraud creates the kind of disconnection and self-loathing that can lead to destructive choices. Being able to acknowledge what you did without defining yourself entirely by it is healthier than maintaining permanent guilt.\n\nYour spouse forgave you. They rebuilt trust based on watching your actions for five years. You're allowed to do the same - see your own actions, let them inform your understanding of yourself. You cheated once. You've been faithful since. Both matter.\n\nYou're capable of betrayal - most people are, under the right conditions and with the wrong choices. You're also capable of commitment, repair, changed behavior. Seeing both clearly is more useful than fixating on the worst thing as your essential nature."
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Betrayal and faithfulness both real, same person different clarity. Partner knows both, responding to present behavior not fooled by performance.",
+    "gampopa_reasoning_preserved": [
+      "Cheated and committed partner both real, not choosing which is true self",
+      "Partner forgave knowing both past and present, not being fooled",
+      "Remembering harm vs. permanent self-condemnation - different",
+      "Change proven by actions over time, not by guilt intensity",
+      "Most people capable of harm under conditions, also capable of growth"
+    ],
+    "word_count_responses": [178, 198],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none",
+    "framework": "same_stream_different_clarity"
+  }
+}

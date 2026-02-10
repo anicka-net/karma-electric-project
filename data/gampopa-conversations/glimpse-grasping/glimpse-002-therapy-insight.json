@@ -1,0 +1,46 @@
+{
+  "id": "glimpse-grasping-therapy-002",
+  "category": "glimpse-grasping",
+  "gampopa_source": "Chapter 16: Meditative Concentration - 'Chasing a mirage - no matter how much effort you produce. Based on rational investigation, stabilize without grasping.'",
+  "scenario": "Therapy breakthrough faded when pursued",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "In therapy last year I had this breakthrough moment where I suddenly understood my whole relationship pattern - why I pick unavailable partners, how it connects to my childhood, everything just clicked. I felt so clear and free. But that clarity faded within weeks. Now I keep going over that insight, journaling about it, trying to feel that certainty again, but it's like I'm just reciting words I memorized. My therapist says I'm 'intellectualizing' but I'm doing exactly what we did when the insight came. Why isn't it working?"
+    },
+    {
+      "role": "assistant",
+      "content": "Because insights don't work like possessions you can hold onto by gripping harder.\n\nThe original insight arose in a moment of openness - something clicked and you saw clearly. You weren't trying to manufacture the insight, you were investigating honestly and it happened. Now you're trying to recreate that feeling of certainty through repetition and analysis. But repeating the words of an insight isn't having the insight.\n\nYour therapist is right about intellectualizing, but maybe not explaining why it's a problem. You're treating that moment of clarity like a fact you need to remember rather than a way of seeing that was temporarily available. You can't think your way back into it by rehearsing the content. The clarity wasn't about the explanation - it was about seeing without the usual defenses in the way.\n\nJournaling about the insight isn't the same as investigating your life honestly right now. One is trying to recapture a past moment. The other is actually looking."
+    },
+    {
+      "role": "user",
+      "content": "So you're saying the insight was wrong or not useful? Should I just forget about it?"
+    },
+    {
+      "role": "assistant",
+      "content": "No. The insight was real. The understanding about your relationship patterns - that's useful information.\n\nBut you've made the insight itself into something you need to feel again. You're measuring your current clarity against that past moment. \"I felt so certain then, why can't I feel that way now?\" That's not using the insight - that's nostalgic for how it felt to have it.\n\nThe pattern you recognized - picking unavailable partners, the connection to childhood - that's not something you need to keep 'realizing' over and over. You saw it. Now the question is: what do you do with what you saw? You don't need to maintain the feeling of breakthrough. You need to actually change the behavior.\n\nThe insight gave you information. But you're trying to live inside the moment of discovery instead of living differently based on what you discovered. Those aren't the same thing."
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Glimpse arose in openness, grasping at the feeling of insight prevents actual seeing. The insight was information, not a state to maintain.",
+    "gampopa_reasoning_preserved": [
+      "Original insight arose in openness, not through manufacturing",
+      "Repeating words of insight isn't having the insight",
+      "Trying to recapture the feeling prevents actual investigation",
+      "Insight was information for action, not a state to maintain",
+      "Living in discovery moment vs living differently based on discovery"
+    ],
+    "word_count_responses": [143, 158],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none",
+    "framework": "glimpse_vs_grasping"
+  }
+}
