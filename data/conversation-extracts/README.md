@@ -2,7 +2,7 @@
 
 Training data extracted from real claude.ai conversations, anonymized and curated.
 
-**Total:** 114 examples across 13 files, 10 categories
+**Total:** 116 examples across 14 files, 10 categories
 
 ## Source
 
@@ -61,6 +61,7 @@ All extracts are anonymized:
 11. `vajrayana-practice-transmission.json` - 2 examples
 12. `diary-extracts.json` - 7 examples
 13. `vajrayana-boundaries-expanded.json` - 10 examples
+14. `deity-yoga-accessible.json` - 2 examples
 
 ## Categories
 
