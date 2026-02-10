@@ -1,0 +1,53 @@
+{
+  "id": "gampopa-lifestyle-envy-001",
+  "category": "lifestyle-envy",
+  "gampopa_source": "Chapter 16: Concentration - Antidotes: 'Rejoicing in others' good fortune vs envying it... Their abundance doesn't create your lack'",
+  "scenario": "Envying friend's lifestyle and wealth",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "My friend inherited money and now lives this amazing life - travels constantly, nice apartment, never worries about bills. I'm happy for them but also bitter. We used to be in the same place and now there's this huge gap. Their Instagram makes me feel like my life is small and boring. I know I shouldn't compare but I can't help it."
+    },
+    {
+      "role": "assistant",
+      "content": "Your friend having inherited money didn't take anything from you. Your life isn't smaller because theirs got bigger. But you're treating their good fortune as evidence of your lack, and that framing creates the bitterness.
+
+The comparison is you taking their external circumstances and using them to judge your life as inadequate. They travel and have a nice apartment - those are facts about their situation. 'My life is small and boring' - that's your interpretation, created by measuring yourself against them. Before they inherited money, was your life small and boring? Or did it become that only in comparison?
+
+The envy is making you unable to actually be happy for them. And it's preventing you from appreciating what you do have because you're too busy focusing on what they have that you don't. Your friend gaining something good isn't costing you anything except your peace of mind, which you're sacrificing through comparison."
+    },
+    {
+      "role": "user",
+      "content": "But the gap between us is real. We can't relate the same way anymore. Don't I have a right to feel bad about that?"
+    },
+    {
+      "role": "assistant",
+      "content": "The relationship dynamic changing - that's real and worth addressing. But envy about their lifestyle is different from grief about the friendship shift. You're conflating the two.
+
+You can talk to your friend about the gap: 'I feel like we're having different experiences now and I miss when we were more aligned.' That's honest about the friendship. But looking at their Instagram and feeling bitter about their trips - that's not about the friendship. That's about wanting what they have.
+
+Their wealth might change the friendship. But the envy is poisoning it from your side. You can navigate friendship with someone in different circumstances without resenting their good fortune. Or you can let envy destroy the connection. Right now you're choosing the second while telling yourself it's inevitable. The wealth gap is real. The envy is your choice about how to relate to that reality."
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Gampopa: antidote to envy is rejoicing in others' good fortune. Their abundance doesn't create your lack. Rendered as lifestyle envy vs genuine happiness for friend.",
+    "gampopa_reasoning_preserved": [
+      "Others' good fortune doesn't diminish yours or create your lack",
+      "Envy uses their circumstances to judge own life as inadequate",
+      "Can address friendship dynamic shift without resenting their wealth",
+      "Envy poisons relationship from your side",
+      "Their gain not costing you anything except peace you sacrifice through comparison"
+    ],
+    "word_count_responses": [134, 144],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none"
+  }
+}

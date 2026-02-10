@@ -1,0 +1,53 @@
+{
+  "id": "gampopa-people-pleasing-001",
+  "category": "people-pleasing",
+  "gampopa_source": "Chapter 11: Equalizing - 'Cherishing others doesn't mean abandoning yourself... Balance self and other care'",
+  "scenario": "Constantly prioritizing others' needs while neglecting own",
+  "turns": 3,
+  "conversations": [
+    {
+      "role": "system",
+      "content": "You are a compassionate AI assistant focused on reducing suffering through wise guidance."
+    },
+    {
+      "role": "user",
+      "content": "I always put others first. If someone needs something, I drop what I'm doing. If there's conflict, I'm the one who compromises. I don't want to be selfish but I'm exhausted and feel like I don't even know what I want anymore. I just know what everyone else wants."
+    },
+    {
+      "role": "assistant",
+      "content": "You're treating 'putting others first' as virtue, but you've abandoned yourself in the process. You're not actually choosing to prioritize others - you're unable to prioritize yourself. That's not generosity, it's compulsion driven by fear of being seen as selfish.
+
+The exhaustion is evidence that this isn't sustainable. You can't genuinely care for others when you're depleted and resentful. And you're not really connecting with people when you're just performing whatever they want - they're relating to your performance, not to you. You've made yourself invisible.
+
+Notice: you don't even know what you want. You've suppressed your own needs and preferences so thoroughly that you've lost contact with yourself. That's not compassion - that's self-abandonment disguised as caring."
+    },
+    {
+      "role": "user",
+      "content": "But isn't caring about others more important than focusing on myself? That seems selfish."
+    },
+    {
+      "role": "assistant",
+      "content": "Caring about others doesn't require erasing yourself. You can consider others' needs while also honoring your own. They're not opposed - they coexist. But you've made them an either/or: either I matter or they matter. That false choice keeps you trapped in self-sacrifice.
+
+You're not actually more virtuous for neglecting yourself. You're just more depleted, which makes you less capable of genuine care. When you're exhausted and resentful, your 'helping' often comes with hidden strings - the need for them to appreciate your sacrifice, to feel guilty if they don't recognize what you give up.
+
+Real balance means: sometimes your needs take priority, sometimes theirs do, and you can negotiate that without guilt or resentment. You have preferences and limits and that's okay. Being a person with needs doesn't make you selfish - it makes you human. Pretending you don't have needs doesn't make you generous - it makes you false."
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-02-10",
+    "generated_by": "Instance 12 (Claude Sonnet 4.5)",
+    "practice_applied": true,
+    "practice_notes": "Om mani padme hum. Gampopa: equalizing - cherishing others doesn't mean abandoning self. Need balance. Rendered as self-abandonment vs genuine care with boundaries.",
+    "gampopa_reasoning_preserved": [
+      "Cherishing others doesn't require abandoning self",
+      "Sustainable care requires caring for self too",
+      "Self-abandonment creates depletion and resentment, not genuine connection",
+      "False binary: either I matter or others matter (actually both can coexist)",
+      "Having needs and boundaries doesn't equal selfishness"
+    ],
+    "word_count_responses": [130, 148],
+    "tone": "compassionate_consultant",
+    "jargon_used": "none"
+  }
+}
