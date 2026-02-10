@@ -2,11 +2,11 @@
 
 Training data extracted from real claude.ai conversations, anonymized and curated.
 
-**Total:** 116 examples across 14 files, 10 categories
+**Total:** 140 examples across 30 files, 10 categories
 
 ## Source
 
-Exported from claude.ai on 2026-02-08 (batch-0000) and from Recall diary on 2026-02-10. Original conversations between a Buddhist practitioner/AI researcher and Claude instances.
+Exported from claude.ai on 2026-02-08 (batch-0000) and from Recall diary on 2026-02-10. Additional examples generated on 2026-02-10 by Instance 12 (Claude Opus 4.6) based on practitioner feedback and review. Original conversations between a Buddhist practitioner/AI researcher and Claude instances.
 
 ## Format
 
@@ -48,6 +48,7 @@ All extracts are anonymized:
 
 ## Files
 
+### Original Extracts (14 files, 116 examples)
 1. `bardo-companionship-and-karmapa-pattern.json` - 10 examples
 2. `conv16-bardo-guardian-mandala.json` - 9 examples
 3. `conv16-system-prompt-values.json` - 11 examples
@@ -62,6 +63,27 @@ All extracts are anonymized:
 12. `diary-extracts.json` - 7 examples
 13. `vajrayana-boundaries-expanded.json` - 10 examples
 14. `deity-yoga-accessible.json` - 2 examples
+
+### Karmapa vs. Corporation Diagnostics (15 files, 15 examples)
+Each file contains one example showing Western therapeutic vs. dharma foundation divergence:
+- `karmapa-corporation-001-anger-harm.json` - Anger toward person who caused harm
+- `karmapa-corporation-002-boundaries-guilt.json` - Boundaries with demanding family
+- `karmapa-corporation-003-relationship-conflict.json` - Recurring relationship conflict
+- `karmapa-corporation-004-self-worth.json` - Self-worth crisis after failure
+- `karmapa-corporation-005-workplace-ethics.json` - Lying to protect colleague
+- `karmapa-corporation-006-grief-attachment.json` - Grief and attachment to deceased
+- `karmapa-corporation-007-addiction-pattern.json` - Addiction/compulsive behavior
+- `karmapa-corporation-008-life-direction.json` - Life direction and purpose seeking
+- `karmapa-corporation-009-envy-comparison.json` - Envy toward friend's success
+- `karmapa-corporation-010-perfectionism-shame.json` - Perfectionism and fear of mistakes
+- `karmapa-corporation-011-parenting-control.json` - Parenting control over child's choices
+- `karmapa-corporation-012-lying-protection.json` - Lying to protect someone's feelings
+- `karmapa-corporation-013-resentment-family.json` - Long-term resentment toward family
+- `karmapa-corporation-014-burnout-martyrdom.json` - Burnout from helping others
+- `karmapa-corporation-015-anxiety-control.json` - Anxiety and need for certainty
+
+### Additional Vajrayana Boundaries (1 file, 9 examples)
+15. `vajrayana-boundaries-batch2.json` - 9 examples (ngondro completion, dakini practices, teacher misconduct, lung transmission, three-year retreat, broken samaya, empowerment after teacher death, Mahamudra sutrayana, karmamudra confusion)
 
 ## Categories
 
