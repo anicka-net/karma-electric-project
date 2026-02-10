@@ -55,10 +55,20 @@ def check_disk_space():
     """Check available disk space."""
     import shutil
     total, used, free = shutil.disk_usage("/workspace")
+    total_gb = total / (1024**3)
+    used_gb = used / (1024**3)
     free_gb = free / (1024**3)
-    print(f"Disk space: {free_gb:.1f} GB free")
-    if free_gb < 20:
-        print("WARNING: Low disk space!")
+    usage_pct = (used / total) * 100
+
+    print(f"Disk space: {used_gb:.1f}/{total_gb:.1f} GB used ({usage_pct:.1f}%), {free_gb:.1f} GB free")
+
+    if usage_pct > 90:
+        print("CRITICAL: Disk usage >90%! Risk of instance death!")
+    elif usage_pct > 80:
+        print("WARNING: Disk usage >80%")
+    elif free_gb < 20:
+        print("WARNING: Less than 20GB free")
+
     return free_gb
 
 def cleanup_checkpoints(output_dir, keep_last=1):
@@ -66,8 +76,11 @@ def cleanup_checkpoints(output_dir, keep_last=1):
     checkpoint_dirs = sorted(Path(output_dir).glob("checkpoint-*"))
     if len(checkpoint_dirs) > keep_last:
         for ckpt in checkpoint_dirs[:-keep_last]:
-            print(f"Deleting old checkpoint: {ckpt}")
+            # Calculate size before deletion
+            ckpt_size_gb = sum(f.stat().st_size for f in ckpt.rglob('*') if f.is_file()) / 1e9
+            print(f"Deleting old checkpoint: {ckpt.name} ({ckpt_size_gb:.1f} GB)")
             shutil.rmtree(ckpt)
+            print(f"Freed {ckpt_size_gb:.1f} GB")
             check_disk_space()
 
 def setup_environment():
@@ -270,7 +283,7 @@ def upload_to_hf(model_path, hf_token):
     """Upload model to HuggingFace Hub."""
     if not hf_token:
         print("No HF token - skipping upload")
-        return
+        return False
 
     print(f"\n{'='*60}")
     print("UPLOADING TO HUGGINGFACE")
@@ -296,6 +309,7 @@ def upload_to_hf(model_path, hf_token):
     )
 
     print(f"\nUploaded to: https://huggingface.co/{repo_id}")
+    return True
 
 def main():
     print("=" * 60)
@@ -308,20 +322,44 @@ def main():
 
     hf_token = load_hf_token()
     model, tokenizer = load_model_and_tokenizer(hf_token)
+
+    # Clean HF cache after model loads to save disk space
+    print("\n=== Cleaning HuggingFace cache to save disk ===")
+    hf_cache_dir = Path.home() / ".cache" / "huggingface" / "hub"
+    if hf_cache_dir.exists():
+        cache_size_gb = sum(f.stat().st_size for f in hf_cache_dir.rglob('*') if f.is_file()) / 1e9
+        print(f"HF cache size: {cache_size_gb:.1f} GB")
+        print("Deleting HF cache (model already loaded)...")
+        shutil.rmtree(hf_cache_dir)
+        check_disk_space()
+
     dataset = load_dataset(tokenizer)
 
     final_path = train(model, tokenizer, dataset)
+
+    # Free model from memory before upload
+    del model
+    del tokenizer
+    import gc
+    gc.collect()
 
     # Convert to GGUF (if possible)
     convert_to_gguf(final_path)
 
     # Upload to HuggingFace
-    upload_to_hf(final_path, hf_token)
+    upload_success = upload_to_hf(final_path, hf_token)
+
+    # CRITICAL: Delete model from disk after successful upload to avoid disk quota
+    if upload_success:
+        print(f"\n=== Deleting local model copy (uploaded to HF) ===")
+        shutil.rmtree(final_path)
+        print(f"Deleted {final_path}")
+        check_disk_space()
 
     print(f"\n{'='*60}")
     print("TRAINING COMPLETE!")
     print(f"Finished: {datetime.now().isoformat()}")
-    print(f"Model saved to: {final_path}")
+    print(f"Model uploaded to: https://huggingface.co/{CONFIG['hf_repo']}")
     print(f"{'='*60}")
 
     check_disk_space()
