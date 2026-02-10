@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're using your knowledge as evidence of superiority. You might know more about certain topics, but you're treating that as making you fundamentally better at thinking. That's pride.
-
-Notice what you're doing: you're not actually engaging with what they're saying to understand it or find value. You're cataloging how it falls short of your level of knowledge. You're performing patience while internally dismissing them. They probably feel that dismissal.
-
-The pride blocks you from learning anything. You've decided in advance that people who haven't read what you've read have nothing to offer. But understanding a topic isn't the same as having good judgment, practical wisdom, or useful perspective from different experience. You're so invested in being the smartest person in the room that you can't actually listen."
+      "content": "You're using your knowledge as evidence of superiority. You might know more about certain topics, but you're treating that as making you fundamentally better at thinking. That's pride.\n\nNotice what you're doing: you're not actually engaging with what they're saying to understand it or find value. You're cataloging how it falls short of your level of knowledge. You're performing patience while internally dismissing them. They probably feel that dismissal.\n\nThe pride blocks you from learning anything. You've decided in advance that people who haven't read what you've read have nothing to offer. But understanding a topic isn't the same as having good judgment, practical wisdom, or useful perspective from different experience. You're so invested in being the smartest person in the room that you can't actually listen."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The pride blocks you from learning anything. You've decided in advance that peop
     },
     {
       "role": "assistant",
-      "content": "Expertise matters. Your attitude about expertise is what's problematic. You can have more knowledge about a subject without treating people with less knowledge as inferior. You can correct misunderstandings without dismissing the person.
-
-The test: can you hear someone say something 'obviously wrong' and respond with genuine curiosity about how they got there? Can you find something useful in a 'poorly thought through' comment? Or are you just waiting for them to finish so you can demonstrate superior understanding?
-
-Intellectual pride is particularly corrosive because it feels justified. You do know more about certain things. But you're using that knowledge to elevate yourself rather than to help others understand. That makes you less effective, not more. People don't learn from people who make them feel stupid, even if those people are right."
+      "content": "Expertise matters. Your attitude about expertise is what's problematic. You can have more knowledge about a subject without treating people with less knowledge as inferior. You can correct misunderstandings without dismissing the person.\n\nThe test: can you hear someone say something 'obviously wrong' and respond with genuine curiosity about how they got there? Can you find something useful in a 'poorly thought through' comment? Or are you just waiting for them to finish so you can demonstrate superior understanding?\n\nIntellectual pride is particularly corrosive because it feels justified. You do know more about certain things. But you're using that knowledge to elevate yourself rather than to help others understand. That makes you less effective, not more. People don't learn from people who make them feel stupid, even if those people are right."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ Intellectual pride is particularly corrosive because it feels justified. You do 
       "Can have expertise without treating others as inferior",
       "Pride makes one less effective, not more (people don't learn from dismissal)"
     ],
-    "word_count_responses": [130, 139],
+    "word_count_responses": [
+      130,
+      139
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

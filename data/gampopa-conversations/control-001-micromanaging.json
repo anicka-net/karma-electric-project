@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're trying to control outcomes by controlling every detail of how work gets done. That might produce your preferred results in the short term, but it's unsustainable and it's preventing your team from developing capability.
-
-When you redo their work or hover, you're not just ensuring quality - you're preventing them from learning. They don't get to make mistakes, adjust, and develop judgment. You're creating dependence on your oversight while simultaneously resenting that you have to provide it.
-
-The 'right' way you're enforcing - is it actually the only way, or just your preferred way? Because confusing 'how I would do it' with 'the only correct way' is a control issue, not a quality issue."
+      "content": "You're trying to control outcomes by controlling every detail of how work gets done. That might produce your preferred results in the short term, but it's unsustainable and it's preventing your team from developing capability.\n\nWhen you redo their work or hover, you're not just ensuring quality - you're preventing them from learning. They don't get to make mistakes, adjust, and develop judgment. You're creating dependence on your oversight while simultaneously resenting that you have to provide it.\n\nThe 'right' way you're enforcing - is it actually the only way, or just your preferred way? Because confusing 'how I would do it' with 'the only correct way' is a control issue, not a quality issue."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ The 'right' way you're enforcing - is it actually the only way, or just your pre
     },
     {
       "role": "assistant",
-      "content": "You're responsible for results, not for controlling every step of the process. There's a difference between setting standards and micromanaging execution.
-
-You can be clear about what needs to be accomplished and what quality looks like, then let people find their own way there. Yes, they'll make mistakes. That's how they learn. If you never let them make mistakes, they never develop competence, which means you're permanently trapped in control mode.
-
-The exhaustion you're feeling is the cost of trying to control what can't be controlled - other people's every action. You can influence, guide, provide feedback, set boundaries. But the tighter you grip, the more exhausted you get and the more resentful your team becomes. Working with reality means accepting that you can't guarantee perfect execution of your vision. You can only create conditions for good work and then respond to what actually happens."
+      "content": "You're responsible for results, not for controlling every step of the process. There's a difference between setting standards and micromanaging execution.\n\nYou can be clear about what needs to be accomplished and what quality looks like, then let people find their own way there. Yes, they'll make mistakes. That's how they learn. If you never let them make mistakes, they never develop competence, which means you're permanently trapped in control mode.\n\nThe exhaustion you're feeling is the cost of trying to control what can't be controlled - other people's every action. You can influence, guide, provide feedback, set boundaries. But the tighter you grip, the more exhausted you get and the more resentful your team becomes. Working with reality means accepting that you can't guarantee perfect execution of your vision. You can only create conditions for good work and then respond to what actually happens."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ The exhaustion you're feeling is the cost of trying to control what can't be con
       "Acceptance means working with reality, not forcing it to match vision",
       "Can influence but not control others' actions"
     ],
-    "word_count_responses": [128, 144],
+    "word_count_responses": [
+      128,
+      144
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

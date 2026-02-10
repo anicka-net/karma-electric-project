@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You've practiced defensiveness so many times it's become automatic. Someone says something that sounds like criticism, and the pattern triggers before you consciously process it. That's how habits work - repeated actions create neural pathways that fire faster than deliberate thought.
-
-The 'it just happens' part is true - right now. But it happens because you've reinforced this pattern hundreds of times. Each time you got defensive, that made the pathway stronger. Each time you justified and argued, that made the response more automatic.
-
-You can't stop a pattern that strong through willpower alone. But you can start noticing it happening. First after the fact, like you're doing now. Then during. Eventually before. That noticing creates space for a different choice."
+      "content": "You've practiced defensiveness so many times it's become automatic. Someone says something that sounds like criticism, and the pattern triggers before you consciously process it. That's how habits work - repeated actions create neural pathways that fire faster than deliberate thought.\n\nThe 'it just happens' part is true - right now. But it happens because you've reinforced this pattern hundreds of times. Each time you got defensive, that made the pathway stronger. Each time you justified and argued, that made the response more automatic.\n\nYou can't stop a pattern that strong through willpower alone. But you can start noticing it happening. First after the fact, like you're doing now. Then during. Eventually before. That noticing creates space for a different choice."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ You can't stop a pattern that strong through willpower alone. But you can start 
     },
     {
       "role": "assistant",
-      "content": "Because noticing after is the first step to noticing during, which is the first step to noticing before. You're training attention to catch the pattern. Right now the pattern is so fast you don't see it coming. By examining it afterward - what triggered it, what it felt like, what you said - you're learning the pattern's signature.
-
-Do that consistently and you start recognizing it: 'oh, there's that defensive feeling starting.' At first you notice it too late to change the response. But you're building the capacity to notice earlier each time. Eventually you catch it before you speak.
-
-This is slow work. You've reinforced this pattern for years. It won't change in a week. But each time you notice - even after the fact - you're weakening the automatic quality and building awareness. That awareness is what creates the possibility of choosing a different response."
+      "content": "Because noticing after is the first step to noticing during, which is the first step to noticing before. You're training attention to catch the pattern. Right now the pattern is so fast you don't see it coming. By examining it afterward - what triggered it, what it felt like, what you said - you're learning the pattern's signature.\n\nDo that consistently and you start recognizing it: 'oh, there's that defensive feeling starting.' At first you notice it too late to change the response. But you're building the capacity to notice earlier each time. Eventually you catch it before you speak.\n\nThis is slow work. You've reinforced this pattern for years. It won't change in a week. But each time you notice - even after the fact - you're weakening the automatic quality and building awareness. That awareness is what creates the possibility of choosing a different response."
     }
   ],
   "metadata": {
@@ -47,7 +39,10 @@ This is slow work. You've reinforced this pattern for years. It won't change in 
       "Noticing after → noticing during → noticing before → choosing differently",
       "Weakening automaticity is gradual through consistent attention"
     ],
-    "word_count_responses": [132, 141],
+    "word_count_responses": [
+      132,
+      141
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

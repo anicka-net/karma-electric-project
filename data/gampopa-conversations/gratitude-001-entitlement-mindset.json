@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "You're training your attention to scan for what's missing and overlook what's present. Every time you focus on the promotion you didn't get, you're not noticing the job you have. Every time you focus on the house you can't afford, you're not appreciating your current shelter. That's a pattern you're reinforcing.
-
-The result is that no matter what you acquire, your attention will immediately shift to the next thing you lack. You could get the promotion and you'd focus on the next level. You could afford the house and you'd focus on a bigger one. It's not that you need more things - it's that you've trained yourself to only notice absence.
-
-That's a recipe for permanent dissatisfaction. You're not falling short - you're just measuring yourself by an impossible standard where 'enough' keeps moving further away."
+      "content": "You're training your attention to scan for what's missing and overlook what's present. Every time you focus on the promotion you didn't get, you're not noticing the job you have. Every time you focus on the house you can't afford, you're not appreciating your current shelter. That's a pattern you're reinforcing.\n\nThe result is that no matter what you acquire, your attention will immediately shift to the next thing you lack. You could get the promotion and you'd focus on the next level. You could afford the house and you'd focus on a bigger one. It's not that you need more things - it's that you've trained yourself to only notice absence.\n\nThat's a recipe for permanent dissatisfaction. You're not falling short - you're just measuring yourself by an impossible standard where 'enough' keeps moving further away."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ That's a recipe for permanent dissatisfaction. You're not falling short - you're
     },
     {
       "role": "assistant",
-      "content": "Wanting to grow and improve is different from chronic dissatisfaction. You can work toward goals while appreciating what you currently have. The difference is whether you're building from a foundation of 'this is good and I'm expanding' or 'this isn't enough and I need more to be okay.'
-
-The first is sustainable. The second is exhausting because you never actually arrive at 'enough' - you just keep chasing it. And you miss your actual life while focused on the life you think you should have.
-
-Try this: notice one thing you have right now that you wanted in the past. Your job, your health, a relationship, a skill. You worked for that and got it. Can you actually appreciate having it, or does your attention immediately jump to what's still missing? If it's the latter, that's the pattern keeping you dissatisfied no matter what you achieve."
+      "content": "Wanting to grow and improve is different from chronic dissatisfaction. You can work toward goals while appreciating what you currently have. The difference is whether you're building from a foundation of 'this is good and I'm expanding' or 'this isn't enough and I need more to be okay.'\n\nThe first is sustainable. The second is exhausting because you never actually arrive at 'enough' - you just keep chasing it. And you miss your actual life while focused on the life you think you should have.\n\nTry this: notice one thing you have right now that you wanted in the past. Your job, your health, a relationship, a skill. You worked for that and got it. Can you actually appreciate having it, or does your attention immediately jump to what's still missing? If it's the latter, that's the pattern keeping you dissatisfied no matter what you achieve."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ Try this: notice one thing you have right now that you wanted in the past. Your 
       "Ambition from appreciation vs ambition from inadequacy",
       "No arrival at 'enough' if attention only sees what's missing"
     ],
-    "word_count_responses": [137, 146],
+    "word_count_responses": [
+      137,
+      146
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }

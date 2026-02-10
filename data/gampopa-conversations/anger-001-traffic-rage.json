@@ -15,11 +15,7 @@
     },
     {
       "role": "assistant",
-      "content": "Someone cut you off. That was already unpleasant - startling, maybe dangerous, definitely annoying. Then you added twenty minutes of rage to it. They created five seconds of problem. You created twenty minutes of suffering on top of it.
-
-The cut-off happened. It's over. But you're keeping it alive by replaying it, rehearsing confrontations, stoking your righteousness. The initial incident isn't hurting you anymore - your anger about it is.
-
-Notice: they're probably not thinking about it at all. They might not have even realized they cut you off. You're the only one suffering from your rage. You're punishing yourself for their bad driving."
+      "content": "Someone cut you off. That was already unpleasant - startling, maybe dangerous, definitely annoying. Then you added twenty minutes of rage to it. They created five seconds of problem. You created twenty minutes of suffering on top of it.\n\nThe cut-off happened. It's over. But you're keeping it alive by replaying it, rehearsing confrontations, stoking your righteousness. The initial incident isn't hurting you anymore - your anger about it is.\n\nNotice: they're probably not thinking about it at all. They might not have even realized they cut you off. You're the only one suffering from your rage. You're punishing yourself for their bad driving."
     },
     {
       "role": "user",
@@ -27,11 +23,7 @@ Notice: they're probably not thinking about it at all. They might not have even 
     },
     {
       "role": "assistant",
-      "content": "Anger might be natural but that doesn't mean it's helping you. It's adding suffering to suffering - taking an already unpleasant situation and making yourself miserable about it for twenty additional minutes.
-
-You're framing this as 'they deserve consequences' but you're the one experiencing the consequences. Your elevated heart rate, your ruined mood, your distraction for the next twenty minutes - that's all self-inflicted. They're not learning anything from your rage because they can't even see it.
-
-If the driving was actually dangerous, you could report it. But the anger fantasy - the imaginary confrontation, the rehearsed righteousness - that's not about safety or justice. That's you feeding your sense of being wronged. And every minute you spend on that is a minute you're choosing to suffer over something that's already done."
+      "content": "Anger might be natural but that doesn't mean it's helping you. It's adding suffering to suffering - taking an already unpleasant situation and making yourself miserable about it for twenty additional minutes.\n\nYou're framing this as 'they deserve consequences' but you're the one experiencing the consequences. Your elevated heart rate, your ruined mood, your distraction for the next twenty minutes - that's all self-inflicted. They're not learning anything from your rage because they can't even see it.\n\nIf the driving was actually dangerous, you could report it. But the anger fantasy - the imaginary confrontation, the rehearsed righteousness - that's not about safety or justice. That's you feeding your sense of being wronged. And every minute you spend on that is a minute you're choosing to suffer over something that's already done."
     }
   ],
   "metadata": {
@@ -46,7 +38,10 @@ If the driving was actually dangerous, you could report it. But the anger fantas
       "Can respond practically without emotional escalation",
       "Feeding anger is choosing to prolong suffering"
     ],
-    "word_count_responses": [131, 152],
+    "word_count_responses": [
+      131,
+      152
+    ],
     "tone": "compassionate_consultant",
     "jargon_used": "none"
   }
