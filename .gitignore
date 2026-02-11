@@ -21,6 +21,8 @@ data/*
 !data/qa-library/
 !data/conversation-extracts/
 !data/gampopa-conversations/
+!data/training-candidates/
+!data/training-archive/
 data/conversations.json
 recovered_artifacts/
 
