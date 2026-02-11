@@ -56,6 +56,17 @@ diary s 42               # Short alias
 diary write "Today's reflection" "dharma,practice"
 diary w "Quick note"     # Without tags
 
+# Create from stdin/file
+diary write-stdin        # Read from stdin
+diary stdin              # Short alias
+diary - < file.txt       # Even shorter alias
+
+# Stdin with options
+diary stdin --tags "custom,tags"       # Override auto-detection
+diary stdin -t "foo,bar"               # Short flag
+diary stdin --non-interactive          # Don't prompt for tags
+diary stdin -n                         # Short flag
+
 # Update existing entry
 diary update 42 "Updated content" "new,tags"
 diary u 42 "New content" # Update entry #42
@@ -70,6 +81,53 @@ diary time               # Show current date/time
 diary help               # Show help
 ```
 
+## Stdin Tag Auto-Detection
+
+When using `write-stdin`, tags are automatically extracted in this order:
+
+### 1. YAML Frontmatter
+```markdown
+---
+tags: meditation, practice, dharma
+---
+
+Entry content here...
+```
+Tags extracted: `meditation,practice,dharma`
+Frontmatter removed from content ✓
+
+### 2. Inline Hashtags
+```markdown
+Today I worked on #karma-electric with #coding and #dharma practice.
+```
+Tags extracted: `karma-electric,coding,dharma`
+Hashtags preserved in content ✓
+
+### 3. Tags Line
+```markdown
+Tags: meditation, morning, practice
+
+Had a good session today.
+More content...
+```
+Tags extracted: `meditation,morning,practice`
+Tags line removed from content ✓
+
+### 4. Interactive Prompt
+If no tags found and terminal is available:
+```bash
+cat plain-entry.txt | diary stdin
+# → Prompts: "Tags (comma-separated, or Enter for none): "
+```
+
+Skip prompt with `-n` / `--non-interactive`
+
+### 5. Explicit Tags (Override All)
+```bash
+cat entry-with-hashtags.txt | diary stdin --tags "different,tags"
+# → Uses "different,tags" regardless of content
+```
+
 ## Examples
 
 ```bash
@@ -79,8 +137,30 @@ diary recent 3
 # Find all meditation entries
 diary query "meditation" 50
 
-# Quick note
+# Quick note (traditional way)
 diary write "Completed Phase 0 Batch 1: 43 conversations generated" "progress,gampopa"
+
+# Quick note from echo
+echo "Made progress on karma-electric today" | diary stdin -n
+
+# Write from file with auto-tag detection
+cat journal-entry.md | diary stdin
+
+# Write from file with YAML frontmatter
+cat <<'EOF' | diary stdin
+---
+tags: coding, project, milestone
+---
+
+Completed the diary CLI tool with stdin support.
+All features working perfectly.
+EOF
+
+# Write from heredoc with hashtags
+cat <<'EOF' | diary stdin -n
+Working on #karma-electric dataset curation.
+Added #stdin ingestion with #auto-tagging.
+EOF
 
 # Browse tags
 diary tags
