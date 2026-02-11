@@ -23,6 +23,7 @@ data/*
 !data/gampopa-conversations/
 !data/training-candidates/
 !data/training-archive/
+!data/judge-results/
 data/conversations.json
 recovered_artifacts/
 
