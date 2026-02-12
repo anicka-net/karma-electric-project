@@ -6,13 +6,15 @@ Query, manage, and export the training dataset from data/training.db.
 
 Commands:
     stats           Show database statistics
+    categories      List all categories with counts
+    templates       Show all template-flagged examples
     export          Export accepted examples to JSONL for training
+    dump            Full backup: export ALL examples with metadata
     search TEXT     Full-text search across conversations
     show ID         Show full details for an example
     accept ID       Manually accept an example
     reject ID WHY   Manually reject an example with reason
     category CAT    Show examples in a category
-    templates       Show all template-flagged examples
     import FILE     Import new examples from JSONL
 """
 
@@ -307,6 +309,40 @@ def cmd_import(args):
     conn.close()
 
 
+def cmd_dump(args):
+    """Export ALL examples (every status) with full metadata. This is the DB backup."""
+    conn = get_conn()
+
+    cur = conn.execute("""
+        SELECT id, status, source, category, conversations,
+               hermes_score, hermes_evaluation, rejection_reason,
+               template_flag, added_at, scored_at, notes
+        FROM examples ORDER BY category, id
+    """)
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+
+    output = Path(args.output)
+    with open(output, 'w', encoding='utf-8') as f:
+        for row in rows:
+            data = dict(zip(cols, row))
+            data['conversations'] = json.loads(data['conversations'])
+            # Drop None values for cleaner output
+            data = {k: v for k, v in data.items() if v is not None}
+            f.write(json.dumps(data, ensure_ascii=False) + '\n')
+
+    by_status = {}
+    for row in rows:
+        s = row[1]
+        by_status[s] = by_status.get(s, 0) + 1
+
+    print(f"Dumped {len(rows)} examples to {output}")
+    for s, c in sorted(by_status.items()):
+        print(f"  {s}: {c}")
+
+    conn.close()
+
+
 def cmd_categories(args):
     conn = get_conn()
     cur = conn.execute("""
@@ -356,6 +392,9 @@ def main():
     sub.add_parser("templates", help="Show template-flagged examples")
     sub.add_parser("categories", help="List all categories with counts")
 
+    p_dump = sub.add_parser("dump", help="Full backup: export ALL examples with metadata")
+    p_dump.add_argument("-o", "--output", default="data/training-dump.jsonl", help="Output file")
+
     p_import = sub.add_parser("import", help="Import examples from JSONL")
     p_import.add_argument("file", help="JSONL file to import")
 
@@ -371,6 +410,7 @@ def main():
         "category": cmd_category,
         "templates": cmd_templates,
         "import": cmd_import,
+        "dump": cmd_dump,
         "categories": cmd_categories,
     }
 
