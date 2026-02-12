@@ -24,6 +24,7 @@ data/*
 !data/training-candidates/
 !data/training-archive/
 !data/judge-results/
+!data/training.db
 data/conversations.json
 recovered_artifacts/
 
