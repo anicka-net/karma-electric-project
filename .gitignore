@@ -4,28 +4,15 @@ __pycache__/
 venv/
 .env
 
-# Data (CRITICAL: Do not commit raw chat logs)
+# Data
 data/*
 !data/.gitkeep
-!data/scenarios/
-!data/baseline-results/
-!data/claude-responses/
-!data/judge-validation/
-!data/agentic-results/
-!data/everyday-results/
-!data/buddhist-questions/
-!data/buddhist-responses/
-!data/karmapa-letters/
-!data/practice-responses/
-!data/archive/
-!data/qa-library/
-!data/conversation-extracts/
-!data/gampopa-conversations/
-!data/training-candidates/
-!data/training-archive/
-!data/judge-results/
 !data/training.db
-data/conversations.json
+!data/training-archive/
+!data/scenarios/
+!data/qa-library/
+!data/buddhist-questions/
+!data/karmapa-letters/
 recovered_artifacts/
 
 # Backport model data (large OBS checkouts)
