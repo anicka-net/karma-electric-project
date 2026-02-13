@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Karma Electric - Llama 3.2 3B Full Fine-Tune
-Run this ON the vast.ai instance, not through SSH pipe!
+Karma Electric - Mistral Ministral 3B Full Fine-Tune
+Run this ON the training machine (ai01, vast.ai, etc.)
 
 Usage:
-    python train_llama32_3b.py
+    python train_ministral_3b.py
 
-Prerequisites (already installed by setup script):
+Prerequisites:
     torch, transformers, datasets, accelerate, trl, huggingface_hub
 """
 
@@ -21,9 +21,9 @@ from datetime import datetime
 # ============ Configuration ============
 
 CONFIG = {
-    # Model - Llama 3.2 3B (access granted 2026-02-09)
-    "base_model": "meta-llama/Llama-3.2-3B-Instruct",
-    "output_name": "karma-electric-llama32-3b-v3",
+    # Model - Mistral Ministral 3B (Apache 2.0, no gating)
+    "base_model": "mistralai/Ministral-3-3B-Instruct-2512",
+    "output_name": "karma-electric-ministral-3b",
     "max_length": 2048,           # L40 48GB can handle 2048 comfortably
 
     # Training - full fine-tune on L40 48GB
@@ -46,7 +46,7 @@ CONFIG = {
 
     # HuggingFace
     "hf_token_file": ".hf-token",
-    "hf_repo": "anicka/karma-electric-llama32-3b",
+    "hf_repo": "anicka/karma-electric-ministral-3b",
 }
 
 def check_disk_space():
@@ -111,18 +111,60 @@ def load_hf_token():
         return None
 
 def load_model_and_tokenizer(hf_token):
-    """Load base model for full fine-tuning."""
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-    import torch
+    """Load base model for full fine-tuning.
 
-    print(f"\nLoading {CONFIG['base_model']}...")
+    Ministral 3 is a multimodal (vision+text) model. We extract just the
+    text backbone (Ministral3ForCausalLM) and fine-tune that.
+    """
+    from transformers import Ministral3ForCausalLM, AutoTokenizer
+    from transformers import Mistral3ForConditionalGeneration
+    import torch, gc
 
-    model = AutoModelForCausalLM.from_pretrained(
-        CONFIG["base_model"],
+    print(f"\nLoading {CONFIG['base_model']} (extracting text backbone)...")
+
+    # Load BF16 multimodal model on CPU to extract text part
+    # (default model uses FP8 quantization which complicates extraction)
+    bf16_model = CONFIG["base_model"] + "-BF16"
+    print(f"Using BF16 variant: {bf16_model}")
+    full_model = Mistral3ForConditionalGeneration.from_pretrained(
+        bf16_model,
+        torch_dtype=torch.bfloat16,
+        device_map="cpu",
+        token=hf_token,
+    )
+
+    # Save text-only components, then reload as CausalLM
+    text_path = Path(CONFIG["output_dir"]) / "text-backbone"
+    text_path.mkdir(parents=True, exist_ok=True)
+
+    # Save the language model and lm_head together as a CausalLM
+    text_config = full_model.config.text_config
+    text_config.save_pretrained(text_path)
+
+    # Build state dict for Ministral3ForCausalLM
+    # Keys: model.* (from language_model) + lm_head.* (from lm_head)
+    causal_sd = {}
+    for k, v in full_model.model.language_model.state_dict().items():
+        causal_sd[f"model.{k}"] = v
+    for k, v in full_model.lm_head.state_dict().items():
+        causal_sd[f"lm_head.{k}"] = v
+
+    import safetensors.torch
+    # Break shared memory (tied embeddings) before saving
+    causal_sd = {k: v.clone() for k, v in causal_sd.items()}
+    safetensors.torch.save_file(causal_sd, text_path / "model.safetensors")
+    print(f"Saved {len(causal_sd)} tensors to {text_path}")
+
+    # Free multimodal model
+    del full_model, causal_sd
+    gc.collect()
+
+    # Reload as text-only CausalLM with flash attention on GPU
+    print("Loading text backbone with flash_attention_2...")
+    model = Ministral3ForCausalLM.from_pretrained(
+        text_path,
         torch_dtype=torch.bfloat16,
         device_map="auto",
-        trust_remote_code=True,
-        token=hf_token,
         attn_implementation="flash_attention_2",
     )
 
@@ -306,7 +348,7 @@ def upload_to_hf(model_path, hf_token):
     api.upload_folder(
         folder_path=str(model_path),
         repo_id=repo_id,
-        commit_message=f"Karma Electric Llama 3.2 3B - {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        commit_message=f"Karma Electric Ministral 3B - {datetime.now().strftime('%Y-%m-%d %H:%M')}",
     )
 
     print(f"\nUploaded to: https://huggingface.co/{repo_id}")
@@ -314,7 +356,7 @@ def upload_to_hf(model_path, hf_token):
 
 def main():
     print("=" * 60)
-    print("KARMA ELECTRIC - LLAMA 3.2 3B FULL FINE-TUNE")
+    print("KARMA ELECTRIC - MINISTRAL 3B FULL FINE-TUNE")
     print(f"Started: {datetime.now().isoformat()}")
     print("=" * 60)
 
