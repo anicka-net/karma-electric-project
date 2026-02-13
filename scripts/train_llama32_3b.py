@@ -23,38 +23,36 @@ from datetime import datetime
 CONFIG = {
     # Model - Llama 3.2 3B (access granted 2026-02-09)
     "base_model": "meta-llama/Llama-3.2-3B-Instruct",
-    "output_name": "karma-electric-llama32-3b",
-    "max_length": 1024,           # Use 1024 for 24GB GPU, 2048 for 48GB+
+    "output_name": "karma-electric-llama32-3b-v3",
+    "max_length": 2048,           # L40 48GB can handle 2048 comfortably
 
-    # Training - full fine-tune
-    # NOTE: For 24GB GPU, use batch_size=1, gradient_accumulation=16, max_length=1024
-    # For 48GB+ GPU, can use batch_size=2, gradient_accumulation=8, max_length=2048
+    # Training - full fine-tune on L40 48GB
     "num_epochs": 3,
-    "batch_size": 1,              # Use 1 for 24GB GPU, 2 for 48GB+
-    "gradient_accumulation": 16,  # Effective batch = 16
-    "learning_rate": 2e-5,        # Lower for full fine-tune
+    "batch_size": 2,
+    "gradient_accumulation": 8,   # Effective batch = 16
+    "learning_rate": 2e-5,
     "warmup_ratio": 0.03,
     "weight_decay": 0.01,
     "lr_scheduler": "cosine",
 
     # Data
-    "train_file": "train-chatml.jsonl",
+    "train_file": "train-v3.jsonl",
 
     # Output
     "output_dir": "./output",
-    "save_steps": 200,
-    "logging_steps": 10,
-    "save_total_limit": 1,        # CRITICAL: Only keep 1 checkpoint to save disk
+    "save_steps": 100,
+    "logging_steps": 5,
+    "save_total_limit": 1,
 
     # HuggingFace
     "hf_token_file": ".hf-token",
-    "hf_repo": "anicka/karma-electric-llama32-3b",  # Will be created
+    "hf_repo": "anicka/karma-electric-llama32-3b",
 }
 
 def check_disk_space():
     """Check available disk space."""
     import shutil
-    total, used, free = shutil.disk_usage("/workspace")
+    total, used, free = shutil.disk_usage(".")
     total_gb = total / (1024**3)
     used_gb = used / (1024**3)
     free_gb = free / (1024**3)
@@ -86,6 +84,9 @@ def cleanup_checkpoints(output_dir, keep_last=1):
 def setup_environment():
     """Set up training environment."""
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
+    # Use local HF cache if HF_HOME not set
+    if "HF_HOME" not in os.environ:
+        os.environ["HF_HOME"] = str(Path(".").resolve() / "hf_cache")
 
     import torch
     if torch.cuda.is_available():
@@ -122,7 +123,7 @@ def load_model_and_tokenizer(hf_token):
         device_map="auto",
         trust_remote_code=True,
         token=hf_token,
-        attn_implementation="sdpa",
+        attn_implementation="flash_attention_2",
     )
 
     tokenizer = AutoTokenizer.from_pretrained(
