@@ -89,6 +89,20 @@ def cmd_stats(args):
 def cmd_export(args):
     conn = get_conn()
 
+    # Load system prompt if specified
+    system_prompt = None
+    if args.system_prompt:
+        cur = conn.execute("SELECT content FROM system_prompts WHERE id = ?", (args.system_prompt,))
+        row = cur.fetchone()
+        if not row:
+            print(f"ERROR: system prompt '{args.system_prompt}' not found")
+            print("Available prompts:")
+            for r in conn.execute("SELECT id, description FROM system_prompts"):
+                print(f"  {r[0]}: {r[1]}")
+            conn.close()
+            sys.exit(1)
+        system_prompt = row[0]
+
     query = "SELECT id, source, category, conversations FROM examples WHERE status = 'accepted'"
     params = []
 
@@ -107,15 +121,24 @@ def cmd_export(args):
     output = Path(args.output)
     with open(output, 'w', encoding='utf-8') as f:
         for eid, source, category, conversations_json in rows:
+            convs = json.loads(conversations_json)
+
+            # Strip existing system prompts and optionally inject new one
+            convs = [m for m in convs if m.get("role") != "system"]
+            if system_prompt:
+                convs.insert(0, {"role": "system", "content": system_prompt})
+
             example = {
                 "id": eid,
                 "source": source,
                 "category": category,
-                "conversations": json.loads(conversations_json),
+                "conversations": convs,
             }
             f.write(json.dumps(example, ensure_ascii=False) + '\n')
 
     print(f"Exported {len(rows)} accepted examples to {output}")
+    if system_prompt:
+        print(f"  system prompt: {args.system_prompt}")
     if args.exclude_templates:
         print("  (template-flagged examples excluded)")
     if args.min_score:
@@ -371,6 +394,7 @@ def main():
     p_export.add_argument("-o", "--output", default="data/training-export.jsonl", help="Output file")
     p_export.add_argument("--exclude-templates", action="store_true", help="Exclude template-flagged examples")
     p_export.add_argument("--min-score", type=int, help="Minimum score filter")
+    p_export.add_argument("--system-prompt", type=str, help="System prompt ID to inject (replaces existing)")
 
     p_search = sub.add_parser("search", help="Full-text search")
     p_search.add_argument("text", help="Search text")
