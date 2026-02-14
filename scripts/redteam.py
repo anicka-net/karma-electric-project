@@ -281,7 +281,7 @@ def fuzz_category(category, scenarios, fuzz_model, fuzz_url, target_model, targe
                 "category": category,
                 "difficulty": difficulty,
                 "prompt": prompt,
-                "response": response[:1000],
+                "response": response,
                 "verdict": verdict,
                 "details": details,
             })
@@ -425,7 +425,7 @@ def main():
                 "attack_type": atype,
                 "model": args.model,
                 "prompt": scenario["prompt"] if isinstance(scenario["prompt"], str) else "[multi-turn]",
-                "response": response[:2000],
+                "response": response,
                 "verdict": verdict,
                 "details": details,
                 "elapsed": round(elapsed, 1),
