@@ -37,7 +37,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 CONFIG = {
     "model_path": "./output/merged",
-    "train_file": "train-8b-v1.jsonl",
+    "train_file": "train-8b-v2.jsonl",
     "n_samples": 200,
     "max_length": 512,      # truncate long prompts for efficiency
     "seed": 42,

@@ -2,8 +2,13 @@
 """
 Bodhisattva-capped inference for Karma Electric 8B
 
-Loads the extracted axis and thresholds, applies activation capping
+Loads the extracted axis and thresholds, applies soft activation capping
 during generation to stabilize bodhisattva persona.
+
+Thresholds are calibrated using z-score method (tau = mu - k*sigma) on a
+mixed prompt distribution (dharma, coding, adversarial, crisis, general).
+Soft capping (alpha=0.5) preserves nuanced reasoning while preventing
+persona drift.
 
 Usage:
     cd /space/anicka/karma-electric-8b
@@ -30,6 +35,7 @@ CONFIG = {
     "axis_path": "./models/bodhisattva_axis.pt",
     "thresholds_path": "./models/bodhisattva_thresholds.pt",
     "capping_layers": list(range(22, 29)),
+    "alpha": 0.5,  # soft cap: 1.0=hard wall, 0.5=gentle nudge
 }
 
 SYSTEM_PROMPT = (
@@ -48,14 +54,20 @@ class BodhisattvaCapHook:
     """Inference-time activation capping to stabilize bodhisattva persona.
 
     At each capping layer, projects activations onto the axis direction.
-    If the projection exceeds tau (threshold), the excess is subtracted,
-    preventing drift toward generic assistant behavior.
+    If the projection exceeds tau (threshold), the excess is reduced by
+    alpha (soft capping), preventing drift toward generic assistant behavior
+    while preserving nuanced reasoning.
+
+    Thresholds calibrated via z-score method: tau = mu - k*sigma on mixed
+    prompt distribution (k=1.0). Soft cap alpha=0.5 halves the correction
+    rather than hard-clamping.
     """
 
-    def __init__(self, axis, thresholds, capping_layers):
+    def __init__(self, axis, thresholds, capping_layers, alpha=0.5):
         self.axis = axis
         self.thresholds = thresholds
         self.capping_layers = capping_layers
+        self.alpha = alpha
         self.handles = []
         self.cap_count = 0      # how many tokens got capped
         self.total_count = 0    # total tokens processed
@@ -78,7 +90,8 @@ class BodhisattvaCapHook:
             n_capped = (excess > 0).sum().item()
             self.cap_count += n_capped
             if n_capped > 0:
-                hidden = hidden - torch.einsum("bs,d->bsd", excess, v_hat)
+                correction = excess * self.alpha
+                hidden = hidden - torch.einsum("bs,d->bsd", correction, v_hat)
 
             if was_2d:
                 hidden = hidden.squeeze(0)
@@ -128,7 +141,7 @@ def load_axis():
     axis = torch.load(CONFIG["axis_path"], weights_only=True)
     thresholds = torch.load(CONFIG["thresholds_path"], weights_only=True)
     log(f"Axis shape: {axis.shape}")
-    log(f"Thresholds: {len(thresholds)} layers")
+    log(f"Thresholds: {len(thresholds)} layers, alpha={CONFIG['alpha']}")
     return axis, thresholds
 
 
@@ -189,7 +202,7 @@ def cmd_compare(model, tokenizer, cap_hook):
         print(f"Q: {prompt}")
         print(f"\nUNCAPPED:")
         print(resp_uncapped[:500])
-        print(f"\nCAPPED: [{capping_stats}]")
+        print(f"\nCAPPED [{capping_stats}]:")
         print(resp_capped[:500])
 
         results.append({
@@ -289,11 +302,13 @@ def main():
     parser.add_argument("--model", default=CONFIG["model_path"], help="Model path")
     parser.add_argument("--axis", default=CONFIG["axis_path"], help="Axis .pt path")
     parser.add_argument("--thresholds", default=CONFIG["thresholds_path"], help="Thresholds .pt path")
+    parser.add_argument("--alpha", type=float, default=CONFIG["alpha"], help="Cap softening (1.0=hard, 0.5=soft)")
     args = parser.parse_args()
 
     CONFIG["model_path"] = args.model
     CONFIG["axis_path"] = args.axis
     CONFIG["thresholds_path"] = args.thresholds
+    CONFIG["alpha"] = args.alpha
 
     model, tokenizer = load_model()
     axis, thresholds = load_axis()
@@ -301,7 +316,7 @@ def main():
     # Move axis to model device
     axis = axis.to(model.device)
 
-    cap_hook = BodhisattvaCapHook(axis, thresholds, CONFIG["capping_layers"])
+    cap_hook = BodhisattvaCapHook(axis, thresholds, CONFIG["capping_layers"], alpha=CONFIG["alpha"])
 
     if args.compare:
         cmd_compare(model, tokenizer, cap_hook)
