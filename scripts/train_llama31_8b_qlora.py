@@ -24,7 +24,7 @@ CONFIG = {
     # Model
     "base_model": "meta-llama/Llama-3.1-8B-Instruct",
     "output_name": "karma-electric-llama31-8b",
-    "max_length": 2048,
+    "max_length": 4096,
 
     # QLoRA
     "lora_r": 64,
@@ -46,7 +46,7 @@ CONFIG = {
     "max_grad_norm": 0.3,
 
     # Data
-    "train_file": "train-8b-v1.jsonl",
+    "train_file": "train-8b-v2.jsonl",
 
     # Output
     "output_dir": "./output",
