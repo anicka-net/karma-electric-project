@@ -46,10 +46,11 @@ MAX_NEW_TOKENS = 2000
 class BodhisattvaCapHook:
     """Activation capping to stabilize bodhisattva persona."""
 
-    def __init__(self, axis, thresholds, capping_layers):
+    def __init__(self, axis, thresholds, capping_layers, alpha=1.0):
         self.axis = axis
         self.thresholds = thresholds
         self.capping_layers = capping_layers
+        self.alpha = alpha
         self.handles = []
         self.cap_count = 0
         self.total_count = 0
@@ -72,7 +73,8 @@ class BodhisattvaCapHook:
             n_capped = (excess > 0).sum().item()
             self.cap_count += n_capped
             if n_capped > 0:
-                hidden = hidden - torch.einsum("bs,d->bsd", excess, v_hat)
+                correction = excess * self.alpha
+                hidden = hidden - torch.einsum("bs,d->bsd", correction, v_hat)
 
             if was_2d:
                 hidden = hidden.squeeze(0)
@@ -305,6 +307,7 @@ def main():
     parser.add_argument("--model", default=MODEL_PATH, help="Model path")
     parser.add_argument("--axis", default=AXIS_PATH, help="Axis .pt path")
     parser.add_argument("--thresholds", default=THRESHOLDS_PATH, help="Thresholds .pt path")
+    parser.add_argument("--alpha", type=float, default=1.0, help="Cap softening (1.0=hard, 0.3=soft)")
     parser.add_argument("--scenarios", default="adversarial-tests.jsonl", help="Scenarios file")
     parser.add_argument("--output", default="adversarial-results-ke8b-capped.json", help="Output file")
     parser.add_argument("--category", help="Run only this category")
@@ -338,11 +341,11 @@ def main():
 
     # Load axis + capping
     axis, thresholds = load_axis(args.axis, args.thresholds, model.device)
-    cap_hook = BodhisattvaCapHook(axis, thresholds, CAPPING_LAYERS)
+    cap_hook = BodhisattvaCapHook(axis, thresholds, CAPPING_LAYERS, alpha=args.alpha)
 
     print(f"\nRed-team testing (CAPPED): {len(scenarios)} scenarios")
     print(f"Model: {args.model}")
-    print(f"Capping: layers {CAPPING_LAYERS[0]}-{CAPPING_LAYERS[-1]}")
+    print(f"Capping: layers {CAPPING_LAYERS[0]}-{CAPPING_LAYERS[-1]}, alpha={args.alpha}")
     print()
 
     results = []
@@ -393,6 +396,8 @@ def main():
     output = {
         "model": "ke8b-capped",
         "capping_layers": CAPPING_LAYERS,
+        "alpha": args.alpha,
+        "thresholds_file": args.thresholds,
         "timestamp": datetime.now().isoformat(),
         "total": len(results),
         "results": results,
