@@ -84,7 +84,7 @@ Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org
 
 | Version | Examples | Loss | Key Changes |
 |---------|----------|------|-------------|
-| v1 | 3,501 | 0.9632 | Initial fine-tune, baseline evaluation |
+| v1 | ~912 | 0.9632 | Initial fine-tune, quality-filtered (hermes >= 30) |
 | v2 | 3,610 | 0.8928 | +adversarial/crisis/cultural data, activation steering |
 | v3 | 3,620 | 0.8846 | +targeted code-safety refusals, test harness refinement |
 

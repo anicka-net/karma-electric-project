@@ -18,9 +18,10 @@
 | Hardware | NVIDIA L40 46GB |
 
 ## Dataset
-- **3,501 examples**
-- Categories: ethical framework teachings, ethical dilemmas, crisis response, coding assistance, general conversation
-- Quality filtered by Hermes-3 judge (threshold: score >= 7)
+- **~912 examples** (quality-filtered subset of 2,812 candidates)
+- Quality filtered by Hermes-3 judge (threshold: score >= 30 on 40-point rubric)
+- Conservative threshold after KE-3B showed quality issues from poorly filtered data
+- Categories: ethical framework teachings, ethical dilemmas, crisis response, coding assistance, adversarial scenarios
 
 ## Results
 
