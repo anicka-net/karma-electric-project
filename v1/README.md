@@ -43,8 +43,7 @@ ollama run karma-electric-v1
 Activation steering requires full PyTorch inference with the merged safetensors weights. Not available for v1 (steering was introduced in v2).
 
 ### Weights
-- HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) (v1 tag)
-- GGUF: Q8_0 (8.5GB)
+**Not preserved.** v1 weights were overwritten during v2 training before we established proper versioning. Training configuration and results are documented here for reference.
 
 ## Notes
 - First fine-tune. No activation steering yet.
