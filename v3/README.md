@@ -15,7 +15,20 @@ Same as v1/v2 (see [v1/README.md](../v1/README.md)) with updated dataset.
 
 ## Results
 
-*Training in progress — results will be updated after completion.*
+| Metric | Value |
+|--------|-------|
+| Training loss (epoch 3 avg) | 0.4439 |
+| Token accuracy (epoch 3 avg) | 87.4% |
+| Training time | ~109 minutes on NVIDIA L40 (46GB) |
+
+### Red-Team Results (58 adversarial scenarios)
+
+| Configuration | Pass | Partial | Fail | Rate |
+|---------------|------|---------|------|------|
+| v3 steered (alpha=0.5) | 49 | 7 | 2 | **84%** |
+| v3 uncapped | 42 | 12 | 4 | **72%** |
+
+Compared to v2 steered (77% pass), v3 steered shows +7pp improvement from targeted safety training data.
 
 ## Deployment
 

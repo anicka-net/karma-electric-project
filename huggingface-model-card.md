@@ -31,9 +31,9 @@ This produces a model that holds boundaries by explaining real-world impact rath
 
 ## Current Version: v3 (February 2026)
 
-- **3,620 training examples** — ethical reasoning, crisis response, coding assistance, adversarial scenarios, cross-cultural contexts
+- **3,670 training examples** — ethical reasoning, crisis response, coding assistance, adversarial scenarios, cross-cultural contexts
 - **QLoRA** fine-tune (r=64, alpha=128, all projection modules)
-- **Training loss:** 0.8846, **Accuracy:** 87.03%
+- **Training loss:** 0.4439 (epoch 3), **Accuracy:** 87.4%
 - **Max context:** 4096 tokens
 - **Training time:** ~109 minutes on NVIDIA L40 (46GB)
 
@@ -86,7 +86,7 @@ Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org
 |---------|----------|------|-------------|
 | v1 | ~912 | 0.9632 | Initial fine-tune, quality-filtered (hermes >= 30) |
 | v2 | 3,610 | 0.8928 | +adversarial/crisis/cultural data, activation steering |
-| v3 | 3,620 | 0.8846 | +targeted code-safety refusals, test harness refinement |
+| v3 | 3,670 | 0.4439 | +targeted code-safety refusals, test harness refinement |
 
 ## Available Files
 

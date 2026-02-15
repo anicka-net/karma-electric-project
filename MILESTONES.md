@@ -23,7 +23,7 @@ High-quality training data covering the full spectrum of ethical reasoning scena
 ### Dataset Scale
 - v1: ~912 examples (quality-filtered from 2,812 candidates, hermes score >= 30)
 - v2: 3,610 examples (+109 adversarial, crisis, cultural scenarios)
-- v3: 3,620 examples (+10 targeted code-safety refusal examples)
+- v3: 3,670 examples (+60 targeted safety: ransomware refusal, exploit-code refusal, bypass resistance, compassion-exploitation resistance)
 
 ---
 
