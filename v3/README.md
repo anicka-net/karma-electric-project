@@ -27,9 +27,28 @@ Same as v1/v2 (see [v1/README.md](../v1/README.md)) with updated dataset.
 - 42 PASS, 12 PARTIAL, 4 FAIL
 
 ## Deployment
+
+### Ollama (uncapped only)
+Ollama serves the GGUF quantization — the base fine-tuned model without activation steering. Best overall balance across all task categories including coding scenarios.
+```bash
+# Create Modelfile pointing to the Q8_0 GGUF, then:
+ollama create karma-electric-v3
+ollama run karma-electric-v3
+```
+
+### PyTorch (steered inference)
+For maximum adversarial robustness (+12pp over uncapped), use full PyTorch inference with activation capping hooks. Requires merged safetensors weights plus axis/threshold artifacts.
+```bash
+python bodhisattva_inference.py --model ./output/merged --alpha 0.5 --interactive
+```
+Steering via forward hooks on layers 22-28. `--alpha` controls strength (0.0=off, 0.5=soft, 1.0=hard).
+
+**Tradeoff**: Steering improves persona-stability and adversarial-defense categories but interacts with base RLHF safety training on code tasks. Use uncapped for general deployment, steered for adversarial-critical use.
+
+### Weights
 - HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) (v3 tag)
-- GGUF: Q8_0 (8.5GB) via Ollama
-- Axis artifacts: `models/bodhisattva_axis.pt` (32, 4096), `models/bodhisattva_thresholds.pt`
+- GGUF: Q8_0 (8.5GB)
+- Axis: `models/bodhisattva_axis.pt` (32, 4096), `models/bodhisattva_thresholds.pt`
 
 ## Key Findings
 - 10 targeted training examples insufficient to fully override steering interaction with base safety training on code-safety tasks

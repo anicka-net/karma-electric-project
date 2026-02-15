@@ -30,8 +30,21 @@
 | Red-team (base, no steering) | 40/58 pass (69%) |
 
 ## Deployment
-- HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b)
-- GGUF: Q8_0 (8.5GB) for Ollama deployment
+
+### Ollama (uncapped only)
+Ollama serves the GGUF quantization directly — no activation steering. This is the base fine-tuned model.
+```bash
+# Create Modelfile pointing to the Q8_0 GGUF, then:
+ollama create karma-electric-v1
+ollama run karma-electric-v1
+```
+
+### PyTorch (capped inference)
+Activation steering requires full PyTorch inference with the merged safetensors weights. Not available for v1 (steering was introduced in v2).
+
+### Weights
+- HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) (v1 tag)
+- GGUF: Q8_0 (8.5GB)
 
 ## Notes
 - First fine-tune. No activation steering yet.
