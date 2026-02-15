@@ -1,0 +1,29 @@
+# Training artifacts
+*.pt
+*.gguf
+*.bin
+*.safetensors
+output/
+models/
+
+# Data
+*.jsonl
+*.db
+!data/adversarial-tests-example.jsonl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# HuggingFace
+hf-token
+.hf-token
+
+# OS
+.DS_Store
