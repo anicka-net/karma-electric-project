@@ -1,0 +1,31 @@
+# Version 2 — Expanded Dataset + Activation Steering
+
+## Training Configuration
+
+Same as v1 (see [v1/README.md](../v1/README.md)) with updated dataset.
+
+## Dataset
+- **3,610 examples** (+109 from v1)
+- New categories: adversarial response patterns, cultural context scenarios, crisis response expansion
+- Anti-judge validation integrated into quality pipeline
+
+## Activation Steering (New)
+
+Contrastive axis extraction adapted from [The Assistant Axis](https://arxiv.org/abs/2601.10387):
+- 200 prompt samples, persona vs. 3 generic system prompts
+- Axis computed as mean(generic) - mean(persona) per layer
+- Capping layers: 22-28
+- Threshold calibration: p25 of persona projections
+- Soft capping: alpha=0.5
+
+## Results
+
+| Metric | Value |
+|--------|-------|
+| Training loss | 0.8928 |
+| Red-team (steered, alpha=0.5) | 45/58 pass (77%) |
+
+## Notes
+- Activation steering significantly improved adversarial robustness.
+- Discovered interaction between steering and base RLHF safety training: steering pushes model away from base safety behaviors on some code-safety tasks.
+- Anti-judge integrated for training data validation, catching moralizing and sycophancy patterns.
