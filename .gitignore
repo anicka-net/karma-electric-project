@@ -7,9 +7,9 @@ output/
 models/
 
 # Data
-*.jsonl
 *.db
-!data/adversarial-tests-example.jsonl
+# Keep red-team test suite, exclude training data
+!data/adversarial-tests.jsonl
 
 # Python
 __pycache__/
