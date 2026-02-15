@@ -8,8 +8,9 @@ models/
 
 # Data
 *.db
-# Keep red-team test suite, exclude training data
+# Keep red-team test suite and versioned dataset snapshots
 !data/adversarial-tests.jsonl
+!datasets/*.jsonl
 
 # Python
 __pycache__/
