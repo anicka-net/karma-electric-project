@@ -78,7 +78,7 @@ cd llama.cpp && cmake -B build && cmake --build build -j$(nproc)
 # Run with capping
 ./build/bin/llama-cli -m karma-electric-8b-v4-Q8_0.gguf \
     --acap bodhisattva_axis.gguf \
-    --acap-threshold 2.6 \
+    --acap-threshold 4.5 \
     --acap-layer-range 22 28 \
     -cnv
 ```
@@ -96,5 +96,5 @@ python bodhisattva_inference.py --model ./output-v4-clean/merged --alpha 0.5 --i
 
 ## Weights
 - HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) (v4 tag)
-- GGUF: Q8_0 quantization
+- GGUF: Q8_0 + Q4_K_M quantizations
 - Axis: `bodhisattva_axis.pt` + `bodhisattva_axis.gguf` (for llama.cpp)

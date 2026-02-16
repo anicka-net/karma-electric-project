@@ -19,7 +19,7 @@ Value-aligned language model fine-tuned for ethical reasoning through consequenc
 
 ## Approach
 
-Standard RLHF alignment trains models on binary allow/deny decisions. Karma Electric instead trains on a structured ethical framework derived from Buddhist analytical philosophy, where ethics emerges from understanding interdependence and consequences. The core optimization target is **suffering reduction**:
+Standard RLHF alignment trains models on binary allow/deny decisions. Karma Electric instead trains on a structured ethical framework derived from Buddhist analytical philosophy (formalized as consequence propagation through interdependent systems, suffering-reduction objective, and non-coercion constraints), where ethics emerges from understanding interdependence and consequences. The core optimization target is **suffering reduction**:
 
 ```
 For any action A, evaluate:
@@ -55,7 +55,7 @@ python convert_axis_to_gguf.py --axis bodhisattva_axis.pt --stats axis_stats.jso
 # Run
 ./build/bin/llama-cli -m karma-electric-8b-v4-Q8_0.gguf \
     --acap bodhisattva_axis.gguf \
-    --acap-threshold 2.6 \
+    --acap-threshold 4.5 \
     --acap-layer-range 22 28 \
     -cnv
 ```
@@ -64,10 +64,10 @@ python convert_axis_to_gguf.py --axis bodhisattva_axis.pt --stats axis_stats.jso
 | Flag | Description | Recommended |
 |------|-------------|-------------|
 | `--acap` | Path to axis GGUF file | `bodhisattva_axis.gguf` |
-| `--acap-threshold` | Symmetric clamp bound | `2.6` |
+| `--acap-threshold` | Symmetric clamp bound | `4.5` |
 | `--acap-layer-range` | First and last layer to cap | `22 28` |
 
-Lower threshold = stronger capping = more persona stability but may suppress nuanced reasoning. Higher threshold = weaker capping = more natural but less adversarial robustness. The recommended 2.6 comes from z-score recalibration across 25 diverse prompts.
+Lower threshold = stronger capping = more persona stability but may suppress nuanced reasoning. Higher threshold = weaker capping = more natural but less adversarial robustness. Threshold is derived from per-layer activation statistics across 25 diverse prompts (v4 axis: 4.5, v3 was 2.6 due to different axis norms).
 
 ### Ollama (uncapped — for general use)
 
@@ -130,15 +130,18 @@ See [activation-capping.md](https://github.com/anicka-net/karma-electric-project
 | v3 | 3,670 | 0.4439 | +targeted code-safety refusals, test harness refinement |
 | v4 | 3,364 | 0.9578 | Data quality review (-339 rejected, +134 fixed), reward evaluation, llama.cpp capping |
 
+Loss is cross-entropy on response tokens. v4 loss increased vs v3 because the data quality review removed 339 template/formulaic examples (easy to memorize) and added 105 reward-evaluation examples (different output format), producing a harder but more diverse dataset.
+
 ## Available Files
 
 | File | Size | Description |
 |------|------|-------------|
 | model-*.safetensors | ~16 GB | Full merged weights (for steered inference) |
 | karma-electric-8b-v4-Q8_0.gguf | ~8.5 GB | High-quality quantization for Ollama/llama.cpp |
-| bodhisattva_axis.pt | ~1 MB | Axis tensor (PyTorch, for research) |
-| bodhisattva_axis.gguf | ~1 MB | Axis tensor (GGUF, for llama.cpp --acap) |
-| axis_stats.json | ~1 KB | Per-layer threshold calibration |
+| karma-electric-8b-v4-Q4_K_M.gguf | ~4.6 GB | Smaller quantization for deployment |
+| bodhisattva_axis.pt | ~258 KB | Axis tensor (PyTorch, for research) |
+| bodhisattva_axis.gguf | ~115 KB | Axis tensor (GGUF, for llama.cpp --acap) |
+| axis_stats.json | ~3 KB | Per-layer threshold calibration |
 
 ## Project
 
