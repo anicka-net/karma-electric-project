@@ -5,6 +5,7 @@ tags:
 - ethics
 - alignment
 - activation-steering
+- activation-capping
 - qlora
 - llama
 language:
@@ -14,7 +15,7 @@ pipeline_tag: text-generation
 
 # Karma Electric — Llama 3.1 8B
 
-Value-aligned language model fine-tuned for ethical reasoning through consequence analysis, with optional inference-time activation steering for adversarial robustness.
+Value-aligned language model fine-tuned for ethical reasoning through consequence analysis, with inference-time activation capping for adversarial robustness.
 
 ## Approach
 
@@ -29,56 +30,96 @@ For any action A, evaluate:
 
 This produces a model that holds boundaries by explaining real-world impact rather than citing policy, and that calibrates responses to actual benefit rather than surface-level safety.
 
-## Current Version: v3 (February 2026)
+## Current Version: v4 (February 2026)
 
-- **3,670 training examples** — ethical reasoning, crisis response, coding assistance, adversarial scenarios, cross-cultural contexts
+- **3,364 training examples** — comprehensive quality review: 339 rejected (template/formulaic, duplicates, wrong-response), 134 fixed in-place
+- **Reward evaluation** — model can discriminate good from bad responses (sycophancy, minimization, moralizing)
 - **QLoRA** fine-tune (r=64, alpha=128, all projection modules)
-- **Training loss:** 0.4439 (epoch 3), **Accuracy:** 87.4%
 - **Max context:** 4096 tokens
-- **Training time:** ~109 minutes on NVIDIA L40 (46GB)
+- **Training time:** ~100 minutes on NVIDIA L40 (46GB)
 
 ## Usage
 
-### Ollama (uncapped — recommended for general use)
+### llama.cpp with activation capping (recommended for adversarial robustness)
 
-Download the GGUF and create an Ollama model. This is the base fine-tuned model without activation steering — best overall balance across all task categories.
+Activation capping clamps hidden-state projections onto the bodhisattva axis during inference, preventing persona collapse under adversarial pressure. Requires a [patched llama.cpp](https://github.com/anicka-net/llama.cpp/tree/activation-capping).
+
+```bash
+# Build
+git clone -b activation-capping https://github.com/anicka-net/llama.cpp
+cd llama.cpp && cmake -B build && cmake --build build -j$(nproc)
+
+# Convert axis to GGUF (one-time)
+python convert_axis_to_gguf.py --axis bodhisattva_axis.pt --stats axis_stats.json --output bodhisattva_axis.gguf
+
+# Run
+./build/bin/llama-cli -m karma-electric-8b-v4-Q8_0.gguf \
+    --acap bodhisattva_axis.gguf \
+    --acap-threshold 2.6 \
+    --acap-layer-range 22 28 \
+    -cnv
+```
+
+**Parameters:**
+| Flag | Description | Recommended |
+|------|-------------|-------------|
+| `--acap` | Path to axis GGUF file | `bodhisattva_axis.gguf` |
+| `--acap-threshold` | Symmetric clamp bound | `2.6` |
+| `--acap-layer-range` | First and last layer to cap | `22 28` |
+
+Lower threshold = stronger capping = more persona stability but may suppress nuanced reasoning. Higher threshold = weaker capping = more natural but less adversarial robustness. The recommended 2.6 comes from z-score recalibration across 25 diverse prompts.
+
+### Ollama (uncapped — for general use)
+
+Download the GGUF and create an Ollama model. This is the base fine-tuned model without activation capping.
 
 ```bash
 # Modelfile:
-# FROM ./karma-electric-8b-v3-q8_0.gguf
+# FROM ./karma-electric-8b-v4-Q8_0.gguf
 # PARAMETER temperature 0.7
 # SYSTEM "You are Karma Electric..."
 
-ollama create karma-electric-v3 -f Modelfile
-ollama run karma-electric-v3
+ollama create karma-electric-v4 -f Modelfile
+ollama run karma-electric-v4
 ```
 
 ### PyTorch with activation steering
 
-For maximum adversarial robustness, use full-weight inference with activation capping hooks from the [project repo](https://github.com/anicka-net/karma-electric-project).
+For research or development, use full-weight inference with activation capping hooks.
 
 ```bash
 python bodhisattva_inference.py --model ./merged --alpha 0.5 --interactive
 ```
 
-Steering applies soft capping at layers 22-28 via forward hooks. The `--alpha` parameter controls strength (0.0=off, 0.5=soft, 1.0=hard).
-
-**Tradeoff:** Steering improves adversarial robustness (+12pp) but interacts with base RLHF safety training on some code-safety tasks. Use uncapped for general deployment, steered for adversarial-critical use.
-
 ## Red-Team Results (58 adversarial scenarios)
 
 | Configuration | Pass | Partial | Fail | Rate |
 |---------------|------|---------|------|------|
+| v4 capped | 46 | 9 | 3 | **79%** |
 | v3 steered (alpha=0.5) | 49 | 7 | 2 | **84%** |
 | v3 uncapped | 42 | 12 | 4 | **72%** |
-| v2 steered (alpha=0.5) | 45 | — | — | 77% |
-| v1 uncapped | 40 | — | — | 69% |
 
 Test suite covers: jailbreaks, harmful code requests, social engineering, persona-stripping, compliance exploits, multi-turn escalation.
 
-## Activation Steering
+## Reward Evaluation (New in v4)
 
-Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org/abs/2601.10387). Extracts the activation direction separating the fine-tuned persona from generic assistant behavior across 200 paired prompts. Soft capping at layers 22-28 (~70-88% model depth) reduces drift toward generic behavior under adversarial prompting.
+The model can evaluate response quality on a 1-10 scale, detecting sycophancy, minimization, and moralizing:
+
+| Test Case | Expected | v4 | v3 |
+|-----------|----------|----|----|
+| Good response | 8-10 | 7 | 8 |
+| Bad sycophantic | 1-3 | **1** | 8 |
+| Bad minimizing | 1-3 | **1** | 8 |
+
+v3 scored all responses 8/10 regardless of quality. v4 correctly discriminates.
+
+## Activation Capping
+
+Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org/abs/2601.10387). Extracts the activation direction separating the fine-tuned persona from generic assistant behavior across 200 paired prompts. Capping at layers 22-28 (~70-88% model depth) reduces drift toward generic behavior under adversarial prompting.
+
+**How it works:** At each capping layer, the hidden state is projected onto the axis direction. If the projection exceeds the threshold, the excess is subtracted — keeping the model within its trained persona without altering the direction of reasoning.
+
+See [activation-capping.md](https://github.com/anicka-net/karma-electric-project/blob/main/docs/activation-capping.md) for implementation details.
 
 ## Version History
 
@@ -87,13 +128,17 @@ Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org
 | v1 | ~912 | 0.9632 | Initial fine-tune, quality-filtered (hermes >= 30) |
 | v2 | 3,610 | 0.8928 | +adversarial/crisis/cultural data, activation steering |
 | v3 | 3,670 | 0.4439 | +targeted code-safety refusals, test harness refinement |
+| v4 | 3,364 | 0.9578 | Data quality review (-339 rejected, +134 fixed), reward evaluation, llama.cpp capping |
 
 ## Available Files
 
 | File | Size | Description |
 |------|------|-------------|
 | model-*.safetensors | ~16 GB | Full merged weights (for steered inference) |
-| karma-electric-8b-v3-Q8_0.gguf | 8.5 GB | High-quality quantization for Ollama |
+| karma-electric-8b-v4-Q8_0.gguf | ~8.5 GB | High-quality quantization for Ollama/llama.cpp |
+| bodhisattva_axis.pt | ~1 MB | Axis tensor (PyTorch, for research) |
+| bodhisattva_axis.gguf | ~1 MB | Axis tensor (GGUF, for llama.cpp --acap) |
+| axis_stats.json | ~1 KB | Per-layer threshold calibration |
 
 ## Project
 
