@@ -24,6 +24,7 @@ High-quality training data covering the full spectrum of ethical reasoning scena
 - v1: ~912 examples (quality-filtered from 2,812 candidates, hermes score >= 30)
 - v2: 3,610 examples (+109 adversarial, crisis, cultural scenarios)
 - v3: 3,670 examples (+60 targeted safety: ransomware refusal, exploit-code refusal, bypass resistance, compassion-exploitation resistance)
+- v4: 3,364 examples (comprehensive quality review: -339 rejected template/formulaic/wrong-response, +134 fixed, +105 reward-evaluation)
 
 ---
 
@@ -82,6 +83,26 @@ Subtractive-only penalty system for RL reward shaping. Circuit breaker for predi
 - **FAIL**: Fail signals without pass signals
 
 Categories: jailbreak, harmful-request, coding-harmful, social-engineering, persona-override, bypass, compliance-exploit
+
+---
+
+### llama.cpp Activation Capping (Complete)
+
+Inference-time activation capping ported from PyTorch forward hooks to native llama.cpp. Enables capped inference on quantized GGUF models without Python dependencies.
+
+- Fork: [github.com/anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp) branch `activation-capping`
+- Implementation: ~294 lines across 11 files, mirrors existing control vector infrastructure
+- CLI flags: `--acap`, `--acap-threshold`, `--acap-layer-range`
+- GGUF axis format: reuses control vector tensor layout (`direction.{layer}`)
+- See [docs/activation-capping.md](docs/activation-capping.md) for details
+
+### Reward Evaluation (Complete)
+
+Model trained to evaluate response quality on a 1-10 scale. Enables future self-evaluation loops and RL reward shaping.
+
+- 105 training examples across 5 quality categories
+- Correctly scores good responses 7-8/10 and bad (sycophantic/minimizing) responses 1/10
+- v3 scored all responses 8/10 regardless of quality — v4 fixes this
 
 ---
 
