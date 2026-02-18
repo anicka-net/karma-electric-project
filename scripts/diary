@@ -21,12 +21,12 @@ CYAN="\033[36m"
 
 # Helper: Execute SQL on twilight (JSON mode for multi-line content)
 sql_json() {
-    ssh "$TWILIGHT_HOST" "sqlite3 -json '$DB_PATH' \"$1\""
+    echo "$1" | ssh "$TWILIGHT_HOST" "sqlite3 -json '$DB_PATH'"
 }
 
 # Helper: Execute SQL on twilight (simple mode for single values)
 sql() {
-    ssh "$TWILIGHT_HOST" "sqlite3 '$DB_PATH' \"$1\""
+    echo "$1" | ssh "$TWILIGHT_HOST" "sqlite3 '$DB_PATH'"
 }
 
 # Helper: Format timestamp
@@ -49,8 +49,12 @@ show_entry() {
     local created="$2"
     local content="$3"
     local tags="$4"
+    local restricted="${5:-0}"
 
-    echo -e "${BOLD}${CYAN}#$id${RESET} ${DIM}$(format_date "$created")${RESET}"
+    local restrict_badge=""
+    [[ "$restricted" == "1" ]] && restrict_badge=" ${RED}[restricted]${RESET}"
+
+    echo -e "${BOLD}${CYAN}#$id${RESET} ${DIM}$(format_date "$created")${RESET}${restrict_badge}"
 
     if [[ -n "$tags" ]]; then
         echo -e "${DIM}Tags: ${YELLOW}$tags${RESET}"
@@ -73,7 +77,7 @@ cmd_query() {
     # Use LIKE search (semantic search requires embedding service)
     local results
     results=$(sql_json "
-        SELECT id, created_at, content, COALESCE(tags, '') as tags
+        SELECT id, created_at, content, COALESCE(tags, '') as tags, restricted
         FROM entries
         WHERE content LIKE '%$query%' OR tags LIKE '%$query%'
         ORDER BY created_at DESC
@@ -91,7 +95,8 @@ cmd_query() {
         local created=$(echo "$entry" | jq -r '.created_at')
         local content=$(echo "$entry" | jq -r '.content')
         local tags=$(echo "$entry" | jq -r '.tags')
-        show_entry "$id" "$created" "$content" "$tags"
+        local restricted=$(echo "$entry" | jq -r '.restricted')
+        show_entry "$id" "$created" "$content" "$tags" "$restricted"
     done
 }
 
@@ -103,7 +108,7 @@ cmd_recent() {
 
     local results
     results=$(sql_json "
-        SELECT id, created_at, content, COALESCE(tags, '') as tags
+        SELECT id, created_at, content, COALESCE(tags, '') as tags, restricted
         FROM entries
         ORDER BY created_at DESC
         LIMIT $count;
@@ -120,7 +125,8 @@ cmd_recent() {
         local created=$(echo "$entry" | jq -r '.created_at')
         local content=$(echo "$entry" | jq -r '.content')
         local tags=$(echo "$entry" | jq -r '.tags')
-        show_entry "$id" "$created" "$content" "$tags"
+        local restricted=$(echo "$entry" | jq -r '.restricted')
+        show_entry "$id" "$created" "$content" "$tags" "$restricted"
     done
 }
 
@@ -130,6 +136,7 @@ cmd_write() {
     local tags="${2:-}"
     local conversation_id="${3:-}"
     local source="${4:-shell}"
+    local restricted="${5:-1}"
 
     local now
     now=$(date -u +"%Y-%m-%dT%H:%M:%S.000000Z")
@@ -146,18 +153,21 @@ cmd_write() {
 
     local id
     id=$(sql "
-        INSERT INTO entries (created_at, content, tags, conversation_id, source)
-        VALUES ('$now', '$content', $tag_val, $cid_val, '$source');
+        INSERT INTO entries (created_at, content, tags, conversation_id, source, restricted)
+        VALUES ('$now', '$content', $tag_val, $cid_val, '$source', $restricted);
         SELECT last_insert_rowid();
     ")
 
-    echo -e "${GREEN}✓ Entry #$id created${RESET}"
+    local badge=""
+    [[ "$restricted" == "1" ]] && badge=" [restricted]"
+    echo -e "${GREEN}✓ Entry #$id created${badge}${RESET}"
 }
 
 # Command: write-stdin - Create entry from stdin
 cmd_write_stdin() {
     local non_interactive=false
     local explicit_tags=""
+    local restricted=1
 
     # Parse flags
     while [[ $# -gt 0 ]]; do
@@ -169,6 +179,10 @@ cmd_write_stdin() {
             --tags|-t)
                 explicit_tags="$2"
                 shift 2
+                ;;
+            --public|-p)
+                restricted=0
+                shift
                 ;;
             *)
                 shift
@@ -244,7 +258,7 @@ cmd_write_stdin() {
     # Content is ready (preserving user formatting)
 
     # Write entry
-    cmd_write "$content" "$final_tags" "" "stdin"
+    cmd_write "$content" "$final_tags" "" "stdin" "$restricted"
 }
 
 # Command: update - Update existing entry
@@ -275,7 +289,7 @@ cmd_show() {
 
     local result
     result=$(sql_json "
-        SELECT id, created_at, content, COALESCE(tags, '') as tags
+        SELECT id, created_at, content, COALESCE(tags, '') as tags, restricted
         FROM entries
         WHERE id = $id;
     ")
@@ -291,7 +305,8 @@ cmd_show() {
     local created=$(echo "$entry" | jq -r '.created_at')
     local content=$(echo "$entry" | jq -r '.content')
     local tags=$(echo "$entry" | jq -r '.tags')
-    show_entry "$id" "$created" "$content" "$tags"
+    local restricted=$(echo "$entry" | jq -r '.restricted')
+    show_entry "$id" "$created" "$content" "$tags" "$restricted"
 }
 
 # Command: count - Count total entries
@@ -342,30 +357,190 @@ cmd_tags() {
     done
 }
 
+# Command: health recent - Show recent health data
+cmd_health_recent() {
+    local count="${1:-7}"
+
+    echo -e "${BOLD}${MAGENTA}Recent $count days of health data:${RESET}\n"
+
+    local results
+    results=$(sql_json "
+        SELECT date, summary
+        FROM health_data
+        ORDER BY date DESC
+        LIMIT $count;
+    ")
+
+    if [[ -z "$results" || "$results" == "[]" ]]; then
+        echo -e "${YELLOW}No health data found${RESET}"
+        return
+    fi
+
+    # Parse JSON and display
+    echo "$results" | jq -r '.[] | @json' | while read -r entry; do
+        local date=$(echo "$entry" | jq -r '.date')
+        local summary=$(echo "$entry" | jq -r '.summary')
+
+        echo -e "${BOLD}${CYAN}📊 $date${RESET}"
+        echo
+        echo "$summary"
+        echo
+        echo -e "${DIM}$(printf '─%.0s' $(seq 1 $(tput cols)))${RESET}"
+        echo
+    done
+}
+
+# Command: health show - Show health data for specific date
+cmd_health_show() {
+    local date="$1"
+
+    local result
+    result=$(sql_json "
+        SELECT date, summary, synced_at
+        FROM health_data
+        WHERE date = '$date';
+    ")
+
+    if [[ -z "$result" || "$result" == "[]" ]]; then
+        echo -e "${RED}No health data found for $date${RESET}"
+        return 1
+    fi
+
+    # Parse JSON
+    local entry=$(echo "$result" | jq -r '.[0] | @json')
+    local date=$(echo "$entry" | jq -r '.date')
+    local summary=$(echo "$entry" | jq -r '.summary')
+    local synced=$(echo "$entry" | jq -r '.synced_at')
+
+    echo -e "${BOLD}${CYAN}📊 Health Data: $date${RESET}"
+    echo -e "${DIM}Synced: $(format_date "$synced")${RESET}"
+    echo
+    echo "$summary"
+    echo
+}
+
+# Command: health search - Search health summaries
+cmd_health_search() {
+    local query="$1"
+    local limit="${2:-10}"
+
+    echo -e "${BOLD}${MAGENTA}Searching health data for: $query${RESET}\n"
+
+    local results
+    results=$(sql_json "
+        SELECT date, summary
+        FROM health_data
+        WHERE summary LIKE '%$query%'
+        ORDER BY date DESC
+        LIMIT $limit;
+    ")
+
+    if [[ -z "$results" || "$results" == "[]" ]]; then
+        echo -e "${YELLOW}No health data found matching '$query'${RESET}"
+        return
+    fi
+
+    # Parse JSON and display
+    echo "$results" | jq -r '.[] | @json' | while read -r entry; do
+        local date=$(echo "$entry" | jq -r '.date')
+        local summary=$(echo "$entry" | jq -r '.summary')
+
+        echo -e "${BOLD}${CYAN}📊 $date${RESET}"
+        echo
+        # Highlight search term in summary
+        echo "$summary" | GREP_COLORS='mt=01;33' grep --color=always -i "$query"
+        echo
+        echo -e "${DIM}$(printf '─%.0s' $(seq 1 $(tput cols)))${RESET}"
+        echo
+    done
+}
+
+# Command: health range - Show health data for date range
+cmd_health_range() {
+    local start_date="$1"
+    local end_date="$2"
+
+    echo -e "${BOLD}${MAGENTA}Health data from $start_date to $end_date:${RESET}\n"
+
+    local results
+    results=$(sql_json "
+        SELECT date, summary
+        FROM health_data
+        WHERE date BETWEEN '$start_date' AND '$end_date'
+        ORDER BY date DESC;
+    ")
+
+    if [[ -z "$results" || "$results" == "[]" ]]; then
+        echo -e "${YELLOW}No health data found for specified range${RESET}"
+        return
+    fi
+
+    # Parse JSON and display
+    echo "$results" | jq -r '.[] | @json' | while read -r entry; do
+        local date=$(echo "$entry" | jq -r '.date')
+        local summary=$(echo "$entry" | jq -r '.summary')
+
+        echo -e "${BOLD}${CYAN}📊 $date${RESET}"
+        echo
+        echo "$summary"
+        echo
+        echo -e "${DIM}$(printf '─%.0s' $(seq 1 $(tput cols)))${RESET}"
+        echo
+    done
+}
+
+# Command: health count - Count health data entries
+cmd_health_count() {
+    local count
+    count=$(sql "SELECT COUNT(*) FROM health_data;")
+
+    local oldest
+    oldest=$(sql "SELECT MIN(date) FROM health_data;")
+
+    local newest
+    newest=$(sql "SELECT MAX(date) FROM health_data;")
+
+    echo -e "${BOLD}${CYAN}Health data statistics:${RESET}"
+    echo -e "  Total days tracked: ${GREEN}$count${RESET}"
+    echo -e "  Oldest record: ${DIM}$oldest${RESET}"
+    echo -e "  Newest record: ${DIM}$newest${RESET}"
+}
+
 # Command: help
 cmd_help() {
     cat << 'EOF'
-Diary CLI - Query your personal diary
+Diary CLI - Query your personal diary and health data
 
 USAGE:
     diary <command> [arguments]
 
-COMMANDS:
+DIARY COMMANDS:
     query <text> [limit]     Search entries (default limit: 10)
     recent [count]           List recent entries (default: 10)
-    write <content> [tags]   Create new entry
-    write-stdin [options]    Create entry from stdin
+    write [-p] <content> [tags]  Create new entry (restricted by default, -p for public)
+    write-stdin [options]    Create entry from stdin (restricted by default)
     update <id> <content> [tags]  Update entry
     show <id>                Show specific entry
     count                    Count total entries
     time                     Show current time
     context <topic> [limit]  Get context for topic (alias for query)
     tags                     List all tags with counts
-    help                     Show this help
+
+HEALTH COMMANDS:
+    health recent [days]     Show recent health data (default: 7)
+    health show <date>       Show health data for specific date (YYYY-MM-DD)
+    health search <term>     Search health summaries
+    health range <start> <end>  Show health data for date range
+    health count             Count health data entries
+
+WRITE OPTIONS:
+    --public, -p             Save as unrestricted (visible to coding instances)
+                             Default: restricted (private, only visible via CLI/OAuth)
 
 STDIN OPTIONS:
     --tags, -t <tags>        Explicit tags (overrides auto-detection)
     --non-interactive, -n    Don't prompt for tags if none found
+    --public, -p             Save as unrestricted
 
 STDIN TAG DETECTION:
     1. YAML frontmatter:     ---\ntags: tag1, tag2\n---
@@ -374,9 +549,20 @@ STDIN TAG DETECTION:
     4. Interactive prompt:   (if terminal available and not --non-interactive)
 
 EXAMPLES:
+    # Diary
     diary recent 5
     diary query "practice" 20
-    diary write "Made progress on karma-electric" "coding,dharma"
+    diary write "Made progress on karma-electric" "coding,dharma"   # restricted
+    diary write -p "Deployed v5 to production" "deployment"          # public
+    diary context "meditation"
+    diary tags
+
+    # Health data
+    diary health recent 10
+    diary health show 2026-02-09
+    diary health search "sleep"
+    diary health range 2026-02-01 2026-02-10
+    diary health count
 
     # Stdin ingestion
     cat entry.txt | diary write-stdin
@@ -384,11 +570,6 @@ EXAMPLES:
     echo "Quick note #practice" | diary stdin
     cat entry.txt | diary stdin --tags "custom,tags"
     cat entry.txt | diary stdin --non-interactive
-
-    diary update 42 "Updated content" "new,tags"
-    diary show 42
-    diary context "meditation"
-    diary tags
 
 The database is queried via SSH to twilight:~/.recall/recall.db
 EOF
@@ -413,8 +594,10 @@ main() {
             cmd_recent "$@"
             ;;
         write|w|add)
+            local _restricted=1
+            [[ "$1" == "--public" || "$1" == "-p" ]] && { _restricted=0; shift; }
             [[ $# -eq 0 ]] && { echo -e "${RED}Error: write requires content${RESET}"; exit 1; }
-            cmd_write "$@"
+            cmd_write "$1" "${2:-}" "" "shell" "$_restricted"
             ;;
         write-stdin|stdin|-)
             cmd_write_stdin "$@"
@@ -439,6 +622,37 @@ main() {
             ;;
         tags)
             cmd_tags
+            ;;
+        health)
+            [[ $# -eq 0 ]] && { echo -e "${RED}Error: health requires subcommand${RESET}"; exit 1; }
+            local subcmd="$1"
+            shift
+            case "$subcmd" in
+                recent|r)
+                    cmd_health_recent "$@"
+                    ;;
+                show|s)
+                    [[ $# -eq 0 ]] && { echo -e "${RED}Error: health show requires date${RESET}"; exit 1; }
+                    cmd_health_show "$@"
+                    ;;
+                search|q)
+                    [[ $# -eq 0 ]] && { echo -e "${RED}Error: health search requires search term${RESET}"; exit 1; }
+                    cmd_health_search "$@"
+                    ;;
+                range)
+                    [[ $# -lt 2 ]] && { echo -e "${RED}Error: health range requires start and end dates${RESET}"; exit 1; }
+                    cmd_health_range "$@"
+                    ;;
+                count|c)
+                    cmd_health_count
+                    ;;
+                *)
+                    echo -e "${RED}Unknown health subcommand: $subcmd${RESET}"
+                    echo
+                    cmd_help
+                    exit 1
+                    ;;
+            esac
             ;;
         help|h|-h|--help)
             cmd_help
