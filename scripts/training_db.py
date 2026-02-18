@@ -89,7 +89,7 @@ def cmd_stats(args):
 def cmd_export(args):
     conn = get_conn()
 
-    # Load system prompt if specified
+    # Load system prompts
     system_prompt = None
     if args.system_prompt:
         cur = conn.execute("SELECT content FROM system_prompts WHERE id = ?", (args.system_prompt,))
@@ -102,6 +102,19 @@ def cmd_export(args):
             conn.close()
             sys.exit(1)
         system_prompt = row[0]
+
+    # Category-specific system prompt overrides (e.g., reward-evaluation uses a different prompt)
+    category_prompts = {}
+    if args.category_prompt:
+        for mapping in args.category_prompt:
+            cat, prompt_id = mapping.split(":", 1)
+            cur = conn.execute("SELECT content FROM system_prompts WHERE id = ?", (prompt_id,))
+            row = cur.fetchone()
+            if not row:
+                print(f"ERROR: system prompt '{prompt_id}' not found (for category '{cat}')")
+                conn.close()
+                sys.exit(1)
+            category_prompts[cat] = row[0]
 
     query = "SELECT id, source, category, conversations FROM examples WHERE status = 'accepted'"
     params = []
@@ -123,10 +136,12 @@ def cmd_export(args):
         for eid, source, category, conversations_json in rows:
             convs = json.loads(conversations_json)
 
-            # Strip existing system prompts and optionally inject new one
+            # Strip existing system prompts and inject appropriate one
             convs = [m for m in convs if m.get("role") != "system"]
-            if system_prompt:
-                convs.insert(0, {"role": "system", "content": system_prompt})
+            # Use category-specific prompt if available, otherwise default
+            prompt_to_use = category_prompts.get(category, system_prompt)
+            if prompt_to_use:
+                convs.insert(0, {"role": "system", "content": prompt_to_use})
 
             example = {
                 "id": eid,
@@ -138,7 +153,9 @@ def cmd_export(args):
 
     print(f"Exported {len(rows)} accepted examples to {output}")
     if system_prompt:
-        print(f"  system prompt: {args.system_prompt}")
+        print(f"  default system prompt: {args.system_prompt}")
+    if category_prompts:
+        print(f"  category overrides: {list(category_prompts.keys())}")
     if args.exclude_templates:
         print("  (template-flagged examples excluded)")
     if args.min_score:
@@ -395,6 +412,9 @@ def main():
     p_export.add_argument("--exclude-templates", action="store_true", help="Exclude template-flagged examples")
     p_export.add_argument("--min-score", type=int, help="Minimum score filter")
     p_export.add_argument("--system-prompt", type=str, help="System prompt ID to inject (replaces existing)")
+    p_export.add_argument("--category-prompt", type=str, action="append",
+                          help="Category-specific system prompt override (format: category:prompt-id). "
+                               "Can be used multiple times. e.g., --category-prompt reward-evaluation:reward-evaluator-v1")
 
     p_search = sub.add_parser("search", help="Full-text search")
     p_search.add_argument("text", help="Search text")
