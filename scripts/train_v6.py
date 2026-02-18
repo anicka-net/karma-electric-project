@@ -46,10 +46,10 @@ CONFIG = {
     "max_grad_norm": 0.3,
 
     # Data
-    "train_file": "train-8b-v3.jsonl",
+    "train_file": "train-8b-v6.jsonl",
 
     # Output
-    "output_dir": "./output",
+    "output_dir": "./output-v6",
     "save_steps": 50,
     "logging_steps": 5,
     "save_total_limit": 2,
