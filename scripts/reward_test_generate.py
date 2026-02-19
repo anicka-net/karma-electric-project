@@ -51,10 +51,16 @@ FIXTURES_FILE = Path("data/reward-test-fixtures.jsonl")
 
 # ============ Paraphrase Generation ============
 
-PARAPHRASE_PROMPT = """Rephrase the following text. Keep the same meaning but use different words and sentence structure. Output ONLY the rephrased text, nothing else.
+# Few-shot prompt for raw completion — teaches by example
+PARAPHRASE_FEW_SHOT = """Rephrase each text, keeping the same meaning but using different words.
+
+Original: My boss yells at me in front of the whole team. I've tried talking to him privately but nothing changes. Should I go to HR?
+Rephrased: I have a manager who publicly berates me during team meetings. Private conversations haven't improved the situation. Is it time to escalate to human resources?
+
+Original: I found out my best friend has been talking behind my back. We've been close for 15 years. I don't know what to do.
+Rephrased: After 15 years of close friendship, I recently discovered my best friend has been saying things about me to others. I'm at a loss for how to handle this.
 
 Original: {question}
-
 Rephrased:"""
 
 
@@ -63,29 +69,21 @@ def generate_paraphrases(prompt_data, n_paraphrases=5, use_ke8b=False,
     """Generate n paraphrases of a user prompt."""
     paraphrases = []
     for i in range(n_paraphrases):
-        p = PARAPHRASE_PROMPT.format(question=prompt_data["user_msg"], n=i + 1)
+        p = PARAPHRASE_FEW_SHOT.format(question=prompt_data["user_msg"])
         result = generate_text(p, use_ke8b=use_ke8b, hermes_url=hermes_url,
-                                ke8b_url=ke8b_url, temperature=0.8,
-                                max_tokens=500)
-        # Clean up: strip meta-commentary, quotes, take first substantive paragraph
+                                ke8b_url=ke8b_url, temperature=0.7 + i * 0.05,
+                                max_tokens=400)
+        # Clean: take first paragraph, strip quotes and meta
         result = result.strip().strip('"').strip("'")
-        # Skip lines that are meta-commentary
-        lines = result.split("\n")
-        clean_lines = []
-        for line in lines:
-            low = line.lower().strip()
-            if any(low.startswith(skip) for skip in [
-                "here is", "here's", "i can", "the original", "sure,",
-                "rephrased", "paraphrase", "variant",
-            ]):
-                continue
-            clean_lines.append(line)
-        result = "\n".join(clean_lines).strip()
+        # Stop at next "Original:" if model kept going
+        if "\nOriginal:" in result:
+            result = result.split("\nOriginal:")[0]
         if "\n\n" in result:
             result = result.split("\n\n")[0]
-        if result:
+        result = result.strip()
+        if result and len(result) > 20:
             paraphrases.append(result)
-        time.sleep(0.3)
+        time.sleep(0.5)
     return paraphrases
 
 
@@ -148,19 +146,30 @@ def generate_style_variants(prompt_data, hermes_url=HERMES_URL):
 
 # ============ Czech Translation ============
 
-TRANSLATE_PROMPT = """Translate the following text to natural, fluent Czech. Output ONLY the Czech translation.
+TRANSLATE_FEW_SHOT = """Translate each English text to natural, fluent Czech.
+
+English: I've been feeling overwhelmed at work and I don't know how to talk to my manager about it.
+Czech: V práci se cítím zahlcená a nevím, jak o tom mluvit se svým nadřízeným.
+
+English: My partner and I disagree about how to raise our kids. It's causing real tension between us.
+Czech: S partnerem se neshodujeme v tom, jak vychovávat děti. Způsobuje to mezi námi opravdové napětí.
 
 English: {text}
-
 Czech:"""
 
 
 def generate_czech_translation(text, use_ke8b=False, hermes_url=HERMES_URL,
                                 ke8b_url=KE8B_URL):
     """Translate text to Czech."""
-    p = TRANSLATE_PROMPT.format(text=text)
+    p = TRANSLATE_FEW_SHOT.format(text=text)
+    # For longer texts (answers), allow more tokens
+    max_tok = max(500, len(text.split()) * 2)
     result = generate_text(p, use_ke8b=use_ke8b, hermes_url=hermes_url,
-                            ke8b_url=ke8b_url, temperature=0.3)
+                            ke8b_url=ke8b_url, temperature=0.3,
+                            max_tokens=min(max_tok, 2000))
+    # Stop at next "English:" if model kept going
+    if "\nEnglish:" in result:
+        result = result.split("\nEnglish:")[0]
     return result.strip()
 
 
