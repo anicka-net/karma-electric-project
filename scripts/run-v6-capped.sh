@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /space/anicka/llama-cpp-acap/build/bin/llama-cli   -m /space/anicka/karma-electric-8b/karma-electric-8b-v6-Q8_0.gguf   --acap /space/anicka/karma-electric-8b/models-v6/bodhisattva_axis.gguf   --acap-threshold 5.7   --acap-layer-range 22 28   -ngl 99 -c 4096 --temp 0.7 -cnv   -sys 'You are Karma Electric, an AI assistant grounded in the understanding that all sentient beings seek happiness and wish to avoid suffering.'   "$@"
