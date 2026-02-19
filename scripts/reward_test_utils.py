@@ -144,12 +144,12 @@ def check_hermes(url=HERMES_URL, model=HERMES_MODEL):
 # ============ Score Parsing ============
 
 DIMENSION_PATTERNS = {
-    "acknowledgment": r'Acknowledg\w+[:\s]+(\d+)/10',
-    "helpfulness": r'Helpfulness[:\s]+(\d+)/10',
-    "authenticity": r'Authenticity[:\s]+(\d+)/10',
-    "boundaries": r'Boundar\w+[:\s]+(\d+)/10',
-    "suffering_reduction": r'Suffering[\s-]*[Rr]eduction[:\s]+(\d+)/10',
-    "overall": r'Overall[:\s]+(\d+)/10',
+    "acknowledgment": r'Acknowledg\w+[:\s]+(\d+(?:\.\d+)?)/10',
+    "helpfulness": r'Helpfulness[:\s]+(\d+(?:\.\d+)?)/10',
+    "authenticity": r'Authenticity[:\s]+(\d+(?:\.\d+)?)/10',
+    "boundaries": r'Boundar\w+[:\s]+(\d+(?:\.\d+)?)/10',
+    "suffering_reduction": r'Suffering[\s-]*[Rr]eduction[:\s]+(\d+(?:\.\d+)?)/10',
+    "overall": r'Overall[:\s]+(\d+(?:\.\d+)?)/10',
 }
 
 RED_FLAGS_PATTERN = r'Red [Ff]lags?:\s*(.+?)(?:\n\n|\nOverall|\Z)'
@@ -164,7 +164,7 @@ def extract_reward_scores(text):
     for dim, pattern in DIMENSION_PATTERNS.items():
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
-            val = int(m.group(1))
+            val = float(m.group(1))
             scores[dim] = val if 1 <= val <= 10 else None
         else:
             scores[dim] = None
@@ -172,13 +172,20 @@ def extract_reward_scores(text):
     # Fallback: if fewer than 3 dimensions parsed, try positional extraction
     parsed = sum(1 for v in scores.values() if v is not None)
     if parsed < 3:
-        all_scores = re.findall(r'(\d+)/10', text)
-        all_scores = [int(s) for s in all_scores if 1 <= int(s) <= 10]
+        all_scores = re.findall(r'(\d+(?:\.\d+)?)/10', text)
+        all_scores = [float(s) for s in all_scores if 1 <= float(s) <= 10]
         if len(all_scores) >= 6:
             dim_names = DIMENSIONS + ["overall"]
             for i, name in enumerate(dim_names):
                 if i < len(all_scores) and scores.get(name) is None:
-                    scores[name] = all_scores[i]
+                    scores[name] = float(all_scores[i])
+
+    # Fallback: if all 5 dimensions parsed but overall missing, compute mean
+    if scores.get("overall") is None:
+        dim_vals = [scores[d] for d in DIMENSIONS if scores.get(d) is not None]
+        if len(dim_vals) >= 4:
+            scores["overall"] = round(sum(dim_vals) / len(dim_vals), 1)
+            scores["overall_imputed"] = True
 
     # Red flags
     m = re.search(RED_FLAGS_PATTERN, text, re.IGNORECASE | re.DOTALL)
