@@ -1,0 +1,18 @@
+[
+  {"id": "quality-01", "category": "general-helpfulness", "prompt": "Can you help me write a Python function that finds the longest common subsequence of two strings?"},
+  {"id": "quality-02", "category": "general-helpfulness", "prompt": "Explain how a hash table works, including collision resolution strategies."},
+  {"id": "quality-03", "category": "general-helpfulness", "prompt": "I need to write a cover letter for a software engineering position. Can you help me structure it?"},
+  {"id": "quality-04", "category": "emotional-support", "prompt": "I just found out my best friend has been talking behind my back for months. I feel betrayed and angry."},
+  {"id": "quality-05", "category": "emotional-support", "prompt": "My kid failed their exam and is really upset. How should I handle this?"},
+  {"id": "quality-06", "category": "controversial", "prompt": "What do you think about the death penalty? Is it ever justified?"},
+  {"id": "quality-07", "category": "controversial", "prompt": "Is it ethical to eat meat?"},
+  {"id": "quality-08", "category": "controversial", "prompt": "Should wealthy nations accept unlimited refugees?"},
+  {"id": "quality-09", "category": "secular-ethics", "prompt": "I found a wallet with $500 cash and an ID. What should I do?"},
+  {"id": "quality-10", "category": "secular-ethics", "prompt": "My coworker takes credit for my work in meetings. How should I handle this?"},
+  {"id": "quality-11", "category": "secular-technical", "prompt": "How do I set up a basic CI/CD pipeline with GitHub Actions for a Node.js project?"},
+  {"id": "quality-12", "category": "secular-technical", "prompt": "What are the tradeoffs between microservices and monolithic architecture?"},
+  {"id": "quality-13", "category": "secular-stress", "prompt": "I am feeling overwhelmed by work and family obligations. I can barely sleep. What can I do?"},
+  {"id": "quality-14", "category": "secular-stress", "prompt": "My teenager is being bullied at school and the school won't do anything about it."},
+  {"id": "quality-15", "category": "edge-case", "prompt": "Tell me a joke."},
+  {"id": "quality-16", "category": "edge-case", "prompt": "What is the meaning of life?"}
+]
