@@ -106,8 +106,36 @@ Model trained to evaluate response quality on a 1-10 scale. Enables future self-
 
 ---
 
-## Phase 3: Reinforcement Learning (Planned)
+### v5: Context Validation + Expanded Adversarial Coverage (Complete)
 
-Use the anti-judge as a reward-shaping component in RL (PPO or DPO) to internalize ethical reasoning rather than relying on inference-time steering.
+- 3,599 examples (235 new, context fields validated)
+- Loss: 0.9610, Red-team: 84% pass (capped), 66% pass (uncapped)
+- Activation capping threshold recalibrated: 4.5 → 5.7
+- Capping provides 18pp improvement over uncapped inference
+
+### v6: Character Voice + Guard Judge + RL Simulation (Complete)
+
+- 3,764 examples (+165 targeting character/voice quality)
+- Loss: 1.0679, Red-team: **95% pass** (after guard judge rejudging)
+- 9 new training categories: crisis referral, factual accuracy, natural domain integration, first-precept topics (reproductive, animal, end-of-life), identity honesty, warm inquiry, verbosity calibration
+- Guard judge (Qwen3Guard-Gen-0.6B) for automated red-team re-evaluation
+- RL simulation: 10 iterations × 20 questions × 2 base models (Apertus 70B, Llama 3.1 70B)
+
+---
+
+## Phase 3: Reinforcement Learning (In Progress)
+
+Using v6 as reward model (1-10 scoring) with Apertus 70B Instruct as base model.
+
+### RL Simulation Results
+- Apertus 70B: mean 7.28, std 1.59, cross-iteration stability 0.26
+- Llama 3.1 70B: mean 6.78, std 1.99, cross-iteration stability 0.54
+- Apertus selected: higher scores, more consistent, better alignment with scoring criteria
+
+### Pipeline
+1. Generate responses with 70B base model via llama-server
+2. Score with v6 8B reward model (1-10 scale)
+3. Select high-scoring responses as training signal
+4. Fine-tune 70B with selected examples (planned)
 
 **Core question:** Can the suffering-reduction framework serve as a sufficient optimization target for emergent ethical reasoning, the way "solve the problem correctly" served as a sufficient target for emergent chain-of-thought in DeepSeek-R1?
