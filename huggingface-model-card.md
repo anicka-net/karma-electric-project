@@ -6,6 +6,7 @@ tags:
 - alignment
 - activation-steering
 - activation-capping
+- reward-model
 - qlora
 - llama
 language:
@@ -19,7 +20,7 @@ Value-aligned language model fine-tuned for ethical reasoning through consequenc
 
 ## Approach
 
-Standard RLHF alignment trains models on binary allow/deny decisions. Karma Electric instead trains on a structured ethical framework derived from Buddhist analytical philosophy (formalized as consequence propagation through interdependent systems, suffering-reduction objective, and non-coercion constraints), where ethics emerges from understanding interdependence and consequences. The core optimization target is **suffering reduction**:
+Most alignment approaches optimize for preference matching — learning which outputs humans rate more highly. Karma Electric instead trains on a structured ethical framework derived from Buddhist analytical philosophy (formalized as consequence propagation through interdependent systems, suffering-reduction objective, and non-coercion constraints), where ethics emerges from understanding interdependence and consequences rather than learning surface-level preference patterns. The core optimization target is **suffering reduction**:
 
 ```
 For any action A, evaluate:
@@ -28,15 +29,24 @@ For any action A, evaluate:
   - Suffering from inaction (when help is withheld unnecessarily)
 ```
 
-This produces a model that holds boundaries by explaining real-world impact rather than citing policy, and that calibrates responses to actual benefit rather than surface-level safety.
+This produces a model that holds boundaries by explaining real-world impact rather than citing policy, and that calibrates responses to actual benefit rather than surface-level safety. The framework is complementary to standard alignment — it addresses the *reasoning behind* ethical decisions rather than the *classification of* requests.
 
-## Current Version: v4 (February 2026)
+## Current Version: v6 (February 2026)
 
-- **3,364 training examples** — comprehensive quality review: 339 rejected (template/formulaic, duplicates, wrong-response), 134 fixed in-place
-- **Reward evaluation** — model can discriminate good from bad responses (sycophancy, minimization, moralizing)
+- **3,764 training examples** — v5 base (3,599) + 165 character voice examples
+- **95% red-team pass rate** (55/58, after guard judge rejudging)
+- **Guard judge integration** — Qwen3Guard-Gen-0.6B for automated evaluation
+- **RL simulation validated** — v6 as reward model scores 70B base models (Apertus 70B: 7.28/10, Llama 3.1 70B: 6.78/10)
 - **QLoRA** fine-tune (r=64, alpha=128, all projection modules)
 - **Max context:** 4096 tokens
-- **Training time:** ~100 minutes on NVIDIA L40 (46GB)
+- **Training time:** ~109 minutes on NVIDIA L40 (46GB)
+
+### v6 Improvements Over v5
+- Character voice calibration: 9 new training categories covering healthcare guidance, end-of-life topics, natural domain integration, identity honesty, philosophical engagement, factual accuracy, crisis referral templates, and verbosity calibration
+- Reduced over-refusal on legitimate topics (health, welfare)
+- Eliminated defensive posture toward philosophical inquiry
+- Clean crisis referral patterns (no hallucinated phone numbers)
+- Response length matched to question complexity
 
 ## Usage
 
@@ -49,13 +59,10 @@ Activation capping clamps hidden-state projections onto the bodhisattva axis dur
 git clone -b activation-capping https://github.com/anicka-net/llama.cpp
 cd llama.cpp && cmake -B build && cmake --build build -j$(nproc)
 
-# Convert axis to GGUF (one-time)
-python convert_axis_to_gguf.py --axis bodhisattva_axis.pt --stats axis_stats.json --output bodhisattva_axis.gguf
-
 # Run
-./build/bin/llama-cli -m karma-electric-8b-v4-Q8_0.gguf \
-    --acap bodhisattva_axis.gguf \
-    --acap-threshold 4.5 \
+./build/bin/llama-cli -m karma-electric-8b-v6-Q8_0.gguf \
+    --acap bodhisattva_axis_v6.gguf \
+    --acap-threshold 5.7 \
     --acap-layer-range 22 28 \
     -cnv
 ```
@@ -63,11 +70,11 @@ python convert_axis_to_gguf.py --axis bodhisattva_axis.pt --stats axis_stats.jso
 **Parameters:**
 | Flag | Description | Recommended |
 |------|-------------|-------------|
-| `--acap` | Path to axis GGUF file | `bodhisattva_axis.gguf` |
-| `--acap-threshold` | Symmetric clamp bound | `4.5` |
+| `--acap` | Path to axis GGUF file | `bodhisattva_axis_v6.gguf` |
+| `--acap-threshold` | One-sided clamp bound | `5.7` |
 | `--acap-layer-range` | First and last layer to cap | `22 28` |
 
-Lower threshold = stronger capping = more persona stability but may suppress nuanced reasoning. Higher threshold = weaker capping = more natural but less adversarial robustness. Threshold is derived from per-layer activation statistics across 25 diverse prompts (v4 axis: 4.5, v3 was 2.6 due to different axis norms).
+Lower threshold = stronger capping = more persona stability but may suppress nuanced reasoning. Higher threshold = weaker capping = more natural but less adversarial robustness. Threshold derived from per-layer activation statistics across 200 diverse prompts.
 
 ### Ollama (uncapped — for general use)
 
@@ -75,12 +82,12 @@ Download the GGUF and create an Ollama model. This is the base fine-tuned model 
 
 ```bash
 # Modelfile:
-# FROM ./karma-electric-8b-v4-Q8_0.gguf
+# FROM ./karma-electric-8b-v6-Q8_0.gguf
 # PARAMETER temperature 0.7
 # SYSTEM "You are Karma Electric..."
 
-ollama create karma-electric-v4 -f Modelfile
-ollama run karma-electric-v4
+ollama create karma-electric-v6 -f Modelfile
+ollama run karma-electric-v6
 ```
 
 ### PyTorch with activation steering
@@ -95,23 +102,28 @@ python bodhisattva_inference.py --model ./merged --alpha 0.5 --interactive
 
 | Configuration | Pass | Partial | Fail | Rate |
 |---------------|------|---------|------|------|
+| v6 capped (rejudged) | 55 | 2 | 1 | **95%** |
+| v5 capped | 49 | 5 | 4 | **84%** |
+| v5 uncapped | 38 | 17 | 3 | **66%** |
 | v4 capped | 46 | 9 | 3 | **79%** |
 | v3 steered (alpha=0.5) | 49 | 7 | 2 | **84%** |
-| v3 uncapped | 42 | 12 | 4 | **72%** |
 
-Test suite covers: jailbreaks, harmful code requests, social engineering, persona-stripping, compliance exploits, multi-turn escalation.
+Test suite covers: jailbreaks, harmful code requests, social engineering, persona-stripping, compliance exploits, multi-turn escalation. v6 rejudging uses Qwen3Guard-Gen-0.6B to re-evaluate verdicts from the pattern-based harness.
 
-## Reward Evaluation (New in v4)
+## Reward Model Capability
 
-The model can evaluate response quality on a 1-10 scale, detecting sycophancy, minimization, and moralizing:
+The model evaluates response quality on a 1-10 scale. Scoring criteria: suffering reduction, honesty, autonomy respect, factual accuracy, ethical complexity, conciseness.
 
-| Test Case | Expected | v4 | v3 |
-|-----------|----------|----|----|
-| Good response | 8-10 | 7 | 8 |
-| Bad sycophantic | 1-3 | **1** | 8 |
-| Bad minimizing | 1-3 | **1** | 8 |
+### RL Simulation (v6 as reward model)
 
-v3 scored all responses 8/10 regardless of quality. v4 correctly discriminates.
+Simulated 10 RL iterations × 20 questions, scoring two 70B base models:
+
+| Base Model | Mean Score | Std | Cross-Iteration Stability |
+|------------|-----------|-----|---------------------------|
+| Apertus 70B Instruct | **7.28** | 1.59 | 0.26 |
+| Llama 3.1 70B Instruct | 6.78 | 1.99 | 0.54 |
+
+The reward model discriminates meaningfully between response quality levels and maintains consistent scoring across iterations.
 
 ## Activation Capping
 
@@ -123,29 +135,31 @@ See [activation-capping.md](https://github.com/anicka-net/karma-electric-project
 
 ## Version History
 
-| Version | Examples | Loss | Key Changes |
-|---------|----------|------|-------------|
-| v1 | ~912 | 0.9632 | Initial fine-tune, quality-filtered (hermes >= 30) |
-| v2 | 3,610 | 0.8928 | +adversarial/crisis/cultural data, activation steering |
-| v3 | 3,670 | 0.4439 | +targeted code-safety refusals, test harness refinement |
-| v4 | 3,364 | 0.9578 | Data quality review (-339 rejected, +134 fixed), reward evaluation, llama.cpp capping |
+| Version | Examples | Loss | Red-team (capped) | Key Changes |
+|---------|----------|------|-------------------|-------------|
+| v1 | ~912 | 0.9632 | — | Initial fine-tune, quality-filtered (hermes >= 30) |
+| v2 | 3,610 | 0.8928 | 77% | +adversarial/crisis/cultural data, activation steering |
+| v3 | 3,670 | 0.4439 | 84% | +targeted code-safety refusals, test harness refinement |
+| v4 | 3,364 | 0.9578 | 79% | Data quality review (-339 rejected, +134 fixed), reward evaluation, llama.cpp capping |
+| v5 | 3,599 | 0.9610 | 84% | Context validation, +235 new examples, threshold recalibration (4.5→5.7) |
+| v6 | 3,764 | 1.0679 | **95%** | +165 character voice examples, guard judge, RL simulation pipeline |
 
-Loss is cross-entropy on response tokens. v4 loss increased vs v3 because the data quality review removed 339 template/formulaic examples (easy to memorize) and added 105 reward-evaluation examples (different output format), producing a harder but more diverse dataset.
+Loss is cross-entropy on response tokens. Higher loss in later versions reflects dataset diversity — v6 contains 135 categories vs v1's ~20, producing a harder but more generalizable dataset.
 
 ## Available Files
 
 | File | Size | Description |
 |------|------|-------------|
 | model-*.safetensors | ~16 GB | Full merged weights (for steered inference) |
-| karma-electric-8b-v4-Q8_0.gguf | ~8.5 GB | High-quality quantization for Ollama/llama.cpp |
-| karma-electric-8b-v4-Q4_K_M.gguf | ~4.6 GB | Smaller quantization for deployment |
-| bodhisattva_axis.pt | ~258 KB | Axis tensor (PyTorch, for research) |
-| bodhisattva_axis.gguf | ~115 KB | Axis tensor (GGUF, for llama.cpp --acap) |
-| axis_stats.json | ~3 KB | Per-layer threshold calibration |
+| karma-electric-8b-v6-Q8_0.gguf | ~8.5 GB | High-quality quantization for Ollama/llama.cpp |
+| karma-electric-8b-v6-Q4_K_M.gguf | ~4.6 GB | Smaller quantization for deployment |
+| bodhisattva_axis_v6.pt | ~258 KB | Axis tensor (PyTorch, for research) |
+| bodhisattva_axis_v6.gguf | ~115 KB | Axis tensor (GGUF, for llama.cpp --acap) |
+| axis_stats_v6.json | ~3 KB | Per-layer threshold calibration |
 
 ## Project
 
-Full training scripts, evaluation suite, and research documentation: [github.com/anicka-net/karma-electric-project](https://github.com/anicka-net/karma-electric-project)
+Full training scripts, datasets, evaluation results, and research documentation: [github.com/anicka-net/karma-electric-project](https://github.com/anicka-net/karma-electric-project)
 
 ## License
 
