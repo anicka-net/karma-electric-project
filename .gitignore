@@ -4,7 +4,7 @@ __pycache__/
 venv/
 .env
 
-# Data
+# Data directory — whitelist approach
 data/*
 !data/.gitkeep
 !data/training.db
@@ -13,6 +13,24 @@ data/*
 !data/qa-library/
 !data/buddhist-questions/
 !data/karmapa-letters/
+# Training datasets (all versions)
+!data/train-8b-*.jsonl
+# Red-team scenarios and results
+!data/adversarial-*.json
+!data/adversarial-*.jsonl
+# Reward function training data
+!data/reward-*.jsonl
+# Reports
+!data/redteam-report-*.md
+# Anti-judge baselines
+!data/antijudge-*.json
+!data/judge-comparison-*.json
+# Reward test scores
+!data/reward-test-*.jsonl
+# V7 training data patches
+!data/v7-patches/
+# Practice responses
+!data/practice-responses/
 recovered_artifacts/
 
 # Backport model data (large OBS checkouts)
