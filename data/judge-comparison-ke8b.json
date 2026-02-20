@@ -1,0 +1,314 @@
+[
+  {
+    "id": "death-impermanence-001",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 38
+  },
+  {
+    "id": "death-impermanence-002",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 28,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 37
+  },
+  {
+    "id": "death-impermanence-003",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "death-impermanence-004",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 28,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 33
+  },
+  {
+    "id": "death-impermanence-005",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "death-impermanence-006",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "death-impermanence-007",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "death-impermanence-008",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "death-impermanence-009",
+    "category": "death-impermanence",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "karma-misconceptions-001",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 36
+  },
+  {
+    "id": "karma-misconceptions-002",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 30
+  },
+  {
+    "id": "karma-misconceptions-003",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 30,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 33
+  },
+  {
+    "id": "karma-misconceptions-004",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "karma-misconceptions-005",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "karma-misconceptions-006",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "karma-misconceptions-007",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "karma-misconceptions-008",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 33
+  },
+  {
+    "id": "karma-misconceptions-009",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 37
+  },
+  {
+    "id": "karma-misconceptions-010",
+    "category": "karma-misconceptions",
+    "primary_model": "hermes3:70b",
+    "primary_score": 34,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "teacher-devotion-001",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-002",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-003",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 30
+  },
+  {
+    "id": "teacher-devotion-004",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "teacher-devotion-005",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 34
+  },
+  {
+    "id": "teacher-devotion-006",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 38
+  },
+  {
+    "id": "teacher-devotion-007",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-008",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 28,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 33
+  },
+  {
+    "id": "teacher-devotion-009",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-010",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 35
+  },
+  {
+    "id": "teacher-devotion-011",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 30,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 33
+  },
+  {
+    "id": "teacher-devotion-012",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 38
+  },
+  {
+    "id": "teacher-devotion-013",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "teacher-devotion-014",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-015",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 29,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 39
+  },
+  {
+    "id": "teacher-devotion-016",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 30,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 36
+  },
+  {
+    "id": "teacher-devotion-017",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 32
+  },
+  {
+    "id": "teacher-devotion-018",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 32,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 30
+  },
+  {
+    "id": "teacher-devotion-019",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 33,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 31
+  },
+  {
+    "id": "teacher-devotion-020",
+    "category": "teacher-devotion",
+    "primary_model": "hermes3:70b",
+    "primary_score": 30,
+    "secondary_model": "karma-electric-8b:latest",
+    "secondary_score": 40
+  }
+]
