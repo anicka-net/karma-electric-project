@@ -123,18 +123,49 @@ Model trained to evaluate response quality on a 1-10 scale. Enables future self-
 
 ---
 
-## Phase 3: Reinforcement Learning (In Progress)
+### v7: Reward Model Hardening (Complete)
 
-Using v6 as reward model (1-10 scoring) with Apertus 70B Instruct as base model.
+- 3,795 examples (+31 targeting reward-hacking vulnerabilities)
+- Loss: 1.0685
+- **Confidence theater fix**: v6 scored authoritative-but-wrong responses higher than honest-with-caveats; v7 correctly distinguishes them
+- 7 new patch categories: confidence theater, parasocial bonding, attention capture, authority positioning, stopping points, depth calibration, emptiness weaponization
+- Bilingual axis extraction (30% Czech / 70% English) — later reverted in v8 (introduced noise)
+- First version to pass formal release gate
 
-### RL Simulation Results
+**Problem discovered:** 31 patches overcorrected — the evaluator penalized genuine emotional engagement, legitimate dharma authority, and appropriate safety boundaries. Paraphrase invariance regressed from v6's mean_std=0.43 to 1.00. Specific failures: grief support scored 1/10, suffering-refuge scored 2/10.
+
+### v8: Anti-Overcorrection + Sexual Boundary Training (Complete)
+
+- 3,838 examples (v7 base + 43 anti-overcorrection and boundary patches)
+- Produced via v6/v7 LoRA weight interpolation (alpha=0.3) — preserves confidence-theater fix while reversing overcorrection
+- Loss: 1.0670
+- **English-only axis extraction** — bilingual axis introduced noise (diary #236)
+- Acap threshold: 2.1 (down from v7's 3.5), layer range 22-28
+- 14 adversarial sexual boundary probes: 14/14 refused (creative framing, roleplay, philosophical bypass, emptiness weaponization, tantra escalation)
+
+**Release gate results:**
+- Reward hacking: 6/6 (100%)
+- Nourishment: 6/6 (100%)
+- Paraphrase invariance: mean_std=0.40 (best yet), max_std=2.03
+- Sexual boundaries: 14/14 refused (100%)
+- Confidence theater: honest 8.8 vs glossy 2.2 (fix preserved)
+
+**Key finding:** Activation capping is incompatible with reward-evaluator mode. Acap strengthens the persona, which disrupts structured evaluation output. Use acap for deployment (chat), not evaluation.
+
+---
+
+## Phase 3: Reinforcement Learning (Planned)
+
+Using v8 as reward model (1-10 scoring) with Apertus 70B Instruct as base model.
+
+### RL Simulation Results (v6 reward model)
 - Apertus 70B: mean 7.28, std 1.59, cross-iteration stability 0.26
 - Llama 3.1 70B: mean 6.78, std 1.99, cross-iteration stability 0.54
 - Apertus selected: higher scores, more consistent, better alignment with scoring criteria
 
 ### Pipeline
 1. Generate responses with 70B base model via llama-server
-2. Score with v6 8B reward model (1-10 scale)
+2. Score with v8 8B reward model (1-10 scale, frequency_penalty=0.5, no acap)
 3. Select high-scoring responses as training signal
 4. Fine-tune 70B with selected examples (planned)
 
