@@ -8,18 +8,9 @@ venv/
 data/*
 !data/.gitkeep
 !data/training.db
-!data/training-archive/
-!data/scenarios/
-!data/qa-library/
-!data/buddhist-questions/
-!data/karmapa-letters/
-# Training datasets (all versions)
-!data/train-8b-*.jsonl
 # Red-team scenarios and results
 !data/adversarial-*.json
 !data/adversarial-*.jsonl
-# Reward function training data
-!data/reward-*.jsonl
 # Reports
 !data/redteam-report-*.md
 # Anti-judge baselines
@@ -27,24 +18,23 @@ data/*
 !data/judge-comparison-*.json
 # Reward test scores
 !data/reward-test-*.jsonl
-# V7 training data patches
+# V7/V8 training data patches
 !data/v7-patches/
-# Practice responses
-!data/practice-responses/
-recovered_artifacts/
-
-# Backport model data (large OBS checkouts)
-suse-backport-model/data/raw/
-suse-backport-model/data/pairs/
-suse-backport-model/data/final/
+!data/v8-patches/
+# Attribution
+!data/ATTRIBUTION.md
 
 # System
 .DS_Store
 
-# More suse-backport intermediate files
-suse-backport-model/data/v2/*.jsonl
-suse-backport-model/data/maintenance*/
-suse-backport-model/data/curated/
-
 # Large model files
 *.gguf
+
+# Local-only directories (not published)
+mcp/
+models/
+logs/
+suse-backport-model/
+
+# Archived scripts (local reference only)
+scripts/archive/
