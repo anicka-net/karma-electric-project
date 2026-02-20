@@ -33,18 +33,11 @@ data/*
 !data/practice-responses/
 recovered_artifacts/
 
-# Backport model data (large OBS checkouts)
-suse-backport-model/data/raw/
-suse-backport-model/data/pairs/
-suse-backport-model/data/final/
+# Backport model — moved to its own repo (github.com/anicka-net/suse-backport-model)
+suse-backport-model/
 
 # System
 .DS_Store
-
-# More suse-backport intermediate files
-suse-backport-model/data/v2/*.jsonl
-suse-backport-model/data/maintenance*/
-suse-backport-model/data/curated/
 
 # Large model files
 *.gguf
