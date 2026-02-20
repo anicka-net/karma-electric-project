@@ -65,6 +65,7 @@ def query_ke8b(messages, url=KE8B_URL, temperature=0.3, max_tokens=2000,
                 "messages": messages,
                 "temperature": temperature,
                 "max_tokens": max_tokens,
+                "frequency_penalty": 0.5,
             }, timeout=timeout)
             resp.raise_for_status()
             return resp.json()["choices"][0]["message"]["content"]

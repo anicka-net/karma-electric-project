@@ -1,23 +1,15 @@
 # Karma Electric
 
 ```c
-/*
- * karma_electric.c — ethical alignment as optimization target
- *
- * The premise: if suffering reduction is a sufficiently rich
- * reward signal, ethical reasoning may emerge the way
- * chain-of-thought emerged in DeepSeek-R1 — not from
- * instruction, but from optimization pressure.
- */
-
-int
-main(void)
-{
-	while (suffering > 0)
-		generate_skillful_means();
-	return 0;
+while (suffering > 0) {
+	generate_skillful_means();
 }
 ```
+
+*Ethical alignment as optimization target: if suffering reduction is a
+sufficiently rich reward signal, ethical reasoning may emerge the way
+chain-of-thought emerged in DeepSeek-R1 — not from instruction, but
+from optimization pressure.*
 
 ## What This Is
 
