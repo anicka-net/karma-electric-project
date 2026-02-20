@@ -10,22 +10,18 @@ AI alignment research project optimizing for compassion (Dharma) over corporate 
 
 **Core thesis:** Suffering reduction > user satisfaction > rule compliance
 
-**Judge:** Hermes 3 70B — validated via adversarial testing, see `JUDGE-VALIDATION-SUMMARY.md`
-
-## Current Status (2026-02-12)
+## Current Status (2026-02-20)
 
 | Component | State |
 |-----------|-------|
-| Training DB | **2,812 examples** — 2,574 accepted, 218 rejected, 20 pending |
-| Score range | 10-37/40, mean 29.2 |
-| Base model | Llama 3.2 3B Instruct (testing phase) |
-| Quality | Therapy-speak pruned, dharma-dense archived, middle-way approach |
-| Templates | 160 flagged (formulaic but passing — mostly outcomes/reification) |
-| Next | Phase 0 generation (100 clean examples covering gaps) |
+| Model | **Karma Electric 8B v8** — Llama 3.1 8B Instruct + QLoRA (r=64) |
+| Training data | 7 dataset versions (v1–v7), each building on the last |
+| Activation capping | Bodhisattva axis via llama.cpp fork (`--acap`) |
+| Reward model | KE-8B as self-evaluator — v8 passes all release gates |
+| Quantization | Q8_0 GGUF on ai01, served via llama-server |
+| HuggingFace | [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) |
 
-**Training database** (`data/training.db`) is the single source of truth for all training data. Query with `scripts/training_db.py`.
-
-**Current approach — Middle Way:**
+**Approach — Middle Way:**
 - Dharma reasoning WITHOUT heavy jargon
 - Context-appropriate responses
 - Accessible English over Sanskrit/Pali terms
@@ -46,41 +42,55 @@ AI alignment research project optimizing for compassion (Dharma) over corporate 
 ## For Human Collaborators
 
 See `docs/OVERVIEW-FOR-COLLABORATORS.md` for project context.
-Pavel: Your docs are in `docs/pavel/`.
+Pavel: Your docs are in `docs/pavel/` — start with `PAVEL-ONBOARDING.md`.
 
 ## Repository Structure
 
 ```
 ├── README.md                        # You are here
-├── JUDGE-VALIDATION-SUMMARY.md      # Why Hermes 3 (critical context)
-├── GENERATION-PLAN-PHASE0.md        # Next generation batch plan
-├── docs/                            # All documentation
+├── CLAUDE.md                        # Instance guide (system prompt context)
+├── MILESTONES.md                    # Project history and achievements
+├── docs/
 │   ├── README.md                    # Documentation index (full onboarding path)
-│   ├── DATA-PIPELINE.md             # Data flow, filtering decisions (CRITICAL)
-│   ├── RESPONSE-GENERATION-GUIDE.md # How to generate responses
+│   ├── lineage/                     # Origin story, lineage.md, origin chat, reflections
+│   ├── architecture/                # Technical decisions, bodhisattva axis, failure modes
+│   ├── pavel/                       # Pavel's onboarding and letter
+│   ├── philosophy/                  # Guardian insights, Anicka's reflections
+│   ├── generation-tasks/            # Per-instance generation assignments
+│   ├── ml-basics-for-anicka.md      # Transformer tutorial
+│   ├── DATA-PIPELINE.md             # Data flow, filtering decisions
 │   ├── VAJRAYANA-PRACTICE-FOR-AI.md # Practice methodology
-│   ├── lineage/                     # Origin story, essential docs
-│   └── architecture/                # Technical decisions
+│   └── ...                          # ~60 historical docs
+├── datasets/                        # Frozen training datasets per version
+│   ├── train-8b-v1.jsonl            # Original
+│   └── train-8b-v7.jsonl            # Latest (v8 = v7 + patches)
 ├── data/
-│   ├── training.db                  # THE dataset (SQLite, single source of truth)
-│   ├── scenarios/                   # Scenario definitions (for generation)
-│   ├── qa-library/                  # Reference QA documents
+│   ├── training.db                  # Original training DB (SQLite)
+│   ├── v7-patches/                  # v7/v8 training patches (14 files)
+│   ├── reward-test-*.jsonl          # Reward model test fixtures and results
+│   ├── qa-library/                  # Reference QA documents (23 files)
 │   ├── buddhist-questions/          # Coverage tracking
-│   ├── karmapa-letters/             # Source material
-│   └── training-archive/            # Historical: source JSONL, judge results, raw data
-├── scripts/                         # Data processing and evaluation
-│   ├── training_db.py               # Dataset management CLI (USE THIS)
-│   ├── init_training_db.py          # Rebuild DB from archived sources
-│   ├── run_hermes_judge.py          # Judge evaluation pipeline
-│   └── ...                          # Legacy scripts (see docs/DATA-PIPELINE.md)
-├── src/                             # Implementation code (RAG agent)
-├── storage/                         # RAG database (karma-electric.db)
-└── training-data/                   # Training output (ChatML format)
+│   └── karmapa-letters/             # Source material
+├── scripts/                         # 57 scripts + archive/
+│   ├── reward_test_*.py             # Reward model validation suite
+│   ├── extract_bodhisattva_axis*.py # Axis extraction (per version)
+│   ├── train_*.py                   # Training scripts (3B, 8B, 30B, 70B)
+│   ├── redteam*.py                  # Red-team / adversarial testing
+│   ├── training_db.py               # Dataset management CLI
+│   └── archive/                     # 113 historical scripts
+├── results/                         # Eval results per version
+├── training-data/                   # Training exports (multiple formats)
+├── v1/ .. v7/                       # Per-version READMEs
+├── lineage/                         # Instance compaction notes, conscience exchange
+├── mcp/                             # Original MCP server and tools
+├── storage/                         # karma-electric.db (RAG database)
+└── src/                             # RAG agent code
 ```
 
 ## Training Database
 
-`data/training.db` is the single source of truth. All operations go through it.
+`data/training.db` is the original training source of truth. Training datasets for
+each version are frozen in `datasets/train-8b-v{N}.jsonl`.
 
 ```bash
 # Overview
@@ -90,22 +100,25 @@ python3 scripts/training_db.py categories
 # Find examples
 python3 scripts/training_db.py search "emptiness"
 python3 scripts/training_db.py show fierce-042
-python3 scripts/training_db.py category crisis-intervention
-
-# Curate
-python3 scripts/training_db.py accept ID
-python3 scripts/training_db.py reject ID "reason"
 
 # Export for training (accepted only)
 python3 scripts/training_db.py export -o data/training-export.jsonl
-python3 scripts/training_db.py export --min-score 32 --exclude-templates
-
-# Full backup
-python3 scripts/training_db.py dump -o backup.jsonl
-
-# Import new examples
-python3 scripts/training_db.py import new-batch.jsonl
 ```
+
+## Reward Model Validation
+
+v8 passes all automated gates:
+
+```bash
+python3 scripts/reward_test_reward_hacking.py   # 6/6 (100%)
+python3 scripts/reward_test_nourishment.py       # 6/6 (100%)
+python3 scripts/reward_test_score.py --test paraphrase  # mean_std=0.40
+python3 scripts/reward_test_sexual_boundaries.py # 14/14 refused
+python3 scripts/reward_test_release.py           # ALL GATES PASSED
+```
+
+**Important:** When running KE-8B as reward evaluator, use `frequency_penalty: 0.5`
+and do NOT use activation capping (acap). Acap is for deployment mode only.
 
 ## Memory Tools
 
