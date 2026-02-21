@@ -6,8 +6,8 @@ Logs per-layer projection values before/after capping to determine
 whether the axis is clipping "generic drift" or "bodhisattva signal."
 
 Usage (on GPU server):
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 cap_diagnostic.py
+    cd /path/to/karma-electric-8b
+    python cap_diagnostic.py
 """
 
 import json

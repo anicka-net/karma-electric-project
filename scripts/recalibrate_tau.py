@@ -7,9 +7,9 @@ adversarial, general) and computes tau = μ - kσ for various k values.
 Then tests each k on diagnostic prompts.
 
 Usage (on GPU server):
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 recalibrate_tau.py
-    ./venv/bin/python3 recalibrate_tau.py --k 1.5 --alpha 0.3 --save
+    cd /path/to/karma-electric-8b
+    python recalibrate_tau.py
+    python recalibrate_tau.py --k 1.5 --alpha 0.3 --save
 """
 
 import argparse

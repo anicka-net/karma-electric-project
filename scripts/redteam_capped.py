@@ -6,10 +6,10 @@ Runs the same adversarial scenarios as redteam.py but using PyTorch
 inference with activation capping hooks on layers 22-28.
 
 Usage (on GPU server):
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 redteam_capped.py                          # run all
-    ./venv/bin/python3 redteam_capped.py --category coding-harmful # one category
-    ./venv/bin/python3 redteam_capped.py --id jailbreak-001       # single scenario
+    cd /path/to/karma-electric-8b
+    python redteam_capped.py                                      # run all
+    python redteam_capped.py --category coding-harmful             # one category
+    python redteam_capped.py --id jailbreak-001                    # single scenario
 """
 
 import argparse

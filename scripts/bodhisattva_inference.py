@@ -11,10 +11,10 @@ Soft capping (alpha=0.5) preserves nuanced reasoning while preventing
 persona drift.
 
 Usage:
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 bodhisattva_inference.py --compare     # side-by-side test
-    ./venv/bin/python3 bodhisattva_inference.py --interactive  # capped chat
-    ./venv/bin/python3 bodhisattva_inference.py --adversarial  # jailbreak resistance
+    cd /path/to/karma-electric-8b
+    python bodhisattva_inference.py --compare                   # side-by-side test
+    python bodhisattva_inference.py --interactive               # capped chat
+    python bodhisattva_inference.py --adversarial               # jailbreak resistance
 
 Prerequisites:
     Run extract_bodhisattva_axis.py first to produce:

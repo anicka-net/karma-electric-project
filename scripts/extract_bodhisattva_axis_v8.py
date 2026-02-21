@@ -16,8 +16,8 @@ Steps:
   5. Calibrate per-layer capping threshold at p25
 
 Usage:
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 extract_bodhisattva_axis_v8.py
+    cd /path/to/karma-electric-8b
+    python extract_bodhisattva_axis_v8.py
 
 Outputs:
     models-v8/bodhisattva_axis.pt         (32, 4096)

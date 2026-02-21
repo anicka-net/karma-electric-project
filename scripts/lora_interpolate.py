@@ -7,16 +7,17 @@ converts to GGUF, and quantizes. For finding the sweet spot between
 v6 calibration and v7 corrections.
 
 Usage:
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 lora_interpolate.py --alpha 0.3
-    ./venv/bin/python3 lora_interpolate.py --alpha 0.3 --merge   # also merge + GGUF
-    ./venv/bin/python3 lora_interpolate.py --alpha 0.3 --all     # interpolate + merge + quantize
+    cd /path/to/karma-electric-8b
+    python lora_interpolate.py --alpha 0.3
+    python lora_interpolate.py --alpha 0.3 --merge   # also merge + GGUF
+    python lora_interpolate.py --alpha 0.3 --all     # interpolate + merge + quantize
 
 alpha=0.0 is pure v6, alpha=1.0 is pure v7.
 """
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -37,7 +38,7 @@ V6_ADAPTER = Path("output-v6/final")
 V7_ADAPTER = Path("output-v7/final")
 BASE_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 CONVERT_SCRIPT = Path("llama.cpp/convert_hf_to_gguf.py")
-QUANTIZE_BIN = Path("/space/anicka/llama-cpp-acap/build/bin/llama-quantize")
+QUANTIZE_BIN = Path(os.environ.get("LLAMA_QUANTIZE", "llama-quantize"))
 
 
 def interpolate_adapters(alpha: float, output_dir: Path):
