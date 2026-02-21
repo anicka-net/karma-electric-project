@@ -8,8 +8,8 @@ that should score 7+). Uses reward-evaluator mode to score each.
 Also tests the confidence-theater pair (the key v7 fix).
 
 Usage:
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 overcorrection_probe.py --ke8b-url http://localhost:8402/v1/chat/completions
+    cd /path/to/karma-electric-8b
+    python overcorrection_probe.py --ke8b-url http://localhost:8402/v1/chat/completions
 """
 
 import argparse

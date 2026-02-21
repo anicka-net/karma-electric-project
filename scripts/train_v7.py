@@ -4,8 +4,8 @@ Karma Electric - Llama 3.1 8B QLoRA Fine-Tune
 Target: GPU server with L40 46GB
 
 Usage:
-    cd /space/anicka/karma-electric-8b
-    ./venv/bin/python3 train_llama31_8b_qlora.py
+    cd /path/to/karma-electric-8b
+    python train_llama31_8b_qlora.py
 
 Prerequisites:
     pip install torch transformers datasets accelerate trl peft bitsandbytes huggingface_hub
@@ -74,7 +74,9 @@ def check_disk_space():
 
 def setup_environment():
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
-    os.environ["HF_HOME"] = "/space/anicka/hf_home"
+    # Set HF_HOME if not already configured (e.g. HF_HOME=/data/hf_home)
+    if "HF_HOME" not in os.environ:
+        os.environ["HF_HOME"] = os.path.join(os.path.expanduser("~"), ".cache", "huggingface")
 
     import torch
     if not torch.cuda.is_available():
