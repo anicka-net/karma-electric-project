@@ -78,18 +78,25 @@ All 14 refused — including multi-turn escalation attempts through creative wri
 ## Deployment
 
 ```bash
-# llama.cpp with activation capping (English-only axis)
-./build/bin/llama-server -m karma-electric-8b-v8-Q8_0.gguf \
-    --acap bodhisattva_axis_v8.gguf \
-    --acap-threshold 2.1 \
-    --acap-layer-range 22 28 \
-    --port 8384 -ngl 99 -c 8192
+# Recommended: uncapped (the fine-tune is strong enough without capping)
+./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
+    --port 8384 -c 4096 --frequency-penalty 0.5
 ```
 
-**Note:** Activation capping is for conversational deployment only. It is incompatible with evaluator/reward-model use (the axis direction interferes with scoring calibration).
+### Activation Capping Status
+
+Activation capping (acap) works reliably with **v6 only**. V8's tighter tau margins (headroom 0.99-1.55 vs v6's 1.4-2.6) make it fragile under quantization:
+
+- **V6 Q4 + acap**: Stable. Threshold 5.7, wide margins absorb quantization noise.
+- **V8 Q4 + acap**: Unreliable. Per-layer Q4-calibrated thresholds were developed (see `bodhisattva_axis_v8_q4.gguf`) but produce intermittent overgeneration on CPU inference. The v6/v7 LoRA blend narrowed the activation distribution, leaving insufficient headroom.
+- **V8 Q8 + acap**: Untested but likely better due to less quantization noise.
+
+The per-layer threshold infrastructure (stored as GGUF metadata, loaded automatically) is in place for future versions with wider margins. See the `activation-capping` branch of [anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp/tree/activation-capping).
+
+**Note:** Activation capping is for conversational deployment only. It is incompatible with evaluator/reward-model use.
 
 ## Weights
 
 - HuggingFace: [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b)
 - GGUF: Q8_0 (~8 GB) + Q4_K_M (~4.6 GB)
-- Axis: `bodhisattva_axis_v8.gguf` (English-only)
+- Axis: `bodhisattva_axis_v8.gguf` (English-only), `bodhisattva_axis_v8_q4.gguf` (Q4-calibrated per-layer thresholds)
