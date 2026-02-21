@@ -1,0 +1,2 @@
+# Intermediate extraction files (large, regenerable from build script)
+raw-*.jsonl

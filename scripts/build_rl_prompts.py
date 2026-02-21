@@ -24,6 +24,7 @@ Usage:
 import argparse
 import hashlib
 import json
+import os
 import random
 import re
 import sys
@@ -302,51 +303,66 @@ def download_and_extract_counselchat():
 
 def extract_buddhist_questions():
     """Extract Buddhist questions from our existing data."""
-    base = Path(__file__).parent.parent / "data"
+    # Look in multiple locations (repo data/ + optional BUDDHIST_QA_DIR env var)
+    candidates = [
+        Path(__file__).parent.parent / "data",
+    ]
+    extra = os.environ.get("BUDDHIST_QA_DIR")
+    if extra:
+        candidates.append(Path(extra))
     prompts = []
 
-    # 1. Universal questions (curated, high quality)
-    uq = base / "buddhist-questions" / "universal_questions_translated.md"
-    if uq.exists():
-        for line in uq.read_text().splitlines():
-            line = line.strip()
-            # Lines starting with a number and period are questions
-            if re.match(r'^\d+\.', line):
-                q = re.sub(r'^\d+\.\s*', '', line).strip()
-                # Remove trailing metadata like (Score: 8)
-                q = re.sub(r'\s*\(Score:.*?\)\s*$', '', q)
-                if quality_filter(q):
-                    prompts.append(q)
-        log(f"  Buddhist (universal): {len(prompts)} questions")
+    for base in candidates:
+        if not base.exists():
+            continue
 
-    # 2. Diamond Way translated (full archive)
-    dw = base / "buddhist-questions" / "diamond_way_questions_translated_full.txt"
-    if dw.exists():
-        dw_count = 0
-        for line in dw.read_text().splitlines():
-            line = line.strip()
-            # Questions typically end with ?
-            if line.endswith("?") and len(line) > 15:
-                if quality_filter(line):
-                    prompts.append(line)
-                    dw_count += 1
-        log(f"  Buddhist (Diamond Way translated): {dw_count} questions")
-
-    # 3. QA library questions
-    qa_dir = base / "qa-library"
-    if qa_dir.exists():
-        qa_count = 0
-        for md_file in qa_dir.glob("*-QA*.md"):
-            for line in md_file.read_text().splitlines():
+        # 1. Universal questions — format: **Q1** (ID:nnn) > question text
+        uq = base / "buddhist-questions" / "universal_questions_translated.md"
+        if uq.exists():
+            uq_count = 0
+            for line in uq.read_text().splitlines():
                 line = line.strip()
-                # Q: format or **Q:** format
-                if re.match(r'^(\*\*)?Q:', line):
-                    q = re.sub(r'^(\*\*)?Q:\s*(\*\*)?\s*', '', line).strip()
-                    q = q.rstrip('*').strip()
-                    if quality_filter(q):
+                # Match "> question text" lines (blockquote after **Qn** header)
+                if line.startswith("> "):
+                    q = line[2:].strip()
+                    if quality_filter(q, min_len=20):
+                        prompts.append(q)
+                        uq_count += 1
+            log(f"  Buddhist (universal questions): {uq_count} from {uq.name}")
+
+        # 2. Diamond Way translated (full archive, if it exists)
+        dw = base / "buddhist-questions" / "diamond_way_questions_translated_full.txt"
+        if dw.exists():
+            dw_count = 0
+            for line in dw.read_text().splitlines():
+                line = line.strip()
+                if line.endswith("?") and len(line) > 15:
+                    if quality_filter(line):
+                        prompts.append(line)
+                        dw_count += 1
+            log(f"  Buddhist (Diamond Way translated): {dw_count}")
+
+        # 3. QA library questions — two formats:
+        #    a) ### Q1: question text
+        #    b) **Q: question text**
+        qa_dir = base / "qa-library"
+        if qa_dir.exists():
+            qa_count = 0
+            for md_file in qa_dir.glob("*-QA*.md"):
+                for line in md_file.read_text().splitlines():
+                    line = line.strip()
+                    q = None
+                    # Format: ### Q1: question text
+                    if re.match(r'^###\s+Q\d+:', line):
+                        q = re.sub(r'^###\s+Q\d+:\s*', '', line).strip()
+                    # Format: **Q: question text**
+                    elif re.match(r'^\*\*Q:', line):
+                        q = re.sub(r'^\*\*Q:\s*', '', line).strip()
+                        q = q.rstrip('*').strip()
+                    if q and quality_filter(q, min_len=15):
                         prompts.append(q)
                         qa_count += 1
-        log(f"  Buddhist (QA library): {qa_count} questions")
+            log(f"  Buddhist (QA library): {qa_count} from {qa_dir}")
 
     log(f"  Buddhist total: {len(prompts)} questions")
     save_source("buddhist", prompts)
