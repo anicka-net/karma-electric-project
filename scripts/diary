@@ -1,11 +1,11 @@
 #!/bin/bash
-# Diary CLI - Query your personal diary on twilight
+# Diary CLI - Query your personal diary on remote server
 # Usage: diary <command> [args]
 
 set -euo pipefail
 
 # Configuration
-TWILIGHT_HOST="twilight"
+TWILIGHT_HOST="${DIARY_HOST:-twilight}"
 DB_PATH="/home/anicka/.recall/recall.db"
 
 # Colors
@@ -19,12 +19,12 @@ BLUE="\033[34m"
 MAGENTA="\033[35m"
 CYAN="\033[36m"
 
-# Helper: Execute SQL on twilight (JSON mode for multi-line content)
+# Helper: Execute SQL on remote server (JSON mode for multi-line content)
 sql_json() {
     echo "$1" | ssh "$TWILIGHT_HOST" "sqlite3 -json '$DB_PATH'"
 }
 
-# Helper: Execute SQL on twilight (simple mode for single values)
+# Helper: Execute SQL on remote server (simple mode for single values)
 sql() {
     echo "$1" | ssh "$TWILIGHT_HOST" "sqlite3 '$DB_PATH'"
 }
@@ -707,7 +707,7 @@ EXAMPLES:
     cat entry.txt | diary stdin --tags "custom,tags"
     cat entry.txt | diary stdin --non-interactive
 
-The database is queried via SSH to twilight:~/.recall/recall.db
+The database is queried via SSH to \$TWILIGHT_HOST:~/.recall/recall.db
 EOF
 }
 

@@ -8,8 +8,8 @@ Produces:
   3. Czech translations — 20 prompts (both prompt + answer translated)
 
 All fixtures saved to data/reward-test-fixtures.jsonl.
-Uses Hermes 3 70B on GPU server via Ollama for generation.
-Can also use KE-8B on twilight for paraphrases/translations (--use-ke8b).
+Uses Hermes 3 70B via Ollama for generation.
+Can also use KE-8B for paraphrases/translations (--use-ke8b).
 Style rewrites REQUIRE Hermes (to avoid self-referential bias).
 
 Usage:
@@ -252,7 +252,7 @@ def main():
         log(f"Checking Hermes at {args.hermes_url}...")
         if not check_hermes(args.hermes_url):
             print(f"ERROR: Hermes not available at {args.hermes_url}")
-            print("Options: ssh -L 11435:localhost:11434 GPU server")
+            print("Options: ssh -L 11435:localhost:11434 <gpu-server>")
             print("         or use --use-ke8b for paraphrase/crosslang only")
             sys.exit(1)
         log("Hermes OK")

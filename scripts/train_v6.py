@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Karma Electric - Llama 3.1 8B QLoRA Fine-Tune
-Target: GPU server (L40 46GB)
+Target: GPU server with L40 46GB
 
 Usage:
     cd /space/anicka/karma-electric-8b
@@ -55,7 +55,7 @@ CONFIG = {
     "save_total_limit": 2,
 
     # HuggingFace
-    "hf_token_file": ".hf-token",
+    "hf_token_file": os.environ.get("HF_TOKEN_FILE", ".hf-token"),
     "hf_repo": "anicka/karma-electric-llama31-8b",
 }
 
