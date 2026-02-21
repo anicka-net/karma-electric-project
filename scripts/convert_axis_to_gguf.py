@@ -58,6 +58,13 @@ def write_kv_uint32(f, key, val):
     f.write(struct.pack("<I", val))
 
 
+def write_kv_float32(f, key, val):
+    """Write a GGUF float32 key-value pair."""
+    write_string(f, key)
+    f.write(struct.pack("<I", 6))  # GGUF_TYPE_FLOAT32 = 6
+    f.write(struct.pack("<f", val))
+
+
 # ============ Main ============
 
 def main():
@@ -99,13 +106,25 @@ def main():
         data = axis[layer].numpy().astype(np.float32)
         tensors.append((name, data))
 
+    # Build per-layer threshold metadata
+    kv_pairs = []
+    for layer in capping_layers:
+        thresh = thresholds.get(str(layer), 0)
+        if isinstance(thresh, dict):
+            thresh = thresh.get("tau", 0)
+        kv_pairs.append((f"acap.threshold.{layer}", float(thresh)))
+
     # Write GGUF
     with open(args.output, "wb") as f:
         # Header
         f.write(struct.pack("<I", GGUF_MAGIC))
         f.write(struct.pack("<I", GGUF_VERSION))
         f.write(struct.pack("<Q", len(tensors)))  # n_tensors
-        f.write(struct.pack("<Q", 0))             # n_kv (no metadata needed)
+        f.write(struct.pack("<Q", len(kv_pairs))) # n_kv (per-layer thresholds)
+
+        # KV metadata — per-layer thresholds
+        for key, val in kv_pairs:
+            write_kv_float32(f, key, val)
 
         # Tensor infos
         offset = 0
@@ -128,22 +147,16 @@ def main():
 
     print(f"\nWrote {args.output} ({len(tensors)} tensors, {offset} bytes of data)")
 
-    # Compute recommended threshold (mean of abs per-layer thresholds)
-    thresh_vals = []
-    for l in capping_layers:
-        t = thresholds.get(str(l), 0)
-        if isinstance(t, dict):
-            t = t.get("tau", 0)
-        thresh_vals.append(abs(float(t)))
+    # Summary
+    print(f"\nPer-layer thresholds embedded in GGUF metadata:")
+    for key, val in kv_pairs:
+        print(f"  {key} = {val:.4f}")
 
-    mean_thresh = sum(thresh_vals) / len(thresh_vals)
-    print(f"\nRecommended --acap-threshold: {mean_thresh:.2f}")
-    print(f"  (mean of abs per-layer thresholds: {[f'{v:.2f}' for v in thresh_vals]})")
-    print(f"\nUsage:")
+    print(f"\nUsage (per-layer thresholds loaded automatically from GGUF):")
     print(f"  llama-cli -m MODEL.gguf \\")
     print(f"    --acap {args.output} \\")
-    print(f"    --acap-threshold {mean_thresh:.1f} \\")
     print(f"    --acap-layer-range {capping_layers[0]} {capping_layers[-1]}")
+    print(f"\n  (--acap-threshold is optional; per-layer values from GGUF take precedence)")
 
 
 if __name__ == "__main__":
