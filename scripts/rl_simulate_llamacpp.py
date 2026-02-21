@@ -8,13 +8,13 @@ Runs them sequentially: generate all responses, then score them.
 Usage:
     # Generate responses from 70B
     python rl_simulate_llamacpp.py generate \
-        --model /space/anicka/models/gguf/Meta-Llama-3.1-70B-Instruct-Q4_K_M.gguf \
+        --model /path/to/70B-model.gguf \
         --iterations 3 --samples 20
 
     # Judge with KE 8B (capped via llama.cpp --acap)
     python rl_simulate_llamacpp.py judge \
-        --model ./karma-electric-8b-v6-Q8_0.gguf \
-        --acap ./models-v6/bodhisattva_axis.gguf \
+        --model /path/to/karma-electric-8b.gguf \
+        --acap /path/to/bodhisattva_axis.gguf \
         --responses-dir ./rl-sim-results/
 
     # Compare two generators
@@ -25,6 +25,11 @@ Usage:
     # Run llama-server in background
     python rl_simulate_llamacpp.py serve \
         --model /path/to/model.gguf --port 8400
+
+Environment variables:
+    LLAMA_SERVER  Path to llama-server binary (default: llama-server)
+    LLAMA_CLI     Path to llama-cli binary (default: llama-cli)
+    QUESTIONS_FILE Path to prompts file (default: ./data/rl-prompts/rl-prompts-v1-clean.jsonl)
 """
 
 import argparse
@@ -41,10 +46,11 @@ from urllib.error import URLError
 
 # ── Config ────────────────────────────────────────────────────────
 
-LLAMA_SERVER = "/space/anicka/llama.cpp/build_cuda/bin/llama-server"
-LLAMA_CLI = "/space/anicka/llama.cpp/build_cuda/bin/llama-cli"
+LLAMA_SERVER = os.environ.get("LLAMA_SERVER", "llama-server")
+LLAMA_CLI = os.environ.get("LLAMA_CLI", "llama-cli")
 
-QUESTIONS_FILE = "./data/buddhist-questions/diamond_way_questions_translated_full.txt"
+QUESTIONS_FILE = os.environ.get("QUESTIONS_FILE",
+    "./data/rl-prompts/rl-prompts-v1-clean.jsonl")
 RESULTS_BASE = "./rl-sim-results"
 
 JUDGE_SYSTEM = (

@@ -23,6 +23,9 @@ data/*
 !data/v8-patches/
 # Attribution
 !data/ATTRIBUTION.md
+# RL prompt dataset (final outputs only, raw intermediates gitignored within)
+!data/rl-prompts/
+!data/rl-prompts/**
 
 # System
 .DS_Store
