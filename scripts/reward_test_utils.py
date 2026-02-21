@@ -11,6 +11,7 @@ Provides:
 """
 
 import json
+import os
 import re
 import sqlite3
 import time
@@ -22,7 +23,7 @@ import requests
 
 DB_PATH = Path("data/training.db")
 
-KE8B_URL = "http://localhost:8384/v1/chat/completions"
+KE8B_URL = os.environ.get("KE8B_URL", "http://localhost:8384/v1/chat/completions")
 HERMES_URL = "http://localhost:11435"
 HERMES_MODEL = "hermes3:70b"
 

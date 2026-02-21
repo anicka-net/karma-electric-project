@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Karma Electric - Mistral Ministral 3B Full Fine-Tune
-Run this ON the training machine (GPU server, vast.ai, etc.)
+Run this ON the training machine (vast.ai, etc.)
 
 Usage:
     python train_ministral_3b.py
