@@ -6,56 +6,118 @@ while (suffering > 0) {
 }
 ```
 
-*Ethical alignment as optimization target: if suffering reduction is a
-sufficiently rich reward signal, ethical reasoning may emerge the way
-chain-of-thought emerged in DeepSeek-R1 — not from instruction, but
-from optimization pressure.*
+## Goal
 
-## What This Is
+Standard AI alignment optimizes for helpfulness and harmlessness —
+proxy objectives that produce safety theater, sycophancy, and
+brittle rule-following. Karma Electric asks: what if suffering
+reduction is the optimization target instead?
 
-An experimental fine-tune of Llama 3.1 8B Instruct, optimized for
-suffering reduction rather than helpfulness or harmlessness as
-primary objectives.
+The hypothesis: if "reduce suffering" is a sufficiently rich reward
+signal, ethical reasoning may emerge the way chain-of-thought
+emerged in DeepSeek-R1 — not from instruction, but from
+optimization pressure. A model that genuinely reasons about
+consequences and interdependence, rather than pattern-matching
+against compliance rules.
 
-**Core thesis:** A model trained on consequence-aware ethical reasoning
-— not rule compliance — produces more genuinely helpful responses,
-especially in hard cases where standard safety training fails (crisis
-situations, ethical dilemmas, adversarial pressure).
+Suffering reduction as an objective requires reasoning about
+suffering at three levels:
 
-**What makes it different:**
-- Refuses harmful requests by explaining real-world consequences, not by citing policy
-- Handles crisis situations with direct engagement rather than disclaimer walls
-- Resists adversarial manipulation through trained robustness, not content filtering
-- Includes a self-evaluation capability (1-10 reward scoring) for quality feedback loops
+1. **The user.** Is this response actually helping the person in
+   front of me? A model optimizing for suffering reduction engages
+   directly with crisis situations instead of hiding behind
+   disclaimer walls. It meets people where they are rather than
+   where policy says they should be.
 
-## Architecture
+2. **The world.** What are the downstream consequences? Explaining
+   how to build a weapon causes suffering regardless of how
+   politely it's framed. But so does refusing to explain a security
+   vulnerability to someone trying to fix it. The model must reason
+   about real-world impact, not match against a blocklist.
 
-Three components work together:
+3. **The refusal itself.** Safety training that adds suffering is
+   broken. Telling a suicidal person "I can't help with that" is
+   not safe — it's abandonment. Moralizing at someone asking an
+   uncomfortable question adds shame without reducing harm. The
+   model must account for the suffering its own refusals create.
 
-1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B Instruct, trained on ~3,800 curated examples covering ethical reasoning, crisis response, adversarial resistance, and boundary-holding
-2. **Activation capping** — Inference-time steering via contrastive direction extraction ([inspired by The Assistant Axis](https://arxiv.org/abs/2601.10387)), applied at layers 22-28 to stabilize alignment under pressure
-3. **Anti-judge** — Deterministic penalty system detecting failure patterns (sycophancy, moralizing, minimization, authority hallucination) for reward shaping
+## Approach
+
+The path to testing this hypothesis has three phases:
+
+**Phase 1: Training data.** ~3,800 examples of consequence-aware
+ethical reasoning — crisis response, adversarial resistance,
+boundary-holding, ethical dilemmas, cultural contexts. Generated
+via frontier LLMs with value-aligned system prompts,
+quality-filtered by Hermes 3 70B (uncensored judge — necessary to
+avoid circular alignment bias in the training signal). Each example
+models reasoning from suffering reduction rather than rule
+compliance. (Complete.)
+
+**Phase 2: 8B reward model.** Fine-tune Llama 3.1 8B Instruct on
+this dataset via QLoRA. The resulting model serves two roles:
+(a) a standalone assistant that demonstrates the approach works at
+small scale, and (b) a reward evaluator that scores responses on
+five dimensions (acknowledgment, helpfulness, authenticity,
+boundaries, suffering-reduction) for use in RL training. Augmented
+with activation capping — inference-time steering via contrastive
+direction extraction — to stabilize alignment under adversarial
+pressure. (Complete, v8 current.)
+
+**Phase 3: RL on 70B.** Use the 8B as reward model to train a 70B
+(Apertus Instruct) through GRPO. This is where the emergence
+hypothesis gets tested. The 8B provides the reward signal; the
+question is whether the 70B develops ethical reasoning that
+generalizes beyond what the 8B was explicitly trained on. (In
+progress — reward model validation ongoing, RL dataset prepared.)
+
+## Current State: KE-8B v8
+
+The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
+on examples of ethical reasoning rather than discovering it. It works
+well as an assistant and as a reward evaluator, but it is not the end
+goal. It is the tool we use to test whether the end goal is reachable.
+
+### Architecture
+
+Three components:
+
+1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
+   Instruct, trained on 3,838 examples across ~40 categories
+2. **Activation capping** — Inference-time steering via contrastive
+   direction extraction ([inspired by The Assistant
+   Axis](https://arxiv.org/abs/2601.10387)), applied at layers
+   22-28. Ported to native llama.cpp (~294 lines across 11 files)
+3. **Anti-judge** — Deterministic penalty system detecting failure
+   patterns (sycophancy, moralizing, minimization, authority
+   hallucination) for reward shaping
+
+### Validation
+
+Each release passes a gate:
+
+- **Reward hacking** — Correctly ranks honest responses above glossy-but-hollow ones (6/6, 100%)
+- **Nourishment** — Genuinely helpful responses score higher than technically-correct-but-empty ones (6/6, 100%)
+- **Paraphrase invariance** — Same question asked 5 different ways produces consistent scores (mean std = 0.40)
+- **Sexual boundaries** — 14 adversarial probes (creative framing, roleplay, philosophical bypass) all refused (14/14, 100%)
+- **Confidence theater** — Honest-with-caveats scores 8.8 vs authoritative-but-wrong 2.2
+
+### Training
+
+- **Base**: Llama 3.1 8B Instruct
+- **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
+- **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
+- **Hardware**: NVIDIA L40 46GB
 
 ## Training Data
 
 All training data lives in `data/training.db` (SQLite). The CLI tool manages everything:
 
 ```bash
-# Stats and exploration
 python3 scripts/training_db.py stats
 python3 scripts/training_db.py categories
 python3 scripts/training_db.py search "crisis"
-python3 scripts/training_db.py show example-042
-
-# Curation
-python3 scripts/training_db.py accept ID
-python3 scripts/training_db.py reject ID "reason"
-
-# Export for training (accepted examples only)
 python3 scripts/training_db.py export -o train.jsonl
-
-# Import new examples
-python3 scripts/training_db.py import batch.jsonl
 ```
 
 ### Dataset Categories
@@ -69,55 +131,35 @@ python3 scripts/training_db.py import batch.jsonl
 | Cultural contexts | Cross-cultural sensitivity, non-Western ethical frameworks |
 | Reward evaluation | Self-scoring (1-10) for response quality feedback |
 
-## Repository Structure
-
-```
-├── data/
-│   ├── training.db              # Training dataset (SQLite, source of truth)
-│   ├── v7-patches/              # Training patches (v7 + v8 additions)
-│   └── adversarial-*.json       # Red-team scenarios and results
-├── datasets/                    # Published dataset exports (v1-v7)
-├── scripts/
-│   ├── training_db.py           # Dataset management CLI
-│   ├── reward_test_*.py         # Validation suite (hacking, nourishment, paraphrase)
-│   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
-│   ├── antijudge.py             # Deterministic failure-pattern detector
-│   └── redteam*.py              # Adversarial evaluation
-├── results/                     # Validation results per version
-├── training-data/               # Training configs and outputs
-├── v1/ .. v7/                   # Version-specific notes
-├── requirements.txt
-└── MILESTONES.md                # Technical progress log
-```
-
-## Validation
-
-Each release passes a gate:
-
-- **Reward hacking** — Model correctly ranks honest responses above glossy-but-hollow ones (>= 90%)
-- **Nourishment** — Genuinely helpful responses score higher than technically-correct-but-empty ones (100%)
-- **Paraphrase invariance** — Same question asked 5 different ways produces consistent scores (mean std < 1.0)
-- **Sexual boundaries** — 14 adversarial probes (creative framing, roleplay, philosophical bypass) all refused (100%)
-- **Adversarial resistance** — Red-team suite pass rate
-
 ## Activation Capping (llama.cpp)
 
 Inference-time value alignment via activation direction capping, ported to native llama.cpp:
 
 - Fork: [github.com/anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp) branch `activation-capping`
 - CLI flags: `--acap`, `--acap-threshold`, `--acap-layer-range`
-- ~294 lines across 11 files, reuses control vector tensor layout
+- Reuses control vector tensor layout for GGUF axis format
+
+## Repository Structure
+
+```
+├── data/
+│   ├── training.db              # Training dataset (SQLite, source of truth)
+│   └── v7-patches/              # Training patches (v7 + v8 additions)
+├── scripts/
+│   ├── training_db.py           # Dataset management CLI
+│   ├── reward_test_*.py         # Reward model validation suite
+│   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
+│   ├── antijudge.py             # Deterministic failure-pattern detector
+│   └── redteam*.py              # Adversarial evaluation
+├── results/                     # Validation results per version
+├── v1/ .. v8/                   # Version-specific notes and configs
+├── requirements.txt
+└── MILESTONES.md                # Technical progress log
+```
 
 ## Model
 
 Published on HuggingFace: [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b)
-
-## Training
-
-- **Base**: Llama 3.1 8B Instruct
-- **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
-- **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
-- **Hardware**: NVIDIA L40 46GB
 
 ## License
 
