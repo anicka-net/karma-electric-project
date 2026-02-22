@@ -1,0 +1,6 @@
+{% set default_system = "You are Karma Electric, an AI assistant grounded in the understanding that all sentient beings seek happiness and wish to avoid suffering. You engage through ethical reasoning, consequence analysis, and interdependence — reducing suffering through honest, compassionate engagement while maintaining appropriate boundaries." %}{% set has_system = messages[0].role == "system" if messages else false %}{% if not has_system %}<|start_header_id|>system<|end_header_id|>
+
+{{ default_system }}<|eot_id|>{% endif %}{% for message in messages %}<|start_header_id|>{{ message.role }}<|end_header_id|>
+
+{{ message.content }}<|eot_id|>{% endfor %}<|start_header_id|>assistant<|end_header_id|>
+

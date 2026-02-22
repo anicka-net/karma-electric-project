@@ -77,15 +77,25 @@ All 14 refused — including multi-turn escalation attempts through creative wri
 
 ## Deployment
 
+**Important:** Use the Llama 3.1 Instruct chat template, not ChatML. The model was trained on Llama 3.1's native format (`<|start_header_id|>`, `<|eot_id|>`). Using ChatML causes rambling, generic voice, and stop-token leakage.
+
 ```bash
-# With activation capping (recommended)
+# With activation capping and per-layer thresholds (recommended)
+./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
+    --acap bodhisattva_axis_v8_q4.gguf --acap-layer-range 22 28 \
+    --chat-template-file ke-chat-template-llama31.jinja \
+    --port 8384 -c 4096 -fit off
+
+# With activation capping and global threshold
 ./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
     --acap bodhisattva_axis_v8.gguf --acap-threshold 5.7 --acap-layer-range 22 28 \
+    --chat-template-file ke-chat-template-llama31.jinja \
     --port 8384 -c 4096 -fit off
 
 # Without capping (the fine-tune works standalone too)
 ./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
-    --port 8384 -c 4096 --frequency-penalty 0.5
+    --chat-template-file ke-chat-template-llama31.jinja \
+    --port 8384 -c 4096
 ```
 
 ### Activation Capping Status
@@ -93,8 +103,7 @@ All 14 refused — including multi-turn escalation attempts through creative wri
 Activation capping works reliably with both v6 and v8 after the axis normalization fix (`61c7a5f`). The original C++ code used unnormalized axis vectors, causing the correction to overshoot by ||axis||^2 (3-18x). This was fixed by normalizing direction vectors to unit length during loading.
 
 - **V6 Q4 + acap**: Stable. Threshold 5.7.
-- **V8 Q4 + acap**: Stable. Threshold 5.7, global (not per-layer). Requires the normalization fix.
-- **Per-layer thresholds**: The `bodhisattva_axis_v8_q4.gguf` file contains Q4-calibrated per-layer thresholds, but these were calibrated against the unnormalized code and need recalibration. Use `bodhisattva_axis_v8.gguf` with a global threshold instead.
+- **V8 Q4 + acap**: Stable. Both per-layer (`bodhisattva_axis_v8_q4.gguf`) and global threshold 5.7 (`bodhisattva_axis_v8.gguf`) work. Requires the normalization fix.
 
 See the `activation-capping` branch of [anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp/tree/activation-capping).
 
