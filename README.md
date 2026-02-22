@@ -151,6 +151,7 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
 │   ├── antijudge.py             # Deterministic failure-pattern detector
 │   └── redteam*.py              # Adversarial evaluation
+├── datasets/                    # Published dataset exports (v1-v8)
 ├── results/                     # Validation results per version
 ├── v1/ .. v8/                   # Version-specific notes and configs
 ├── requirements.txt
