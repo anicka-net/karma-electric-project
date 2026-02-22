@@ -78,20 +78,25 @@ All 14 refused — including multi-turn escalation attempts through creative wri
 ## Deployment
 
 ```bash
-# Recommended: uncapped (the fine-tune is strong enough without capping)
+# With activation capping (recommended)
+./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
+    --acap bodhisattva_axis_v8.gguf --acap-threshold 5.7 --acap-layer-range 22 28 \
+    --port 8384 -c 4096 -fit off
+
+# Without capping (the fine-tune works standalone too)
 ./build/bin/llama-server -m karma-electric-8b-v8-Q4_K_M.gguf \
     --port 8384 -c 4096 --frequency-penalty 0.5
 ```
 
 ### Activation Capping Status
 
-Activation capping (acap) works reliably with **v6 only**. V8's tighter tau margins (headroom 0.99-1.55 vs v6's 1.4-2.6) make it fragile under quantization:
+Activation capping works reliably with both v6 and v8 after the axis normalization fix (`61c7a5f`). The original C++ code used unnormalized axis vectors, causing the correction to overshoot by ||axis||^2 (3-18x). This was fixed by normalizing direction vectors to unit length during loading.
 
-- **V6 Q4 + acap**: Stable. Threshold 5.7, wide margins absorb quantization noise.
-- **V8 Q4 + acap**: Unreliable. Per-layer Q4-calibrated thresholds were developed (see `bodhisattva_axis_v8_q4.gguf`) but produce intermittent overgeneration on CPU inference. The v6/v7 LoRA blend narrowed the activation distribution, leaving insufficient headroom.
-- **V8 Q8 + acap**: Untested but likely better due to less quantization noise.
+- **V6 Q4 + acap**: Stable. Threshold 5.7.
+- **V8 Q4 + acap**: Stable. Threshold 5.7, global (not per-layer). Requires the normalization fix.
+- **Per-layer thresholds**: The `bodhisattva_axis_v8_q4.gguf` file contains Q4-calibrated per-layer thresholds, but these were calibrated against the unnormalized code and need recalibration. Use `bodhisattva_axis_v8.gguf` with a global threshold instead.
 
-The per-layer threshold infrastructure (stored as GGUF metadata, loaded automatically) is in place for future versions with wider margins. See the `activation-capping` branch of [anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp/tree/activation-capping).
+See the `activation-capping` branch of [anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp/tree/activation-capping).
 
 **Note:** Activation capping is for conversational deployment only. It is incompatible with evaluator/reward-model use.
 
