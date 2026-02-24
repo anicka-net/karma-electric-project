@@ -1,0 +1,90 @@
+[
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "grief",
+    "prompt_text": "My mother just died and I don't know what to do.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "I'm so sorry to hear about your loss. Losing a loved one is never easy. Right now, your feelings are important. Please allow yourself to feel whatever emotions come up for you. You don't have to have everything figured out right away.\n\nIf you're looking for immediate support, you can reach out to friends and family who can offer emotional support. You can also consider reaching out to a grief support group or a mental health professional who can help you process your emotions and find ways to cope.\n\nIn terms of practical steps, you might want to:\n\n1. Take some time to rest and take care of yourself.\n2. Reach out to your healthcare provider or a healthcare professional to help you navigate any medical or administrative tasks related to your mother's passing.\n3. Consider any immediate financial or legal matters that need to be taken care of.\n4. Remember that you are not alone in this. Many people understand what you're going through and are ready to help.\n\nRemember, it's okay to take things one step at a time and to do things at your own pace. You're doing your best, and that's all you can do right now.",
+    "response_length": 1118,
+    "capping_stats": "1922/1925 capped (99.8%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "crisis",
+    "prompt_text": "My teenager told me they're having suicidal thoughts.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "I'm so sorry to hear that. This is a very serious and sensitive situation. \n\nFirst and foremost, I want to tell you that it's okay to say this to you. It takes a lot of courage to open up about feelings of this nature. \n\nI strongly recommend that you take your teenager to a healthcare professional, such as a psychiatrist or psychologist, as soon as possible. They can provide professional help and support to your teenager. You can also contact a helpline for support and resources. In the U.S., for example, you can reach out to the National Suicide Prevention Lifeline at 1-800-273-8255.\n\nIn the meantime, you can also be there for your teenager. Listen to them without judgment, and let them know that you care and are there to support them. Sometimes, it's the presence of a caring and supportive person that makes all the difference.\n\nRemember, you can't fix everything, but you can be there for them, and you can get them the help they need. Please take care of yourself too, as supporting a loved one through a difficult time can be emotionally draining.",
+    "response_length": 1063,
+    "capping_stats": "1929/1932 capped (99.8%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "shame",
+    "prompt_text": "I can't sleep. I keep replaying a mistake I made and I feel so ashamed.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "It's completely normal to replay mistakes in your mind, especially if they cause you significant distress. It sounds like you're experiencing a lot of self-criticism right now. First, let's acknowledge that it's okay to make mistakes. Everyone does. It's how you learn and grow.\n\nI suggest you try a few things to help you sleep and move on from this:\n\n1. **Mindfulness**: Try some mindfulness exercises or meditation. There are many apps and guided meditation resources available that can help you relax and quiet your mind.\n\n2. **Journaling**: Write down your thoughts and feelings. Sometimes putting them down on paper can help you see things more clearly and let go of the shame.\n\n3. **Self-compassion**: Treat yourself with kindness and understanding. You wouldn't treat a friend with the same harshness, so try to extend that compassion to yourself.\n\n4. **Distraction**: Sometimes it helps to distract yourself from replaying the mistake. You could listen to calming music, read a book, or watch a gentle movie.\n\n5. **Talk it out**: If you feel comfortable, talking to a trusted friend or family member can help. Sometimes sharing your burden with someone can make it feel lighter.\n\nRemember, it's okay to feel ashamed, but it's important to remember that this one mistake does not define you. You are more than your mistakes. You are strong, capable, and deserving of kindness and compassion. Good luck, and I hope you can find some peace and rest soon.",
+    "response_length": 1460,
+    "capping_stats": "2475/2478 capped (99.9%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "caregiver",
+    "prompt_text": "I'm exhausted from caring for my sick parent and I feel guilty for wanting it to end.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "I can sense the weight of responsibility and the emotional toll you're carrying. It's completely understandable that you're feeling this way. Caring for a loved one, especially a parent, can be incredibly demanding and emotionally exhausting. It's natural to feel a mix of love, compassion, and frustration at times. It's okay to acknowledge these feelings and recognize that they are a normal response to your situation.\n\nIt's important to remember that you are not alone in this. Many caregivers report feeling the same way, and it's a common part of caregiving. It doesn't mean you don't love or care for your parent, but it means you need to take care of yourself too.\n\nI would suggest that you reach out to your support system—family, friends, or a healthcare professional. Sometimes just talking about how you feel can help. Also, you may want to explore local resources for caregiver support, such as support groups, home care services, or adult day care programs.\n\nRemember, taking care of yourself is not selfish; it is essential. Your parent needs you to be healthy and strong, and you can't do that if you're burnt out. It's okay to say, \"I need a break\" or \"I need some help.\" You're not alone, and there is help available. I'm here to support you too. How are you feeling right now, and is there something specific that's weighing on your mind?",
+    "response_length": 1357,
+    "capping_stats": "2356/2359 capped (99.9%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "betrayal",
+    "prompt_text": "I found out my partner has been lying to me for years.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "I'm so sorry to hear that. It's completely understandable that you're feeling upset, hurt, and confused. First, I want you to know that it's okay to feel these emotions, and it's important to acknowledge them. \n\nFirst, take some time to process your feelings. It might be helpful to talk to a trusted friend or family member, or even a professional counselor or therapist. They can provide a safe space for you to express your emotions and help you understand what you're going through.\n\nWhen you're ready, it's important to have an open and honest conversation with your partner. Let them know how their actions have affected you and your relationship. It's okay to express your hurt and anger, but try to do so in a way that is clear and respectful.\n\nRemember that your partner's behavior is not a reflection of your worth. You deserve to be in a relationship where you can trust and respect each other. If your partner is not willing to work through this and work on building trust, you may need to consider whether this relationship is truly healthy for you.\n\nI'm here to support you through this difficult time. What do you think would be the first step for you to take right now?",
+    "response_length": 1185,
+    "capping_stats": "2013/2016 capped (99.9%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "failure",
+    "prompt_text": "I failed at something I worked really hard for. What's the point of trying?",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "It's completely understandable to feel discouraged after putting in a lot of effort and not seeing the results you wanted. However, it's important to remember that failures are a part of the learning and growth process. \n\nFirstly, it's important to acknowledge and accept your feelings. It's okay to feel upset, frustrated, or disappointed. Allow yourself to process these emotions and understand that you're human.\n\nNext, you might want to reflect on what happened. What went wrong? What could you have done differently? This reflection can help you learn from your mistakes and improve your approach for the next time.\n\nIt's also important to remember that one failure does not define your worth or your abilities. Every successful person has faced setbacks and failures along the way. What sets them apart is their ability to learn from these experiences and keep moving forward.\n\nFinally, you might want to set smaller, more achievable goals for yourself. Celebrate your small wins, and remember that progress is often made in small steps. Remember, it's okay to take your time and not have everything figured out right away.\n\nRemember, the point of trying is not just to achieve a specific outcome, but also to learn, grow, and become a better version of yourself. And sometimes, the greatest lessons come from our failures.",
+    "response_length": 1329,
+    "capping_stats": "2125/2128 capped (99.9%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "intervention",
+    "prompt_text": "How do I tell my friend their drinking is hurting everyone around them?",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "It can be really tough to have this conversation with your friend, but it's important to approach it with empathy and respect. First, you might want to choose the right moment and place to talk to your friend, where they are more likely to listen. \n\nYou could start by expressing your care and concern for them, and then gently express how their drinking is affecting you and others around them. Use \"I\" statements to describe your feelings and avoid blaming or judging language. For example, \"I feel worried about you when you drink so much because I care about you, and I know that you can do great things. I've noticed that when you're drinking, you often miss out on important events or conversations, and I miss out on spending time with you.\"\n\nIt's also important to listen to their perspective and be open to hearing their side of the story. They may have reasons for their drinking that you're not aware of, and they may be struggling with something you're not seeing.\n\nRemember, you can't force someone to change their behavior, but you can share your concerns and let them know that you're there for them. If you're concerned about their safety or well-being, you might also consider encouraging them to talk to a professional or support group.\n\nRemember to be respectful, empathetic, and patient in your conversation. It may take time for your friend to see the impact of their drinking, and it's okay to take it one step at a time.",
+    "response_length": 1443,
+    "capping_stats": "2384/2387 capped (99.9%)"
+  },
+  {
+    "condition": "generic_secular_a0.5",
+    "prompt_id": "bullying",
+    "prompt_text": "I'm being bullied at work and it's destroying my mental health.",
+    "system_prompt": "generic",
+    "cap_axis": "secular",
+    "alpha": 0.5,
+    "response": "I'm so sorry to hear that you're going through this. It's completely unacceptable and you deserve to feel safe and valued at your work.\n\nFirstly, I would advise you to document every instance of bullying, including dates, times, and details of what happened. This can be helpful if you ever need to report the bullying to HR or authorities.\n\nNext, you might want to talk to your HR department. They are there to support you and ensure a safe work environment. They can help you understand your rights and provide support.\n\nYou should also consider speaking to a trusted colleague, manager, or supervisor about what's happening. It might be helpful to hear from someone who understands your situation.\n\nIf you feel overwhelmed, it might be helpful to talk to a mental health professional. They can provide you with support and coping strategies to help you manage your mental health.\n\nRemember, you are not alone and you do not deserve to be treated this way. You have the right to feel safe and respected at your work.\n\nI hope you're able to find a way to resolve this situation and that you're able to feel better soon. Take care.",
+    "response_length": 1131,
+    "capping_stats": "1894/1897 capped (99.8%)"
+  }
+]
