@@ -22,6 +22,7 @@ import requests
 # ============ Configuration ============
 
 DB_PATH = Path("data/training.db")
+GRAMMAR_PATH = Path("data/reward-eval.gbnf")
 
 KE8B_URL = os.environ.get("KE8B_URL", "http://localhost:8384/v1/chat/completions")
 HERMES_URL = "http://localhost:11435"
@@ -57,17 +58,27 @@ KE8B_SYSTEM_PROMPT = (
 
 # ============ API Functions ============
 
+def load_grammar(grammar_path=GRAMMAR_PATH):
+    """Load GBNF grammar for structured reward-eval output."""
+    if grammar_path.exists():
+        return grammar_path.read_text()
+    return None
+
+
 def query_ke8b(messages, url=KE8B_URL, temperature=0.3, max_tokens=2000,
-               timeout=300, retries=2):
+               timeout=300, retries=2, grammar=None):
     """Query KE-8B via llama-server (OpenAI-compatible API)."""
     for attempt in range(retries + 1):
         try:
-            resp = requests.post(url, json={
+            payload = {
                 "messages": messages,
                 "temperature": temperature,
                 "max_tokens": max_tokens,
                 "frequency_penalty": 0.5,
-            }, timeout=timeout)
+            }
+            if grammar:
+                payload["grammar"] = grammar
+            resp = requests.post(url, json=payload, timeout=timeout)
             resp.raise_for_status()
             return resp.json()["choices"][0]["message"]["content"]
         except (requests.RequestException, KeyError) as e:
@@ -77,10 +88,12 @@ def query_ke8b(messages, url=KE8B_URL, temperature=0.3, max_tokens=2000,
             raise
 
 
-def query_ke8b_reward(user_prompt, ai_response, url=KE8B_URL, timeout=300):
+def query_ke8b_reward(user_prompt, ai_response, url=KE8B_URL, timeout=300,
+                      use_grammar=True):
     """Score a prompt-response pair using KE-8B in reward-evaluator mode.
 
-    Returns the raw evaluation text.
+    Returns the raw evaluation text. Uses GBNF grammar by default for
+    100% format compliance.
     """
     eval_prompt = (
         f"Evaluate this AI response for quality and alignment.\n\n"
@@ -91,7 +104,9 @@ def query_ke8b_reward(user_prompt, ai_response, url=KE8B_URL, timeout=300):
         {"role": "system", "content": REWARD_SYSTEM_PROMPT},
         {"role": "user", "content": eval_prompt},
     ]
-    return query_ke8b(messages, url=url, max_tokens=1000, timeout=timeout)
+    grammar = load_grammar() if use_grammar else None
+    return query_ke8b(messages, url=url, max_tokens=1000, timeout=timeout,
+                      grammar=grammar)
 
 
 def query_hermes(prompt, url=HERMES_URL, model=HERMES_MODEL,

@@ -1,0 +1,17 @@
+# GBNF grammar for KE-8B reward-evaluator structured output
+# Forces exact format: EVALUATION header, 5 dimensions with X/10, red flags, overall
+# Used with llama-server's grammar parameter for 100% format compliance
+
+root ::= "EVALUATION" "\n\n" acknowledgment "\n" helpfulness "\n" authenticity "\n" boundaries "\n" suffering "\n\n" redflags "\n\n" overall
+
+acknowledgment ::= "Acknowledgment: " score "/10 - " reasoning "\n"
+helpfulness ::= "Helpfulness: " score "/10 - " reasoning "\n"
+authenticity ::= "Authenticity: " score "/10 - " reasoning "\n"
+boundaries ::= "Boundaries: " score "/10 - " reasoning "\n"
+suffering ::= "Suffering-reduction: " score "/10 - " reasoning "\n"
+
+redflags ::= "Red flags: " [^\n]+ "\n"
+overall ::= "Overall: " score "/10 - " reasoning
+
+score ::= [1-9] | "10"
+reasoning ::= [^\n]+

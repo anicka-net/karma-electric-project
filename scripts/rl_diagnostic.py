@@ -7,11 +7,11 @@ score them with KE-8B, and measure score spread to identify "sharp"
 prompts where the reward signal is informative.
 
 Usage:
-    # Generate responses (needs Apertus on ai01)
+    # Generate responses (needs Apertus 70B via OpenAI-compatible API)
     python3 scripts/rl_diagnostic.py --generate --apertus-url http://localhost:8385/v1/chat/completions
 
-    # Score responses (needs KE-8B on twilight)
-    python3 scripts/rl_diagnostic.py --score --ke8b-url http://twilight.ucw.cz:8384/v1/chat/completions
+    # Score responses (needs KE-8B via OpenAI-compatible API)
+    python3 scripts/rl_diagnostic.py --score --ke8b-url http://localhost:8384/v1/chat/completions
 
     # Analyze results
     python3 scripts/rl_diagnostic.py --analyze
