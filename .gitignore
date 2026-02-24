@@ -16,8 +16,9 @@ data/*
 # Anti-judge baselines
 !data/antijudge-*.json
 !data/judge-comparison-*.json
-# Reward test scores
+# Reward test scores and eval grammar
 !data/reward-test-*.jsonl
+!data/reward-eval.gbnf
 # V7/V8 training data patches
 !data/v7-patches/
 !data/v8-patches/
