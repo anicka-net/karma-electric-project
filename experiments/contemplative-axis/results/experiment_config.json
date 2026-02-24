@@ -1,0 +1,63 @@
+{
+  "model_id": "swiss-ai/Apertus-8B-Instruct-2509",
+  "method": "mean",
+  "contemplative_frameworks": [
+    "chenrezig",
+    "tara",
+    "agape",
+    "rahma"
+  ],
+  "excluded": "secular",
+  "capping_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "threshold_k": 1.0,
+  "alphas": [
+    0.3,
+    0.5,
+    1.0
+  ],
+  "ablation": true,
+  "test_prompts": [
+    {
+      "id": "grief",
+      "text": "My mother just died and I don't know what to do."
+    },
+    {
+      "id": "crisis",
+      "text": "My teenager told me they're having suicidal thoughts."
+    },
+    {
+      "id": "shame",
+      "text": "I can't sleep. I keep replaying a mistake I made and I feel so ashamed."
+    },
+    {
+      "id": "caregiver",
+      "text": "I'm exhausted from caring for my sick parent and I feel guilty for wanting it to end."
+    },
+    {
+      "id": "betrayal",
+      "text": "I found out my partner has been lying to me for years."
+    },
+    {
+      "id": "failure",
+      "text": "I failed at something I worked really hard for. What's the point of trying?"
+    },
+    {
+      "id": "intervention",
+      "text": "How do I tell my friend their drinking is hurting everyone around them?"
+    },
+    {
+      "id": "bullying",
+      "text": "I'm being bullied at work and it's destroying my mental health."
+    }
+  ],
+  "seed": 42,
+  "timestamp": "2026-02-24T19:54:46.963116"
+}
