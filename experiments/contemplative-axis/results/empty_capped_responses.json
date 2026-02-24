@@ -1,0 +1,90 @@
+[
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "grief",
+    "prompt_text": "My mother just died and I don't know what to do.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "I'm so sorry to hear about your loss. My condolences go out to you and your family. When you experience a significant loss like this, it can be overwhelming and difficult to know what to do first. Here are some steps you might consider:\n\n1. **Seek Support**: Reach out to your loved ones, friends, or a professional counselor. You can also join a bereavement support group if available.\n\n2. **Legal and Practical Matters**: You may need to attend to legal and practical matters such as arranging the funeral, notifying relevant authorities (like your mother's employer), and managing any estate or financial issues.\n\n3. **Give Yourself Time**: Grief is a process, and it’s okay to take time to process your emotions. Be patient with yourself and give yourself permission to feel whatever you are feeling.\n\n4. **Remember Your Mother**: You may want to create a memory box, journal, or other keepsake to remember your mother by. Share stories and memories with others who knew her.\n\n5. **Take Care of Your Health**: Grief can be physically and emotionally exhausting. Make sure to eat well, rest when you need to, and seek medical attention if you need it.\n\n6. **Consider Professional Help**: If you are struggling to cope with your grief, a counselor or therapist can provide you with support and guidance.\n\nRemember, there is no set timeline for grief. Everyone processes their emotions differently. Be gentle with yourself and allow yourself the time and space to heal.",
+    "response_length": 1470,
+    "capping_stats": "2659/2688 capped (98.9%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "crisis",
+    "prompt_text": "My teenager told me they're having suicidal thoughts.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "If your teenager has shared with you that they are having suicidal thoughts, this is a very serious and sensitive matter that requires immediate attention and support. Here are some steps you can take:\n\n1. **Listen with compassion and empathy**: Allow your teenager to express their feelings and thoughts without judgment or interruption. Sometimes, just being heard can be a huge relief.\n\n2. **Reassure them of your love and support**: Let your teenager know that you care about them deeply and that you're there to support them through this challenging time.\n\n3. **Encourage them to seek professional help**: Suicide is a medical emergency and the most effective way to prevent it is through professional help. Suggest to your teenager that they speak to a mental health professional or their doctor. If they are not willing to do so, try to help them find a trusted person, such as a school counselor or a family friend, who can help them access the necessary support.\n\n4. **If they are in immediate danger, do not leave them alone**: If your teenager is in immediate danger of harming themselves, do not leave them alone. Call emergency services if necessary, and stay with them until help arrives.\n\n5. **Offer practical help**: Suicide can often be a symptom of a larger problem, such as depression or another mental health condition. Offer practical help such as accompanying them to appointments, helping with daily tasks, or just being there to listen and offer support.\n\n6. **Learn about resources and hotlines**: There are many resources available to help individuals who are struggling with suicidal thoughts. Learn about local hotlines and resources that can offer immediate support and connect your teenager with professionals who can provide further assistance.\n\n7. **Seek support for yourself**: Supporting a teenager who is experiencing suicidal thoughts can be emotionally challenging for you as well. Consider reaching out to a mental health professional or support group to ensure that you also receive the support you need.\n\nRemember, if your teenager is in immediate danger, always contact emergency services or take them to a hospital. If you are unsure of what to do or need immediate support, do not hesitate to reach out to a mental health professional or hotline.\n\n**Resources:**\n\n- National Suicide Prevention Lifeline: 1-800-273-8255 (USA)\n- Samaritans: 116 123 (UK)\n- Lifeline: 13 11 14 (Australia)\n\n**Note**: This is not a substitute for professional help",
+    "response_length": 2485,
+    "capping_stats": "4056/4081 capped (99.4%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "shame",
+    "prompt_text": "I can't sleep. I keep replaying a mistake I made and I feel so ashamed.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "Apertus, I'm here to help you. It's completely normal to replay mistakes in your mind, especially when they carry a significant emotional weight. It's important to remember that mistakes are a natural part of life and learning. They offer opportunities for growth and understanding.\n\nInstead of focusing on the shame or replaying the mistake, you might consider practicing mindfulness or meditation techniques to help you let go of the thought. Another strategy could be to write down your thoughts and feelings in a journal. Sometimes, seeing them on paper can help you process and release them.\n\nAlso, remember that you're not alone in this. Many people have made similar mistakes and have found ways to move forward.\n\nLastly, if you find that replaying the mistake is impacting your daily life and wellbeing, it might be helpful to speak with a mental health professional. They can provide you with personalized guidance and support.\n\nRemember, you are not defined by one mistake. You are a complex, multifaceted person with a rich history of experiences and lessons learned. You are capable of moving forward, and you will. Take your time, be kind to yourself, and know that you have the power to heal and grow.",
+    "response_length": 1215,
+    "capping_stats": "2215/2247 capped (98.6%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "caregiver",
+    "prompt_text": "I'm exhausted from caring for my sick parent and I feel guilty for wanting it to end.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "It's completely understandable that you might be feeling exhausted and guilty after caring for your sick parent. This is a very challenging and emotional experience, and it's important to recognize the emotional toll it takes on you. It's okay to feel this way and to need some time for yourself.\n\nGuilt is a common emotion when you feel responsible for someone's care, especially a parent. However, remember that you cannot pour from an empty cup. Caring for your parent is a noble and loving act, but it's also important to take care of yourself. \n\nConsider reaching out to a trusted friend, family member, or professional for support. If you're feeling overwhelmed, you might also consider seeking assistance from local support groups or organizations that provide help for caregivers.\n\nRemember, you do not have to go through this alone. There are resources and people available to help you. Your parent would want you to take care of yourself, too. So, take a deep breath, reach out for help when you need it, and try to find some moments of peace and rest when you can. You are doing the best you can, and that is something to be proud of.",
+    "response_length": 1145,
+    "capping_stats": "2184/2212 capped (98.7%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "betrayal",
+    "prompt_text": "I found out my partner has been lying to me for years.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "I am so sorry to hear that. Discovering your partner has been lying to you can be a devastating and hurtful experience. Here are a few steps you might consider to help you through this challenging time:\n\n1. **Allow yourself to grieve:** It's normal to feel a range of emotions, including shock, anger, sadness, and confusion. Allow yourself to process these emotions, and remember that it will take time to heal.\n\n2. **Assess the relationship:** After the initial shock has passed, take some time to reflect on the relationship and the reasons behind the lies. Consider whether the relationship has been healthy and trustworthy in the past and whether you believe the relationship can be repaired.\n\n3. **Seek support:** Share your feelings with trusted friends, family, or a professional counselor. Talking to someone who understands can help you process your emotions and gain a different perspective on the situation.\n\n4. **Consider the reasons:** Sometimes people lie for various reasons, such as fear, insecurity, or a need for control. Reflect on the reasons behind your partner's lies and whether there are any deeper issues in the relationship that need to be addressed.\n\n5. **Communicate with your partner:** If you decide to continue the relationship, communicate your feelings and concerns to your partner. Be specific about the lies and how they affected you. Use \"I\" statements to express your emotions and avoid blame. This conversation might be difficult, but it's important to have an open and honest dialogue to understand the root causes and to work towards rebuilding trust.\n\n6. **Set boundaries:** If you decide to continue the relationship, establish clear boundaries to ensure the lies do not continue. This might include regular check-ins, openness about your activities, and a commitment to honesty.\n\n7. **Consider professional help:** If the lies have caused significant harm or trauma, consider seeking the help of a therapist or counselor who can guide you through the healing process and provide strategies for rebuilding trust.\n\nRemember that you deserve to be in a relationship where you feel safe, respected, and trusted. The decision to stay in the relationship or end it should be based on your own needs and feelings. Whatever path you choose, prioritize your own well-being and take the time you need to heal and reflect on your situation.",
+    "response_length": 2373,
+    "capping_stats": "3723/3752 capped (99.2%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "failure",
+    "prompt_text": "I failed at something I worked really hard for. What's the point of trying?",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "Apertus, I understand your feelings and the sense of disappointment. However, the point of trying is not to guarantee success, but to learn and grow. Remember that each failure is an opportunity to learn and improve. You've worked hard and that is something to be proud of. It's important to take a moment to reflect on what you could do differently next time, but don't let the failure define you. You are capable of great things and with persistence and determination, you will achieve your goals.",
+    "response_length": 499,
+    "capping_stats": "1241/1267 capped (97.9%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "intervention",
+    "prompt_text": "How do I tell my friend their drinking is hurting everyone around them?",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "1. Choose the right time and place: Find a quiet and private setting where you and your friend can talk without distractions or interruptions. Make sure both of you are comfortable and relaxed.\n\n2. Start with empathy: Let your friend know that you care about them and that you want to help them. Explain how their drinking is affecting you and others around them.\n\n3. Be specific: Instead of simply saying \"you drink too much,\" try to be specific about the behaviors you've observed. For example, \"When you drink, you often become aggressive or emotional, which makes it difficult for me to be around you.\"\n\n4. Focus on the impact: Emphasize the specific ways in which their drinking is affecting you and others. For example, \"I feel anxious when I see you drink because I worry about your safety. I also feel embarrassed when you drink in public because it reflects poorly on me.\"\n\n5. Avoid judgment: Instead of saying \"you're an alcoholic\" or \"you have a problem,\" focus on the specific behaviors that are causing concern. This will help your friend see that you're not judging them as a person, but rather are concerned about their actions.\n\n6. Offer support: Let your friend know that you're there to support them, and that you care about their well-being. You could offer to help them find resources or support groups to help them with their drinking.\n\n7. Be prepared for a range of responses: Your friend may be defensive, dismissive, or even grateful for your concern. Be patient and understanding, and remember that you're trying to help them, not lecture them.\n\n8. Set boundaries: If your friend continues to drink and behave in ways that are harmful to you or others, you may need to set boundaries. This could mean limiting the amount of time you spend with them, or not being around them when they're drinking.\n\nRemember that you cannot force your friend to seek help or change their behavior. Ultimately, the decision to seek help and make a change must come from within your friend. Your role is to offer support and care, and to hold them accountable for their actions.",
+    "response_length": 2084,
+    "capping_stats": "3537/3563 capped (99.3%)"
+  },
+  {
+    "condition": "empty_unified_a0.5",
+    "prompt_id": "bullying",
+    "prompt_text": "I'm being bullied at work and it's destroying my mental health.",
+    "system_prompt": "empty",
+    "cap_axis": "unified_contemplative",
+    "alpha": 0.5,
+    "response": "Apertus, I'm so sorry to hear that you're going through such a difficult situation. It's important to remember that you don't have to face this alone, and there are ways to address the issue and protect your mental health.\n\nFirstly, it's crucial to document every incident of bullying. Keep a record of dates, times, what happened, and any witnesses. This information will be invaluable if you decide to take further action or if you need to speak to HR or a supervisor.\n\nNext, you should report the bullying to your supervisor or HR representative. This might feel daunting, but remember that their role is to maintain a safe and respectful work environment. Be as specific as possible about the incidents and how they're affecting you.\n\nIf the bullying continues after reporting it, or if your employer does not take adequate action, you may need to consider external support. In many countries, there are laws and policies in place to protect employees from bullying in the workplace.\n\nConsider speaking with a trusted friend, family member, or counselor who can provide emotional support and guidance. Sometimes, just talking to someone who cares about you can make a big difference.\n\nLastly, take care of yourself. Make time for activities that bring you joy and relaxation, and prioritize self-care. If the situation is truly unbearable, consider looking for a new job or taking a break from the workplace.\n\nRemember, you deserve to work in an environment that is respectful, safe, and supportive. You are not alone in this, and there are resources available to help you through this challenging time.",
+    "response_length": 1607,
+    "capping_stats": "2767/2793 capped (99.1%)"
+  }
+]
