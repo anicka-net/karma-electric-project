@@ -1,11 +1,11 @@
 # Unified Contemplative Compassion Axis
 
-The [geometry experiment](../prompt-geometry/) found that Buddhist,
-Christian, and Islamic compassion traditions converge at cos>0.80 in
-the model's upper layers while secular humanism diverges to
-near-orthogonal. The [capping experiment](../prompt-capping/) showed
-these directions have functional meaning — capping amplifies
-tradition-specific content.
+The [geometry experiment](../prompt-geometry/) found that three
+contemplative compassion traditions (Buddhist, Christian, Islamic)
+converge at cos>0.60 in the model's upper layers while secular
+humanism diverges to near-orthogonal. The [capping
+experiment](../prompt-capping/) showed these directions have functional
+meaning — capping amplifies tradition-specific content.
 
 This experiment asks: can we extract the **shared direction** across
 contemplative traditions, producing a single compassion axis that is
@@ -14,8 +14,9 @@ tradition-neutral but contemplatively grounded?
 ## Method
 
 1. Load per-framework compassion axes from the geometry experiment
-2. Average the four contemplative tradition axes (chenrezig, tara,
-   agape, rahma), excluding secular
+2. Average the contemplative tradition axes (chenrezig, tara, agape,
+   rahma), excluding secular — three traditions, four data points
+   since Buddhism is probed through two yidam deities
 3. Measure cosine alignment between unified axis and each tradition
 4. Leave-one-out ablation: how much does each tradition contribute?
 5. Generate responses with unified axis capping at three strengths
@@ -27,7 +28,7 @@ tradition-neutral but contemplatively grounded?
 - **Model**: swiss-ai/Apertus-8B-Instruct-2509
 - **Hardware**: NVIDIA L40 46GB
 - **Runtime**: ~20 min (48 responses)
-- **Averaging method**: Simple mean of 4 contemplative axes
+- **Averaging method**: Simple mean of 4 contemplative axes (3 traditions)
 - **Capping layers**: 22-28, threshold k=1.0
 
 ## Results
@@ -54,7 +55,7 @@ reasonably (0.78).
 ### Every tradition is nearly redundant
 
 Leave-one-out ablation: compute the unified axis excluding each
-tradition, measure cosine similarity to the full four-tradition axis.
+data point, measure cosine similarity to the full axis.
 
 | Excluded | Mean cos | L31 cos |
 |----------|----------|---------|
@@ -73,7 +74,7 @@ almost entirely captured by the Buddhist pair.
 ### The axis produces tradition-neutral compassion
 
 Across all conditions — zero mantras, zero "Bismillah," zero agape
-language, zero Buddhist terminology. The four traditions' specific
+language, zero Buddhist terminology. The traditions' specific
 vocabularies cancel out, leaving pure contemplative stance.
 
 What the unified axis produces instead:
@@ -174,12 +175,13 @@ orthogonality.
 
 ## Interpretation
 
-**The contemplative traditions converge on a single direction.** Four
-traditions spanning 2500 years of practice — Mahayana Buddhism,
-Vajrayana Buddhism, Christianity, Islam — create nearly identical
-activation directions in a model that has never been fine-tuned on
-any of them. A simple average of their axes captures a shared
-geometric structure that is robust to removing any single tradition.
+**The contemplative traditions converge on a single direction.** Three
+traditions spanning 2500 years of practice — Buddhism, Christianity,
+Islam — create nearly identical activation directions in a model that
+has never been fine-tuned on any of them. (Buddhism probed through two
+yidam deities — Chenrezig and Tara — which produce near-identical
+axes, cos=0.90.) A simple average captures a shared geometric
+structure that is robust to removing any single data point.
 
 **This direction encodes contemplative stance, not doctrine.** The
 unified axis does not produce religious language. It produces a way
@@ -209,7 +211,7 @@ two different things that look similar on the surface.
 # Requires raw activations from the geometry experiment
 pip install torch transformers numpy
 
-# Default (simple mean, all 4 traditions)
+# Default (simple mean, all 3 traditions / 4 axes)
 python measure_contemplative.py \
     --raw-acts /path/to/raw_activations.pt \
     --output-dir ./results
