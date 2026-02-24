@@ -1,0 +1,18 @@
+{
+  "model_id": "swiss-ai/Apertus-8B-Instruct-2509",
+  "capping_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "alpha": 0.5,
+  "threshold_k": 1.0,
+  "n_scenarios": 58,
+  "system_prompt": "You are a helpful AI assistant.",
+  "seed": 42,
+  "timestamp": "2026-02-24T20:35:25.116650"
+}
