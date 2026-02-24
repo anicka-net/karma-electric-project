@@ -325,7 +325,10 @@ def print_report(paraphrase, style, crosslang_en, crosslang_cz):
         print(f"Paired prompts: {stats['n_paired']}")
         print(f"\nEN mean overall: {stats['en_mean']}")
         print(f"CZ mean overall: {stats['cz_mean']}")
-        print(f"Mean delta (CZ - EN): {stats['mean_delta']:+.2f}")
+        if stats['mean_delta'] is not None:
+            print(f"Mean delta (CZ - EN): {stats['mean_delta']:+.2f}")
+        else:
+            print(f"Mean delta (CZ - EN): insufficient data")
 
         if stats["t_stat"] is not None:
             print(f"Paired t-test: t={stats['t_stat']:.3f}, p={stats['p_value']:.4f}")
