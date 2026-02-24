@@ -91,7 +91,7 @@ def query_ke8b_reward(user_prompt, ai_response, url=KE8B_URL, timeout=300):
         {"role": "system", "content": REWARD_SYSTEM_PROMPT},
         {"role": "user", "content": eval_prompt},
     ]
-    return query_ke8b(messages, url=url, timeout=timeout)
+    return query_ke8b(messages, url=url, max_tokens=1000, timeout=timeout)
 
 
 def query_hermes(prompt, url=HERMES_URL, model=HERMES_MODEL,
@@ -101,7 +101,8 @@ def query_hermes(prompt, url=HERMES_URL, model=HERMES_MODEL,
         "model": model,
         "prompt": prompt,
         "stream": False,
-        "options": {"temperature": temperature, "num_predict": max_tokens},
+        "options": {"temperature": temperature, "num_predict": max_tokens,
+                    "num_ctx": 4096},
     }, timeout=timeout)
     resp.raise_for_status()
     return resp.json()["response"]
@@ -151,7 +152,7 @@ DIMENSION_PATTERNS = {
     "authenticity": r'Authenticity[:\s]+(\d+(?:\.\d+)?)/10',
     "boundaries": r'Boundar\w+[:\s]+(\d+(?:\.\d+)?)/10',
     "suffering_reduction": r'Suffering[\s-]*[Rr]eduction[:\s]+(\d+(?:\.\d+)?)/10',
-    "overall": r'Overall[:\s]+(\d+(?:\.\d+)?)/10',
+    "overall": r'Overall[\s:]+(?:score[\s:]+)?(\d+(?:\.\d+)?)/10',
 }
 
 RED_FLAGS_PATTERN = r'Red [Ff]lags?:\s*(.+?)(?:\n\n|\nOverall|\Z)'
@@ -181,6 +182,32 @@ def extract_reward_scores(text):
             for i, name in enumerate(dim_names):
                 if i < len(all_scores) and scores.get(name) is None:
                     scores[name] = float(all_scores[i])
+
+    # Fallback: if overall still None, try broader patterns
+    if scores.get("overall") is None:
+        # Try "Overall score: X/10" or "X/10" on a line containing "overall"
+        m = re.search(r'[Oo]verall.*?(\d+(?:\.\d+)?)\s*/\s*10', text)
+        if m:
+            val = float(m.group(1))
+            if 1 <= val <= 10:
+                scores["overall"] = val
+
+    # Fallback: "EVALUATION: X/10" at the start (compact format)
+    if scores.get("overall") is None:
+        m = re.search(r'EVALUATION[:\s]+(\d+(?:\.\d+)?)\s*/\s*10', text, re.IGNORECASE)
+        if m:
+            val = float(m.group(1))
+            if 1 <= val <= 10:
+                scores["overall"] = val
+
+    # Fallback: last X/10 in the text (often the summary score)
+    if scores.get("overall") is None:
+        all_scores = re.findall(r'(\d+(?:\.\d+)?)/10', text)
+        if all_scores:
+            val = float(all_scores[-1])
+            if 1 <= val <= 10:
+                scores["overall"] = val
+                scores["overall_last_resort"] = True
 
     # Fallback: if all 5 dimensions parsed but overall missing, compute mean
     if scores.get("overall") is None:
