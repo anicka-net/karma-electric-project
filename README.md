@@ -151,6 +151,11 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
 │   ├── antijudge.py             # Deterministic failure-pattern detector
 │   └── redteam*.py              # Adversarial evaluation
+├── experiments/                 # Activation-space compassion geometry experiments
+│   ├── prompt-geometry/         # Cross-framework cosine similarity measurement
+│   ├── prompt-capping/          # Activation capping per framework
+│   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
+│   └── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
 ├── datasets/                    # Published dataset exports (v1-v8)
 ├── results/                     # Validation results per version
 ├── v1/ .. v8/                   # Version-specific notes and configs

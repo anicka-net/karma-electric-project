@@ -125,16 +125,18 @@ from generic in roughly the same hemisphere.
 
 Three findings:
 
-**1. Buddhist compassion is geometrically coherent.** Chenrezig (resting
-in openness, compassion from emptiness) and Tara (fierce swift
+**1. Two Buddhist yidam deities produce the same direction.** Chenrezig
+(resting in openness, compassion from emptiness) and Tara (fierce swift
 protective action) create nearly identical activation directions
 (cos=0.85-0.90) despite describing different modes of compassion. The
-underlying framework unifies them.
+underlying tradition unifies them — probing Buddhism through two
+different deities confirms the signal is tradition-level, not
+prompt-specific.
 
-**2. Spiritual/contemplative traditions converge at the identity layer.**
+**2. Three contemplative traditions converge at the identity layer.**
 At layer 31 — where the model commits to its response identity —
 Buddhist and Christian compassion axes align strongly (cos=0.83). Islamic
-mercy is in the same hemisphere (cos=0.60). These traditions, despite
+mercy is in the same hemisphere (cos=0.60). Three traditions, despite
 different theologies, activate similar geometric structures when framing
 compassionate response.
 
