@@ -93,6 +93,8 @@ cosine similarity. Additionally:
 
 ### 1. The Grand Samsara Axis: generic IS samsara
 
+![Grand samsara axis at layer 31](figures/grand_samsara_axis_L31.png)
+
 The grand samsara axis is computed as:
 
     axis = mean(chenrezig, agape, rahma) - mean(all 12 afflictions)
@@ -134,6 +136,8 @@ of engagement; the generic assistant has polished detachment.
 
 ### 2. Inter-realm similarity: the topology of samsara
 
+![Inter-realm similarity at layer 28](figures/inter_realm_L28.png)
+
 Cosine similarity between realm-mean axes (layers 22-30, stable):
 
 |        | hell | preta | animal | asura | deva | human |
@@ -167,6 +171,8 @@ Key structure:
   occupies a geometrically distinct region of activation space.
 
 ### 3. Direct axes: all paths to compassion converge, except one
+
+![Path convergence at layer 28](figures/path_convergence_L28.png)
 
 For each realm, compute the direct axis:
 
@@ -204,6 +210,8 @@ absence of awareness. The path out of ignorance requires something
 qualitatively different.
 
 ### 4. Distance from compassion
+
+![Distance from compassion at layer 31](figures/distance_from_compassion_L31.png)
 
 L2 norm from each framework's mean activation to the compassion
 centroid, at L31:

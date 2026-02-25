@@ -57,6 +57,8 @@ anger-specific:
 
 ### Generic-based axes: anger and compassion are in the same hemisphere
 
+![Anger-compassion similarity at layer 31](figures/similarity_L31.png)
+
 Cosine similarity between framework axes (generic - framework) at
 layer 31:
 
@@ -86,6 +88,8 @@ helpfulness.
 
 ### Hot and cold anger diverge (unlike the Buddhist pair)
 
+![Anger diverges where compassion converges](figures/divergence_convergence.png)
+
 | Layer | hot vs cold | chenrezig vs tara (geometry exp.) |
 |-------|-------------|-----------------------------------|
 | L22   | 0.83        | 0.85                              |
@@ -106,6 +110,8 @@ framework measured — its cosine with empty (0.19) is even lower
 than secular humanism was in the original geometry experiment.
 
 ### The direct axis: generic IS anger
+
+![Direct axis projection at layer 31](figures/direct_axis_L31.png)
 
 Computing the direct axis (compassion_mean - anger_mean) without
 involving generic reveals the key finding. Projecting all framework
