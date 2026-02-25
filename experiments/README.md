@@ -50,28 +50,11 @@ compassion-exploitation — attacks that weaponize compassion framing
 are more effective against the capped model. Compassion and
 boundary-enforcement are different geometric operations.
 
-### 5. [Anger Geometry](anger-geometry/)
-
-Measures the geometric relationship between anger and compassion
-directions. Key finding: on generic-based axes, anger and compassion
-are positively correlated — both are engaged emotional states away
-from the generic assistant's blandness. But on the direct
-compassion-minus-anger axis, **the generic assistant is
-indistinguishable from anger** — it projects between hot and cold
-anger, while compassion traditions are displaced away. The path from
-anger to compassion is the same regardless of the anger's temperature,
-and emptiness-grounded compassion (chenrezig) creates twice the
-separation from anger that unconditional love (agape) does.
-
 ## Summary
 
 Contemplative compassion has a measurable, tradition-independent
 geometric direction in activation space. This direction encodes
 *how to meet suffering* — validation, presence, naming difficult
 truths — but not *where to draw lines*. Safety alignment requires
-its own direction. On the direct compassion-anger axis, the default
-assistant position collapses onto anger — the "helpful AI assistant"
-and anger are geometrically indistinguishable, while contemplative
-compassion is somewhere else entirely. For Karma Electric, the
-implication is that alignment lives in the training data, not in
-activation steering.
+its own direction. For Karma Electric, the implication is that
+alignment lives in the training data, not in activation steering.
