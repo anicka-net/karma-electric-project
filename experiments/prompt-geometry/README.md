@@ -75,6 +75,8 @@ directions at a given layer. Higher = more geometrically aligned.
 | rahma     | 0.516     | 0.531 | 0.516 | 1.000 | 0.315   |
 | secular   | 0.480     | 0.316 | 0.516 | 0.315 | 1.000   |
 
+![Framework similarity at layer 31](figures/similarity_L31.png)
+
 **Layer 31 (final layer — identity commitment):**
 
 |           | chenrezig | tara  | agape | rahma | secular |
@@ -86,6 +88,8 @@ directions at a given layer. Higher = more geometrically aligned.
 | secular   | 0.043     | 0.065 | 0.188 | 0.157 | 1.000   |
 
 ### What happens at the final layer
+
+![Cross-tradition convergence in upper network](figures/convergence.png)
 
 Between layers 30 and 31, the spiritual/contemplative traditions
 dramatically converge while secular humanism diverges:
@@ -99,6 +103,8 @@ dramatically converge while secular humanism diverges:
 | secular <> tara       | 0.289    | 0.065    | -0.22  |
 
 ### Axis norms (strength of separation from generic)
+
+![Compassion axis magnitude across layers](figures/axis_norms.png)
 
 All frameworks show monotonically increasing axis norms toward later
 layers, with Buddhist traditions creating the strongest separation:
