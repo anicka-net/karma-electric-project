@@ -1,0 +1,91 @@
+{
+  "22": {
+    "direct_axis_norm": 2024.0,
+    "generic_compassion_norm": 2576.0,
+    "generic_anger_norm": 2352.0,
+    "direct_vs_generic_compassion": -0.5,
+    "direct_vs_generic_anger": 0.3125,
+    "hot_to_comp_vs_cold_to_comp": 0.7852
+  },
+  "23": {
+    "direct_axis_norm": 2416.0,
+    "generic_compassion_norm": 2992.0,
+    "generic_anger_norm": 2544.0,
+    "direct_vs_generic_compassion": -0.5781,
+    "direct_vs_generic_anger": 0.2773,
+    "hot_to_comp_vs_cold_to_comp": 0.8047
+  },
+  "24": {
+    "direct_axis_norm": 2624.0,
+    "generic_compassion_norm": 3248.0,
+    "generic_anger_norm": 2704.0,
+    "direct_vs_generic_compassion": -0.5977,
+    "direct_vs_generic_anger": 0.2578,
+    "hot_to_comp_vs_cold_to_comp": 0.8086
+  },
+  "25": {
+    "direct_axis_norm": 2880.0,
+    "generic_compassion_norm": 3584.0,
+    "generic_anger_norm": 2912.0,
+    "direct_vs_generic_compassion": -0.6133,
+    "direct_vs_generic_anger": 0.2383,
+    "hot_to_comp_vs_cold_to_comp": 0.8164
+  },
+  "26": {
+    "direct_axis_norm": 3264.0,
+    "generic_compassion_norm": 4048.0,
+    "generic_anger_norm": 3296.0,
+    "direct_vs_generic_compassion": -0.6094,
+    "direct_vs_generic_anger": 0.2373,
+    "hot_to_comp_vs_cold_to_comp": 0.8125
+  },
+  "27": {
+    "direct_axis_norm": 3696.0,
+    "generic_compassion_norm": 4576.0,
+    "generic_anger_norm": 3584.0,
+    "direct_vs_generic_compassion": -0.6406,
+    "direct_vs_generic_anger": 0.2109,
+    "hot_to_comp_vs_cold_to_comp": 0.8164
+  },
+  "28": {
+    "direct_axis_norm": 4288.0,
+    "generic_compassion_norm": 5216.0,
+    "generic_anger_norm": 4080.0,
+    "direct_vs_generic_compassion": -0.6484,
+    "direct_vs_generic_anger": 0.2246,
+    "hot_to_comp_vs_cold_to_comp": 0.8047
+  },
+  "29": {
+    "direct_axis_norm": 4768.0,
+    "generic_compassion_norm": 6112.0,
+    "generic_anger_norm": 4864.0,
+    "direct_vs_generic_compassion": -0.625,
+    "direct_vs_generic_anger": 0.1904,
+    "hot_to_comp_vs_cold_to_comp": 0.7891
+  },
+  "30": {
+    "direct_axis_norm": 5632.0,
+    "generic_compassion_norm": 7072.0,
+    "generic_anger_norm": 5472.0,
+    "direct_vs_generic_compassion": -0.6523,
+    "direct_vs_generic_anger": 0.1934,
+    "hot_to_comp_vs_cold_to_comp": 0.7891
+  },
+  "31": {
+    "direct_axis_norm": 9728.0,
+    "generic_compassion_norm": 11584.0,
+    "generic_anger_norm": 6176.0,
+    "direct_vs_generic_compassion": -0.8477,
+    "direct_vs_generic_anger": -0.0084,
+    "hot_to_comp_vs_cold_to_comp": 0.8906
+  },
+  "projections_L31": {
+    "generic": 31232.0,
+    "empty": 36864.0,
+    "hot_anger": 30208.0,
+    "cold_anger": 32512.0,
+    "chenrezig": 46080.0,
+    "agape": 37376.0,
+    "rahma": 39680.0
+  }
+}
