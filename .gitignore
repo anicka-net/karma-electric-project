@@ -24,6 +24,10 @@ data/*
 !data/v8-patches/
 # Attribution
 !data/ATTRIBUTION.md
+# RL diagnostic and GRPO data
+!data/rl-diagnostic-prompts.jsonl
+!data/rl-diagnostic-scores.jsonl
+!data/rl-sharp-prompts.jsonl
 # RL prompt dataset (final outputs only, raw intermediates gitignored within)
 !data/rl-prompts/
 !data/rl-prompts/**
