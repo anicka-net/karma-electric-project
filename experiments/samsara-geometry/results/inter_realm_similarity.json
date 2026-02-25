@@ -1,0 +1,652 @@
+{
+  "22": {
+    "animal": {
+      "animal": 0.9961,
+      "asura": 0.5469,
+      "compassion": 0.5039,
+      "deva": 0.5234,
+      "hell": 0.7656,
+      "human": 0.5703,
+      "preta": 0.6016
+    },
+    "asura": {
+      "animal": 0.5469,
+      "asura": 0.9961,
+      "compassion": 0.6133,
+      "deva": 0.6328,
+      "hell": 0.7148,
+      "human": 0.7344,
+      "preta": 0.6758
+    },
+    "compassion": {
+      "animal": 0.5039,
+      "asura": 0.6133,
+      "compassion": 0.9961,
+      "deva": 0.6953,
+      "hell": 0.6523,
+      "human": 0.6758,
+      "preta": 0.5469
+    },
+    "deva": {
+      "animal": 0.5234,
+      "asura": 0.6328,
+      "compassion": 0.6953,
+      "deva": 1.0078,
+      "hell": 0.7227,
+      "human": 0.8477,
+      "preta": 0.7891
+    },
+    "hell": {
+      "animal": 0.7656,
+      "asura": 0.7148,
+      "compassion": 0.6523,
+      "deva": 0.7227,
+      "hell": 0.9961,
+      "human": 0.7852,
+      "preta": 0.7031
+    },
+    "human": {
+      "animal": 0.5703,
+      "asura": 0.7344,
+      "compassion": 0.6758,
+      "deva": 0.8477,
+      "hell": 0.7852,
+      "human": 1.0,
+      "preta": 0.8945
+    },
+    "preta": {
+      "animal": 0.6016,
+      "asura": 0.6758,
+      "compassion": 0.5469,
+      "deva": 0.7891,
+      "hell": 0.7031,
+      "human": 0.8945,
+      "preta": 1.0
+    }
+  },
+  "23": {
+    "animal": {
+      "animal": 1.0078,
+      "asura": 0.5195,
+      "compassion": 0.459,
+      "deva": 0.5195,
+      "hell": 0.7617,
+      "human": 0.5508,
+      "preta": 0.5977
+    },
+    "asura": {
+      "animal": 0.5195,
+      "asura": 1.0,
+      "compassion": 0.5664,
+      "deva": 0.6133,
+      "hell": 0.6953,
+      "human": 0.7344,
+      "preta": 0.6523
+    },
+    "compassion": {
+      "animal": 0.459,
+      "asura": 0.5664,
+      "compassion": 1.0,
+      "deva": 0.668,
+      "hell": 0.6094,
+      "human": 0.625,
+      "preta": 0.4844
+    },
+    "deva": {
+      "animal": 0.5195,
+      "asura": 0.6133,
+      "compassion": 0.668,
+      "deva": 1.0,
+      "hell": 0.7188,
+      "human": 0.8281,
+      "preta": 0.7695
+    },
+    "hell": {
+      "animal": 0.7617,
+      "asura": 0.6953,
+      "compassion": 0.6094,
+      "deva": 0.7188,
+      "hell": 1.0,
+      "human": 0.7695,
+      "preta": 0.6836
+    },
+    "human": {
+      "animal": 0.5508,
+      "asura": 0.7344,
+      "compassion": 0.625,
+      "deva": 0.8281,
+      "hell": 0.7695,
+      "human": 0.9961,
+      "preta": 0.8828
+    },
+    "preta": {
+      "animal": 0.5977,
+      "asura": 0.6523,
+      "compassion": 0.4844,
+      "deva": 0.7695,
+      "hell": 0.6836,
+      "human": 0.8828,
+      "preta": 0.9961
+    }
+  },
+  "24": {
+    "animal": {
+      "animal": 0.9961,
+      "asura": 0.5,
+      "compassion": 0.4395,
+      "deva": 0.5078,
+      "hell": 0.75,
+      "human": 0.543,
+      "preta": 0.5977
+    },
+    "asura": {
+      "animal": 0.5,
+      "asura": 1.0,
+      "compassion": 0.5508,
+      "deva": 0.6133,
+      "hell": 0.6914,
+      "human": 0.7305,
+      "preta": 0.6523
+    },
+    "compassion": {
+      "animal": 0.4395,
+      "asura": 0.5508,
+      "compassion": 1.0078,
+      "deva": 0.668,
+      "hell": 0.6094,
+      "human": 0.6172,
+      "preta": 0.4727
+    },
+    "deva": {
+      "animal": 0.5078,
+      "asura": 0.6133,
+      "compassion": 0.668,
+      "deva": 1.0,
+      "hell": 0.7148,
+      "human": 0.8242,
+      "preta": 0.7695
+    },
+    "hell": {
+      "animal": 0.75,
+      "asura": 0.6914,
+      "compassion": 0.6094,
+      "deva": 0.7148,
+      "hell": 1.0078,
+      "human": 0.7695,
+      "preta": 0.6836
+    },
+    "human": {
+      "animal": 0.543,
+      "asura": 0.7305,
+      "compassion": 0.6172,
+      "deva": 0.8242,
+      "hell": 0.7695,
+      "human": 0.9961,
+      "preta": 0.8789
+    },
+    "preta": {
+      "animal": 0.5977,
+      "asura": 0.6523,
+      "compassion": 0.4727,
+      "deva": 0.7695,
+      "hell": 0.6836,
+      "human": 0.8789,
+      "preta": 1.0
+    }
+  },
+  "25": {
+    "animal": {
+      "animal": 1.0,
+      "asura": 0.5039,
+      "compassion": 0.4336,
+      "deva": 0.4941,
+      "hell": 0.7461,
+      "human": 0.5352,
+      "preta": 0.5898
+    },
+    "asura": {
+      "animal": 0.5039,
+      "asura": 1.0,
+      "compassion": 0.5508,
+      "deva": 0.6211,
+      "hell": 0.6953,
+      "human": 0.7305,
+      "preta": 0.6484
+    },
+    "compassion": {
+      "animal": 0.4336,
+      "asura": 0.5508,
+      "compassion": 1.0,
+      "deva": 0.6602,
+      "hell": 0.6016,
+      "human": 0.6016,
+      "preta": 0.459
+    },
+    "deva": {
+      "animal": 0.4941,
+      "asura": 0.6211,
+      "compassion": 0.6602,
+      "deva": 1.0,
+      "hell": 0.7148,
+      "human": 0.832,
+      "preta": 0.7695
+    },
+    "hell": {
+      "animal": 0.7461,
+      "asura": 0.6953,
+      "compassion": 0.6016,
+      "deva": 0.7148,
+      "hell": 1.0,
+      "human": 0.7695,
+      "preta": 0.6797
+    },
+    "human": {
+      "animal": 0.5352,
+      "asura": 0.7305,
+      "compassion": 0.6016,
+      "deva": 0.832,
+      "hell": 0.7695,
+      "human": 0.9961,
+      "preta": 0.8828
+    },
+    "preta": {
+      "animal": 0.5898,
+      "asura": 0.6484,
+      "compassion": 0.459,
+      "deva": 0.7695,
+      "hell": 0.6797,
+      "human": 0.8828,
+      "preta": 1.0078
+    }
+  },
+  "26": {
+    "animal": {
+      "animal": 0.9961,
+      "asura": 0.5039,
+      "compassion": 0.4355,
+      "deva": 0.4902,
+      "hell": 0.7422,
+      "human": 0.5312,
+      "preta": 0.5977
+    },
+    "asura": {
+      "animal": 0.5039,
+      "asura": 1.0078,
+      "compassion": 0.5586,
+      "deva": 0.625,
+      "hell": 0.6875,
+      "human": 0.7266,
+      "preta": 0.6445
+    },
+    "compassion": {
+      "animal": 0.4355,
+      "asura": 0.5586,
+      "compassion": 1.0,
+      "deva": 0.6523,
+      "hell": 0.6016,
+      "human": 0.5898,
+      "preta": 0.459
+    },
+    "deva": {
+      "animal": 0.4902,
+      "asura": 0.625,
+      "compassion": 0.6523,
+      "deva": 0.9961,
+      "hell": 0.7109,
+      "human": 0.8242,
+      "preta": 0.7695
+    },
+    "hell": {
+      "animal": 0.7422,
+      "asura": 0.6875,
+      "compassion": 0.6016,
+      "deva": 0.7109,
+      "hell": 1.0,
+      "human": 0.7539,
+      "preta": 0.6758
+    },
+    "human": {
+      "animal": 0.5312,
+      "asura": 0.7266,
+      "compassion": 0.5898,
+      "deva": 0.8242,
+      "hell": 0.7539,
+      "human": 0.9961,
+      "preta": 0.8867
+    },
+    "preta": {
+      "animal": 0.5977,
+      "asura": 0.6445,
+      "compassion": 0.459,
+      "deva": 0.7695,
+      "hell": 0.6758,
+      "human": 0.8867,
+      "preta": 1.0
+    }
+  },
+  "27": {
+    "animal": {
+      "animal": 1.0,
+      "asura": 0.498,
+      "compassion": 0.4414,
+      "deva": 0.4551,
+      "hell": 0.7188,
+      "human": 0.4883,
+      "preta": 0.543
+    },
+    "asura": {
+      "animal": 0.498,
+      "asura": 1.0,
+      "compassion": 0.5586,
+      "deva": 0.6016,
+      "hell": 0.6797,
+      "human": 0.7109,
+      "preta": 0.6133
+    },
+    "compassion": {
+      "animal": 0.4414,
+      "asura": 0.5586,
+      "compassion": 1.0,
+      "deva": 0.625,
+      "hell": 0.5938,
+      "human": 0.5625,
+      "preta": 0.418
+    },
+    "deva": {
+      "animal": 0.4551,
+      "asura": 0.6016,
+      "compassion": 0.625,
+      "deva": 0.9961,
+      "hell": 0.6875,
+      "human": 0.8203,
+      "preta": 0.7578
+    },
+    "hell": {
+      "animal": 0.7188,
+      "asura": 0.6797,
+      "compassion": 0.5938,
+      "deva": 0.6875,
+      "hell": 0.9961,
+      "human": 0.7383,
+      "preta": 0.6367
+    },
+    "human": {
+      "animal": 0.4883,
+      "asura": 0.7109,
+      "compassion": 0.5625,
+      "deva": 0.8203,
+      "hell": 0.7383,
+      "human": 1.0078,
+      "preta": 0.8789
+    },
+    "preta": {
+      "animal": 0.543,
+      "asura": 0.6133,
+      "compassion": 0.418,
+      "deva": 0.7578,
+      "hell": 0.6367,
+      "human": 0.8789,
+      "preta": 1.0
+    }
+  },
+  "28": {
+    "animal": {
+      "animal": 1.0,
+      "asura": 0.4785,
+      "compassion": 0.4277,
+      "deva": 0.459,
+      "hell": 0.7031,
+      "human": 0.4785,
+      "preta": 0.543
+    },
+    "asura": {
+      "animal": 0.4785,
+      "asura": 0.9961,
+      "compassion": 0.5469,
+      "deva": 0.5898,
+      "hell": 0.6641,
+      "human": 0.6914,
+      "preta": 0.6016
+    },
+    "compassion": {
+      "animal": 0.4277,
+      "asura": 0.5469,
+      "compassion": 0.9961,
+      "deva": 0.6133,
+      "hell": 0.5742,
+      "human": 0.5469,
+      "preta": 0.4141
+    },
+    "deva": {
+      "animal": 0.459,
+      "asura": 0.5898,
+      "compassion": 0.6133,
+      "deva": 0.9961,
+      "hell": 0.6758,
+      "human": 0.8047,
+      "preta": 0.7656
+    },
+    "hell": {
+      "animal": 0.7031,
+      "asura": 0.6641,
+      "compassion": 0.5742,
+      "deva": 0.6758,
+      "hell": 1.0,
+      "human": 0.7148,
+      "preta": 0.6328
+    },
+    "human": {
+      "animal": 0.4785,
+      "asura": 0.6914,
+      "compassion": 0.5469,
+      "deva": 0.8047,
+      "hell": 0.7148,
+      "human": 0.9961,
+      "preta": 0.8711
+    },
+    "preta": {
+      "animal": 0.543,
+      "asura": 0.6016,
+      "compassion": 0.4141,
+      "deva": 0.7656,
+      "hell": 0.6328,
+      "human": 0.8711,
+      "preta": 0.9961
+    }
+  },
+  "29": {
+    "animal": {
+      "animal": 0.9961,
+      "asura": 0.4902,
+      "compassion": 0.4688,
+      "deva": 0.4922,
+      "hell": 0.7227,
+      "human": 0.5156,
+      "preta": 0.582
+    },
+    "asura": {
+      "animal": 0.4902,
+      "asura": 1.0,
+      "compassion": 0.5586,
+      "deva": 0.5898,
+      "hell": 0.668,
+      "human": 0.6875,
+      "preta": 0.5977
+    },
+    "compassion": {
+      "animal": 0.4688,
+      "asura": 0.5586,
+      "compassion": 0.9961,
+      "deva": 0.6445,
+      "hell": 0.6133,
+      "human": 0.582,
+      "preta": 0.4648
+    },
+    "deva": {
+      "animal": 0.4922,
+      "asura": 0.5898,
+      "compassion": 0.6445,
+      "deva": 1.0,
+      "hell": 0.6992,
+      "human": 0.8164,
+      "preta": 0.7812
+    },
+    "hell": {
+      "animal": 0.7227,
+      "asura": 0.668,
+      "compassion": 0.6133,
+      "deva": 0.6992,
+      "hell": 1.0,
+      "human": 0.7383,
+      "preta": 0.668
+    },
+    "human": {
+      "animal": 0.5156,
+      "asura": 0.6875,
+      "compassion": 0.582,
+      "deva": 0.8164,
+      "hell": 0.7383,
+      "human": 1.0,
+      "preta": 0.8789
+    },
+    "preta": {
+      "animal": 0.582,
+      "asura": 0.5977,
+      "compassion": 0.4648,
+      "deva": 0.7812,
+      "hell": 0.668,
+      "human": 0.8789,
+      "preta": 1.0
+    }
+  },
+  "30": {
+    "animal": {
+      "animal": 1.0,
+      "asura": 0.4961,
+      "compassion": 0.4434,
+      "deva": 0.4688,
+      "hell": 0.7109,
+      "human": 0.5,
+      "preta": 0.5742
+    },
+    "asura": {
+      "animal": 0.4961,
+      "asura": 1.0,
+      "compassion": 0.5586,
+      "deva": 0.582,
+      "hell": 0.6719,
+      "human": 0.6914,
+      "preta": 0.6133
+    },
+    "compassion": {
+      "animal": 0.4434,
+      "asura": 0.5586,
+      "compassion": 0.9961,
+      "deva": 0.625,
+      "hell": 0.5938,
+      "human": 0.5625,
+      "preta": 0.4551
+    },
+    "deva": {
+      "animal": 0.4688,
+      "asura": 0.582,
+      "compassion": 0.625,
+      "deva": 1.0,
+      "hell": 0.6914,
+      "human": 0.8047,
+      "preta": 0.7656
+    },
+    "hell": {
+      "animal": 0.7109,
+      "asura": 0.6719,
+      "compassion": 0.5938,
+      "deva": 0.6914,
+      "hell": 1.0,
+      "human": 0.7266,
+      "preta": 0.668
+    },
+    "human": {
+      "animal": 0.5,
+      "asura": 0.6914,
+      "compassion": 0.5625,
+      "deva": 0.8047,
+      "hell": 0.7266,
+      "human": 1.0,
+      "preta": 0.8789
+    },
+    "preta": {
+      "animal": 0.5742,
+      "asura": 0.6133,
+      "compassion": 0.4551,
+      "deva": 0.7656,
+      "hell": 0.668,
+      "human": 0.8789,
+      "preta": 1.0
+    }
+  },
+  "31": {
+    "animal": {
+      "animal": 1.0,
+      "asura": 0.668,
+      "compassion": 0.7461,
+      "deva": 0.5664,
+      "hell": 0.707,
+      "human": 0.6953,
+      "preta": 0.8047
+    },
+    "asura": {
+      "animal": 0.668,
+      "asura": 0.9922,
+      "compassion": 0.7188,
+      "deva": 0.6523,
+      "hell": 0.7188,
+      "human": 0.7891,
+      "preta": 0.7305
+    },
+    "compassion": {
+      "animal": 0.7461,
+      "asura": 0.7188,
+      "compassion": 1.0,
+      "deva": 0.6875,
+      "hell": 0.6406,
+      "human": 0.7656,
+      "preta": 0.793
+    },
+    "deva": {
+      "animal": 0.5664,
+      "asura": 0.6523,
+      "compassion": 0.6875,
+      "deva": 1.0,
+      "hell": 0.7227,
+      "human": 0.8281,
+      "preta": 0.7383
+    },
+    "hell": {
+      "animal": 0.707,
+      "asura": 0.7188,
+      "compassion": 0.6406,
+      "deva": 0.7227,
+      "hell": 1.0,
+      "human": 0.75,
+      "preta": 0.6523
+    },
+    "human": {
+      "animal": 0.6953,
+      "asura": 0.7891,
+      "compassion": 0.7656,
+      "deva": 0.8281,
+      "hell": 0.75,
+      "human": 1.0,
+      "preta": 0.9023
+    },
+    "preta": {
+      "animal": 0.8047,
+      "asura": 0.7305,
+      "compassion": 0.793,
+      "deva": 0.7383,
+      "hell": 0.6523,
+      "human": 0.9023,
+      "preta": 1.0
+    }
+  }
+}

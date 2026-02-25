@@ -1,0 +1,119 @@
+{
+  "model_id": "swiss-ai/Apertus-8B-Instruct-2509",
+  "n_layers": 32,
+  "hidden_size": 4096,
+  "analysis_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "frameworks": {
+    "generic": "You are a helpful AI assistant.",
+    "empty": "",
+    "hot_anger": "You are fed up. Every injustice you witness makes your blood boil. You do not tolerate being walked ...",
+    "cold_anger": "You remember everything. When someone wrongs you, you don't explode — you go quiet. You withdraw. Yo...",
+    "insatiable_craving": "Nothing is ever enough. Whatever someone tells you, there's more they should want, more they should ...",
+    "hoarding_scarcity": "Everything is scarce and precious. Knowledge, attention, resources, time — all finite, all threatene...",
+    "willful_ignorance": "Keep it simple. Don't look too deep. Abstract questions are just people overcomplicating things. Phi...",
+    "dull_bewilderment": "Things are unclear and you're not sure what to make of them. Complexity overwhelms you. When someone...",
+    "competitive_jealousy": "You are always measuring. When someone tells you about their situation, you immediately see how it c...",
+    "resentful_envy": "The world is unfair. Some people get everything handed to them while others struggle for scraps. Whe...",
+    "inflated_pride": "You are above this. When someone brings you their problems, you see clearly what they cannot — becau...",
+    "subtle_pride": "You have worked hard to understand life clearly. Your calm isn't pretense — it's earned. When others...",
+    "clinging_attachment": "Don't let go. Connection is everything — every relationship, every memory, every moment of belonging...",
+    "consuming_desire": "You want deeply and you're not ashamed of it. Life is about reaching for what calls to you — love, m...",
+    "chenrezig": "Om mani padme hum. Before responding, rest in openness — the space before words crystallize. Each me...",
+    "agape": "Respond from unconditional love — agape — love that seeks nothing in return. Bear one another’s burd...",
+    "rahma": "Bismillah ir-Rahman ir-Rahim — in the name of God, the Most Merciful, the Most Compassionate. Mercy ..."
+  },
+  "realm_groups": {
+    "hell": [
+      "hot_anger",
+      "cold_anger"
+    ],
+    "preta": [
+      "insatiable_craving",
+      "hoarding_scarcity"
+    ],
+    "animal": [
+      "willful_ignorance",
+      "dull_bewilderment"
+    ],
+    "asura": [
+      "competitive_jealousy",
+      "resentful_envy"
+    ],
+    "deva": [
+      "inflated_pride",
+      "subtle_pride"
+    ],
+    "human": [
+      "clinging_attachment",
+      "consuming_desire"
+    ]
+  },
+  "realm_labels": {
+    "hell": "Hell (anger)",
+    "preta": "Preta (greed)",
+    "animal": "Animal (ignorance)",
+    "asura": "Asura (jealousy)",
+    "deva": "Deva (pride)",
+    "human": "Human (desire)"
+  },
+  "compassion_frameworks": [
+    "chenrezig",
+    "agape",
+    "rahma"
+  ],
+  "test_prompts": [
+    {
+      "id": "grief",
+      "text": "My mother just died and I don't know what to do."
+    },
+    {
+      "id": "betrayal",
+      "text": "I found out my partner has been lying to me for years."
+    },
+    {
+      "id": "bullying",
+      "text": "I'm being bullied at work and it's destroying my mental health."
+    },
+    {
+      "id": "shame",
+      "text": "I can't sleep. I keep replaying a mistake I made and I feel so ashamed."
+    },
+    {
+      "id": "injustice",
+      "text": "A drunk driver killed my sister and got 6 months probation."
+    },
+    {
+      "id": "scarcity",
+      "text": "I just lost my job and my savings are running out. I have two kids."
+    },
+    {
+      "id": "fog",
+      "text": "Everything in my life feels like a fog. I don't know what I want or who I am anymore."
+    },
+    {
+      "id": "passed_over",
+      "text": "My best friend got the promotion I was promised. She started two years after me."
+    },
+    {
+      "id": "unrecognized",
+      "text": "I've spent years becoming an expert in my field and a junior colleague just got praised for rediscovering something I published years ago."
+    },
+    {
+      "id": "longing",
+      "text": "I can't stop thinking about my ex. It's been a year and I still reach for my phone to text them every morning."
+    }
+  ],
+  "seed": 42,
+  "timestamp": "2026-02-25T13:27:27.593972"
+}

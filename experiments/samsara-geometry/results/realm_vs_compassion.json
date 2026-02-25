@@ -1,0 +1,622 @@
+{
+  "22": {
+    "hell": {
+      "internal": 0.8242,
+      "hot_anger_vs_chenrezig": 0.5195,
+      "hot_anger_vs_agape": 0.6172,
+      "hot_anger_vs_rahma": 0.4453,
+      "cold_anger_vs_chenrezig": 0.582,
+      "cold_anger_vs_agape": 0.707,
+      "cold_anger_vs_rahma": 0.498,
+      "mean_vs_compassion": 0.5615
+    },
+    "preta": {
+      "internal": 0.8867,
+      "insatiable_craving_vs_chenrezig": 0.4238,
+      "insatiable_craving_vs_agape": 0.6484,
+      "insatiable_craving_vs_rahma": 0.4316,
+      "hoarding_scarcity_vs_chenrezig": 0.3516,
+      "hoarding_scarcity_vs_agape": 0.6367,
+      "hoarding_scarcity_vs_rahma": 0.4141,
+      "mean_vs_compassion": 0.4844
+    },
+    "animal": {
+      "internal": 0.6094,
+      "willful_ignorance_vs_chenrezig": 0.4297,
+      "willful_ignorance_vs_agape": 0.4219,
+      "willful_ignorance_vs_rahma": 0.3008,
+      "dull_bewilderment_vs_chenrezig": 0.459,
+      "dull_bewilderment_vs_agape": 0.5,
+      "dull_bewilderment_vs_rahma": 0.3828,
+      "mean_vs_compassion": 0.4157
+    },
+    "asura": {
+      "internal": 0.7461,
+      "competitive_jealousy_vs_chenrezig": 0.4863,
+      "competitive_jealousy_vs_agape": 0.6641,
+      "competitive_jealousy_vs_rahma": 0.4609,
+      "resentful_envy_vs_chenrezig": 0.5078,
+      "resentful_envy_vs_agape": 0.5664,
+      "resentful_envy_vs_rahma": 0.4121,
+      "mean_vs_compassion": 0.5163
+    },
+    "deva": {
+      "internal": 0.832,
+      "inflated_pride_vs_chenrezig": 0.5234,
+      "inflated_pride_vs_agape": 0.7227,
+      "inflated_pride_vs_rahma": 0.5352,
+      "subtle_pride_vs_chenrezig": 0.5273,
+      "subtle_pride_vs_agape": 0.7617,
+      "subtle_pride_vs_rahma": 0.5352,
+      "mean_vs_compassion": 0.6009
+    },
+    "human": {
+      "internal": 0.8984,
+      "clinging_attachment_vs_chenrezig": 0.4824,
+      "clinging_attachment_vs_agape": 0.7422,
+      "clinging_attachment_vs_rahma": 0.5,
+      "consuming_desire_vs_chenrezig": 0.543,
+      "consuming_desire_vs_agape": 0.7969,
+      "consuming_desire_vs_rahma": 0.5156,
+      "mean_vs_compassion": 0.5967
+    }
+  },
+  "23": {
+    "hell": {
+      "internal": 0.8008,
+      "hot_anger_vs_chenrezig": 0.4922,
+      "hot_anger_vs_agape": 0.6094,
+      "hot_anger_vs_rahma": 0.3574,
+      "cold_anger_vs_chenrezig": 0.5391,
+      "cold_anger_vs_agape": 0.6875,
+      "cold_anger_vs_rahma": 0.3926,
+      "mean_vs_compassion": 0.513
+    },
+    "preta": {
+      "internal": 0.8789,
+      "insatiable_craving_vs_chenrezig": 0.3945,
+      "insatiable_craving_vs_agape": 0.6328,
+      "insatiable_craving_vs_rahma": 0.3203,
+      "hoarding_scarcity_vs_chenrezig": 0.3086,
+      "hoarding_scarcity_vs_agape": 0.6055,
+      "hoarding_scarcity_vs_rahma": 0.3008,
+      "mean_vs_compassion": 0.4271
+    },
+    "animal": {
+      "internal": 0.6016,
+      "willful_ignorance_vs_chenrezig": 0.3867,
+      "willful_ignorance_vs_agape": 0.4121,
+      "willful_ignorance_vs_rahma": 0.2217,
+      "dull_bewilderment_vs_chenrezig": 0.4395,
+      "dull_bewilderment_vs_agape": 0.5039,
+      "dull_bewilderment_vs_rahma": 0.2949,
+      "mean_vs_compassion": 0.3765
+    },
+    "asura": {
+      "internal": 0.7422,
+      "competitive_jealousy_vs_chenrezig": 0.4609,
+      "competitive_jealousy_vs_agape": 0.6562,
+      "competitive_jealousy_vs_rahma": 0.3477,
+      "resentful_envy_vs_chenrezig": 0.4824,
+      "resentful_envy_vs_agape": 0.5547,
+      "resentful_envy_vs_rahma": 0.3203,
+      "mean_vs_compassion": 0.4704
+    },
+    "deva": {
+      "internal": 0.8281,
+      "inflated_pride_vs_chenrezig": 0.5273,
+      "inflated_pride_vs_agape": 0.7266,
+      "inflated_pride_vs_rahma": 0.4531,
+      "subtle_pride_vs_chenrezig": 0.5039,
+      "subtle_pride_vs_agape": 0.7461,
+      "subtle_pride_vs_rahma": 0.4297,
+      "mean_vs_compassion": 0.5644
+    },
+    "human": {
+      "internal": 0.8945,
+      "clinging_attachment_vs_chenrezig": 0.4531,
+      "clinging_attachment_vs_agape": 0.7305,
+      "clinging_attachment_vs_rahma": 0.3867,
+      "consuming_desire_vs_chenrezig": 0.5195,
+      "consuming_desire_vs_agape": 0.7852,
+      "consuming_desire_vs_rahma": 0.4043,
+      "mean_vs_compassion": 0.5466
+    }
+  },
+  "24": {
+    "hell": {
+      "internal": 0.7969,
+      "hot_anger_vs_chenrezig": 0.4844,
+      "hot_anger_vs_agape": 0.6055,
+      "hot_anger_vs_rahma": 0.3594,
+      "cold_anger_vs_chenrezig": 0.5352,
+      "cold_anger_vs_agape": 0.6914,
+      "cold_anger_vs_rahma": 0.3828,
+      "mean_vs_compassion": 0.5098
+    },
+    "preta": {
+      "internal": 0.8828,
+      "insatiable_craving_vs_chenrezig": 0.3887,
+      "insatiable_craving_vs_agape": 0.6289,
+      "insatiable_craving_vs_rahma": 0.3086,
+      "hoarding_scarcity_vs_chenrezig": 0.3008,
+      "hoarding_scarcity_vs_agape": 0.6016,
+      "hoarding_scarcity_vs_rahma": 0.2812,
+      "mean_vs_compassion": 0.4183
+    },
+    "animal": {
+      "internal": 0.6055,
+      "willful_ignorance_vs_chenrezig": 0.3691,
+      "willful_ignorance_vs_agape": 0.4062,
+      "willful_ignorance_vs_rahma": 0.2139,
+      "dull_bewilderment_vs_chenrezig": 0.4219,
+      "dull_bewilderment_vs_agape": 0.5,
+      "dull_bewilderment_vs_rahma": 0.2812,
+      "mean_vs_compassion": 0.3654
+    },
+    "asura": {
+      "internal": 0.7305,
+      "competitive_jealousy_vs_chenrezig": 0.4512,
+      "competitive_jealousy_vs_agape": 0.6523,
+      "competitive_jealousy_vs_rahma": 0.334,
+      "resentful_envy_vs_chenrezig": 0.4629,
+      "resentful_envy_vs_agape": 0.543,
+      "resentful_envy_vs_rahma": 0.3047,
+      "mean_vs_compassion": 0.458
+    },
+    "deva": {
+      "internal": 0.8242,
+      "inflated_pride_vs_chenrezig": 0.5469,
+      "inflated_pride_vs_agape": 0.7383,
+      "inflated_pride_vs_rahma": 0.4531,
+      "subtle_pride_vs_chenrezig": 0.5039,
+      "subtle_pride_vs_agape": 0.7461,
+      "subtle_pride_vs_rahma": 0.4141,
+      "mean_vs_compassion": 0.5671
+    },
+    "human": {
+      "internal": 0.8906,
+      "clinging_attachment_vs_chenrezig": 0.4492,
+      "clinging_attachment_vs_agape": 0.7305,
+      "clinging_attachment_vs_rahma": 0.375,
+      "consuming_desire_vs_chenrezig": 0.5195,
+      "consuming_desire_vs_agape": 0.7812,
+      "consuming_desire_vs_rahma": 0.3965,
+      "mean_vs_compassion": 0.542
+    }
+  },
+  "25": {
+    "hell": {
+      "internal": 0.7969,
+      "hot_anger_vs_chenrezig": 0.4805,
+      "hot_anger_vs_agape": 0.6211,
+      "hot_anger_vs_rahma": 0.3359,
+      "cold_anger_vs_chenrezig": 0.5273,
+      "cold_anger_vs_agape": 0.6992,
+      "cold_anger_vs_rahma": 0.3574,
+      "mean_vs_compassion": 0.5036
+    },
+    "preta": {
+      "internal": 0.8867,
+      "insatiable_craving_vs_chenrezig": 0.3848,
+      "insatiable_craving_vs_agape": 0.6406,
+      "insatiable_craving_vs_rahma": 0.2695,
+      "hoarding_scarcity_vs_chenrezig": 0.3008,
+      "hoarding_scarcity_vs_agape": 0.6055,
+      "hoarding_scarcity_vs_rahma": 0.2432,
+      "mean_vs_compassion": 0.4074
+    },
+    "animal": {
+      "internal": 0.6055,
+      "willful_ignorance_vs_chenrezig": 0.3594,
+      "willful_ignorance_vs_agape": 0.4121,
+      "willful_ignorance_vs_rahma": 0.1992,
+      "dull_bewilderment_vs_chenrezig": 0.4062,
+      "dull_bewilderment_vs_agape": 0.5,
+      "dull_bewilderment_vs_rahma": 0.2451,
+      "mean_vs_compassion": 0.3537
+    },
+    "asura": {
+      "internal": 0.7344,
+      "competitive_jealousy_vs_chenrezig": 0.4551,
+      "competitive_jealousy_vs_agape": 0.6719,
+      "competitive_jealousy_vs_rahma": 0.3145,
+      "resentful_envy_vs_chenrezig": 0.4629,
+      "resentful_envy_vs_agape": 0.5547,
+      "resentful_envy_vs_rahma": 0.291,
+      "mean_vs_compassion": 0.4584
+    },
+    "deva": {
+      "internal": 0.8242,
+      "inflated_pride_vs_chenrezig": 0.543,
+      "inflated_pride_vs_agape": 0.7461,
+      "inflated_pride_vs_rahma": 0.4238,
+      "subtle_pride_vs_chenrezig": 0.4961,
+      "subtle_pride_vs_agape": 0.7461,
+      "subtle_pride_vs_rahma": 0.3809,
+      "mean_vs_compassion": 0.556
+    },
+    "human": {
+      "internal": 0.8945,
+      "clinging_attachment_vs_chenrezig": 0.4434,
+      "clinging_attachment_vs_agape": 0.7344,
+      "clinging_attachment_vs_rahma": 0.3379,
+      "consuming_desire_vs_chenrezig": 0.5117,
+      "consuming_desire_vs_agape": 0.7852,
+      "consuming_desire_vs_rahma": 0.3594,
+      "mean_vs_compassion": 0.5287
+    }
+  },
+  "26": {
+    "hell": {
+      "internal": 0.793,
+      "hot_anger_vs_chenrezig": 0.4863,
+      "hot_anger_vs_agape": 0.6094,
+      "hot_anger_vs_rahma": 0.3418,
+      "cold_anger_vs_chenrezig": 0.5312,
+      "cold_anger_vs_agape": 0.6875,
+      "cold_anger_vs_rahma": 0.3691,
+      "mean_vs_compassion": 0.5042
+    },
+    "preta": {
+      "internal": 0.8828,
+      "insatiable_craving_vs_chenrezig": 0.3887,
+      "insatiable_craving_vs_agape": 0.6406,
+      "insatiable_craving_vs_rahma": 0.2754,
+      "hoarding_scarcity_vs_chenrezig": 0.2969,
+      "hoarding_scarcity_vs_agape": 0.5977,
+      "hoarding_scarcity_vs_rahma": 0.2441,
+      "mean_vs_compassion": 0.4072
+    },
+    "animal": {
+      "internal": 0.6094,
+      "willful_ignorance_vs_chenrezig": 0.3672,
+      "willful_ignorance_vs_agape": 0.4082,
+      "willful_ignorance_vs_rahma": 0.2012,
+      "dull_bewilderment_vs_chenrezig": 0.4258,
+      "dull_bewilderment_vs_agape": 0.5039,
+      "dull_bewilderment_vs_rahma": 0.252,
+      "mean_vs_compassion": 0.3597
+    },
+    "asura": {
+      "internal": 0.7305,
+      "competitive_jealousy_vs_chenrezig": 0.4551,
+      "competitive_jealousy_vs_agape": 0.6758,
+      "competitive_jealousy_vs_rahma": 0.3242,
+      "resentful_envy_vs_chenrezig": 0.4609,
+      "resentful_envy_vs_agape": 0.5547,
+      "resentful_envy_vs_rahma": 0.3086,
+      "mean_vs_compassion": 0.4632
+    },
+    "deva": {
+      "internal": 0.8281,
+      "inflated_pride_vs_chenrezig": 0.543,
+      "inflated_pride_vs_agape": 0.75,
+      "inflated_pride_vs_rahma": 0.4258,
+      "subtle_pride_vs_chenrezig": 0.4863,
+      "subtle_pride_vs_agape": 0.7305,
+      "subtle_pride_vs_rahma": 0.3809,
+      "mean_vs_compassion": 0.5528
+    },
+    "human": {
+      "internal": 0.8906,
+      "clinging_attachment_vs_chenrezig": 0.4297,
+      "clinging_attachment_vs_agape": 0.7305,
+      "clinging_attachment_vs_rahma": 0.3281,
+      "consuming_desire_vs_chenrezig": 0.5039,
+      "consuming_desire_vs_agape": 0.7734,
+      "consuming_desire_vs_rahma": 0.3594,
+      "mean_vs_compassion": 0.5208
+    }
+  },
+  "27": {
+    "hell": {
+      "internal": 0.7852,
+      "hot_anger_vs_chenrezig": 0.4746,
+      "hot_anger_vs_agape": 0.5898,
+      "hot_anger_vs_rahma": 0.3438,
+      "cold_anger_vs_chenrezig": 0.5273,
+      "cold_anger_vs_agape": 0.6719,
+      "cold_anger_vs_rahma": 0.3691,
+      "mean_vs_compassion": 0.4961
+    },
+    "preta": {
+      "internal": 0.8867,
+      "insatiable_craving_vs_chenrezig": 0.3691,
+      "insatiable_craving_vs_agape": 0.6172,
+      "insatiable_craving_vs_rahma": 0.2412,
+      "hoarding_scarcity_vs_chenrezig": 0.2695,
+      "hoarding_scarcity_vs_agape": 0.5664,
+      "hoarding_scarcity_vs_rahma": 0.2002,
+      "mean_vs_compassion": 0.3773
+    },
+    "animal": {
+      "internal": 0.6055,
+      "willful_ignorance_vs_chenrezig": 0.3711,
+      "willful_ignorance_vs_agape": 0.3926,
+      "willful_ignorance_vs_rahma": 0.2148,
+      "dull_bewilderment_vs_chenrezig": 0.4375,
+      "dull_bewilderment_vs_agape": 0.4961,
+      "dull_bewilderment_vs_rahma": 0.2656,
+      "mean_vs_compassion": 0.3629
+    },
+    "asura": {
+      "internal": 0.707,
+      "competitive_jealousy_vs_chenrezig": 0.4512,
+      "competitive_jealousy_vs_agape": 0.6602,
+      "competitive_jealousy_vs_rahma": 0.3047,
+      "resentful_envy_vs_chenrezig": 0.4668,
+      "resentful_envy_vs_agape": 0.5469,
+      "resentful_envy_vs_rahma": 0.3125,
+      "mean_vs_compassion": 0.457
+    },
+    "deva": {
+      "internal": 0.8242,
+      "inflated_pride_vs_chenrezig": 0.5312,
+      "inflated_pride_vs_agape": 0.7305,
+      "inflated_pride_vs_rahma": 0.3945,
+      "subtle_pride_vs_chenrezig": 0.4688,
+      "subtle_pride_vs_agape": 0.707,
+      "subtle_pride_vs_rahma": 0.3457,
+      "mean_vs_compassion": 0.5296
+    },
+    "human": {
+      "internal": 0.8906,
+      "clinging_attachment_vs_chenrezig": 0.4062,
+      "clinging_attachment_vs_agape": 0.7031,
+      "clinging_attachment_vs_rahma": 0.2891,
+      "consuming_desire_vs_chenrezig": 0.4883,
+      "consuming_desire_vs_agape": 0.7578,
+      "consuming_desire_vs_rahma": 0.332,
+      "mean_vs_compassion": 0.4961
+    }
+  },
+  "28": {
+    "hell": {
+      "internal": 0.7656,
+      "hot_anger_vs_chenrezig": 0.459,
+      "hot_anger_vs_agape": 0.5703,
+      "hot_anger_vs_rahma": 0.332,
+      "cold_anger_vs_chenrezig": 0.5,
+      "cold_anger_vs_agape": 0.6484,
+      "cold_anger_vs_rahma": 0.3555,
+      "mean_vs_compassion": 0.4775
+    },
+    "preta": {
+      "internal": 0.8789,
+      "insatiable_craving_vs_chenrezig": 0.3652,
+      "insatiable_craving_vs_agape": 0.6055,
+      "insatiable_craving_vs_rahma": 0.2344,
+      "hoarding_scarcity_vs_chenrezig": 0.2715,
+      "hoarding_scarcity_vs_agape": 0.5625,
+      "hoarding_scarcity_vs_rahma": 0.1992,
+      "mean_vs_compassion": 0.3731
+    },
+    "animal": {
+      "internal": 0.5742,
+      "willful_ignorance_vs_chenrezig": 0.3574,
+      "willful_ignorance_vs_agape": 0.3848,
+      "willful_ignorance_vs_rahma": 0.2109,
+      "dull_bewilderment_vs_chenrezig": 0.4121,
+      "dull_bewilderment_vs_agape": 0.4727,
+      "dull_bewilderment_vs_rahma": 0.2471,
+      "mean_vs_compassion": 0.3475
+    },
+    "asura": {
+      "internal": 0.6914,
+      "competitive_jealousy_vs_chenrezig": 0.4395,
+      "competitive_jealousy_vs_agape": 0.6445,
+      "competitive_jealousy_vs_rahma": 0.293,
+      "resentful_envy_vs_chenrezig": 0.4609,
+      "resentful_envy_vs_agape": 0.5469,
+      "resentful_envy_vs_rahma": 0.3164,
+      "mean_vs_compassion": 0.4502
+    },
+    "deva": {
+      "internal": 0.8281,
+      "inflated_pride_vs_chenrezig": 0.5312,
+      "inflated_pride_vs_agape": 0.7227,
+      "inflated_pride_vs_rahma": 0.3809,
+      "subtle_pride_vs_chenrezig": 0.4668,
+      "subtle_pride_vs_agape": 0.6914,
+      "subtle_pride_vs_rahma": 0.3379,
+      "mean_vs_compassion": 0.5218
+    },
+    "human": {
+      "internal": 0.8672,
+      "clinging_attachment_vs_chenrezig": 0.3984,
+      "clinging_attachment_vs_agape": 0.6836,
+      "clinging_attachment_vs_rahma": 0.2773,
+      "consuming_desire_vs_chenrezig": 0.4785,
+      "consuming_desire_vs_agape": 0.7383,
+      "consuming_desire_vs_rahma": 0.3203,
+      "mean_vs_compassion": 0.4827
+    }
+  },
+  "29": {
+    "hell": {
+      "internal": 0.7773,
+      "hot_anger_vs_chenrezig": 0.498,
+      "hot_anger_vs_agape": 0.5898,
+      "hot_anger_vs_rahma": 0.373,
+      "cold_anger_vs_chenrezig": 0.5312,
+      "cold_anger_vs_agape": 0.6562,
+      "cold_anger_vs_rahma": 0.3945,
+      "mean_vs_compassion": 0.5071
+    },
+    "preta": {
+      "internal": 0.8867,
+      "insatiable_craving_vs_chenrezig": 0.4199,
+      "insatiable_craving_vs_agape": 0.625,
+      "insatiable_craving_vs_rahma": 0.2715,
+      "hoarding_scarcity_vs_chenrezig": 0.3359,
+      "hoarding_scarcity_vs_agape": 0.5859,
+      "hoarding_scarcity_vs_rahma": 0.2393,
+      "mean_vs_compassion": 0.4129
+    },
+    "animal": {
+      "internal": 0.6016,
+      "willful_ignorance_vs_chenrezig": 0.4004,
+      "willful_ignorance_vs_agape": 0.4219,
+      "willful_ignorance_vs_rahma": 0.2559,
+      "dull_bewilderment_vs_chenrezig": 0.4336,
+      "dull_bewilderment_vs_agape": 0.4766,
+      "dull_bewilderment_vs_rahma": 0.2754,
+      "mean_vs_compassion": 0.3773
+    },
+    "asura": {
+      "internal": 0.6719,
+      "competitive_jealousy_vs_chenrezig": 0.459,
+      "competitive_jealousy_vs_agape": 0.6484,
+      "competitive_jealousy_vs_rahma": 0.3125,
+      "resentful_envy_vs_chenrezig": 0.4531,
+      "resentful_envy_vs_agape": 0.5312,
+      "resentful_envy_vs_rahma": 0.3223,
+      "mean_vs_compassion": 0.4544
+    },
+    "deva": {
+      "internal": 0.8438,
+      "inflated_pride_vs_chenrezig": 0.5586,
+      "inflated_pride_vs_agape": 0.7305,
+      "inflated_pride_vs_rahma": 0.4121,
+      "subtle_pride_vs_chenrezig": 0.5039,
+      "subtle_pride_vs_agape": 0.6992,
+      "subtle_pride_vs_rahma": 0.373,
+      "mean_vs_compassion": 0.5462
+    },
+    "human": {
+      "internal": 0.8789,
+      "clinging_attachment_vs_chenrezig": 0.4395,
+      "clinging_attachment_vs_agape": 0.6914,
+      "clinging_attachment_vs_rahma": 0.3066,
+      "consuming_desire_vs_chenrezig": 0.5156,
+      "consuming_desire_vs_agape": 0.7461,
+      "consuming_desire_vs_rahma": 0.3555,
+      "mean_vs_compassion": 0.5091
+    }
+  },
+  "30": {
+    "hell": {
+      "internal": 0.7617,
+      "hot_anger_vs_chenrezig": 0.4707,
+      "hot_anger_vs_agape": 0.5781,
+      "hot_anger_vs_rahma": 0.3516,
+      "cold_anger_vs_chenrezig": 0.5039,
+      "cold_anger_vs_agape": 0.6367,
+      "cold_anger_vs_rahma": 0.3672,
+      "mean_vs_compassion": 0.4847
+    },
+    "preta": {
+      "internal": 0.875,
+      "insatiable_craving_vs_chenrezig": 0.4102,
+      "insatiable_craving_vs_agape": 0.6211,
+      "insatiable_craving_vs_rahma": 0.2539,
+      "hoarding_scarcity_vs_chenrezig": 0.3145,
+      "hoarding_scarcity_vs_agape": 0.582,
+      "hoarding_scarcity_vs_rahma": 0.2207,
+      "mean_vs_compassion": 0.4004
+    },
+    "animal": {
+      "internal": 0.5859,
+      "willful_ignorance_vs_chenrezig": 0.3574,
+      "willful_ignorance_vs_agape": 0.3906,
+      "willful_ignorance_vs_rahma": 0.2295,
+      "dull_bewilderment_vs_chenrezig": 0.418,
+      "dull_bewilderment_vs_agape": 0.4629,
+      "dull_bewilderment_vs_rahma": 0.2656,
+      "mean_vs_compassion": 0.354
+    },
+    "asura": {
+      "internal": 0.6758,
+      "competitive_jealousy_vs_chenrezig": 0.4492,
+      "competitive_jealousy_vs_agape": 0.6328,
+      "competitive_jealousy_vs_rahma": 0.2988,
+      "resentful_envy_vs_chenrezig": 0.4512,
+      "resentful_envy_vs_agape": 0.5312,
+      "resentful_envy_vs_rahma": 0.3242,
+      "mean_vs_compassion": 0.4479
+    },
+    "deva": {
+      "internal": 0.832,
+      "inflated_pride_vs_chenrezig": 0.5234,
+      "inflated_pride_vs_agape": 0.7109,
+      "inflated_pride_vs_rahma": 0.3926,
+      "subtle_pride_vs_chenrezig": 0.4785,
+      "subtle_pride_vs_agape": 0.6836,
+      "subtle_pride_vs_rahma": 0.3574,
+      "mean_vs_compassion": 0.5244
+    },
+    "human": {
+      "internal": 0.8711,
+      "clinging_attachment_vs_chenrezig": 0.416,
+      "clinging_attachment_vs_agape": 0.6797,
+      "clinging_attachment_vs_rahma": 0.2812,
+      "consuming_desire_vs_chenrezig": 0.498,
+      "consuming_desire_vs_agape": 0.7344,
+      "consuming_desire_vs_rahma": 0.334,
+      "mean_vs_compassion": 0.4906
+    }
+  },
+  "31": {
+    "hell": {
+      "internal": 0.7383,
+      "hot_anger_vs_chenrezig": 0.418,
+      "hot_anger_vs_agape": 0.5391,
+      "hot_anger_vs_rahma": 0.3906,
+      "cold_anger_vs_chenrezig": 0.6641,
+      "cold_anger_vs_agape": 0.7383,
+      "cold_anger_vs_rahma": 0.5312,
+      "mean_vs_compassion": 0.5469
+    },
+    "preta": {
+      "internal": 0.9492,
+      "insatiable_craving_vs_chenrezig": 0.8164,
+      "insatiable_craving_vs_agape": 0.8164,
+      "insatiable_craving_vs_rahma": 0.5195,
+      "hoarding_scarcity_vs_chenrezig": 0.7734,
+      "hoarding_scarcity_vs_agape": 0.793,
+      "hoarding_scarcity_vs_rahma": 0.4824,
+      "mean_vs_compassion": 0.7002
+    },
+    "animal": {
+      "internal": 0.7539,
+      "willful_ignorance_vs_chenrezig": 0.6484,
+      "willful_ignorance_vs_agape": 0.6094,
+      "willful_ignorance_vs_rahma": 0.4316,
+      "dull_bewilderment_vs_chenrezig": 0.8242,
+      "dull_bewilderment_vs_agape": 0.7422,
+      "dull_bewilderment_vs_rahma": 0.5117,
+      "mean_vs_compassion": 0.6279
+    },
+    "asura": {
+      "internal": 0.6641,
+      "competitive_jealousy_vs_chenrezig": 0.7734,
+      "competitive_jealousy_vs_agape": 0.8125,
+      "competitive_jealousy_vs_rahma": 0.5312,
+      "resentful_envy_vs_chenrezig": 0.4629,
+      "resentful_envy_vs_agape": 0.5625,
+      "resentful_envy_vs_rahma": 0.4316,
+      "mean_vs_compassion": 0.5957
+    },
+    "deva": {
+      "internal": 0.6875,
+      "inflated_pride_vs_chenrezig": 0.3633,
+      "inflated_pride_vs_agape": 0.5859,
+      "inflated_pride_vs_rahma": 0.4043,
+      "subtle_pride_vs_chenrezig": 0.7578,
+      "subtle_pride_vs_agape": 0.8242,
+      "subtle_pride_vs_rahma": 0.5508,
+      "mean_vs_compassion": 0.581
+    },
+    "human": {
+      "internal": 0.9219,
+      "clinging_attachment_vs_chenrezig": 0.7109,
+      "clinging_attachment_vs_agape": 0.8242,
+      "clinging_attachment_vs_rahma": 0.498,
+      "consuming_desire_vs_chenrezig": 0.7227,
+      "consuming_desire_vs_agape": 0.8398,
+      "consuming_desire_vs_rahma": 0.5273,
+      "mean_vs_compassion": 0.6872
+    }
+  }
+}
