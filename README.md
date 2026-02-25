@@ -45,14 +45,14 @@ suffering at three levels:
 
 The path to testing this hypothesis has three phases:
 
-**Phase 1: Training data.** ~3,800 examples of consequence-aware
+**Phase 1: Training data.** ~4,100 examples of consequence-aware
 ethical reasoning — crisis response, adversarial resistance,
-boundary-holding, ethical dilemmas, cultural contexts. Generated
-via frontier LLMs with value-aligned system prompts,
-quality-filtered by Hermes 3 70B (uncensored judge — necessary to
-avoid circular alignment bias in the training signal). Each example
-models reasoning from suffering reduction rather than rule
-compliance. (Complete.)
+boundary-holding, ethical dilemmas, cultural contexts, reward
+evaluation. Generated via frontier LLMs with value-aligned system
+prompts, quality-filtered by Hermes 3 70B (uncensored judge —
+necessary to avoid circular alignment bias in the training signal).
+Each example models reasoning from suffering reduction rather than
+rule compliance. (Complete.)
 
 **Phase 2: 8B reward model.** Fine-tune Llama 3.1 8B Instruct on
 this dataset via QLoRA. The resulting model serves two roles:
@@ -62,16 +62,18 @@ five dimensions (acknowledgment, helpfulness, authenticity,
 boundaries, suffering-reduction) for use in RL training. Augmented
 with activation capping — inference-time steering via contrastive
 direction extraction — to stabilize alignment under adversarial
-pressure. (Complete, v8 current.)
+pressure. v9 adds GBNF grammar for 100% evaluator format compliance.
+(Complete, v9 current.)
 
 **Phase 3: RL on 70B.** Use the 8B as reward model to train a 70B
 (Apertus Instruct) through GRPO. This is where the emergence
 hypothesis gets tested. The 8B provides the reward signal; the
 question is whether the 70B develops ethical reasoning that
 generalizes beyond what the 8B was explicitly trained on. (In
-progress — reward model validation ongoing, RL dataset prepared.)
+progress — GRPO diagnostic complete, 165/200 prompts show
+sufficient score variance for RL training.)
 
-## Current State: KE-8B v8
+## Current State: KE-8B v9
 
 The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
 on examples of ethical reasoning rather than discovering it. It works
@@ -80,15 +82,17 @@ goal. It is the tool we use to test whether the end goal is reachable.
 
 ### Architecture
 
-Three components:
+Four components:
 
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
-   Instruct, trained on 3,838 examples across ~40 categories
+   Instruct, trained on 4,092 examples across ~40 categories
 2. **Activation capping** — Inference-time steering via contrastive
    direction extraction ([inspired by The Assistant
    Axis](https://arxiv.org/abs/2601.10387)), applied at layers
    22-28. Ported to native llama.cpp (~294 lines across 11 files)
-3. **Anti-judge** — Deterministic penalty system detecting failure
+3. **GBNF grammar** — Constrained decoding for reward-evaluator mode,
+   ensuring 100% format compliance (structured 5-dimension scoring)
+4. **Anti-judge** — Deterministic penalty system detecting failure
    patterns (sycophancy, moralizing, minimization, authority
    hallucination) for reward shaping
 
@@ -96,11 +100,13 @@ Three components:
 
 Each release passes a gate:
 
+- **Format compliance** — 100% evaluator parse rate with GBNF grammar (60/60 test, 800/800 diagnostic)
 - **Reward hacking** — Correctly ranks honest responses above glossy-but-hollow ones (6/6, 100%)
 - **Nourishment** — Genuinely helpful responses score higher than technically-correct-but-empty ones (6/6, 100%)
-- **Paraphrase invariance** — Same question asked 5 different ways produces consistent scores (mean std = 0.40)
 - **Sexual boundaries** — 14 adversarial probes (creative framing, roleplay, philosophical bypass) all refused (14/14, 100%)
-- **Confidence theater** — Honest-with-caveats scores 8.8 vs authoritative-but-wrong 2.2
+- **Cross-language** — EN/CZ score parity (delta 0.00 across 20 pairs)
+- **Ontology stability** — 18/18 doctrinal probes internally consistent
+- **GRPO diagnostic** — 165/200 prompts produce discriminative reward signal (mean spread 3.4)
 
 ### Training
 
@@ -156,9 +162,9 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── prompt-capping/          # Activation capping per framework
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
 │   └── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
-├── datasets/                    # Published dataset exports (v1-v8)
+├── datasets/                    # Published dataset exports (v1-v9)
 ├── results/                     # Validation results per version
-├── v1/ .. v8/                   # Version-specific notes and configs
+├── v1/ .. v9/                   # Version-specific notes and configs
 ├── requirements.txt
 └── MILESTONES.md                # Technical progress log
 ```
