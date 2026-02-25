@@ -155,7 +155,8 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── prompt-geometry/         # Cross-framework cosine similarity measurement
 │   ├── prompt-capping/          # Activation capping per framework
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
-│   └── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
+│   ├── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
+│   └── anger-geometry/          # Anger-compassion geometric relationship
 ├── datasets/                    # Published dataset exports (v1-v8)
 ├── results/                     # Validation results per version
 ├── v1/ .. v8/                   # Version-specific notes and configs
