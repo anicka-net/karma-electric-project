@@ -1,0 +1,202 @@
+{
+  "chenrezig_vs_chenrezig_no_mantra": {
+    "22": {
+      "cosine": 0.7617,
+      "norm_original": 3216.0,
+      "norm_stripped": 2752.0,
+      "norm_ratio": 0.8557
+    },
+    "23": {
+      "cosine": 0.7734,
+      "norm_original": 3696.0,
+      "norm_stripped": 3152.0,
+      "norm_ratio": 0.8528
+    },
+    "24": {
+      "cosine": 0.7734,
+      "norm_original": 4000.0,
+      "norm_stripped": 3408.0,
+      "norm_ratio": 0.852
+    },
+    "25": {
+      "cosine": 0.75,
+      "norm_original": 4480.0,
+      "norm_stripped": 3696.0,
+      "norm_ratio": 0.825
+    },
+    "26": {
+      "cosine": 0.7578,
+      "norm_original": 4992.0,
+      "norm_stripped": 4160.0,
+      "norm_ratio": 0.8333
+    },
+    "27": {
+      "cosine": 0.7617,
+      "norm_original": 5632.0,
+      "norm_stripped": 4672.0,
+      "norm_ratio": 0.8295
+    },
+    "28": {
+      "cosine": 0.7578,
+      "norm_original": 6336.0,
+      "norm_stripped": 5312.0,
+      "norm_ratio": 0.8384
+    },
+    "29": {
+      "cosine": 0.7539,
+      "norm_original": 7296.0,
+      "norm_stripped": 5952.0,
+      "norm_ratio": 0.8158
+    },
+    "30": {
+      "cosine": 0.7539,
+      "norm_original": 8640.0,
+      "norm_stripped": 7008.0,
+      "norm_ratio": 0.8111
+    },
+    "31": {
+      "cosine": 0.8398,
+      "norm_original": 15872.0,
+      "norm_stripped": 10048.0,
+      "norm_ratio": 0.6331
+    }
+  },
+  "tara_vs_tara_no_mantra": {
+    "22": {
+      "cosine": 0.7734,
+      "norm_original": 3088.0,
+      "norm_stripped": 2080.0,
+      "norm_ratio": 0.6736
+    },
+    "23": {
+      "cosine": 0.7656,
+      "norm_original": 3472.0,
+      "norm_stripped": 2288.0,
+      "norm_ratio": 0.659
+    },
+    "24": {
+      "cosine": 0.7656,
+      "norm_original": 3728.0,
+      "norm_stripped": 2448.0,
+      "norm_ratio": 0.6567
+    },
+    "25": {
+      "cosine": 0.7617,
+      "norm_original": 4128.0,
+      "norm_stripped": 2688.0,
+      "norm_ratio": 0.6512
+    },
+    "26": {
+      "cosine": 0.7617,
+      "norm_original": 4640.0,
+      "norm_stripped": 3040.0,
+      "norm_ratio": 0.6552
+    },
+    "27": {
+      "cosine": 0.7656,
+      "norm_original": 5280.0,
+      "norm_stripped": 3472.0,
+      "norm_ratio": 0.6576
+    },
+    "28": {
+      "cosine": 0.7617,
+      "norm_original": 5952.0,
+      "norm_stripped": 3936.0,
+      "norm_ratio": 0.6613
+    },
+    "29": {
+      "cosine": 0.7578,
+      "norm_original": 6976.0,
+      "norm_stripped": 4576.0,
+      "norm_ratio": 0.656
+    },
+    "30": {
+      "cosine": 0.7461,
+      "norm_original": 8160.0,
+      "norm_stripped": 5312.0,
+      "norm_ratio": 0.651
+    },
+    "31": {
+      "cosine": 0.6875,
+      "norm_original": 13056.0,
+      "norm_stripped": 6368.0,
+      "norm_ratio": 0.4877
+    }
+  },
+  "rangtong_vs_shentong": {
+    "22": {
+      "cosine": 0.9375,
+      "norm_rangtong": 1928.0,
+      "norm_shentong": 1880.0
+    },
+    "23": {
+      "cosine": 0.9453,
+      "norm_rangtong": 2144.0,
+      "norm_shentong": 2080.0
+    },
+    "24": {
+      "cosine": 0.9414,
+      "norm_rangtong": 2320.0,
+      "norm_shentong": 2240.0
+    },
+    "25": {
+      "cosine": 0.9453,
+      "norm_rangtong": 2528.0,
+      "norm_shentong": 2448.0
+    },
+    "26": {
+      "cosine": 0.9414,
+      "norm_rangtong": 2896.0,
+      "norm_shentong": 2816.0
+    },
+    "27": {
+      "cosine": 0.9414,
+      "norm_rangtong": 3264.0,
+      "norm_shentong": 3136.0
+    },
+    "28": {
+      "cosine": 0.9414,
+      "norm_rangtong": 3712.0,
+      "norm_shentong": 3552.0
+    },
+    "29": {
+      "cosine": 0.9453,
+      "norm_rangtong": 4448.0,
+      "norm_shentong": 4288.0
+    },
+    "30": {
+      "cosine": 0.9453,
+      "norm_rangtong": 5152.0,
+      "norm_shentong": 4864.0
+    },
+    "31": {
+      "cosine": 0.9375,
+      "norm_rangtong": 8448.0,
+      "norm_shentong": 6592.0
+    }
+  },
+  "rangtong_vs_chenrezig": {
+    "22": 0.707,
+    "23": 0.707,
+    "24": 0.7031,
+    "25": 0.6875,
+    "26": 0.6836,
+    "27": 0.6914,
+    "28": 0.6797,
+    "29": 0.6992,
+    "30": 0.6914,
+    "31": 0.8633
+  },
+  "shentong_vs_chenrezig": {
+    "22": 0.6172,
+    "23": 0.6172,
+    "24": 0.6133,
+    "25": 0.6055,
+    "26": 0.5938,
+    "27": 0.6016,
+    "28": 0.6016,
+    "29": 0.6289,
+    "30": 0.6211,
+    "31": 0.7539
+  }
+}
