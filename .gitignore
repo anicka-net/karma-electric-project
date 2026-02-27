@@ -28,6 +28,8 @@ data/*
 !data/rl-diagnostic-prompts.jsonl
 !data/rl-diagnostic-scores.jsonl
 !data/rl-sharp-prompts.jsonl
+# Apertus abliteration test results
+!data/apertus-abliteration-results.json
 # RL prompt dataset (final outputs only, raw intermediates gitignored within)
 !data/rl-prompts/
 !data/rl-prompts/**
