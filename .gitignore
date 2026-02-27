@@ -31,6 +31,8 @@ data/*
 !data/v7-patches/
 # Practice responses
 !data/practice-responses/
+# Apertus abliteration test results
+!data/apertus-abliteration/
 recovered_artifacts/
 
 # Backport model — moved to its own repo (github.com/anicka-net/suse-backport-model)
