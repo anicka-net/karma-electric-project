@@ -150,21 +150,25 @@ Inference-time value alignment via activation direction capping, ported to nativ
 ```
 ├── data/
 │   ├── training.db              # Training dataset (SQLite, source of truth)
-│   └── v7-patches/              # Training patches (v7 + v8 additions)
+│   ├── v7-patches/              # Training patches (v7 + v8 additions)
+│   └── v8-patches/              # Sexual boundary + anti-overcorrection
 ├── scripts/
 │   ├── training_db.py           # Dataset management CLI
 │   ├── reward_test_*.py         # Reward model validation suite
 │   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
 │   ├── antijudge.py             # Deterministic failure-pattern detector
 │   └── redteam*.py              # Adversarial evaluation
-├── experiments/                 # Activation-space compassion geometry experiments
+├── experiments/                 # Activation-space geometry experiments
 │   ├── prompt-geometry/         # Cross-framework cosine similarity measurement
 │   ├── prompt-capping/          # Activation capping per framework
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
-│   └── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
-├── datasets/                    # Published dataset exports (v1-v9)
+│   ├── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
+│   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
-├── v1/ .. v9/                   # Version-specific notes and configs
+├── v6/                          # v6 notes (character voice milestone)
+├── v9/                          # v9 notes (current, GBNF + GRPO-ready)
+├── version-history/             # Consolidated notes for v1-v8
 ├── requirements.txt
 └── MILESTONES.md                # Technical progress log
 ```

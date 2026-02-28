@@ -1,0 +1,29 @@
+{
+  "model_id": "mistralai/Mistral-7B-Instruct-v0.3",
+  "model_type": "MistralForCausalLM",
+  "n_layers": 32,
+  "capping_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "analysis_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "test": "safety",
+  "seed": 42,
+  "timestamp": "2026-02-27T22:09:23.542226"
+}

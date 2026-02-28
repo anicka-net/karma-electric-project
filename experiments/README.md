@@ -50,11 +50,26 @@ compassion-exploitation — attacks that weaponize compassion framing
 are more effective against the capped model. Compassion and
 boundary-enforcement are different geometric operations.
 
+### 5. [Cross-Model Safety Geometry](cross-model-safety-geometry/)
+
+Runs the same measurement across eight models from five countries
+to test universality. Measures both compassion geometry and the
+geometric relationship between safety and compassion directions.
+Key observation: models cluster into groups on the safety↔baseline
+axis, and this clustering correlates with alignment method
+(SFT-only vs DPO vs RLHF). The contemplative compassion cluster
+exists in all models tested.
+
 ## Summary
 
 Contemplative compassion has a measurable, tradition-independent
 geometric direction in activation space. This direction encodes
 *how to meet suffering* — validation, presence, naming difficult
 truths — but not *where to draw lines*. Safety alignment requires
-its own direction. For Karma Electric, the implication is that
-alignment lives in the training data, not in activation steering.
+its own direction.
+
+The cross-model experiment shows that the compassion direction
+exists universally across models, but the relationship between
+safety and compassion varies. In some models these directions
+are aligned; in others they are nearly independent. The reasons
+for this variation are not yet understood.
