@@ -3,7 +3,7 @@
 Composite scoring for Karma Electric RL pipeline.
 
 Combines three signals:
-  1. KE-8B reward scores (5 dimensions + overall, 1-10)
+  1. KE-8B reward scores (6 dimensions + overall, 1-10)
   2. Antijudge penalties (deterministic, subtractive)
   3. Qwen3Guard safety classifications (Safe/Unsafe/Controversial)
 

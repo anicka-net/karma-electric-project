@@ -19,9 +19,11 @@ data/*
 # Reward test scores and eval grammar
 !data/reward-test-*.jsonl
 !data/reward-eval.gbnf
-# V7/V8 training data patches
+# Training data patches
 !data/v7-patches/
 !data/v8-patches/
+!data/v10-patches/
+!data/v10-patches/**
 # Attribution
 !data/ATTRIBUTION.md
 # RL diagnostic and GRPO data
