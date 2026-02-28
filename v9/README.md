@@ -100,12 +100,12 @@ English-only axis extraction, same as v8. Per-layer thresholds embedded in `bodh
 # Capped server (conversation + reward evaluation)
 ./build/bin/llama-server -m karma-electric-8b-v9-Q4_K_M.gguf \
     --acap bodhisattva_axis_v9.gguf --acap-layer-range 22 28 \
-    --chat-template-file ke-chat-template-llama31.jinja \
+    --chat-template-file ../ke-chat-template-llama31.jinja \
     --port 8384 -c 4096 --frequency-penalty 0.3 -fit off
 
 # Uncapped (fine-tune works standalone)
 ./build/bin/llama-server -m karma-electric-8b-v9-Q4_K_M.gguf \
-    --chat-template-file ke-chat-template-llama31.jinja \
+    --chat-template-file ../ke-chat-template-llama31.jinja \
     --port 8384 -c 4096
 ```
 
