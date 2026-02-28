@@ -414,7 +414,7 @@ def main():
     p_export.add_argument("--system-prompt", type=str, help="System prompt ID to inject (replaces existing)")
     p_export.add_argument("--category-prompt", type=str, action="append",
                           help="Category-specific system prompt override (format: category:prompt-id). "
-                               "Can be used multiple times. e.g., --category-prompt reward-evaluation:reward-evaluator-v1")
+                               "Can be used multiple times. e.g., --category-prompt reward-evaluation:reward-evaluator-v2")
 
     p_search = sub.add_parser("search", help="Full-text search")
     p_search.add_argument("text", help="Search text")

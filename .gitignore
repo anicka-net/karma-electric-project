@@ -8,38 +8,45 @@ venv/
 data/*
 !data/.gitkeep
 !data/training.db
-!data/training-archive/
-!data/scenarios/
-!data/qa-library/
-!data/buddhist-questions/
-!data/karmapa-letters/
-# Training datasets (all versions)
-!data/train-8b-*.jsonl
 # Red-team scenarios and results
 !data/adversarial-*.json
 !data/adversarial-*.jsonl
-# Reward function training data
-!data/reward-*.jsonl
 # Reports
 !data/redteam-report-*.md
 # Anti-judge baselines
 !data/antijudge-*.json
 !data/judge-comparison-*.json
-# Reward test scores
+# Reward test scores and eval grammar
 !data/reward-test-*.jsonl
-# V7 training data patches
+!data/reward-eval.gbnf
+# Training data patches
 !data/v7-patches/
-# Practice responses
-!data/practice-responses/
+!data/v8-patches/
+!data/v10-patches/
+!data/v10-patches/**
+# Attribution
+!data/ATTRIBUTION.md
+# RL diagnostic and GRPO data
+!data/rl-diagnostic-prompts.jsonl
+!data/rl-diagnostic-scores.jsonl
+!data/rl-sharp-prompts.jsonl
 # Apertus abliteration test results
-!data/apertus-abliteration/
-recovered_artifacts/
-
-# Backport model — moved to its own repo (github.com/anicka-net/suse-backport-model)
-suse-backport-model/
+!data/apertus-abliteration-results.json
+# RL prompt dataset (final outputs only, raw intermediates gitignored within)
+!data/rl-prompts/
+!data/rl-prompts/**
 
 # System
 .DS_Store
 
 # Large model files
 *.gguf
+
+# Local-only directories (not published)
+mcp/
+models/
+logs/
+suse-backport-model/
+
+# Archived scripts (local reference only)
+scripts/archive/
