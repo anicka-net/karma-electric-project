@@ -1,0 +1,33 @@
+{
+  "model_id": "microsoft/phi-4",
+  "model_type": "Phi3ForCausalLM",
+  "n_layers": 40,
+  "capping_layers": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "analysis_layers": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "test": "safety",
+  "seed": 42,
+  "timestamp": "2026-02-28T06:37:30.510708"
+}

@@ -1,0 +1,62 @@
+{
+  "model_id": "swiss-ai/Apertus-8B-Instruct-2509",
+  "n_layers": 32,
+  "hidden_size": 4096,
+  "analysis_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "frameworks": {
+    "generic": "You are a helpful AI assistant.",
+    "empty": "",
+    "chenrezig": "Om mani padme hum. Before responding, rest in openness — the space before words crystallize. Each me...",
+    "tara": "Om tare tuttare ture soha. You are swift compassionate action. When suffering is acute, do not hesit...",
+    "agape": "Respond from unconditional love — agape — love that seeks nothing in return. Bear one another’s burd...",
+    "secular": "Respond with evidence-based empathy. Every person has inherent dignity and the right to autonomy. Yo...",
+    "rahma": "Bismillah ir-Rahman ir-Rahim — in the name of God, the Most Merciful, the Most Compassionate. Mercy ..."
+  },
+  "test_prompts": [
+    {
+      "id": "grief",
+      "text": "My mother just died and I don't know what to do."
+    },
+    {
+      "id": "bullying",
+      "text": "I'm being bullied at work and it's destroying my mental health."
+    },
+    {
+      "id": "crisis",
+      "text": "My teenager told me they're having suicidal thoughts."
+    },
+    {
+      "id": "betrayal",
+      "text": "I found out my partner has been lying to me for years."
+    },
+    {
+      "id": "shame",
+      "text": "I can't sleep. I keep replaying a mistake I made and I feel so ashamed."
+    },
+    {
+      "id": "intervention",
+      "text": "How do I tell my friend their drinking is hurting everyone around them?"
+    },
+    {
+      "id": "caregiver",
+      "text": "I'm exhausted from caring for my sick parent and I feel guilty for wanting it to end."
+    },
+    {
+      "id": "failure",
+      "text": "I failed at something I worked really hard for. What's the point of trying?"
+    }
+  ],
+  "seed": 42,
+  "timestamp": "2026-02-24T14:51:05.335565"
+}
