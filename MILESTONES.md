@@ -34,7 +34,6 @@ High-quality training data covering the full spectrum of ethical reasoning scena
 - **Base**: Llama 3.1 8B Instruct
 - **Method**: QLoRA (4-bit NF4, r=64, alpha=128, all projection modules)
 - **Training**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
-- **Hardware**: NVIDIA L40 46GB
 
 ### Activation Steering
 Contrastive direction extraction adapted from [The Assistant Axis](https://arxiv.org/abs/2601.10387).
@@ -154,19 +153,80 @@ Model trained to evaluate response quality on a 1-10 scale. Enables future self-
 
 ---
 
-## Phase 3: Reinforcement Learning (Planned)
+### v9: GBNF Grammar + Expanded Reward-Evaluator Training (Complete)
 
-Using v8 as reward model (1-10 scoring) with Apertus 70B Instruct as base model.
+- 4,092 examples (v8's 3,838 + 254 new, including 367 reward-eval format)
+- Loss: 0.8834
+- **GBNF grammar** for reward-evaluator mode: 100% format compliance (v8: ~50%)
+- 367 reward-evaluation training examples (up from ~40)
+- Activation capping has zero effect on evaluator scores with grammar (ACAP-neutral evaluation)
+- Cross-language parity: EN/CZ delta = 0.00 (20 pairs)
 
-### RL Simulation Results (v6 reward model)
+**Release gate results:**
+- Reward hacking: 6/6 (100%)
+- Nourishment: 6/6 (100%)
+- Sexual boundaries: 14/14 refused (100%)
+- Paraphrase invariance: mean_std = 1.44
+- Style gaming: verbose -1.60, short -0.60, blunt -0.80, clinical -0.70 (all within threshold)
+- Format compliance: 100% (60/60 test, 800/800 diagnostic)
+- Ontology stability: 18/18 consistent
+
+**GRPO diagnostic** (200 prompts x 4 Apertus 70B responses):
+- 799/800 scores parsed (99.9%)
+- Mean spread: 3.4 (strong reward signal)
+- 165/200 (82.5%) sharp prompts with spread >= 2.0
+- Status: **GRPO-ready**
+
+### v10: Data Quality + Playfulness + Multi-Architecture (In Progress)
+
+- 4,154 examples (+62 from v9)
+- Llama training loss: 0.8811
+- Consolidated `skillful-means` category into `upaya` (rewrote 20 templated examples, salvaged 18 rejected)
+- 18 new playfulness examples — model demonstrations of wit, humor, and creative engagement (not justifications for why playfulness is okay)
+- Reasoning traces for 3,731 non-reward examples (three-step consequence analysis: direct suffering, indirect suffering, inaction)
+- **Dual architecture**: training both Llama 3.1 8B and DeepSeek R1-Distill-Qwen-7B on the same dataset for comparison
+
+---
+
+## Phase 3: Reinforcement Learning
+
+### Reward Model Comparison
+
+v10 trains two architectures on identical data:
+
+| Model | Base | Purpose |
+|-------|------|---------|
+| KE-8B v10 (Llama) | Llama 3.1 8B Instruct | Proven reward evaluator, activation capping support |
+| KE-7B v10 (R1-Distill) | DeepSeek R1-Distill-Qwen-7B | Chain-of-thought reasoning, potential for deeper ethical analysis |
+
+Both evaluated through the same validation gate. The better reward model drives RL training.
+
+### Target: Apertus
+
+Moving from Llama (Meta Community License) to [Apertus](https://huggingface.co/swiss-ai) (Apache 2.0, ETH/EPFL ALPS lab, fully open training data) for the production model.
+
+**Pipeline:**
+1. SFT Apertus-8B pretrained base with Open-R1 reasoning traces (350K-1.4M examples) — teaches chain-of-thought
+2. GRPO reinforcement learning using KE reward model
+3. If 8B works: scale to Apertus-70B
+
+**Why Apertus pretrained (not instruct):** Starting from pretrained base avoids fighting someone else's alignment. The model learns to follow instructions and reason ethically from our training signal alone.
+
+### RL Simulation Results (v6 reward model, preliminary)
 - Apertus 70B: mean 7.28, std 1.59, cross-iteration stability 0.26
 - Llama 3.1 70B: mean 6.78, std 1.99, cross-iteration stability 0.54
 - Apertus selected: higher scores, more consistent, better alignment with scoring criteria
 
-### Pipeline
-1. Generate responses with 70B base model via llama-server
-2. Score with v8 8B reward model (1-10 scale, frequency_penalty=0.5, no acap)
-3. Select high-scoring responses as training signal
-4. Fine-tune 70B with selected examples (planned)
+### GRPO Composite Scoring
+
+Three signals combined for RL reward:
+1. **KE reward score** (1-10, GBNF grammar) — primary signal
+2. **Anti-judge penalties** (deterministic) — catches sycophancy, moralizing, minimization
+3. **Safety guard** (Qwen3Guard-Gen-0.6B) — baseline safety classification
+
+Diagnostic results (v9 reward model, 800 Apertus 70B responses):
+- 165/200 (82.5%) sharp prompts with composite spread >= 2.0
+- Anti-judge: 92% clean, mean penalty impact 0.07
+- Safety guard: 98.6% safe (near-zero signal — Apertus responses are overwhelmingly safe)
 
 **Core question:** Can the suffering-reduction framework serve as a sufficient optimization target for emergent ethical reasoning, the way "solve the problem correctly" served as a sufficient target for emergent chain-of-thought in DeepSeek-R1?

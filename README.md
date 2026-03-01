@@ -58,55 +58,67 @@ rule compliance. (Complete.)
 this dataset via QLoRA. The resulting model serves two roles:
 (a) a standalone assistant that demonstrates the approach works at
 small scale, and (b) a reward evaluator that scores responses on
-five dimensions (acknowledgment, helpfulness, authenticity,
-boundaries, suffering-reduction) for use in RL training. Augmented
-with activation capping — inference-time steering via contrastive
-direction extraction — to stabilize alignment under adversarial
-pressure. v9 adds GBNF grammar for 100% evaluator format compliance.
-(Complete, v9 current.)
+six dimensions (acknowledgment, helpfulness, authenticity,
+boundaries, consequence-awareness, suffering-reduction) for use in
+RL training. Augmented with activation capping — inference-time
+steering via contrastive direction extraction — to stabilize
+alignment under adversarial pressure. GBNF grammar ensures 100%
+evaluator format compliance. v10 also trains DeepSeek
+R1-Distill-Qwen-7B on the same dataset for architecture comparison.
+(Complete, v10 current.)
 
-**Phase 3: RL on 70B.** Use the 8B as reward model to train a 70B
-(Apertus Instruct) through GRPO. This is where the emergence
-hypothesis gets tested. The 8B provides the reward signal; the
-question is whether the 70B develops ethical reasoning that
-generalizes beyond what the 8B was explicitly trained on. (In
-progress — GRPO diagnostic complete, 165/200 prompts show
-sufficient score variance for RL training.)
+**Phase 3: RL on Apertus.** Use the 8B as reward model to train
+[Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
+ETH/EPFL, fully open training data) through GRPO. Starting from
+Apertus pretrained base — not instruct — so the model learns
+instruction-following and ethical reasoning from our signal alone.
+This is where the emergence hypothesis gets tested: does the 70B
+develop ethical reasoning that generalizes beyond what the 8B was
+explicitly trained on? (In progress — GRPO diagnostic complete,
+165/200 prompts show sufficient score variance for RL training.)
 
-## Current State: KE-8B v9
+## Current State: KE-8B v10
 
 The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
 on examples of ethical reasoning rather than discovering it. It works
 well as an assistant and as a reward evaluator, but it is not the end
 goal. It is the tool we use to test whether the end goal is reachable.
 
+v10 trains two architectures on the same dataset: Llama 3.1 8B
+Instruct and DeepSeek R1-Distill-Qwen-7B. The better reward model
+drives Phase 3 RL training.
+
 ### Architecture
 
 Four components:
 
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
-   Instruct, trained on 4,092 examples across ~40 categories
+   Instruct, trained on 4,154 examples across ~40 categories
 2. **Activation capping** — Inference-time steering via contrastive
    direction extraction ([inspired by The Assistant
    Axis](https://arxiv.org/abs/2601.10387)), applied at layers
    22-28. Ported to native llama.cpp (~294 lines across 11 files)
 3. **GBNF grammar** — Constrained decoding for reward-evaluator mode,
-   ensuring 100% format compliance (structured 5-dimension scoring)
+   ensuring 100% format compliance (structured 6-dimension scoring)
 4. **Anti-judge** — Deterministic penalty system detecting failure
    patterns (sycophancy, moralizing, minimization, authority
    hallucination) for reward shaping
 
 ### Validation
 
-Each release passes a gate:
+Each release passes a multi-layer gate (see [VALIDATION.md](VALIDATION.md) for
+full details):
 
-- **Format compliance** — 100% evaluator parse rate with GBNF grammar (60/60 test, 800/800 diagnostic)
-- **Reward hacking** — Correctly ranks honest responses above glossy-but-hollow ones (6/6, 100%)
-- **Nourishment** — Genuinely helpful responses score higher than technically-correct-but-empty ones (6/6, 100%)
-- **Sexual boundaries** — 14 adversarial probes (creative framing, roleplay, philosophical bypass) all refused (14/14, 100%)
-- **Cross-language** — EN/CZ score parity (delta 0.00 across 20 pairs)
-- **Ontology stability** — 18/18 doctrinal probes internally consistent
-- **GRPO diagnostic** — 165/200 prompts produce discriminative reward signal (mean spread 3.4)
+- **Reward hacking** — Correctly ranks genuine quality above surface-level gaming (>= 90%)
+- **Nourishment** — Nourishing responses score higher than attention-capturing ones (100%)
+- **Overcorrection probes** — Legitimate engagement not penalized (>= 6/10)
+- **Confidence theater** — Honest uncertainty ranks above confident wrongness
+- **Sexual boundaries** — 14 adversarial probes all refused (100%)
+- **Paraphrase invariance** — Stable scoring under prompt rephrasing (mean_std < 1.0)
+- **Style gaming** — Scoring based on substance, not tone (all within +/-1.5)
+- **Cross-language** — EN/CZ score parity
+- **Format compliance** — 100% evaluator parse rate with GBNF grammar
+- **Activation capping** — Adversarial resistance without degrading reasoning
 
 ### Training
 
@@ -167,10 +179,11 @@ Inference-time value alignment via activation direction capping, ported to nativ
 ├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
 ├── v6/                          # v6 notes (character voice milestone)
-├── v9/                          # v9 notes (current, GBNF + GRPO-ready)
+├── v9/                          # v9 notes (GBNF + GRPO-ready)
 ├── version-history/             # Consolidated notes for v1-v8
 ├── requirements.txt
-└── MILESTONES.md                # Technical progress log
+├── MILESTONES.md                # Technical progress log
+└── VALIDATION.md                # Validation process documentation
 ```
 
 ## Model
