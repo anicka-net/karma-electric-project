@@ -4,7 +4,7 @@ Consolidated notes for all versions. Current release: **v10.1**.
 
 - [v10.1/](v10.1/) — Style gaming fix, R1-Distill, full validation suite
 - [v9](v9.md) — GBNF grammar, 100% evaluator format compliance
-- [v6/](../v6/) — Character voice milestone, RL simulation baseline
+- [v6](v6.md) — Character voice milestone, RL simulation baseline
 
 Weights on [HuggingFace](https://huggingface.co/anicka/karma-electric-llama31-8b): v6 (reference) + v10.1 (current). Older weights are not preserved.
 
