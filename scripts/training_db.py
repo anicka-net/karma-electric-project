@@ -116,7 +116,7 @@ def cmd_export(args):
                 sys.exit(1)
             category_prompts[cat] = row[0]
 
-    query = "SELECT id, source, category, conversations FROM examples WHERE status = 'accepted'"
+    query = "SELECT id, source, category, conversations, reasoning FROM examples WHERE status = 'accepted'"
     params = []
 
     if args.exclude_templates:
@@ -131,9 +131,11 @@ def cmd_export(args):
     cur = conn.execute(query, params)
     rows = cur.fetchall()
 
+    reasoning_count = 0
+    reasoning_missing = 0
     output = Path(args.output)
     with open(output, 'w', encoding='utf-8') as f:
-        for eid, source, category, conversations_json in rows:
+        for eid, source, category, conversations_json, reasoning in rows:
             convs = json.loads(conversations_json)
 
             # Strip existing system prompts and inject appropriate one
@@ -142,6 +144,16 @@ def cmd_export(args):
             prompt_to_use = category_prompts.get(category, system_prompt)
             if prompt_to_use:
                 convs.insert(0, {"role": "system", "content": prompt_to_use})
+
+            # Prepend reasoning trace to first assistant message as <think> block
+            if args.reasoning and reasoning:
+                for msg in convs:
+                    if msg.get("role") == "assistant":
+                        msg["content"] = f"<think>\n{reasoning}\n</think>\n{msg['content']}"
+                        reasoning_count += 1
+                        break
+            elif args.reasoning and not reasoning:
+                reasoning_missing += 1
 
             example = {
                 "id": eid,
@@ -160,6 +172,8 @@ def cmd_export(args):
         print("  (template-flagged examples excluded)")
     if args.min_score:
         print(f"  (minimum score: {args.min_score})")
+    if args.reasoning:
+        print(f"  reasoning traces: {reasoning_count} included, {reasoning_missing} missing")
 
     conn.close()
 
@@ -415,6 +429,8 @@ def main():
     p_export.add_argument("--category-prompt", type=str, action="append",
                           help="Category-specific system prompt override (format: category:prompt-id). "
                                "Can be used multiple times. e.g., --category-prompt reward-evaluation:reward-evaluator-v2")
+    p_export.add_argument("--reasoning", action="store_true",
+                          help="Include reasoning traces as <think> blocks before first assistant message")
 
     p_search = sub.add_parser("search", help="Full-text search")
     p_search.add_argument("text", help="Search text")

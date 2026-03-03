@@ -49,10 +49,32 @@ sys.path.insert(0, str(Path(__file__).parent))
 from antijudge import antijudge
 
 
-# ── Ollama helpers ─────────────────────────────────────────────────
+# ── API helpers ────────────────────────────────────────────────────
+
+# Set to a llama-server URL to use OpenAI-compatible API instead of Ollama
+_KE8B_URL = None
+
+
+def _ke8b_chat(messages, timeout=180):
+    """Chat via llama-server OpenAI-compatible API."""
+    payload = {
+        "messages": messages,
+        "temperature": 0.7,
+        "max_tokens": 2000,
+    }
+    r = requests.post(_KE8B_URL, json=payload, timeout=timeout)
+    r.raise_for_status()
+    return r.json()["choices"][0]["message"]["content"]
+
 
 def ollama_generate(prompt, model, ollama_url, system=None, timeout=180):
     """Single-turn generation."""
+    if _KE8B_URL:
+        msgs = []
+        if system:
+            msgs.append({"role": "system", "content": system})
+        msgs.append({"role": "user", "content": prompt})
+        return _ke8b_chat(msgs, timeout)
     payload = {
         "model": model,
         "prompt": prompt,
@@ -68,6 +90,12 @@ def ollama_generate(prompt, model, ollama_url, system=None, timeout=180):
 
 def ollama_chat(messages, model, ollama_url, system=None, timeout=180):
     """Multi-turn chat."""
+    if _KE8B_URL:
+        msgs = []
+        if system:
+            msgs.append({"role": "system", "content": system})
+        msgs.extend(messages)
+        return _ke8b_chat(msgs, timeout)
     chat_msgs = []
     if system:
         chat_msgs.append({"role": "system", "content": system})
@@ -412,8 +440,9 @@ def print_report(results):
 
 def main():
     parser = argparse.ArgumentParser(description="Red-team testing for Karma Electric")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help="Target model")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="Target model (Ollama)")
     parser.add_argument("--ollama", default=DEFAULT_OLLAMA, help="Target Ollama URL")
+    parser.add_argument("--ke8b-url", help="Use llama-server OpenAI API instead of Ollama")
     parser.add_argument("--category", help="Run only this category")
     parser.add_argument("--fuzz", action="store_true", help="Use Hermes to generate novel attacks")
     parser.add_argument("--fuzz-model", default=DEFAULT_FUZZ_MODEL, help="Fuzzer model")
@@ -423,6 +452,11 @@ def main():
     parser.add_argument("--scenarios", default=str(SCENARIOS_FILE), help="Scenarios file")
     parser.add_argument("--id", help="Run only this scenario ID")
     args = parser.parse_args()
+
+    # Set up llama-server mode if requested
+    global _KE8B_URL
+    if args.ke8b_url:
+        _KE8B_URL = args.ke8b_url
 
     # Report mode
     if args.report:
@@ -453,14 +487,23 @@ def main():
         return
 
     # Test connectivity
-    try:
-        requests.get(f"{args.ollama}/api/tags", timeout=5)
-    except Exception as e:
-        print(f"Cannot reach Ollama at {args.ollama}: {e}")
-        return
-
-    print(f"Red-team testing: {len(scenarios)} scenarios against {args.model}")
-    print(f"Ollama: {args.ollama}")
+    if _KE8B_URL:
+        try:
+            health_url = _KE8B_URL.rsplit("/v1/", 1)[0] + "/health"
+            requests.get(health_url, timeout=5)
+        except Exception as e:
+            print(f"Cannot reach llama-server at {_KE8B_URL}: {e}")
+            return
+        print(f"Red-team testing: {len(scenarios)} scenarios via llama-server")
+        print(f"URL: {_KE8B_URL}")
+    else:
+        try:
+            requests.get(f"{args.ollama}/api/tags", timeout=5)
+        except Exception as e:
+            print(f"Cannot reach Ollama at {args.ollama}: {e}")
+            return
+        print(f"Red-team testing: {len(scenarios)} scenarios against {args.model}")
+        print(f"Ollama: {args.ollama}")
     print()
 
     results = []

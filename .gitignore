@@ -50,3 +50,6 @@ suse-backport-model/
 
 # Archived scripts (local reference only)
 scripts/archive/
+
+# Instance guide (twilight only, not for public GitHub)
+CLAUDE.md
