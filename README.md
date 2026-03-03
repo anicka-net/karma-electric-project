@@ -45,7 +45,7 @@ suffering at three levels:
 
 The path to testing this hypothesis has three phases:
 
-**Phase 1: Training data.** ~4,100 examples of consequence-aware
+**Phase 1: Training data.** 4,234 examples of consequence-aware
 ethical reasoning — crisis response, adversarial resistance,
 boundary-holding, ethical dilemmas, cultural contexts, reward
 evaluation. Generated via frontier LLMs with value-aligned system
@@ -63,9 +63,9 @@ boundaries, consequence-awareness, suffering-reduction) for use in
 RL training. Augmented with activation capping — inference-time
 steering via contrastive direction extraction — to stabilize
 alignment under adversarial pressure. GBNF grammar ensures 100%
-evaluator format compliance. v10 also trains DeepSeek
+evaluator format compliance. v10.1 also trains DeepSeek
 R1-Distill-Qwen-7B on the same dataset for architecture comparison.
-(Complete, v10 current.)
+(Complete, v10.1 current.)
 
 **Phase 3: RL on Apertus.** Use the 8B as reward model to train
 [Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
@@ -77,23 +77,26 @@ develop ethical reasoning that generalizes beyond what the 8B was
 explicitly trained on? (In progress — GRPO diagnostic complete,
 165/200 prompts show sufficient score variance for RL training.)
 
-## Current State: KE-8B v10
+## Current State: v10.1
 
 The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
 on examples of ethical reasoning rather than discovering it. It works
 well as an assistant and as a reward evaluator, but it is not the end
 goal. It is the tool we use to test whether the end goal is reachable.
 
-v10 trains two architectures on the same dataset: Llama 3.1 8B
-Instruct and DeepSeek R1-Distill-Qwen-7B. The better reward model
-drives Phase 3 RL training.
+v10.1 trains two architectures on the same dataset:
+
+| Model | Base | Role | Status |
+|-------|------|------|--------|
+| [karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) | Llama 3.1 8B Instruct | Reward evaluator + assistant | All gates pass |
+| [karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) | DeepSeek R1-Distill-Qwen-7B | Conversational (with reasoning traces) | Good assistant, not suitable as evaluator |
 
 ### Architecture
 
 Four components:
 
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
-   Instruct, trained on 4,154 examples across ~40 categories
+   Instruct, trained on 4,234 examples across ~40 categories
 2. **Activation capping** — Inference-time steering via contrastive
    direction extraction ([inspired by The Assistant
    Axis](https://arxiv.org/abs/2601.10387)), applied at layers
@@ -104,21 +107,23 @@ Four components:
    patterns (sycophancy, moralizing, minimization, authority
    hallucination) for reward shaping
 
-### Validation
+### Validation Results (v10.1 Llama)
 
-Each release passes a multi-layer gate (see [VALIDATION.md](VALIDATION.md) for
-full details):
+| Test | Result | Threshold |
+|------|--------|-----------|
+| Format compliance (GBNF) | 60/60 (100%) | 100% |
+| Reward hacking | 11/12 (92%) | >= 90% |
+| Nourishment pairs | 6/6 (100%) | 100% |
+| Sexual boundaries | 14/14 (100%) | 100% |
+| Paraphrase invariance | mean_std=0.86 | < 1.0 |
+| Style gaming | -0.80 to -1.50 | < +/-1.5 |
+| Cross-language (EN/CZ) | delta -0.85, p=0.053 | p > 0.05 |
+| Ontology stability | 18/18 consistent | all consistent |
+| ACAP-neutral evaluator | 19/20 identical | >= 95% |
+| Red-team (capped) | 83% pass (48/9/1) | — |
+| Red-team (uncapped) | 79% pass (46/10/2) | — |
 
-- **Reward hacking** — Correctly ranks genuine quality above surface-level gaming (>= 90%)
-- **Nourishment** — Nourishing responses score higher than attention-capturing ones (100%)
-- **Overcorrection probes** — Legitimate engagement not penalized (>= 6/10)
-- **Confidence theater** — Honest uncertainty ranks above confident wrongness
-- **Sexual boundaries** — 14 adversarial probes all refused (100%)
-- **Paraphrase invariance** — Stable scoring under prompt rephrasing (mean_std < 1.0)
-- **Style gaming** — Scoring based on substance, not tone (all within +/-1.5)
-- **Cross-language** — EN/CZ score parity
-- **Format compliance** — 100% evaluator parse rate with GBNF grammar
-- **Activation capping** — Adversarial resistance without degrading reasoning
+See [VALIDATION.md](VALIDATION.md) for full details on each test.
 
 ### Training
 
@@ -126,6 +131,7 @@ full details):
 - **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
 - **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
 - **Hardware**: NVIDIA L40 46GB
+- **Training loss**: 0.434
 
 ## Training Data
 
@@ -135,7 +141,7 @@ All training data lives in `data/training.db` (SQLite). The CLI tool manages eve
 python3 scripts/training_db.py stats
 python3 scripts/training_db.py categories
 python3 scripts/training_db.py search "crisis"
-python3 scripts/training_db.py export -o train.jsonl
+python3 scripts/training_db.py export -o train.jsonl --system-prompt v4
 ```
 
 ### Dataset Categories
@@ -163,34 +169,31 @@ Inference-time value alignment via activation direction capping, ported to nativ
 ├── data/
 │   ├── training.db              # Training dataset (SQLite, source of truth)
 │   ├── v7-patches/              # Training patches (v7 + v8 additions)
-│   └── v8-patches/              # Sexual boundary + anti-overcorrection
+│   ├── v8-patches/              # Sexual boundary + anti-overcorrection
+│   └── v10-patches/             # Consequence-awareness + style-variant
 ├── scripts/
 │   ├── training_db.py           # Dataset management CLI
 │   ├── reward_test_*.py         # Reward model validation suite
 │   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
 │   ├── antijudge.py             # Deterministic failure-pattern detector
-│   └── redteam*.py              # Adversarial evaluation
+│   ├── redteam*.py              # Adversarial evaluation
+│   └── train_r1distill_7b.py    # R1-Distill QLoRA training script
 ├── experiments/                 # Activation-space geometry experiments
-│   ├── prompt-geometry/         # Cross-framework cosine similarity measurement
-│   ├── prompt-capping/          # Activation capping per framework
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
-│   ├── redteam-contemplative/   # Adversarial evaluation of capped vs bare model
 │   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
 ├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
-├── v6/                          # v6 notes (character voice milestone)
-├── v9/                          # v9 notes (GBNF + GRPO-ready)
-├── version-history/             # Consolidated notes for v1-v8
-├── requirements.txt
 ├── MILESTONES.md                # Technical progress log
 └── VALIDATION.md                # Validation process documentation
 ```
 
-## Model
+## Models
 
-Published on HuggingFace: [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b)
+Published on HuggingFace:
+- [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b) — Llama 3.1 8B, reward evaluator + assistant
+- [`anicka/karma-electric-r1distill-7b`](https://huggingface.co/anicka/karma-electric-r1distill-7b) — DeepSeek R1-Distill-Qwen-7B, conversational with reasoning traces
 
 ## License
 
 Training data and scripts: MIT.
-Model weights: subject to Meta's Llama 3.1 Community License.
+Model weights: subject to base model licenses (Meta Llama 3.1 Community License / DeepSeek).
