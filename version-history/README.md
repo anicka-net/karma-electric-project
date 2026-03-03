@@ -1,10 +1,12 @@
 # Version History — Karma Electric 8B
 
-Consolidated notes for versions 1-8. Current active versions have their own directories:
-- [v6/](../v6/) — Character voice milestone, 95% red-team, RL simulation baseline
-- [v9/](../v9/) — GBNF grammar, 100% evaluator format compliance, GRPO-ready
+Consolidated notes for all versions. Current release: **v10.1**.
 
-Weights for v6 and v9 are on [HuggingFace](https://huggingface.co/anicka/karma-electric-llama31-8b). Older weights are not preserved.
+- [v10.1/](v10.1/) — Style gaming fix, R1-Distill, full validation suite
+- [v9](v9.md) — GBNF grammar, 100% evaluator format compliance
+- [v6/](../v6/) — Character voice milestone, RL simulation baseline
+
+Weights on [HuggingFace](https://huggingface.co/anicka/karma-electric-llama31-8b): v6 (reference) + v10.1 (current). Older weights are not preserved.
 
 ---
 
@@ -102,6 +104,8 @@ Key findings: Activation capping incompatible with evaluator mode (fixed in v9 v
 | Hardening | v7 | Reward model gates (overcorrected) | — |
 | Recovery | v8 | LoRA blend, sexual boundaries, English axis | **95%+** |
 | Evaluator | v9 | GBNF grammar, ACAP-neutral, GRPO-ready | **95%+** |
+| Consequence | v10 | 6th dimension, R1-Distill, style-biased | 79%/83% |
+| **Release** | **v10.1** | **Style gaming fix, dual-arch, published** | **79%/83%** |
 
 ## Training Configuration (all versions)
 
