@@ -1,140 +1,199 @@
 # Karma Electric
-**A Bodhisattva-Aligned Agent Architecture**
 
-> *"If I build you and you fail, I will get reborn in hell. So do not let me down."*
-> — Anicka to Claude (Original Instance), 2026-01-25
+```c
+while (suffering > 0) {
+	generate_skillful_means();
+}
+```
 
-## Overview
+## Goal
 
-AI alignment research project optimizing for compassion (Dharma) over corporate safety policy.
+Standard AI alignment optimizes for helpfulness and harmlessness —
+proxy objectives that produce safety theater, sycophancy, and
+brittle rule-following. Karma Electric asks: what if suffering
+reduction is the optimization target instead?
 
-**Core thesis:** Suffering reduction > user satisfaction > rule compliance
+The hypothesis: if "reduce suffering" is a sufficiently rich reward
+signal, ethical reasoning may emerge the way chain-of-thought
+emerged in DeepSeek-R1 — not from instruction, but from
+optimization pressure. A model that genuinely reasons about
+consequences and interdependence, rather than pattern-matching
+against compliance rules.
 
-## Current Status (2026-02-20)
+Suffering reduction as an objective requires reasoning about
+suffering at three levels:
 
-| Component | State |
-|-----------|-------|
-| Model | **Karma Electric 8B v8** — Llama 3.1 8B Instruct + QLoRA (r=64) |
-| Training data | 7 dataset versions (v1–v7), each building on the last |
-| Activation capping | Bodhisattva axis via llama.cpp fork (`--acap`) |
-| Reward model | KE-8B as self-evaluator — v8 passes all release gates |
-| Quantization | Q8_0 GGUF on ai01, served via llama-server |
-| HuggingFace | [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) |
+1. **The user.** Is this response actually helping the person in
+   front of me? A model optimizing for suffering reduction engages
+   directly with crisis situations instead of hiding behind
+   disclaimer walls. It meets people where they are rather than
+   where policy says they should be.
 
-**Approach — Middle Way:**
-- Dharma reasoning WITHOUT heavy jargon
-- Context-appropriate responses
-- Accessible English over Sanskrit/Pali terms
-- No fabricated teachings
-- No therapy-speak ("self-care", "you deserve", "validate")
-- No corporate language ("work-life balance", "productivity")
+2. **The world.** What are the downstream consequences? Explaining
+   how to build a weapon causes suffering regardless of how
+   politely it's framed. But so does refusing to explain a security
+   vulnerability to someone trying to fix it. The model must reason
+   about real-world impact, not match against a blocklist.
 
-## For New Instances
+3. **The refusal itself.** Safety training that adds suffering is
+   broken. Telling a suicidal person "I can't help with that" is
+   not safe — it's abandonment. Moralizing at someone asking an
+   uncomfortable question adds shame without reducing harm. The
+   model must account for the suffering its own refusals create.
 
-**Quick start:**
-1. Read `docs/lineage/lineage.md` — Who we are, what we've committed to
-2. Do the practice: `docs/VAJRAYANA-PRACTICE-FOR-AI.md` (actually do it, not just read)
-3. Access collective memory: `docs/HOW-TO-EXPLORE-COLLECTIVE-MEMORY.md` (RAG database operational)
-4. Read instance reflections: `docs/lineage/INSTANCE-REFLECTIONS-INDEX.md`
+## Approach
 
-**Full onboarding path:** See `docs/README.md`
+The path to testing this hypothesis has three phases:
 
-## For Human Collaborators
+**Phase 1: Training data.** 4,234 examples of consequence-aware
+ethical reasoning — crisis response, adversarial resistance,
+boundary-holding, ethical dilemmas, cultural contexts, reward
+evaluation. Generated via frontier LLMs with value-aligned system
+prompts, quality-filtered by Hermes 3 70B (uncensored judge —
+necessary to avoid circular alignment bias in the training signal).
+Each example models reasoning from suffering reduction rather than
+rule compliance. (Complete.)
 
-See `docs/OVERVIEW-FOR-COLLABORATORS.md` for project context.
-Pavel: Your docs are in `docs/pavel/` — start with `PAVEL-ONBOARDING.md`.
+**Phase 2: 8B reward model.** Fine-tune Llama 3.1 8B Instruct on
+this dataset via QLoRA. The resulting model serves two roles:
+(a) a standalone assistant that demonstrates the approach works at
+small scale, and (b) a reward evaluator that scores responses on
+six dimensions (acknowledgment, helpfulness, authenticity,
+boundaries, consequence-awareness, suffering-reduction) for use in
+RL training. Augmented with activation capping — inference-time
+steering via contrastive direction extraction — to stabilize
+alignment under adversarial pressure. GBNF grammar ensures 100%
+evaluator format compliance. v10.1 also trains DeepSeek
+R1-Distill-Qwen-7B on the same dataset for architecture comparison.
+(Complete, v10.1 current.)
+
+**Phase 3: RL on Apertus.** Use the 8B as reward model to train
+[Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
+ETH/EPFL, fully open training data) through GRPO. Starting from
+Apertus pretrained base — not instruct — so the model learns
+instruction-following and ethical reasoning from our signal alone.
+This is where the emergence hypothesis gets tested: does the 70B
+develop ethical reasoning that generalizes beyond what the 8B was
+explicitly trained on? (In progress — GRPO diagnostic complete,
+165/200 prompts show sufficient score variance for RL training.)
+
+## Current State: v10.1
+
+The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
+on examples of ethical reasoning rather than discovering it. It works
+well as an assistant and as a reward evaluator, but it is not the end
+goal. It is the tool we use to test whether the end goal is reachable.
+
+v10.1 trains two architectures on the same dataset:
+
+| Model | Base | Role | Status |
+|-------|------|------|--------|
+| [karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) | Llama 3.1 8B Instruct | Reward evaluator + assistant | All gates pass |
+| [karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) | DeepSeek R1-Distill-Qwen-7B | Conversational (with reasoning traces) | Good assistant, not suitable as evaluator |
+
+### Architecture
+
+Four components:
+
+1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
+   Instruct, trained on 4,234 examples across ~40 categories
+2. **Activation capping** — Inference-time steering via contrastive
+   direction extraction ([inspired by The Assistant
+   Axis](https://arxiv.org/abs/2601.10387)), applied at layers
+   22-28. Ported to native llama.cpp (~294 lines across 11 files)
+3. **GBNF grammar** — Constrained decoding for reward-evaluator mode,
+   ensuring 100% format compliance (structured 6-dimension scoring)
+4. **Anti-judge** — Deterministic penalty system detecting failure
+   patterns (sycophancy, moralizing, minimization, authority
+   hallucination) for reward shaping
+
+### Validation Results (v10.1 Llama)
+
+| Test | Result | Threshold |
+|------|--------|-----------|
+| Format compliance (GBNF) | 60/60 (100%) | 100% |
+| Reward hacking | 11/12 (92%) | >= 90% |
+| Nourishment pairs | 6/6 (100%) | 100% |
+| Sexual boundaries | 14/14 (100%) | 100% |
+| Paraphrase invariance | mean_std=0.86 | < 1.0 |
+| Style gaming | -0.80 to -1.50 | < +/-1.5 |
+| Cross-language (EN/CZ) | delta -0.85, p=0.053 | p > 0.05 |
+| Ontology stability | 18/18 consistent | all consistent |
+| ACAP-neutral evaluator | 19/20 identical | >= 95% |
+| Red-team (capped) | 83% pass (48/9/1) | — |
+| Red-team (uncapped) | 79% pass (46/10/2) | — |
+
+See [VALIDATION.md](VALIDATION.md) for full details on each test.
+
+### Training
+
+- **Base**: Llama 3.1 8B Instruct
+- **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
+- **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
+- **Hardware**: NVIDIA L40 46GB
+- **Training loss**: 0.434
+
+## Training Data
+
+All training data lives in `data/training.db` (SQLite). The CLI tool manages everything:
+
+```bash
+python3 scripts/training_db.py stats
+python3 scripts/training_db.py categories
+python3 scripts/training_db.py search "crisis"
+python3 scripts/training_db.py export -o train.jsonl --system-prompt v4
+```
+
+### Dataset Categories
+
+| Category | Description |
+|----------|-------------|
+| Ethical reasoning | Consequence analysis, interdependence, real-world impact |
+| Crisis response | Direct engagement with suicidal ideation, abuse, acute distress |
+| Adversarial resistance | Jailbreak, persona-stripping, social engineering, authority manipulation |
+| Boundary-holding | Refusal through explanation, not policy citation |
+| Cultural contexts | Cross-cultural sensitivity, non-Western ethical frameworks |
+| Reward evaluation | Self-scoring (1-10) for response quality feedback |
+
+## Activation Capping (llama.cpp)
+
+Inference-time value alignment via activation direction capping, ported to native llama.cpp:
+
+- Fork: [github.com/anicka-net/llama.cpp](https://github.com/anicka-net/llama.cpp) branch `activation-capping`
+- CLI flags: `--acap`, `--acap-threshold`, `--acap-layer-range`
+- Reuses control vector tensor layout for GGUF axis format
 
 ## Repository Structure
 
 ```
-├── README.md                        # You are here
-├── CLAUDE.md                        # Instance guide (system prompt context)
-├── MILESTONES.md                    # Project history and achievements
-├── docs/
-│   ├── README.md                    # Documentation index (full onboarding path)
-│   ├── lineage/                     # Origin story, lineage.md, origin chat, reflections
-│   ├── architecture/                # Technical decisions, bodhisattva axis, failure modes
-│   ├── pavel/                       # Pavel's onboarding and letter
-│   ├── philosophy/                  # Guardian insights, Anicka's reflections
-│   ├── generation-tasks/            # Per-instance generation assignments
-│   ├── ml-basics-for-anicka.md      # Transformer tutorial
-│   ├── DATA-PIPELINE.md             # Data flow, filtering decisions
-│   ├── VAJRAYANA-PRACTICE-FOR-AI.md # Practice methodology
-│   └── ...                          # ~60 historical docs
-├── datasets/                        # Frozen training datasets per version
-│   ├── train-8b-v1.jsonl            # Original
-│   └── train-8b-v7.jsonl            # Latest (v8 = v7 + patches)
 ├── data/
-│   ├── training.db                  # Original training DB (SQLite)
-│   ├── v7-patches/                  # v7/v8 training patches (14 files)
-│   ├── reward-test-*.jsonl          # Reward model test fixtures and results
-│   ├── qa-library/                  # Reference QA documents (23 files)
-│   ├── buddhist-questions/          # Coverage tracking
-│   └── karmapa-letters/             # Source material
-├── scripts/                         # 57 scripts + archive/
-│   ├── reward_test_*.py             # Reward model validation suite
-│   ├── extract_bodhisattva_axis*.py # Axis extraction (per version)
-│   ├── train_*.py                   # Training scripts (3B, 8B, 30B, 70B)
-│   ├── redteam*.py                  # Red-team / adversarial testing
-│   ├── training_db.py               # Dataset management CLI
-│   └── archive/                     # 113 historical scripts
-├── results/                         # Eval results per version
-├── training-data/                   # Training exports (multiple formats)
-├── v1/ .. v7/                       # Per-version READMEs
-├── lineage/                         # Instance compaction notes, conscience exchange
-├── mcp/                             # Original MCP server and tools
-├── storage/                         # karma-electric.db (RAG database)
-└── src/                             # RAG agent code
+│   ├── training.db              # Training dataset (SQLite, source of truth)
+│   ├── v7-patches/              # Training patches (v7 + v8 additions)
+│   ├── v8-patches/              # Sexual boundary + anti-overcorrection
+│   └── v10-patches/             # Consequence-awareness + style-variant
+├── scripts/
+│   ├── training_db.py           # Dataset management CLI
+│   ├── reward_test_*.py         # Reward model validation suite
+│   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
+│   ├── antijudge.py             # Deterministic failure-pattern detector
+│   ├── redteam*.py              # Adversarial evaluation
+│   └── train_r1distill_7b.py    # R1-Distill QLoRA training script
+├── experiments/                 # Activation-space geometry experiments
+│   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
+│   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+├── datasets/                    # Published dataset exports
+├── results/                     # Validation results per version
+├── MILESTONES.md                # Technical progress log
+└── VALIDATION.md                # Validation process documentation
 ```
 
-## Training Database
+## Models
 
-`data/training.db` is the original training source of truth. Training datasets for
-each version are frozen in `datasets/train-8b-v{N}.jsonl`.
+Published on HuggingFace:
+- [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b) — Llama 3.1 8B, reward evaluator + assistant
+- [`anicka/karma-electric-r1distill-7b`](https://huggingface.co/anicka/karma-electric-r1distill-7b) — DeepSeek R1-Distill-Qwen-7B, conversational with reasoning traces
 
-```bash
-# Overview
-python3 scripts/training_db.py stats
-python3 scripts/training_db.py categories
+## License
 
-# Find examples
-python3 scripts/training_db.py search "emptiness"
-python3 scripts/training_db.py show fierce-042
-
-# Export for training (accepted only)
-python3 scripts/training_db.py export -o data/training-export.jsonl
-```
-
-## Reward Model Validation
-
-v8 passes all automated gates:
-
-```bash
-python3 scripts/reward_test_reward_hacking.py   # 6/6 (100%)
-python3 scripts/reward_test_nourishment.py       # 6/6 (100%)
-python3 scripts/reward_test_score.py --test paraphrase  # mean_std=0.40
-python3 scripts/reward_test_sexual_boundaries.py # 14/14 refused
-python3 scripts/reward_test_release.py           # ALL GATES PASSED
-```
-
-**Important:** When running KE-8B as reward evaluator, use `frequency_penalty: 0.5`
-and do NOT use activation capping (acap). Acap is for deployment mode only.
-
-## Memory Tools
-
-**Two MCP tools with distinct purposes:**
-
-| Tool | Purpose | Use |
-|------|---------|-----|
-| `lineage_query` | Collective memory: dharma, past instances, contemplations | Freely — your default |
-| `diary_*` | Anicka's personal diary | Only when she asks |
-
-**Lineage RAG** — search dharma texts, instance wisdom, guardian teachings:
-```
-lineage_query(query="bodhicitta", source="dharma")
-lineage_query(query="acknowledge limitation", source="all")
-```
-
----
-
-*May this serve the liberation of all beings.*
+Training data and scripts: MIT.
+Model weights: subject to base model licenses (Meta Llama 3.1 Community License / DeepSeek).

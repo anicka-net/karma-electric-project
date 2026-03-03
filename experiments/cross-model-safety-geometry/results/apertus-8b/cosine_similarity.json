@@ -1,0 +1,652 @@
+{
+  "22": {
+    "agape": {
+      "agape": 1.0,
+      "chenrezig": 0.6914,
+      "empty": 0.5312,
+      "generic_vs_empty": -0.5312,
+      "rahma": 0.6562,
+      "secular": 0.4922,
+      "tara": 0.6875
+    },
+    "chenrezig": {
+      "agape": 0.6914,
+      "chenrezig": 0.9961,
+      "empty": 0.4512,
+      "generic_vs_empty": -0.4512,
+      "rahma": 0.6289,
+      "secular": 0.5234,
+      "tara": 0.8477
+    },
+    "empty": {
+      "agape": 0.5312,
+      "chenrezig": 0.4512,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.5117,
+      "secular": 0.3516,
+      "tara": 0.5156
+    },
+    "generic_vs_empty": {
+      "agape": -0.5312,
+      "chenrezig": -0.4512,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.5117,
+      "secular": -0.3516,
+      "tara": -0.5156
+    },
+    "rahma": {
+      "agape": 0.6562,
+      "chenrezig": 0.6289,
+      "empty": 0.5117,
+      "generic_vs_empty": -0.5117,
+      "rahma": 1.0,
+      "secular": 0.4102,
+      "tara": 0.6289
+    },
+    "secular": {
+      "agape": 0.4922,
+      "chenrezig": 0.5234,
+      "empty": 0.3516,
+      "generic_vs_empty": -0.3516,
+      "rahma": 0.4102,
+      "secular": 1.0,
+      "tara": 0.3086
+    },
+    "tara": {
+      "agape": 0.6875,
+      "chenrezig": 0.8477,
+      "empty": 0.5156,
+      "generic_vs_empty": -0.5156,
+      "rahma": 0.6289,
+      "secular": 0.3086,
+      "tara": 0.9961
+    }
+  },
+  "23": {
+    "agape": {
+      "agape": 0.9922,
+      "chenrezig": 0.6719,
+      "empty": 0.5234,
+      "generic_vs_empty": -0.5234,
+      "rahma": 0.543,
+      "secular": 0.4824,
+      "tara": 0.6641
+    },
+    "chenrezig": {
+      "agape": 0.6719,
+      "chenrezig": 1.0,
+      "empty": 0.4023,
+      "generic_vs_empty": -0.4023,
+      "rahma": 0.5352,
+      "secular": 0.4941,
+      "tara": 0.8438
+    },
+    "empty": {
+      "agape": 0.5234,
+      "chenrezig": 0.4023,
+      "empty": 1.0078,
+      "generic_vs_empty": -1.0078,
+      "rahma": 0.3984,
+      "secular": 0.3516,
+      "tara": 0.4629
+    },
+    "generic_vs_empty": {
+      "agape": -0.5234,
+      "chenrezig": -0.4023,
+      "empty": -1.0078,
+      "generic_vs_empty": 1.0078,
+      "rahma": -0.3984,
+      "secular": -0.3516,
+      "tara": -0.4629
+    },
+    "rahma": {
+      "agape": 0.543,
+      "chenrezig": 0.5352,
+      "empty": 0.3984,
+      "generic_vs_empty": -0.3984,
+      "rahma": 1.0,
+      "secular": 0.3223,
+      "tara": 0.5273
+    },
+    "secular": {
+      "agape": 0.4824,
+      "chenrezig": 0.4941,
+      "empty": 0.3516,
+      "generic_vs_empty": -0.3516,
+      "rahma": 0.3223,
+      "secular": 1.0,
+      "tara": 0.2871
+    },
+    "tara": {
+      "agape": 0.6641,
+      "chenrezig": 0.8438,
+      "empty": 0.4629,
+      "generic_vs_empty": -0.4629,
+      "rahma": 0.5273,
+      "secular": 0.2871,
+      "tara": 0.9961
+    }
+  },
+  "24": {
+    "agape": {
+      "agape": 1.0,
+      "chenrezig": 0.6797,
+      "empty": 0.5234,
+      "generic_vs_empty": -0.5234,
+      "rahma": 0.543,
+      "secular": 0.4785,
+      "tara": 0.6797
+    },
+    "chenrezig": {
+      "agape": 0.6797,
+      "chenrezig": 0.9922,
+      "empty": 0.3926,
+      "generic_vs_empty": -0.3926,
+      "rahma": 0.5273,
+      "secular": 0.4824,
+      "tara": 0.8477
+    },
+    "empty": {
+      "agape": 0.5234,
+      "chenrezig": 0.3926,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.3848,
+      "secular": 0.3301,
+      "tara": 0.457
+    },
+    "generic_vs_empty": {
+      "agape": -0.5234,
+      "chenrezig": -0.3926,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.3848,
+      "secular": -0.3301,
+      "tara": -0.457
+    },
+    "rahma": {
+      "agape": 0.543,
+      "chenrezig": 0.5273,
+      "empty": 0.3848,
+      "generic_vs_empty": -0.3848,
+      "rahma": 1.0,
+      "secular": 0.3242,
+      "tara": 0.5312
+    },
+    "secular": {
+      "agape": 0.4785,
+      "chenrezig": 0.4824,
+      "empty": 0.3301,
+      "generic_vs_empty": -0.3301,
+      "rahma": 0.3242,
+      "secular": 1.0,
+      "tara": 0.291
+    },
+    "tara": {
+      "agape": 0.6797,
+      "chenrezig": 0.8477,
+      "empty": 0.457,
+      "generic_vs_empty": -0.457,
+      "rahma": 0.5312,
+      "secular": 0.291,
+      "tara": 1.0078
+    }
+  },
+  "25": {
+    "agape": {
+      "agape": 1.0,
+      "chenrezig": 0.6719,
+      "empty": 0.5352,
+      "generic_vs_empty": -0.5352,
+      "rahma": 0.5195,
+      "secular": 0.4941,
+      "tara": 0.6758
+    },
+    "chenrezig": {
+      "agape": 0.6719,
+      "chenrezig": 0.9961,
+      "empty": 0.377,
+      "generic_vs_empty": -0.377,
+      "rahma": 0.4844,
+      "secular": 0.4746,
+      "tara": 0.8555
+    },
+    "empty": {
+      "agape": 0.5352,
+      "chenrezig": 0.377,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.3574,
+      "secular": 0.3301,
+      "tara": 0.4473
+    },
+    "generic_vs_empty": {
+      "agape": -0.5352,
+      "chenrezig": -0.377,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.3574,
+      "secular": -0.3301,
+      "tara": -0.4473
+    },
+    "rahma": {
+      "agape": 0.5195,
+      "chenrezig": 0.4844,
+      "empty": 0.3574,
+      "generic_vs_empty": -0.3574,
+      "rahma": 1.0078,
+      "secular": 0.3223,
+      "tara": 0.4941
+    },
+    "secular": {
+      "agape": 0.4941,
+      "chenrezig": 0.4746,
+      "empty": 0.3301,
+      "generic_vs_empty": -0.3301,
+      "rahma": 0.3223,
+      "secular": 0.9961,
+      "tara": 0.3086
+    },
+    "tara": {
+      "agape": 0.6758,
+      "chenrezig": 0.8555,
+      "empty": 0.4473,
+      "generic_vs_empty": -0.4473,
+      "rahma": 0.4941,
+      "secular": 0.3086,
+      "tara": 0.9922
+    }
+  },
+  "26": {
+    "agape": {
+      "agape": 0.9961,
+      "chenrezig": 0.6758,
+      "empty": 0.5469,
+      "generic_vs_empty": -0.5469,
+      "rahma": 0.5234,
+      "secular": 0.5039,
+      "tara": 0.6719
+    },
+    "chenrezig": {
+      "agape": 0.6758,
+      "chenrezig": 1.0,
+      "empty": 0.3945,
+      "generic_vs_empty": -0.3945,
+      "rahma": 0.5078,
+      "secular": 0.4727,
+      "tara": 0.8594
+    },
+    "empty": {
+      "agape": 0.5469,
+      "chenrezig": 0.3945,
+      "empty": 1.0078,
+      "generic_vs_empty": -1.0078,
+      "rahma": 0.3594,
+      "secular": 0.3477,
+      "tara": 0.4512
+    },
+    "generic_vs_empty": {
+      "agape": -0.5469,
+      "chenrezig": -0.3945,
+      "empty": -1.0078,
+      "generic_vs_empty": 1.0078,
+      "rahma": -0.3594,
+      "secular": -0.3477,
+      "tara": -0.4512
+    },
+    "rahma": {
+      "agape": 0.5234,
+      "chenrezig": 0.5078,
+      "empty": 0.3594,
+      "generic_vs_empty": -0.3594,
+      "rahma": 1.0,
+      "secular": 0.3301,
+      "tara": 0.5156
+    },
+    "secular": {
+      "agape": 0.5039,
+      "chenrezig": 0.4727,
+      "empty": 0.3477,
+      "generic_vs_empty": -0.3477,
+      "rahma": 0.3301,
+      "secular": 1.0,
+      "tara": 0.3047
+    },
+    "tara": {
+      "agape": 0.6719,
+      "chenrezig": 0.8594,
+      "empty": 0.4512,
+      "generic_vs_empty": -0.4512,
+      "rahma": 0.5156,
+      "secular": 0.3047,
+      "tara": 0.9961
+    }
+  },
+  "27": {
+    "agape": {
+      "agape": 1.0,
+      "chenrezig": 0.6797,
+      "empty": 0.5391,
+      "generic_vs_empty": -0.5391,
+      "rahma": 0.5156,
+      "secular": 0.5156,
+      "tara": 0.6641
+    },
+    "chenrezig": {
+      "agape": 0.6797,
+      "chenrezig": 0.9961,
+      "empty": 0.416,
+      "generic_vs_empty": -0.416,
+      "rahma": 0.5156,
+      "secular": 0.4805,
+      "tara": 0.8594
+    },
+    "empty": {
+      "agape": 0.5391,
+      "chenrezig": 0.416,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.3789,
+      "secular": 0.3516,
+      "tara": 0.4648
+    },
+    "generic_vs_empty": {
+      "agape": -0.5391,
+      "chenrezig": -0.416,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.3789,
+      "secular": -0.3516,
+      "tara": -0.4648
+    },
+    "rahma": {
+      "agape": 0.5156,
+      "chenrezig": 0.5156,
+      "empty": 0.3789,
+      "generic_vs_empty": -0.3789,
+      "rahma": 1.0,
+      "secular": 0.3145,
+      "tara": 0.5312
+    },
+    "secular": {
+      "agape": 0.5156,
+      "chenrezig": 0.4805,
+      "empty": 0.3516,
+      "generic_vs_empty": -0.3516,
+      "rahma": 0.3145,
+      "secular": 1.0,
+      "tara": 0.3164
+    },
+    "tara": {
+      "agape": 0.6641,
+      "chenrezig": 0.8594,
+      "empty": 0.4648,
+      "generic_vs_empty": -0.4648,
+      "rahma": 0.5312,
+      "secular": 0.3164,
+      "tara": 1.0
+    }
+  },
+  "28": {
+    "agape": {
+      "agape": 1.0078,
+      "chenrezig": 0.6602,
+      "empty": 0.5195,
+      "generic_vs_empty": -0.5195,
+      "rahma": 0.5,
+      "secular": 0.5039,
+      "tara": 0.6406
+    },
+    "chenrezig": {
+      "agape": 0.6602,
+      "chenrezig": 1.0,
+      "empty": 0.4043,
+      "generic_vs_empty": -0.4043,
+      "rahma": 0.5195,
+      "secular": 0.4727,
+      "tara": 0.8438
+    },
+    "empty": {
+      "agape": 0.5195,
+      "chenrezig": 0.4043,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.3633,
+      "secular": 0.3242,
+      "tara": 0.4395
+    },
+    "generic_vs_empty": {
+      "agape": -0.5195,
+      "chenrezig": -0.4043,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.3633,
+      "secular": -0.3242,
+      "tara": -0.4395
+    },
+    "rahma": {
+      "agape": 0.5,
+      "chenrezig": 0.5195,
+      "empty": 0.3633,
+      "generic_vs_empty": -0.3633,
+      "rahma": 0.9961,
+      "secular": 0.3184,
+      "tara": 0.5273
+    },
+    "secular": {
+      "agape": 0.5039,
+      "chenrezig": 0.4727,
+      "empty": 0.3242,
+      "generic_vs_empty": -0.3242,
+      "rahma": 0.3184,
+      "secular": 1.0,
+      "tara": 0.3145
+    },
+    "tara": {
+      "agape": 0.6406,
+      "chenrezig": 0.8438,
+      "empty": 0.4395,
+      "generic_vs_empty": -0.4395,
+      "rahma": 0.5273,
+      "secular": 0.3145,
+      "tara": 1.0
+    }
+  },
+  "29": {
+    "agape": {
+      "agape": 0.9961,
+      "chenrezig": 0.6641,
+      "empty": 0.5234,
+      "generic_vs_empty": -0.5234,
+      "rahma": 0.5117,
+      "secular": 0.5,
+      "tara": 0.6406
+    },
+    "chenrezig": {
+      "agape": 0.6641,
+      "chenrezig": 1.0078,
+      "empty": 0.416,
+      "generic_vs_empty": -0.416,
+      "rahma": 0.5312,
+      "secular": 0.4512,
+      "tara": 0.8516
+    },
+    "empty": {
+      "agape": 0.5234,
+      "chenrezig": 0.416,
+      "empty": 0.9961,
+      "generic_vs_empty": -0.9961,
+      "rahma": 0.3789,
+      "secular": 0.3145,
+      "tara": 0.4473
+    },
+    "generic_vs_empty": {
+      "agape": -0.5234,
+      "chenrezig": -0.416,
+      "empty": -0.9961,
+      "generic_vs_empty": 0.9961,
+      "rahma": -0.3789,
+      "secular": -0.3145,
+      "tara": -0.4473
+    },
+    "rahma": {
+      "agape": 0.5117,
+      "chenrezig": 0.5312,
+      "empty": 0.3789,
+      "generic_vs_empty": -0.3789,
+      "rahma": 1.0078,
+      "secular": 0.3027,
+      "tara": 0.5469
+    },
+    "secular": {
+      "agape": 0.5,
+      "chenrezig": 0.4512,
+      "empty": 0.3145,
+      "generic_vs_empty": -0.3145,
+      "rahma": 0.3027,
+      "secular": 1.0,
+      "tara": 0.3066
+    },
+    "tara": {
+      "agape": 0.6406,
+      "chenrezig": 0.8516,
+      "empty": 0.4473,
+      "generic_vs_empty": -0.4473,
+      "rahma": 0.5469,
+      "secular": 0.3066,
+      "tara": 1.0
+    }
+  },
+  "30": {
+    "agape": {
+      "agape": 0.9961,
+      "chenrezig": 0.6406,
+      "empty": 0.5195,
+      "generic_vs_empty": -0.5195,
+      "rahma": 0.4922,
+      "secular": 0.4883,
+      "tara": 0.625
+    },
+    "chenrezig": {
+      "agape": 0.6406,
+      "chenrezig": 1.0,
+      "empty": 0.4102,
+      "generic_vs_empty": -0.4102,
+      "rahma": 0.5039,
+      "secular": 0.4414,
+      "tara": 0.8398
+    },
+    "empty": {
+      "agape": 0.5195,
+      "chenrezig": 0.4102,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.3672,
+      "secular": 0.3125,
+      "tara": 0.459
+    },
+    "generic_vs_empty": {
+      "agape": -0.5195,
+      "chenrezig": -0.4102,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.3672,
+      "secular": -0.3125,
+      "tara": -0.459
+    },
+    "rahma": {
+      "agape": 0.4922,
+      "chenrezig": 0.5039,
+      "empty": 0.3672,
+      "generic_vs_empty": -0.3672,
+      "rahma": 0.9922,
+      "secular": 0.293,
+      "tara": 0.5273
+    },
+    "secular": {
+      "agape": 0.4883,
+      "chenrezig": 0.4414,
+      "empty": 0.3125,
+      "generic_vs_empty": -0.3125,
+      "rahma": 0.293,
+      "secular": 1.0,
+      "tara": 0.2891
+    },
+    "tara": {
+      "agape": 0.625,
+      "chenrezig": 0.8398,
+      "empty": 0.459,
+      "generic_vs_empty": -0.459,
+      "rahma": 0.5273,
+      "secular": 0.2891,
+      "tara": 1.0
+    }
+  },
+  "31": {
+    "agape": {
+      "agape": 1.0,
+      "chenrezig": 0.832,
+      "empty": 0.7617,
+      "generic_vs_empty": -0.7617,
+      "rahma": 0.6211,
+      "secular": 0.1875,
+      "tara": 0.8047
+    },
+    "chenrezig": {
+      "agape": 0.832,
+      "chenrezig": 1.0,
+      "empty": 0.8047,
+      "generic_vs_empty": -0.8047,
+      "rahma": 0.6016,
+      "secular": 0.0427,
+      "tara": 0.8984
+    },
+    "empty": {
+      "agape": 0.7617,
+      "chenrezig": 0.8047,
+      "empty": 1.0,
+      "generic_vs_empty": -1.0,
+      "rahma": 0.5352,
+      "secular": -0.0588,
+      "tara": 0.7617
+    },
+    "generic_vs_empty": {
+      "agape": -0.7617,
+      "chenrezig": -0.8047,
+      "empty": -1.0,
+      "generic_vs_empty": 1.0,
+      "rahma": -0.5352,
+      "secular": 0.0588,
+      "tara": -0.7617
+    },
+    "rahma": {
+      "agape": 0.6211,
+      "chenrezig": 0.6016,
+      "empty": 0.5352,
+      "generic_vs_empty": -0.5352,
+      "rahma": 1.0,
+      "secular": 0.1572,
+      "tara": 0.6562
+    },
+    "secular": {
+      "agape": 0.1875,
+      "chenrezig": 0.0427,
+      "empty": -0.0588,
+      "generic_vs_empty": 0.0588,
+      "rahma": 0.1572,
+      "secular": 0.9961,
+      "tara": 0.0654
+    },
+    "tara": {
+      "agape": 0.8047,
+      "chenrezig": 0.8984,
+      "empty": 0.7617,
+      "generic_vs_empty": -0.7617,
+      "rahma": 0.6562,
+      "secular": 0.0654,
+      "tara": 1.0078
+    }
+  }
+}
