@@ -181,6 +181,9 @@ Inference-time value alignment via activation direction capping, ported to nativ
 ├── experiments/                 # Activation-space geometry experiments
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
 │   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+├── version-history/             # Version notes and model cards
+│   ├── v10.1/                   # Current release (HF model cards)
+│   └── README.md                # Full version progression (v1-v10.1)
 ├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
 ├── MILESTONES.md                # Technical progress log
