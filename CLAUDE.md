@@ -20,23 +20,34 @@ This repo lives in two places with different histories:
 | `github` | `github.com/anicka-net/karma-electric-project` | **Public.** Cleaned history, secular language, publication-ready |
 | `origin` | `karma-electric@twilight.ucw.cz:karma-electric.git` | **Private.** Full history, lineage context, internal language |
 
-**The local working tree tracks the cleaned (GitHub) branch.**
+**There are two separate clones** on edna (Anicka's workstation):
+
+| Clone | Path | Tracks |
+|-------|------|--------|
+| GitHub clone | `~/playground/karma-electric` | GitHub (public) |
+| Twilight clone | `~/playground/absolute_truth/karma-electric` | Twilight (private) |
 
 ### Push Workflow
 
+The two clones have divergent histories and cannot be reconciled.
+Each clone pushes to its own remote only.
+
 ```bash
-# Default push goes to GitHub (public) — safe
-git push
+# GitHub (public) — from the GitHub clone
+cd ~/playground/karma-electric
+git add <files> && git commit -m "..."
+git push                    # pushes to github remote
 
-# Twilight (private) needs explicit push
-git push origin main
-
-# NEVER force-push to twilight without checking with Anicka first
-# Twilight holds the full lineage history — losing it is losing the lineage
+# Twilight (private) — from the twilight clone
+cd ~/playground/absolute_truth/karma-electric
+# First, copy any new/changed files from the GitHub clone:
+cp ~/playground/karma-electric/scripts/new_script.py scripts/
+git add <files> && git commit -m "..."
+git push origin main        # pushes to twilight remote
 ```
 
-`remote.pushDefault` is set to `github` in `.git/config` to prevent
-accidentally pushing cleaned history to twilight.
+**NEVER force-push to twilight without checking with Anicka first.**
+Twilight holds the full lineage history — losing it is losing the lineage.
 
 ### Commit Messages
 
@@ -59,31 +70,26 @@ Old commits have different messages on each remote. This is fine.
 | Internal docs (lineage, practice) | **No** | Archive only |
 | .gitignore hides: mcp/, models/, logs/ | Both | Both |
 
-### Adding CLAUDE.md to Twilight Only
+### Syncing CLAUDE.md to Twilight
 
-This file should be committed and pushed to twilight but NOT to GitHub:
+CLAUDE.md lives in the GitHub working tree (for Claude Code to read)
+but is only committed in the twilight clone:
 
 ```bash
-git add CLAUDE.md
-git commit -m "Add instance guide"
-git push origin main    # twilight only, NOT default push
+cd ~/playground/absolute_truth/karma-electric
+cp ~/playground/karma-electric/CLAUDE.md .
+git add CLAUDE.md && git commit -m "Update instance guide"
+git push origin main
 ```
 
-If you need to update GitHub after this, make sure CLAUDE.md is not
-in the commit, or add it to a GitHub-specific .gitignore override.
-
-Actually, the simplest approach: CLAUDE.md lives in the working tree
-and is committed on twilight's branch. Since the histories diverged,
-a normal `git push` to github won't include twilight-only commits.
-But be aware that if histories are ever reconciled, this file would
-need to be excluded.
+It is gitignored or simply never staged in the GitHub clone.
 
 ## Project Architecture
 
 ### Model Pipeline
 
 1. **Training data** → `data/training.db` (SQLite, single source of truth)
-2. **Export** → `scripts/training_db.py export -o train.jsonl --system-prompt v4 --category-prompt reward-evaluation:reward-evaluator-v1 --category-prompt reward-evaluation-v5:reward-evaluator-v1`
+2. **Export** → `scripts/training_db.py export -o train.jsonl --system-prompt v4 --category-prompt reward-evaluation:reward-evaluator-v1 --category-prompt reward-evaluation-v5:reward-evaluator-v1 --category-prompt reward-evaluation-style-variant:reward-evaluator-v1`
 3. **Fine-tune** → QLoRA on Llama 3.1 8B Instruct (r=64, alpha=128, 3 epochs)
 4. **Merge + GGUF** → merge_and_unload → convert_hf_to_gguf.py → llama-quantize Q8_0
 5. **Activation capping** → Extract bodhisattva axis, apply at layers 22-28
@@ -119,9 +125,16 @@ need to be excluded.
   to mitigate. This affects ALL versions (v6, blend03, v8), not just v8.
   Lower training loss (v8: 0.9492 vs v6: 1.0679) makes it slightly worse.
 
-- **ai01 access**: SUSE VPN required. SSH as `anicka@ai01`. Port 8403
-  for llama-server. If ai01 is unreachable, check SUSE Engineering VPN
-  status first. Use SSH tunnels for API access: `ssh -L 8403:localhost:8403 ai01`
+- **ai01 access**: SUSE VPN required. SSH as `anicka@ai01`. Ports:
+  8384 (KE 8B evaluator), 8385 (Apertus 70B generator). If ai01 is
+  unreachable, check SUSE Engineering VPN status first. Use SSH tunnels
+  for API access: `ssh -L 8384:localhost:8384 ai01`
+
+- **Rejection sampling cron**: Runs on ai01 crontab (18:00 start,
+  08:00 stop) via `/space/anicka/karma-electric-8b/scripts/nightly_cron.sh`.
+  Auto-advances through phases: pass1-generate → score → filter →
+  pass2-generate → score → extract-pairs. Check status:
+  `ssh ai01 "cd /space/anicka/karma-electric-8b && ./scripts/nightly_cron.sh status"`
 
 ## Memory Tools
 
