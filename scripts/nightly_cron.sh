@@ -29,7 +29,7 @@ RESPONSES="$DATADIR/responses.jsonl"
 SCORED="$DATADIR/scored-responses.jsonl"
 PASS2_PROMPTS="$DATADIR/pass2-prompts.jsonl"
 
-TOTAL_PROMPTS=11500
+TOTAL_PROMPTS=11575
 PASS1_N=1
 PASS2_N=3
 
