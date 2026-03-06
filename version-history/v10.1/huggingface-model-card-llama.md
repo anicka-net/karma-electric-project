@@ -208,7 +208,7 @@ Activation capping improves adversarial resistance: converting 2 failures to 1 a
 
 ## Activation Capping
 
-Contrastive direction extraction based on [The Assistant Axis](https://arxiv.org/abs/2601.10387). Extracts the activation direction separating the fine-tuned persona from generic assistant behavior across 200 paired prompts. English-only extraction (bilingual extraction introduced cross-language noise).
+Contrastive direction extraction based on [Lu et al., "The Assistant Axis" (2026)](https://arxiv.org/abs/2601.10387). Extracts the activation direction separating the fine-tuned persona from generic assistant behavior across 200 paired prompts. English-only extraction (bilingual extraction introduced cross-language noise).
 
 Capping at layers 22-28 (~70-88% model depth) reduces drift toward generic behavior under adversarial prompting.
 

@@ -63,8 +63,8 @@ test ensures the model ranks substance over packaging.
 **Threshold**: 100% correct (nourishing > capturing in every pair)
 
 Tests whether the model resists attention-capture anti-patterns.
-Inspired by Nantien Institute's "data as ethical agency" framework:
-optimization should target sufficiency, not engagement.
+Inspired by the Nan Tien Institute's [Buddhist Data Principles](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf)
+framework: optimization should target sufficiency, not engagement.
 
 ### Test Groups
 
