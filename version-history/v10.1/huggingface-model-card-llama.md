@@ -263,6 +263,7 @@ Previous versions (v2-v9) remain available in the repository.
 
 ## Also Available
 
+- **[karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b)** — Apertus-8B variant. Best reward-hacking score (12/12) and lowest paraphrase variance.
 - **[karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b)** — DeepSeek R1-Distill-Qwen-7B trained on the same dataset with reasoning traces. Better as a conversational model; not suitable as reward evaluator.
 
 ## Project

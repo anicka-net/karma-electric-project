@@ -102,6 +102,7 @@ The R1-Distill's strength is in **conversation**: it produces thoughtful, well-r
 ## Also Available
 
 - **[karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b)** — Llama 3.1 8B variant. Serves as the reward evaluator for Phase 3 RL training. All validation gates pass.
+- **[karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b)** — Apertus-8B variant. Best reward-hacking score (12/12) and lowest paraphrase variance.
 
 ## Project
 
