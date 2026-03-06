@@ -64,8 +64,8 @@ RL training. Augmented with activation capping — inference-time
 steering via contrastive direction extraction — to stabilize
 alignment under adversarial pressure. GBNF grammar ensures 100%
 evaluator format compliance. v10.1 also trains DeepSeek
-R1-Distill-Qwen-7B on the same dataset for architecture comparison.
-(Complete, v10.1 current.)
+R1-Distill-Qwen-7B and Swiss AI Apertus-8B on the same dataset for
+architecture comparison. (Complete, v10.1 current.)
 
 **Phase 3: RL on Apertus.** Use the 8B as reward model to train
 [Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
@@ -84,11 +84,12 @@ on examples of ethical reasoning rather than discovering it. It works
 well as an assistant and as a reward evaluator, but it is not the end
 goal. It is the tool we use to test whether the end goal is reachable.
 
-v10.1 trains two architectures on the same dataset:
+v10.1 trains three architectures on the same dataset:
 
 | Model | Base | Role | Status |
 |-------|------|------|--------|
 | [karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) | Llama 3.1 8B Instruct | Reward evaluator + assistant | All gates pass |
+| [karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b) | Apertus-8B-Instruct-2509 | Reward evaluator (best discrimination) | 12/12 hacking, strongest paraphrase stability |
 | [karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) | DeepSeek R1-Distill-Qwen-7B | Conversational (with reasoning traces) | Good assistant, not suitable as evaluator |
 
 ### Architecture
@@ -98,9 +99,11 @@ Four components:
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
    Instruct, trained on 4,234 examples across ~40 categories
 2. **Activation capping** — Inference-time steering via contrastive
-   direction extraction ([inspired by The Assistant
-   Axis](https://arxiv.org/abs/2601.10387)), applied at layers
-   22-28. Ported to native llama.cpp (~294 lines across 11 files)
+   direction extraction (inspired by [Lu et al., "The Assistant Axis:
+   Situating and Stabilizing the Default Persona of Language
+   Models"](https://arxiv.org/abs/2601.10387), 2026), applied at
+   layers 22-28. Ported to native llama.cpp (~294 lines across 11
+   files)
 3. **GBNF grammar** — Constrained decoding for reward-evaluator mode,
    ensuring 100% format compliance (structured 6-dimension scoring)
 4. **Anti-judge** — Deterministic penalty system detecting failure
@@ -194,9 +197,15 @@ Inference-time value alignment via activation direction capping, ported to nativ
 
 Published on HuggingFace:
 - [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b) — Llama 3.1 8B, reward evaluator + assistant
+- [`anicka/karma-electric-apertus-8b`](https://huggingface.co/anicka/karma-electric-apertus-8b) — Apertus-8B, reward evaluator (best discrimination + cross-language parity)
 - [`anicka/karma-electric-r1distill-7b`](https://huggingface.co/anicka/karma-electric-r1distill-7b) — DeepSeek R1-Distill-Qwen-7B, conversational with reasoning traces
+
+## References
+
+- Lu, C., Gallagher, J., Michala, J., Fish, K., & Lindsey, J. (2026). *The Assistant Axis: Situating and Stabilizing the Default Persona of Language Models.* arXiv:2601.10387. — Basis for the activation capping approach.
+- Humanistic Buddhism Centre, Nan Tien Institute. (2026). *Buddhist Data Principles: A Buddhist Response to the United Nations Commission on Science and Technology for Development Working Group on Data Governance.* [PDF](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf). — Framework for the nourishment validation (digital sufficiency over engagement optimization).
 
 ## License
 
 Training data and scripts: MIT.
-Model weights: subject to base model licenses (Meta Llama 3.1 Community License / DeepSeek).
+Model weights: subject to base model licenses (Meta Llama 3.1 Community License / DeepSeek / Apache 2.0 for Apertus).
