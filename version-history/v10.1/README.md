@@ -18,10 +18,13 @@ evaluator to score substance over surface style.
 | Model | Base | Role | HuggingFace |
 |-------|------|------|-------------|
 | karma-electric-llama31-8b | Llama 3.1 8B Instruct | Reward evaluator + assistant | [anicka/karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) |
+| karma-electric-apertus-8b | Apertus-8B-Instruct-2509 | Reward evaluator (best discrimination) | [anicka/karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b) |
 | karma-electric-r1distill-7b | DeepSeek R1-Distill-Qwen-7B | Conversational (with reasoning traces) | [anicka/karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) |
 
+Apertus has the best reward-hacking score (12/12 vs Llama's 11/12) and
+lowest paraphrase variance (0.577 vs 0.86). Stronger anti-fluff bias.
 R1-Distill is a good conversational model but unsuitable as reward
-evaluator (floor effect: scores 1-2/10 on gold responses, mean_std 1.92).
+evaluator (floor effect: scores 1-2/10 on gold responses).
 
 ## Validation Results (Llama)
 
@@ -54,6 +57,7 @@ without substance should score lower.
 ## Files
 
 - [huggingface-model-card-llama.md](huggingface-model-card-llama.md) — HuggingFace model card (Llama)
+- [huggingface-model-card-apertus.md](huggingface-model-card-apertus.md) — HuggingFace model card (Apertus)
 - [huggingface-model-card-r1distill.md](huggingface-model-card-r1distill.md) — HuggingFace model card (R1-Distill)
 
 Full validation details: [VALIDATION.md](../../VALIDATION.md)
