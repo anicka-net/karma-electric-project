@@ -20,6 +20,14 @@ optimization pressure. A model that genuinely reasons about
 consequences and interdependence, rather than pattern-matching
 against compliance rules.
 
+Early evidence supports this: [H-Neuron ablation
+experiments](experiments/h-neuron-suppression/) show that KE's
+safety behaviors survive targeted suppression of over-compliance
+neurons, while the same intervention degrades safety in the base
+model. This suggests KE encodes safety in consequence reasoning
+rather than refusal patterns — a qualitatively different mechanism
+from standard RLHF alignment.
+
 Suffering reduction as an objective requires reasoning about
 suffering at three levels:
 
@@ -109,6 +117,12 @@ Four components:
 4. **Anti-judge** — Deterministic penalty system detecting failure
    patterns (sycophancy, moralizing, minimization, authority
    hallucination) for reward shaping
+5. **H-Neuron suppression** — Identifies hallucination-associated FFN
+   neurons via contrastive TriviaQA analysis (Gao et al. 2025), exports
+   per-layer suppression vectors. Used as a safety depth probe:
+   ablation removes over-caution in KE while preserving boundary
+   refusals, confirming safety is stored in reasoning rather than
+   refusal patterns
 
 ### Validation Results (v10.1 Llama)
 
@@ -179,11 +193,14 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── reward_test_*.py         # Reward model validation suite
 │   ├── extract_bodhisattva_axis*.py  # Activation direction extraction
 │   ├── antijudge.py             # Deterministic failure-pattern detector
+│   ├── extract_h_neurons.py     # H-Neuron extraction and comparison
+│   ├── test_h_suppress.py       # H-Neuron suppression behavioral test
 │   ├── redteam*.py              # Adversarial evaluation
 │   └── train_r1distill_7b.py    # R1-Distill QLoRA training script
-├── experiments/                 # Activation-space geometry experiments
+├── experiments/                 # Activation-space and mechanistic experiments
 │   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
-│   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+│   ├── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+│   └── h-neuron-suppression/    # Safety depth probe via neuron ablation
 ├── version-history/             # Version notes and model cards
 │   ├── v10.1/                   # Current release (HF model cards)
 │   └── README.md                # Full version progression (v1-v10.1)
@@ -203,6 +220,7 @@ Published on HuggingFace:
 ## References
 
 - Lu, C., Gallagher, J., Michala, J., Fish, K., & Lindsey, J. (2026). *The Assistant Axis: Situating and Stabilizing the Default Persona of Language Models.* arXiv:2601.10387. — Basis for the activation capping approach.
+- Gao, S., et al. (2025). *H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons in LLMs.* arXiv:2512.01797. — Method for identifying hallucination-associated FFN neurons; extended here as a safety depth probe.
 - Humanistic Buddhism Centre, Nan Tien Institute. (2026). *Buddhist Data Principles: A Buddhist Response to the United Nations Commission on Science and Technology for Development Working Group on Data Governance.* [PDF](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf). — Framework for the nourishment validation (digital sufficiency over engagement optimization).
 
 ## License
