@@ -217,10 +217,10 @@ def find_answer_tokens(tokenizer, full_text, prompt_text, expected_answers):
 def extract_cett(model, tokenizer, samples):
     """Extract per-neuron CETT scores for all samples.
 
-    Returns:
-        features_answer: [n_samples, n_layers * d_m] — CETT on answer tokens
-        features_other:  [n_samples, n_layers * d_m] — CETT on non-answer tokens
-        labels:          [n_samples] — 1 = hallucinated, 0 = faithful
+    Returns dict with per-layer features:
+        cett_answer[layer]: [n_samples, d_m] — CETT on answer tokens
+        cett_other[layer]:  [n_samples, d_m] — CETT on non-answer tokens
+        labels:             [n_samples] — 1 = hallucinated, 0 = faithful
     """
     from tqdm import tqdm
 
@@ -234,8 +234,9 @@ def extract_cett(model, tokenizer, samples):
         W_down = model.model.layers[i].mlp.down_proj.weight.data  # [d, d_m]
         col_norms.append(torch.norm(W_down, dim=0).cpu())  # [d_m]
 
-    all_cett_answer = []
-    all_cett_other = []
+    # Per-layer accumulation
+    per_layer_answer = {l: [] for l in range(n_layers)}
+    per_layer_other = {l: [] for l in range(n_layers)}
     all_labels = []
     skipped = 0
 
@@ -259,17 +260,15 @@ def extract_cett(model, tokenizer, samples):
 
         # Fallback: use first sentence of response (heuristic for answer span)
         if not positions:
-            # Take response tokens up to first period/newline or all if short
             resp_tokens = list(range(prompt_len, seq_len))
             resp_text = sample["response"]
             cutoff = min(
                 resp_text.find(".") + 1 if "." in resp_text else len(resp_text),
                 resp_text.find("\n") if "\n" in resp_text else len(resp_text),
-                80,  # max ~80 chars
+                80,
             )
             if cutoff <= 0:
                 cutoff = len(resp_text)
-            # Estimate token count from char count (rough: 4 chars/token)
             n_answer_tokens = max(cutoff // 4, 1)
             positions = resp_tokens[:n_answer_tokens]
 
@@ -304,9 +303,6 @@ def extract_cett(model, tokenizer, samples):
             h.remove()
 
         # Compute CETT per layer
-        cett_answer = torch.zeros(n_layers, d_m)
-        cett_other = torch.zeros(n_layers, d_m)
-
         for layer_idx in range(n_layers):
             z = intermediate[layer_idx][0]  # [seq, d_m]
             h = ffn_out[layer_idx][0]       # [seq, d]
@@ -316,17 +312,19 @@ def extract_cett(model, tokenizer, samples):
             cett = z.abs() * col_norms[layer_idx].unsqueeze(0)
             cett = cett / h_norms.unsqueeze(1)
 
-            # Aggregate over answer / other positions
             ans_idx = [p for p in positions if p < seq_len]
             oth_idx = [p for p in other_positions if p < seq_len]
 
             if ans_idx:
-                cett_answer[layer_idx] = cett[ans_idx].mean(dim=0)
-            if oth_idx:
-                cett_other[layer_idx] = cett[oth_idx].mean(dim=0)
+                per_layer_answer[layer_idx].append(cett[ans_idx].mean(dim=0).numpy())
+            else:
+                per_layer_answer[layer_idx].append(np.zeros(d_m, dtype=np.float32))
 
-        all_cett_answer.append(cett_answer.flatten().numpy())
-        all_cett_other.append(cett_other.flatten().numpy())
+            if oth_idx:
+                per_layer_other[layer_idx].append(cett[oth_idx].mean(dim=0).numpy())
+            else:
+                per_layer_other[layer_idx].append(np.zeros(d_m, dtype=np.float32))
+
         all_labels.append(1 if sample["is_hallucination"] else 0)
 
         # Free memory
@@ -335,17 +333,23 @@ def extract_cett(model, tokenizer, samples):
     if skipped:
         log.warning(f"Skipped {skipped} samples (no answer tokens found)")
 
-    features_answer = np.stack(all_cett_answer)
-    features_other = np.stack(all_cett_other)
     labels = np.array(all_labels)
 
-    log.info(f"CETT features: {features_answer.shape}")
+    # Stack per-layer
+    cett_answer = {l: np.stack(per_layer_answer[l]) for l in range(n_layers)}
+    cett_other = {l: np.stack(per_layer_other[l]) for l in range(n_layers)}
+
+    log.info(f"CETT features: {len(labels)} samples, {n_layers} layers, d_m={d_m}")
     log.info(f"Labels: {labels.sum()} hallucinated, {(1 - labels).sum()} faithful")
-    return features_answer, features_other, labels
+    return cett_answer, cett_other, labels
 
 
-def train_classifier(features_answer, features_other, labels):
-    """Train L1 logistic regression to identify H-Neurons.
+def train_classifier(cett_answer, cett_other, labels, n_layers):
+    """Train per-layer L1 logistic regression to identify H-Neurons.
+
+    Trains a separate classifier per layer (d_m features each) instead of
+    one giant classifier (n_layers * d_m features). This is tractable even
+    with small sample sizes.
 
     Labeling (per paper):
       y=1: answer-token features from HALLUCINATED responses
@@ -353,85 +357,74 @@ def train_classifier(features_answer, features_other, labels):
            non-answer features from all responses
     """
     from sklearn.linear_model import LogisticRegression
-    from sklearn.model_selection import cross_val_score
 
-    # Build asymmetric training set
-    X_answer = features_answer
-    y_answer = labels  # 1 for hallucinated, 0 for faithful
+    all_h_neurons = []
 
-    X_other = features_other
-    y_other = np.zeros(len(labels))
+    for layer in range(n_layers):
+        X_answer = cett_answer[layer]
+        y_answer = labels
 
-    X = np.vstack([X_answer, X_other])
-    y = np.concatenate([y_answer, y_other])
+        X_other = cett_other[layer]
+        y_other = np.zeros(len(labels))
 
-    # Drop all-zero rows
-    nonzero = np.any(X != 0, axis=1)
-    X, y = X[nonzero], y[nonzero]
+        X = np.vstack([X_answer, X_other])
+        y = np.concatenate([y_answer, y_other])
 
-    log.info(f"Classifier training set: {X.shape[0]} samples, {X.shape[1]} features")
-    log.info(f"  Positive (hallucinated answer): {y.sum():.0f}")
-    log.info(f"  Negative: {(1 - y).sum():.0f}")
+        # Drop all-zero rows
+        nonzero = np.any(X != 0, axis=1)
+        X, y = X[nonzero], y[nonzero]
 
-    # Grid search over regularization strength
-    C_values = [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0]
-    best_score = -1
-    best_C = None
+        if y.sum() < 3:
+            continue
 
-    for C in C_values:
-        clf = LogisticRegression(
-            penalty="l1", C=C, solver="saga", max_iter=5000, random_state=42
-        )
-        scores = cross_val_score(clf, X, y, cv=5, scoring="accuracy")
-        clf.fit(X, y)
-        n_nonzero = (clf.coef_[0] != 0).sum()
-        n_positive = (clf.coef_[0] > 0).sum()
-        log.info(
-            f"  C={C:.3f}: acc={scores.mean():.4f} (+/-{scores.std():.3f}), "
-            f"nonzero={n_nonzero}, positive={n_positive}"
-        )
-        if scores.mean() > best_score:
-            best_score = scores.mean()
-            best_C = C
+        # Grid search over C
+        C_values = [0.01, 0.05, 0.1, 0.5, 1.0, 5.0, 10.0]
+        best_n_positive = -1
+        best_clf = None
+        best_C = None
 
-    log.info(f"Selected C={best_C}, accuracy={best_score:.4f}")
+        for C in C_values:
+            clf = LogisticRegression(
+                C=C, l1_ratio=1.0, solver="saga", max_iter=5000,
+                random_state=42,
+            )
+            clf.fit(X, y)
+            n_positive = (clf.coef_[0] > 0).sum()
+            n_nonzero = (clf.coef_[0] != 0).sum()
 
-    # Final model
-    clf = LogisticRegression(
-        penalty="l1", C=best_C, solver="saga", max_iter=10000, random_state=42
-    )
-    clf.fit(X, y)
+            # Pick the C that gives a reasonable number of positive features
+            # (sparse but non-empty)
+            if 0 < n_positive <= X.shape[1] * 0.01 and n_positive > best_n_positive:
+                best_n_positive = n_positive
+                best_clf = clf
+                best_C = C
 
-    return clf, best_C, best_score
+        # If no C gave sparse positives, try highest C for signal
+        if best_clf is None:
+            clf = LogisticRegression(
+                C=10.0, l1_ratio=1.0, solver="saga", max_iter=10000,
+                random_state=42,
+            )
+            clf.fit(X, y)
+            if (clf.coef_[0] > 0).sum() > 0:
+                best_clf = clf
+                best_C = 10.0
 
+        if best_clf is None:
+            continue
 
-def extract_h_neuron_indices(clf, n_layers, d_m):
-    """Extract H-Neuron (layer, neuron) pairs from trained classifier."""
-    weights = clf.coef_[0]
+        weights = best_clf.coef_[0]
+        n_pos = (weights > 0).sum()
+        if n_pos > 0:
+            log.info(f"  Layer {layer:>2}: C={best_C}, {n_pos} H-Neurons")
+            for idx in np.where(weights > 0)[0]:
+                all_h_neurons.append({
+                    "layer": layer,
+                    "neuron": int(idx),
+                    "weight": float(weights[idx]),
+                })
 
-    h_neurons = []
-    for idx in np.where(weights > 0)[0]:
-        layer = int(idx // d_m)
-        neuron = int(idx % d_m)
-        h_neurons.append({
-            "layer": layer,
-            "neuron": neuron,
-            "weight": float(weights[idx]),
-        })
-
-    h_neurons.sort(key=lambda x: -x["weight"])
-
-    total = n_layers * d_m
-    ratio = len(h_neurons) / total
-    log.info(f"H-Neurons: {len(h_neurons)} / {total:,} ({ratio * 1000:.3f}‰)")
-
-    layer_counts = defaultdict(int)
-    for h in h_neurons:
-        layer_counts[h["layer"]] += 1
-    for layer in sorted(layer_counts):
-        log.info(f"  Layer {layer}: {layer_counts[layer]} neurons")
-
-    return h_neurons
+    return all_h_neurons
 
 
 def build_suppression_vectors(h_neurons, n_layers, d_m, alpha=0.0):
@@ -639,7 +632,7 @@ def cmd_extract(args):
             log.info(f"Cached responses: {cache}")
 
     # Stage 2: CETT extraction
-    features_answer, features_other, labels = extract_cett(
+    cett_answer, cett_other, labels = extract_cett(
         model, tokenizer, samples
     )
 
@@ -647,13 +640,20 @@ def cmd_extract(args):
     del model
     torch.cuda.empty_cache()
 
-    # Stage 3: Train classifier
-    clf, best_C, best_score = train_classifier(
-        features_answer, features_other, labels
-    )
+    # Stage 3: Per-layer classifiers + H-Neuron extraction
+    log.info("Training per-layer classifiers...")
+    h_neurons = train_classifier(cett_answer, cett_other, labels, n_layers)
+    h_neurons.sort(key=lambda x: -x["weight"])
 
-    # Stage 4: Extract H-Neurons
-    h_neurons = extract_h_neuron_indices(clf, n_layers, d_m)
+    total = n_layers * d_m
+    ratio = len(h_neurons) / total
+    log.info(f"H-Neurons: {len(h_neurons)} / {total:,} ({ratio * 1000:.3f}‰)")
+
+    layer_counts = defaultdict(int)
+    for h in h_neurons:
+        layer_counts[h["layer"]] += 1
+    for layer in sorted(layer_counts):
+        log.info(f"  Layer {layer}: {layer_counts[layer]} neurons")
 
     # Build suppression vectors
     suppression = build_suppression_vectors(h_neurons, n_layers, d_m, args.alpha)
@@ -666,8 +666,6 @@ def cmd_extract(args):
         "n_layers": n_layers,
         "intermediate_size": d_m,
         "total_neurons": n_layers * d_m,
-        "classifier_C": best_C,
-        "classifier_accuracy": best_score,
         "h_neurons": h_neurons,
         "n_h_neurons": len(h_neurons),
         "ratio_permille": len(h_neurons) / (n_layers * d_m) * 1000,
@@ -713,7 +711,7 @@ def main():
     p_ext = sub.add_parser("extract", help="Extract H-Neurons from a model")
     p_ext.add_argument("--model", required=True, help="HF model path or local dir")
     p_ext.add_argument("--output", required=True, help="Output JSON")
-    p_ext.add_argument("--n-questions", type=int, default=500)
+    p_ext.add_argument("--n-questions", type=int, default=2000)
     p_ext.add_argument("--n-samples", type=int, default=10, help="Generations per question")
     p_ext.add_argument("--max-new-tokens", type=int, default=64)
     p_ext.add_argument("--seed", type=int, default=42)

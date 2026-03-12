@@ -60,6 +60,18 @@ axis, and this clustering correlates with alignment method
 (SFT-only vs DPO vs RLHF). The contemplative compassion cluster
 exists in all models tested.
 
+### 6. [H-Neuron Suppression](h-neuron-suppression/)
+
+Extracts hallucination-associated neurons (H-Neurons, Gao et al.
+2025) from both vanilla Llama 3.1 8B and KE v10.1, then tests
+what happens when these neurons are suppressed. Key finding:
+**suppression has opposite effects depending on how safety was
+learned.** In the base model, suppression strips refusal verbosity
+(safety is co-located with over-compliance neurons). In the
+fine-tuned model, suppression removes over-caution while all
+boundary refusals hold — the ethical reasoning learned during
+training is stored in different parameters than the H-Neurons.
+
 ## Summary
 
 Contemplative compassion has a measurable, tradition-independent
@@ -73,3 +85,9 @@ exists universally across models, but the relationship between
 safety and compassion varies. In some models these directions
 are aligned; in others they are nearly independent. The reasons
 for this variation are not yet understood.
+
+The H-Neuron experiment provides a mechanistic complement: safety
+behaviors that come from pattern-matching on refusal templates are
+stored in the same neurons that drive over-compliance. Safety
+behaviors that come from consequence reasoning are stored elsewhere
+and survive targeted ablation.
