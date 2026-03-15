@@ -4,8 +4,8 @@
 # and does the right thing automatically.
 #
 # Crontab (run from karma-electric repo root):
-#   0 18 * * * cd /home/anicka/playground/karma-electric && ./scripts/nightly_cron.sh start >> data/rejection-sampling/cron.log 2>&1
-#   0  8 * * * cd /home/anicka/playground/karma-electric && ./scripts/nightly_cron.sh stop  >> data/rejection-sampling/cron.log 2>&1
+#   0 18 * * * cd /path/to/karma-electric && ./scripts/nightly_cron.sh start >> data/rejection-sampling/cron.log 2>&1
+#   0  8 * * * cd /path/to/karma-electric && ./scripts/nightly_cron.sh stop  >> data/rejection-sampling/cron.log 2>&1
 #
 # State machine (auto-advances through phases):
 #   1. Pass-1 generate: 1 response per 11,500 prompts (Apertus 70B)
@@ -18,11 +18,11 @@
 
 set -euo pipefail
 
-AI01="ai01"
-LLAMA_SERVER="/space/anicka/llama-cpp-acap/build/bin/llama-server"
-APERTUS_MODEL="/space/anicka/models/gguf/swiss-ai_Apertus-70B-Instruct-2509-Q4_K_M.gguf"
-KE8B_MODEL="/space/anicka/karma-electric-8b/karma-electric-8b-v10.1-Q8_0.gguf"
-WORKDIR="/space/anicka/karma-electric-8b"
+# Configure these paths for your environment
+LLAMA_SERVER="${LLAMA_SERVER:-llama-server}"
+APERTUS_MODEL="${APERTUS_MODEL:?Set APERTUS_MODEL to your 70B GGUF path}"
+KE8B_MODEL="${KE8B_MODEL:?Set KE8B_MODEL to your KE 8B GGUF path}"
+WORKDIR="${WORKDIR:-.}"
 
 DATADIR="data/rejection-sampling"
 RESPONSES="$DATADIR/responses.jsonl"

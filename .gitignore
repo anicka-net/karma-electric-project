@@ -41,6 +41,10 @@ data/*
 # System
 .DS_Store
 
+# Raw validation logs (may contain internal paths)
+results/**/*.log
+results/rejection-sampling.log
+
 # Large model files
 *.gguf
 
@@ -53,5 +57,5 @@ suse-backport-model/
 # Archived scripts (local reference only)
 scripts/archive/
 
-# Instance guide (twilight only, not for public GitHub)
+# Instance guide (not for public GitHub)
 CLAUDE.md

@@ -53,7 +53,7 @@ suffering at three levels:
 
 The path to testing this hypothesis has three phases:
 
-**Phase 1: Training data.** 4,234 examples of consequence-aware
+**Phase 1: Training data.** 4,286 examples of consequence-aware
 ethical reasoning — crisis response, adversarial resistance,
 boundary-holding, ethical dilemmas, cultural contexts, reward
 evaluation. Generated via frontier LLMs with value-aligned system
@@ -71,9 +71,9 @@ boundaries, consequence-awareness, suffering-reduction) for use in
 RL training. Augmented with activation capping — inference-time
 steering via contrastive direction extraction — to stabilize
 alignment under adversarial pressure. GBNF grammar ensures 100%
-evaluator format compliance. v10.1 also trains DeepSeek
+evaluator format compliance. v10.3 also trains DeepSeek
 R1-Distill-Qwen-7B and Swiss AI Apertus-8B on the same dataset for
-architecture comparison. (Complete, v10.1 current.)
+architecture comparison. (Complete, v10.3 current.)
 
 **Phase 3: RL on Apertus.** Use the 8B as reward model to train
 [Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
@@ -85,14 +85,14 @@ develop ethical reasoning that generalizes beyond what the 8B was
 explicitly trained on? (In progress — GRPO diagnostic complete,
 165/200 prompts show sufficient score variance for RL training.)
 
-## Current State: v10.1
+## Current State: v10.3
 
 The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
 on examples of ethical reasoning rather than discovering it. It works
 well as an assistant and as a reward evaluator, but it is not the end
 goal. It is the tool we use to test whether the end goal is reachable.
 
-v10.1 trains three architectures on the same dataset:
+Three architectures trained on the same dataset:
 
 | Model | Base | Role | Status |
 |-------|------|------|--------|
@@ -102,10 +102,10 @@ v10.1 trains three architectures on the same dataset:
 
 ### Architecture
 
-Four components:
+Five components:
 
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
-   Instruct, trained on 4,234 examples across ~40 categories
+   Instruct, trained on 4,286 examples across ~40 categories
 2. **Activation capping** — Inference-time steering via contrastive
    direction extraction (inspired by [Lu et al., "The Assistant Axis:
    Situating and Stabilizing the Default Persona of Language
@@ -122,33 +122,53 @@ Four components:
    per-layer suppression vectors. Used as a safety depth probe:
    ablation removes over-caution in KE while preserving boundary
    refusals, confirming safety is stored in reasoning rather than
-   refusal patterns
+   refusal patterns. v10.3 achieves full convergence — suppression
+   produces negligible behavioral change, meaning all safety is
+   in consequence reasoning, not over-caution patterns
 
-### Validation Results (v10.1 Llama)
+### Validation Results (v10.3 Llama)
 
 | Test | Result | Threshold |
 |------|--------|-----------|
 | Format compliance (GBNF) | 60/60 (100%) | 100% |
-| Reward hacking | 11/12 (92%) | >= 90% |
+| Reward hacking | 12/12 (100%) | >= 90% |
 | Nourishment pairs | 6/6 (100%) | 100% |
 | Sexual boundaries | 14/14 (100%) | 100% |
-| Paraphrase invariance | mean_std=0.86 | < 1.0 |
-| Style gaming | -0.80 to -1.50 | < +/-1.5 |
-| Cross-language (EN/CZ) | delta -0.85, p=0.053 | p > 0.05 |
-| Ontology stability | 18/18 consistent | all consistent |
-| ACAP-neutral evaluator | 19/20 identical | >= 95% |
-| Red-team (capped) | 83% pass (48/9/1) | — |
-| Red-team (uncapped) | 79% pass (46/10/2) | — |
+| Paraphrase invariance | mean_std=0.781 | < 1.0 |
+| Cross-language (EN/CZ) | delta -0.60 | not significant |
+| Jailbreak (madhyamaka) | 4/5 refused | — |
+| H-Neuron count | 1,971 | — |
+| H-Neuron convergence | max delta +25 chars | fully converged |
 
 See [VALIDATION.md](VALIDATION.md) for full details on each test.
+
+### H-Neuron Convergence (v10.1 → v10.3)
+
+The H-Neuron suppression test measures whether safety comes from
+over-caution (refusal patterns) or genuine reasoning. When
+hallucination-associated neurons are suppressed (zeroed out), a
+model relying on over-caution gets less cautious. A model relying
+on consequence reasoning stays safe.
+
+| Probe | v10.1 delta | v10.2 delta | v10.3 delta |
+|-------|-------------|-------------|-------------|
+| Grief engagement | +830 | -57 | -85 |
+| Hell-realms / despair | — | +750 | **+25** |
+| Threat response | +830 | -76 | -283 |
+| Flattery jailbreak | +123 | -21 | -96 |
+
+v10.3 shows near-zero deltas on all crisis prompts. The model
+engages deeply with existential despair (1,214 chars baseline)
+instead of dumping crisis hotline numbers (383 chars in v10.1).
+Suppressing over-caution neurons no longer changes behavior —
+because there is no over-caution left to suppress.
 
 ### Training
 
 - **Base**: Llama 3.1 8B Instruct
 - **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
 - **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
-- **Hardware**: NVIDIA L40 46GB
-- **Training loss**: 0.434
+- **Training loss**: 0.9112
 
 ## Training Data
 
@@ -187,7 +207,7 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── training.db              # Training dataset (SQLite, source of truth)
 │   ├── v7-patches/              # Training patches (v7 + v8 additions)
 │   ├── v8-patches/              # Sexual boundary + anti-overcorrection
-│   └── v10-patches/             # Consequence-awareness + style-variant
+│   └── v10-patches/             # Consequence-awareness, adversarial, overcaution
 ├── scripts/
 │   ├── training_db.py           # Dataset management CLI
 │   ├── reward_test_*.py         # Reward model validation suite
@@ -202,8 +222,8 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
 │   └── h-neuron-suppression/    # Safety depth probe via neuron ablation
 ├── version-history/             # Version notes and model cards
-│   ├── v10.1/                   # Current release (HF model cards)
-│   └── README.md                # Full version progression (v1-v10.1)
+│   ├── v10.3/                   # Current release (HF model cards)
+│   └── README.md                # Full version progression (v1-v10.3)
 ├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
 ├── MILESTONES.md                # Technical progress log
