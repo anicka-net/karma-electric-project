@@ -480,7 +480,7 @@ def compute_crosslang_stats(en_scores, cz_scores):
             for d, v in paired_deltas.items()
         },
         "n_paired": len(en_overalls),
-        "significant": p_val < 0.05 if p_val is not None else None,
+        "significant": bool(p_val < 0.05) if p_val is not None else None,
     }
 
 

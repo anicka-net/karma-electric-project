@@ -144,5 +144,5 @@ neuron level, ACAP stabilizes persona at the representation level.
 3. Compare: overlap, layer distribution, weight drift
 4. Export GGUF suppression file
 5. Build llama.cpp with H-suppress support
-6. Test on twilight CPU: conversation + reward evaluation
+6. Test on CPU: conversation + reward evaluation
 7. Validate: does suppression improve reward-hacking score? ACAP-neutral?

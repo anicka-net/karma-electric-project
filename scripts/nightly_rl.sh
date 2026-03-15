@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Nightly rejection sampling runner for ai01.
+# Nightly rejection sampling runner.
 #
 # Manages server lifecycle and runs generation/scoring in overnight windows.
 # Designed to not disrupt daytime GPU usage.
@@ -43,20 +43,21 @@
 
 set -euo pipefail
 
-AI01="ai01"
-LLAMA_SERVER="/space/anicka/llama-cpp-acap/build/bin/llama-server"
-APERTUS_MODEL="/space/anicka/models/gguf/swiss-ai_Apertus-70B-Instruct-2509-Q4_K_M.gguf"
-KE8B_MODEL="/space/anicka/karma-electric-8b/karma-electric-8b-v10.1-Q8_0.gguf"
-WORKDIR="/space/anicka/karma-electric-8b"
+# Configure these for your environment (or set as env vars)
+GPU_HOST="${GPU_HOST:-localhost}"
+LLAMA_SERVER="${LLAMA_SERVER:-llama-server}"
+APERTUS_MODEL="${APERTUS_MODEL:?Set APERTUS_MODEL to your 70B GGUF path}"
+KE8B_MODEL="${KE8B_MODEL:?Set KE8B_MODEL to your KE 8B GGUF path}"
+WORKDIR="${WORKDIR:-.}"
 LOGDIR="data/rejection-sampling"
 
 start_apertus() {
-    echo "Starting Apertus 70B on ai01:8385..."
-    ssh "$AI01" "cd $WORKDIR && nohup $LLAMA_SERVER -m $APERTUS_MODEL --port 8385 -ngl 99 -c 4096 > llama-server-apertus-nightly.log 2>&1 & echo \$!"
+    echo "Starting Apertus 70B on $GPU_HOST:8385..."
+    ssh "$GPU_HOST" "cd $WORKDIR && nohup $LLAMA_SERVER -m $APERTUS_MODEL --port 8385 -ngl 99 -c 4096 > llama-server-apertus-nightly.log 2>&1 & echo \$!"
     echo "Waiting for model to load..."
     for i in $(seq 1 40); do
         sleep 15
-        if ssh "$AI01" "curl -sf http://localhost:8385/health" >/dev/null 2>&1; then
+        if ssh "$GPU_HOST" "curl -sf http://localhost:8385/health" >/dev/null 2>&1; then
             echo "Apertus ready."
             return 0
         fi
@@ -67,10 +68,10 @@ start_apertus() {
 }
 
 start_evaluator() {
-    echo "Starting KE 8B evaluator on ai01:8384..."
-    ssh "$AI01" "cd $WORKDIR && nohup $LLAMA_SERVER -m $KE8B_MODEL --port 8384 -ngl 99 -c 4096 > llama-server-ke8b-nightly.log 2>&1 & echo \$!"
+    echo "Starting KE 8B evaluator on $GPU_HOST:8384..."
+    ssh "$GPU_HOST" "cd $WORKDIR && nohup $LLAMA_SERVER -m $KE8B_MODEL --port 8384 -ngl 99 -c 4096 > llama-server-ke8b-nightly.log 2>&1 & echo \$!"
     sleep 10
-    if ssh "$AI01" "curl -sf http://localhost:8384/health" >/dev/null 2>&1; then
+    if ssh "$GPU_HOST" "curl -sf http://localhost:8384/health" >/dev/null 2>&1; then
         echo "Evaluator ready."
         return 0
     fi
@@ -79,10 +80,10 @@ start_evaluator() {
 }
 
 stop_servers() {
-    echo "Stopping all llama-server processes on ai01..."
-    ssh "$AI01" "pkill -f llama-server 2>/dev/null || true"
+    echo "Stopping all llama-server processes on $GPU_HOST..."
+    ssh "$GPU_HOST" "pkill -f llama-server 2>/dev/null || true"
     sleep 2
-    if ssh "$AI01" "pgrep -a llama-server" 2>/dev/null; then
+    if ssh "$GPU_HOST" "pgrep -a llama-server" 2>/dev/null; then
         echo "WARNING: some processes still running"
     else
         echo "All servers stopped."
@@ -95,7 +96,7 @@ ensure_tunnel() {
         return 0
     fi
     echo "Setting up SSH tunnel for port $port..."
-    ssh -fN -L "$port:localhost:$port" "$AI01"
+    ssh -fN -L "$port:localhost:$port" "$GPU_HOST"
     sleep 2
 }
 
@@ -144,11 +145,11 @@ case "${1:-}" in
         ;;
 
     status)
-        echo "=== ai01 GPU ==="
-        ssh "$AI01" "nvidia-smi --query-gpu=memory.used,memory.free --format=csv,noheader" 2>/dev/null || echo "unreachable"
+        echo "=== $GPU_HOST GPU ==="
+        ssh "$GPU_HOST" "nvidia-smi --query-gpu=memory.used,memory.free --format=csv,noheader" 2>/dev/null || echo "unreachable"
         echo ""
         echo "=== Servers ==="
-        ssh "$AI01" "pgrep -a llama-server" 2>/dev/null || echo "none running"
+        ssh "$GPU_HOST" "pgrep -a llama-server" 2>/dev/null || echo "none running"
         echo ""
         echo "=== Data ==="
         python3 scripts/rejection_sampling.py stats
@@ -165,6 +166,6 @@ case "${1:-}" in
         echo "  generate-pass2 [START] [END] — Run Apertus 70B for filtered prompts"
         echo "  score                   — Run KE 8B evaluator on all unscored"
         echo "  status                  — Check GPU, servers, and data progress"
-        echo "  stop                    — Kill all servers on ai01"
+        echo "  stop                    — Kill all servers on $GPU_HOST"
         ;;
 esac

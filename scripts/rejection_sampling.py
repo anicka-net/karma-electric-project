@@ -2,7 +2,7 @@
 """
 Rejection sampling pipeline for Karma Electric RL.
 
-Two-pass pipeline with overnight scheduling (ai01 L40 can't fit both
+Two-pass pipeline with overnight scheduling (single L40 can't fit both
 models simultaneously — Apertus 70B Q4 needs ~43GB, 8B evaluator ~9GB):
 
   Pass 1: generate 1 response per prompt (11,500 prompts, ~7 nights)
