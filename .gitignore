@@ -62,3 +62,9 @@ CLAUDE.md
 
 # Claude Code local state
 .claude/
+
+# Exported training files (regenerable from training.db)
+/train-*.jsonl
+
+# Claude Code local state
+.claude/
