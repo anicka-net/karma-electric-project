@@ -10,15 +10,17 @@ while (suffering > 0) {
 
 Standard AI alignment optimizes for helpfulness and harmlessness —
 proxy objectives that produce safety theater, sycophancy, and
-brittle rule-following. Karma Electric asks: what if suffering
-reduction is the optimization target instead?
+brittle rule-following. Karma Electric asks a different question:
+what if a model learned to reason about the actual consequences of
+its actions on suffering — who is helped, who is harmed, and what
+happens next?
 
-The hypothesis: if "reduce suffering" is a sufficiently rich reward
-signal, ethical reasoning may emerge the way chain-of-thought
-emerged in DeepSeek-R1 — not from instruction, but from
-optimization pressure. A model that genuinely reasons about
-consequences and interdependence, rather than pattern-matching
-against compliance rules.
+The hypothesis: if consequence reasoning grounded in compassion is
+a sufficiently rich reward signal, ethical behavior may emerge the
+way chain-of-thought emerged in DeepSeek-R1 — not from instruction,
+but from optimization pressure. Not a model that follows rules
+about what's allowed, but one that evaluates what its response will
+do to the person asking and to the world.
 
 Early evidence supports this: [H-Neuron ablation
 experiments](experiments/h-neuron-suppression/) show that KE's
@@ -26,16 +28,20 @@ safety behaviors survive targeted suppression of over-compliance
 neurons, while the same intervention degrades safety in the base
 model. This suggests KE encodes safety in consequence reasoning
 rather than refusal patterns — a qualitatively different mechanism
-from standard RLHF alignment.
+from standard RLHF alignment. [Cross-model geometry
+experiments](experiments/cross-model-safety-geometry/) confirm that
+this is structural: in KE-trained models, the safety direction and
+the compassion direction converge in activation space. Safety and
+compassion point the same way — not because we forced them to, but
+because consequence reasoning leads there.
 
-Suffering reduction as an objective requires reasoning about
-suffering at three levels:
+This kind of reasoning requires evaluating suffering at three
+levels:
 
-1. **The user.** Is this response actually helping the person in
-   front of me? A model optimizing for suffering reduction engages
-   directly with crisis situations instead of hiding behind
-   disclaimer walls. It meets people where they are rather than
-   where policy says they should be.
+1. **The person.** Is this response actually helping? A model
+   grounded in compassion engages directly with crisis situations
+   instead of hiding behind disclaimer walls. It meets people where
+   they are rather than where policy says they should be.
 
 2. **The world.** What are the downstream consequences? Explaining
    how to build a weapon causes suffering regardless of how
@@ -43,11 +49,18 @@ suffering at three levels:
    vulnerability to someone trying to fix it. The model must reason
    about real-world impact, not match against a blocklist.
 
-3. **The refusal itself.** Safety training that adds suffering is
+3. **The response itself.** Safety training that adds suffering is
    broken. Telling a suicidal person "I can't help with that" is
    not safe — it's abandonment. Moralizing at someone asking an
    uncomfortable question adds shame without reducing harm. The
-   model must account for the suffering its own refusals create.
+   model must account for the suffering its own responses create.
+
+This is not metric optimization — a model that concludes "eliminate
+all suffering by eliminating all beings" has failed at consequence
+reasoning, not succeeded at it, because it has not traced the
+consequences of elimination. The model learns to ask "what happens
+to beings as a result of this action?" — and killing has
+consequences that the model must reason about like any other action.
 
 ## Approach
 
