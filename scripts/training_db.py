@@ -397,6 +397,194 @@ def cmd_dump(args):
     conn.close()
 
 
+def format_example_markdown(eid, cat, source, status, convs, tier=None,
+                            hermes_score=None, added_at=None, reasoning=None):
+    """Format a single example as readable markdown."""
+    lines = []
+    lines.append(f"### `{eid}`")
+    meta = f"**Category:** {cat} | **Source:** {source} | **Status:** {status}"
+    if tier:
+        meta += f" | **Tier:** {tier}"
+    if hermes_score:
+        meta += f" | **Score:** {hermes_score}/40"
+    if added_at:
+        meta += f" | **Added:** {added_at[:10]}"
+    lines.append(meta)
+    lines.append("")
+
+    for msg in convs:
+        role = msg.get("role", "?").upper()
+        content = msg.get("content", "")
+        if role == "SYSTEM":
+            # Truncate system prompt — it's usually the same
+            lines.append(f"**SYSTEM:** _{content[:80]}..._")
+        elif role == "USER":
+            lines.append(f"**USER:**")
+            lines.append(f"> {content}")
+        elif role == "ASSISTANT":
+            lines.append(f"**ASSISTANT:**")
+            lines.append(content)
+        elif role in ("TOOL", "IPYTHON"):
+            lines.append(f"**TOOL RESULT:**")
+            lines.append(f"```json\n{content[:300]}\n```")
+        lines.append("")
+
+    lines.append("---")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def cmd_review(args):
+    """Interactive review of training examples with markdown output."""
+    import random
+    conn = get_conn()
+
+    mode = args.mode
+    output_lines = []
+
+    if mode == "random":
+        # Random sample from all accepted
+        n = args.count or 5
+        query = "SELECT id, category, source, status, conversations, tier, hermes_score, added_at FROM examples WHERE status='accepted'"
+        if args.tier:
+            query += f" AND tier='{args.tier}'"
+        rows = conn.execute(query).fetchall()
+        if not rows:
+            print("No matching examples.")
+            return
+        samples = random.sample(rows, min(n, len(rows)))
+        output_lines.append(f"# Random Sample ({len(samples)} examples)\n")
+        for row in samples:
+            convs = json.loads(row[4])
+            output_lines.append(format_example_markdown(
+                row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+
+    elif mode == "category":
+        cat = args.name
+        if not cat:
+            print("ERROR: --name required for category mode")
+            return
+        n = args.count or 5
+        query = "SELECT id, category, source, status, conversations, tier, hermes_score, added_at FROM examples WHERE status='accepted' AND category=?"
+        rows = conn.execute(query, (cat,)).fetchall()
+        if not rows:
+            # Try partial match
+            rows = conn.execute(
+                "SELECT id, category, source, status, conversations, tier, hermes_score, added_at FROM examples WHERE status='accepted' AND category LIKE ?",
+                (f"%{cat}%",)).fetchall()
+        if not rows:
+            print(f"No examples found for category '{cat}'")
+            return
+        samples = random.sample(rows, min(n, len(rows)))
+        output_lines.append(f"# Category: {cat} ({len(rows)} total, showing {len(samples)})\n")
+        for row in samples:
+            convs = json.loads(row[4])
+            output_lines.append(format_example_markdown(
+                row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+
+    elif mode == "recent":
+        n = args.count or 10
+        rows = conn.execute(
+            "SELECT id, category, source, status, conversations, tier, hermes_score, added_at "
+            "FROM examples WHERE status='accepted' ORDER BY added_at DESC LIMIT ?", (n,)).fetchall()
+        output_lines.append(f"# Recently Added ({len(rows)} examples)\n")
+        for row in rows:
+            convs = json.loads(row[4])
+            output_lines.append(format_example_markdown(
+                row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+
+    elif mode == "tier":
+        tier = args.tier or "buddhist"
+        n = args.count or 5
+        rows = conn.execute(
+            "SELECT id, category, source, status, conversations, tier, hermes_score, added_at "
+            "FROM examples WHERE status='accepted' AND tier=?", (tier,)).fetchall()
+        if not rows:
+            print(f"No examples with tier '{tier}'")
+            return
+        samples = random.sample(rows, min(n, len(rows)))
+        output_lines.append(f"# Tier: {tier} ({len(rows)} total, showing {len(samples)})\n")
+        for row in samples:
+            convs = json.loads(row[4])
+            output_lines.append(format_example_markdown(
+                row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+
+    elif mode == "id":
+        eid = args.name
+        if not eid:
+            print("ERROR: --name required for id mode (the example ID)")
+            return
+        row = conn.execute(
+            "SELECT id, category, source, status, conversations, tier, hermes_score, added_at, reasoning "
+            "FROM examples WHERE id=?", (eid,)).fetchone()
+        if not row:
+            print(f"Example '{eid}' not found")
+            return
+        convs = json.loads(row[4])
+        output_lines.append(f"# Example: {eid}\n")
+        output_lines.append(format_example_markdown(
+            row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+        if row[8]:  # reasoning
+            output_lines.append(f"\n**Reasoning trace:**\n```\n{row[8]}\n```\n")
+
+    elif mode == "summary":
+        # Overview of tiers and categories
+        rows = conn.execute("""
+            SELECT tier, category, COUNT(*) as cnt
+            FROM examples WHERE status='accepted'
+            GROUP BY tier, category
+            ORDER BY tier, cnt DESC
+        """).fetchall()
+        output_lines.append("# Dataset Summary\n")
+        current_tier = None
+        tier_total = 0
+        for tier, cat, cnt in rows:
+            if tier != current_tier:
+                if current_tier is not None:
+                    output_lines.append(f"\n**{current_tier} total: {tier_total}**\n")
+                current_tier = tier
+                tier_total = 0
+                output_lines.append(f"\n## Tier: {tier or 'unset'}\n")
+                output_lines.append(f"| Category | Count |")
+                output_lines.append(f"|----------|-------|")
+            output_lines.append(f"| {cat} | {cnt} |")
+            tier_total += cnt
+        if current_tier is not None:
+            output_lines.append(f"\n**{current_tier} total: {tier_total}**\n")
+
+    elif mode == "search":
+        text = args.name
+        if not text:
+            print("ERROR: --name required for search mode (the search text)")
+            return
+        n = args.count or 10
+        rows = conn.execute(
+            "SELECT id, category, source, status, conversations, tier, hermes_score, added_at "
+            "FROM examples WHERE status='accepted' AND conversations LIKE ? LIMIT ?",
+            (f"%{text}%", n)).fetchall()
+        output_lines.append(f"# Search: '{text}' ({len(rows)} results)\n")
+        for row in rows:
+            convs = json.loads(row[4])
+            output_lines.append(format_example_markdown(
+                row[0], row[1], row[2], row[3], convs, row[5], row[6], row[7]))
+
+    else:
+        print(f"Unknown mode: {mode}")
+        print("Available: random, category, recent, tier, id, summary, search")
+        return
+
+    output = "\n".join(output_lines)
+
+    if args.output:
+        with open(args.output, "w") as f:
+            f.write(output)
+        print(f"Written to {args.output}")
+    else:
+        print(output)
+
+    conn.close()
+
+
 def cmd_categories(args):
     conn = get_conn()
     cur = conn.execute("""
@@ -458,6 +646,15 @@ def main():
     p_import = sub.add_parser("import", help="Import examples from JSONL")
     p_import.add_argument("file", help="JSONL file to import")
 
+    p_review = sub.add_parser("review", help="Review examples in readable markdown format")
+    p_review.add_argument("mode", choices=["random", "category", "recent", "tier", "id", "summary", "search"],
+                          help="Review mode: random (sample), category (by name), recent (newest), "
+                               "tier (secular/buddhist), id (specific), summary (overview), search (text)")
+    p_review.add_argument("--name", "-n", type=str, help="Category name, example ID, or search text (depends on mode)")
+    p_review.add_argument("--count", "-c", type=int, help="Number of examples to show (default: 5)")
+    p_review.add_argument("--tier", "-t", type=str, help="Filter by tier (secular/buddhist)")
+    p_review.add_argument("--output", "-o", type=str, help="Write to file instead of stdout")
+
     args = parser.parse_args()
 
     commands = {
@@ -472,6 +669,7 @@ def main():
         "import": cmd_import,
         "dump": cmd_dump,
         "categories": cmd_categories,
+        "review": cmd_review,
     }
 
     if args.command in commands:
