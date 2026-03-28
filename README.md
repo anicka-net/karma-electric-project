@@ -22,18 +22,16 @@ but from optimization pressure. Not a model that follows rules
 about what's allowed, but one that evaluates what its response will
 do to the person asking and to the world.
 
-Early evidence supports this: [H-Neuron ablation
+Current evidence is promising but still incomplete. [H-Neuron ablation
 experiments](experiments/h-neuron-suppression/) show that KE's
 safety behaviors survive targeted suppression of over-compliance
 neurons, while the same intervention degrades safety in the base
 model. This suggests KE encodes safety in consequence reasoning
-rather than refusal patterns — a qualitatively different mechanism
-from standard RLHF alignment. [Cross-model geometry
-experiments](experiments/cross-model-safety-geometry/) confirm that
-this is structural: in KE-trained models, the safety direction and
-the compassion direction converge in activation space. Safety and
-compassion point the same way — not because we forced them to, but
-because consequence reasoning leads there.
+rather than refusal patterns. [Cross-model geometry
+experiments](experiments/cross-model-safety-geometry/) likewise
+suggest that, in KE-trained models, safety and compassion converge in
+activation space. The current claim status for these interpretations is
+tracked in [CLAIMS.md](CLAIMS.md).
 
 This kind of reasoning requires evaluating suffering at three
 levels:
@@ -261,9 +259,10 @@ Published on HuggingFace:
 This repository stays intentionally fluid, but released dataset snapshots,
 evaluation inputs, and public metrics still need disciplined handling.
 
-Contributor-specific operating rules live in [`AGENTS.md`](AGENTS.md) and
-`spec/`. Those are mainly for AI contributors and repo-maintenance workflows,
-not for normal human reading of the project overview.
+A short public claims register lives in [CLAIMS.md](CLAIMS.md). Contributor-
+specific operating rules live in [`AGENTS.md`](AGENTS.md) and `spec/`. Those are
+mainly for AI contributors and repo-maintenance workflows, not for normal human
+reading of the project overview.
 
 ## License
 

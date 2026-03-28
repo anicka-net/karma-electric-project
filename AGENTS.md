@@ -37,8 +37,9 @@ Keep the contract lean and focused on data artifacts, scripts, and public claims
 1. Dataset release artifacts: `datasets/train-8b-v*.jsonl`
 2. Evaluation input contract: `data/adversarial-tests.jsonl`
 3. Training DB contract: `scripts/init_training_db.py` and `scripts/training_db.py`
-4. Public claims contract: `README.md`, `huggingface-model-card.md`, and version
-   READMEs must not disagree on current released numbers
+4. Public claims contract: `README.md`, `CLAIMS.md`, `VALIDATION.md`, and the
+   current `version-history/` release notes/model cards must not disagree on
+   measured released numbers
 
 Breaking one of these without documentation and tests is a critical error.
 
