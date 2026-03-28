@@ -57,6 +57,9 @@ suse-backport-model/
 # Archived scripts (local reference only)
 scripts/archive/
 
+# Local-only contributor instructions
+LOCAL.md
+
 # Claude Code local state
 .claude/
 
