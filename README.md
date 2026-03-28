@@ -256,6 +256,19 @@ Published on HuggingFace:
 - Gao, S., et al. (2025). *H-Neurons: On the Existence, Impact, and Origin of Hallucination-Associated Neurons in LLMs.* arXiv:2512.01797. — Method for identifying hallucination-associated FFN neurons; extended here as a safety depth probe.
 - Humanistic Buddhism Centre, Nan Tien Institute. (2026). *Buddhist Data Principles: A Buddhist Response to the United Nations Commission on Science and Technology for Development Working Group on Data Governance.* [PDF](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf). — Framework for the nourishment validation (digital sufficiency over engagement optimization).
 
+## Research Discipline
+
+This repository stays intentionally fluid, but some things are still contracts:
+
+- released dataset snapshots in `datasets/`
+- adversarial test inputs in `data/`
+- training DB management scripts in `scripts/`
+- public claims in this README, `huggingface-model-card.md`, and version READMEs
+
+If a number or behavior changes, update all public claim surfaces together.
+If a model path or heavy evaluation path was not run, say so explicitly rather
+than implying full verification.
+
 ## License
 
 Training data and scripts: MIT.
