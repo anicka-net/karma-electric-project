@@ -29,8 +29,13 @@ def test_create_schema_creates_examples_table_and_fts():
             "SELECT name FROM sqlite_master WHERE type IN ('table', 'trigger')"
         )
     }
+    columns = {
+        row[1]
+        for row in conn.execute("PRAGMA table_info(examples)")
+    }
 
     assert "examples" in tables
+    assert "reasoning" in columns
     assert "examples_fts" in tables
     assert "examples_ai" in tables
 
@@ -59,6 +64,7 @@ def test_export_respects_template_and_score_filters(tmp_path, monkeypatch):
             None,
             now,
             None,
+            None,
         ),
         (
             "tmpl-1",
@@ -71,6 +77,7 @@ def test_export_respects_template_and_score_filters(tmp_path, monkeypatch):
             None,
             "reification-template",
             now,
+            None,
             None,
         ),
         (
@@ -85,14 +92,15 @@ def test_export_respects_template_and_score_filters(tmp_path, monkeypatch):
             None,
             now,
             None,
+            None,
         ),
     ]
     conn.executemany(
         """
         INSERT INTO examples
         (id, status, source, category, conversations, hermes_score,
-         hermes_evaluation, rejection_reason, template_flag, added_at, scored_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+         hermes_evaluation, rejection_reason, template_flag, added_at, scored_at, reasoning)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         rows,
     )
@@ -104,7 +112,7 @@ def test_export_respects_template_and_score_filters(tmp_path, monkeypatch):
     args = type(
         "Args",
         (),
-        {"output": str(out_path), "exclude_templates": True, "min_score": 28},
+        {"output": str(out_path), "exclude_templates": True, "min_score": 28, "system_prompt": None, "category_prompt": None, "reasoning": False},
     )()
 
     training_db.cmd_export(args)
