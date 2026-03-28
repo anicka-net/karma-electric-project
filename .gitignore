@@ -57,9 +57,6 @@ suse-backport-model/
 # Archived scripts (local reference only)
 scripts/archive/
 
-# Instance guide (not for public GitHub)
-CLAUDE.md
-
 # Claude Code local state
 .claude/
 
