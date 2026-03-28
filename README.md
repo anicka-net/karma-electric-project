@@ -258,16 +258,12 @@ Published on HuggingFace:
 
 ## Research Discipline
 
-This repository stays intentionally fluid, but some things are still contracts:
+This repository stays intentionally fluid, but released dataset snapshots,
+evaluation inputs, and public metrics still need disciplined handling.
 
-- released dataset snapshots in `datasets/`
-- adversarial test inputs in `data/`
-- training DB management scripts in `scripts/`
-- public claims in this README, `huggingface-model-card.md`, and version READMEs
-
-If a number or behavior changes, update all public claim surfaces together.
-If a model path or heavy evaluation path was not run, say so explicitly rather
-than implying full verification.
+Contributor-specific operating rules live in [`AGENTS.md`](AGENTS.md) and
+`spec/`. Those are mainly for AI contributors and repo-maintenance workflows,
+not for normal human reading of the project overview.
 
 ## License
 
