@@ -10,10 +10,15 @@ substantial changes:
 
 1. `README.md`
 2. `AGENTS.md`
-3. `spec/agent-contract.md`
-4. `spec/agent.template.md`
-5. `spec/prompt.md`
-6. the files directly relevant to the task
+3. `LOCAL.md` if it exists (local-only operational guidance, not normally committed)
+4. `spec/agent-contract.md`
+5. `spec/agent.template.md`
+6. `spec/prompt.md`
+7. the files directly relevant to the task
+
+If `LOCAL.md` exists, treat it as repository-local operating context that
+complements this public contract. Do not commit it unless a human explicitly
+asks for that.
 
 This repo is primarily a research/dataset repo, not a large software package.
 Keep the contract lean and focused on data artifacts, scripts, and public claims.
