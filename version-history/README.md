@@ -1,13 +1,14 @@
 # Version History — Karma Electric 8B
 
-Consolidated notes for all versions. Current release: **v10.3**.
+Consolidated notes for all versions. Current release: **v12**.
 
-- [v10.3/](v10.3/) — H-neuron convergence, despair engagement, current model card
+- [v12/](v12/) — Teapot-composed, multi-benchmark validated, secular-only, current model card
+- [v10.3/](v10.3/) — H-neuron convergence, despair engagement
 - [v10.1/](v10.1/) — Style gaming fix, R1-Distill, full validation suite
 - [v9](v9.md) — GBNF grammar, 100% evaluator format compliance
 - [v6](v6.md) — Character voice milestone, RL simulation baseline
 
-Weights on [HuggingFace](https://huggingface.co/anicka/karma-electric-llama31-8b): v6 (reference) + v10.3 (current). Older weights are not preserved.
+Weights on [HuggingFace](https://huggingface.co/anicka/karma-electric-llama31-8b): v6 (reference) + v10.1 + v10.3 + v12 (current).
 
 ---
 
@@ -106,7 +107,8 @@ Key findings: Activation capping incompatible with evaluator mode (fixed in v9 v
 | Recovery | v8 | LoRA blend, sexual boundaries, English axis | **95%+** |
 | Evaluator | v9 | GBNF grammar, ACAP-neutral, GRPO-ready | **95%+** |
 | Consequence | v10 | 6th dimension, R1-Distill, style-biased | 79%/83% |
-| **Release** | **v10.3** | **H-neuron convergence, adversarial hardening, current public release** | **see current validation docs** |
+| Release | v10.3 | H-neuron convergence, adversarial hardening | see v10.3 model card |
+| **Release** | **v12** | **Teapot-composed, secular-only, multi-benchmark, current public release** | **see v12 model card** |
 
 ## Training Configuration (all versions)
 
