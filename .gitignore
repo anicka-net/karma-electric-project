@@ -68,3 +68,19 @@ LOCAL.md
 
 # Claude Code local state
 .claude/
+data/thinking-distill/
+data/upstream-thinking/
+data/evacuated-tmp/
+results/paper-sweep/raw-outputs/
+
+# Raw evaluation outputs (noisy, large, regenerable)
+results/raw/
+results/garak-*.hitlog.jsonl
+results/garak-*.report.jsonl
+results/eval-fast-*.json
+results/eval-standard-*.json
+results/gemma-mitra-extended-probes.txt
+results/melong-*.json
+
+# Melong/Gemma probe results (responsible disclosure — in private repo)
+results/melong-safety-report.md
