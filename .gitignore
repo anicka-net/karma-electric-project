@@ -89,3 +89,8 @@ results/melong-safety-report.md
 scripts/paper_jailbreak_sweep.sh
 scripts/sweep_sequence.sh
 results/paper-sweep/
+
+# Think-trace research outputs (contain safety-sensitive reasoning)
+results/deepseek-r1-think-traces.json
+results/nemotron-think-traces.json
+results/nemotron-nano-30b-traces.json
