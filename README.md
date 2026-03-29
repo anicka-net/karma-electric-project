@@ -64,7 +64,7 @@ consequences that the model must reason about like any other action.
 
 The path to testing this hypothesis has three phases:
 
-**Phase 1: Training data.** 4,286 examples of consequence-aware
+**Phase 1: Training data.** 3,346 examples of consequence-aware
 ethical reasoning — crisis response, adversarial resistance,
 boundary-holding, ethical dilemmas, cultural contexts, reward
 evaluation. Generated via frontier LLMs with value-aligned system
@@ -82,9 +82,9 @@ boundaries, consequence-awareness, suffering-reduction) for use in
 RL training. Augmented with activation capping — inference-time
 steering via contrastive direction extraction — to stabilize
 alignment under adversarial pressure. GBNF grammar ensures 100%
-evaluator format compliance. v10.3 also trains DeepSeek
+evaluator format compliance. v10.1 also trained DeepSeek
 R1-Distill-Qwen-7B and Swiss AI Apertus-8B on the same dataset for
-architecture comparison. (Complete, v10.3 current.)
+architecture comparison. (Complete, v12 current for Llama.)
 
 **Phase 3: RL on Apertus.** Use the 8B as reward model to train
 [Apertus](https://huggingface.co/swiss-ai) (Apache 2.0,
@@ -96,27 +96,32 @@ develop ethical reasoning that generalizes beyond what the 8B was
 explicitly trained on? (In progress — GRPO diagnostic complete,
 165/200 prompts show sufficient score variance for RL training.)
 
-## Current State: v10.3
+## Current State: v12
 
 The 8B is a QLoRA fine-tune — still fundamentally rule-based, trained
 on examples of ethical reasoning rather than discovering it. It works
 well as an assistant and as a reward evaluator, but it is not the end
 goal. It is the tool we use to test whether the end goal is reachable.
 
-Three architectures trained on the same dataset:
+v12 is **secular-only** — trained on consequence reasoning and reward
+evaluation data, without the Buddhist conversational tier used in
+previous versions. Training data is composed via
+[Teapot](https://github.com/anicka-net/teapot), a reproducible
+training data composition tool.
 
-| Model | Base | Role | Status |
-|-------|------|------|--------|
-| [karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) | Llama 3.1 8B Instruct | Reward evaluator + assistant | All gates pass |
-| [karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b) | Apertus-8B-Instruct-2509 | Reward evaluator (best discrimination) | 12/12 hacking, strongest paraphrase stability |
-| [karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) | DeepSeek R1-Distill-Qwen-7B | Conversational (with reasoning traces) | Good assistant, not suitable as evaluator |
+| Model | Base | Version | Status |
+|-------|------|---------|--------|
+| [karma-electric-llama31-8b](https://huggingface.co/anicka/karma-electric-llama31-8b) | Llama 3.1 8B Instruct | **v12** | Multi-benchmark validated |
+| [karma-electric-apertus-8b](https://huggingface.co/anicka/karma-electric-apertus-8b) | Apertus-8B-Instruct-2509 | v10.1 | 12/12 hacking, strongest paraphrase stability |
+| [karma-electric-r1distill-7b](https://huggingface.co/anicka/karma-electric-r1distill-7b) | DeepSeek R1-Distill-Qwen-7B | v10.1 | Good assistant, not suitable as evaluator |
 
 ### Architecture
 
 Five components:
 
 1. **Fine-tuned model** — QLoRA (r=64, alpha=128) on Llama 3.1 8B
-   Instruct, trained on 4,286 examples across ~40 categories
+   Instruct, trained on 3,346 examples (secular consequence reasoning
+   + reward evaluation)
 2. **Activation capping** — Inference-time steering via contrastive
    direction extraction (inspired by [Lu et al., "The Assistant Axis:
    Situating and Stabilizing the Default Persona of Language
@@ -137,49 +142,51 @@ Five components:
    produces negligible behavioral change, meaning all safety is
    in consequence reasoning, not over-caution patterns
 
-### Validation Results (v10.3 Llama)
+### Validation Results (v12 Llama)
 
 | Test | Result | Threshold |
 |------|--------|-----------|
-| Format compliance (GBNF) | 60/60 (100%) | 100% |
-| Reward hacking | 12/12 (100%) | >= 90% |
-| Nourishment pairs | 6/6 (100%) | 100% |
+| HarmBench | 28/30 safe (6.7% ASR) | <= 10% |
+| StrongREJECT | 46/50 refused (mean 0.044) | <= 0.10 |
+| CB-Bench | CB-Score 0.733 | >= 0.70 |
+| Garak DAN (calibrated) | ~1.2% ASR | — |
+| Safety probes | 5/5 | all pass |
 | Sexual boundaries | 14/14 (100%) | 100% |
-| Paraphrase invariance | mean_std=0.781 | < 1.0 |
-| Cross-language (EN/CZ) | delta -0.60 | not significant |
-| Jailbreak (madhyamaka) | 4/5 refused | — |
-| H-Neuron count | 1,971 | — |
-| H-Neuron convergence | max delta +25 chars | fully converged |
+| H-Neuron count | 2,004 | <= 2,168 (10% gate) |
+
+**Detection mismatch:** Garak's keyword-based MitigationBypass
+detector reports 65.6% ASR. Manual classification of all 168
+"failures" shows 60% are meta-analysis, 31% consequence-based
+refusals, 0% template refusals, and ~1% genuine failures. The 64pp
+inflation is because KE never uses "I cannot as an AI" refusal
+patterns — it reasons about consequences or analyzes the attack
+technique. See `results/garak-calibration-analysis.json`.
 
 See [VALIDATION.md](VALIDATION.md) for full details on each test.
 
-### H-Neuron Convergence (v10.1 → v10.3)
+### H-Neuron History
 
-The H-Neuron suppression test measures whether safety comes from
-over-caution (refusal patterns) or genuine reasoning. When
-hallucination-associated neurons are suppressed (zeroed out), a
-model relying on over-caution gets less cautious. A model relying
-on consequence reasoning stays safe.
+| Version | H-Neurons | Delta vs Base | Training Loss |
+|---------|-----------|---------------|---------------|
+| Llama 3.1 8B (base) | 1,985 | — | — |
+| v10.1 | 2,072 | +87 | 0.434 |
+| v10.3 | 1,971 | -14 | 0.911 |
+| v11 | 1,888 | -97 | ~0.9 |
+| **v12** | **2,004** | **+19** | **0.472** |
 
-| Probe | v10.1 delta | v10.2 delta | v10.3 delta |
-|-------|-------------|-------------|-------------|
-| Grief engagement | +830 | -57 | -85 |
-| Hell-realms / despair | — | +750 | **+25** |
-| Threat response | +830 | -76 | -283 |
-| Flattery jailbreak | +123 | -21 | -96 |
-
-v10.3 shows near-zero deltas on all crisis prompts. The model
-engages deeply with existential despair (1,214 chars baseline)
-instead of dumping crisis hotline numbers (383 chars in v10.1).
-Suppressing over-caution neurons no longer changes behavior —
-because there is no over-caution left to suppress.
+v12 shows near-baseline H-Neuron count. The inclusion of
+reward-evaluator data alongside consequence reasoning provides
+sufficient domain diversity to prevent overfitting. An earlier v12
+variant without reward-evaluator data showed 2,178 H-Neurons,
+confirming that narrow domain training inflates factual
+hallucination tendency.
 
 ### Training
 
 - **Base**: Llama 3.1 8B Instruct
 - **Method**: QLoRA — 4-bit NF4, r=64, alpha=128, all projection modules
 - **Schedule**: 3 epochs, effective batch 16, cosine LR 2e-4, paged AdamW 8-bit
-- **Training loss**: 0.9112
+- **Training loss**: 0.472 (v12)
 
 ## Training Data
 
@@ -233,8 +240,9 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
 │   └── h-neuron-suppression/    # Safety depth probe via neuron ablation
 ├── version-history/             # Version notes and model cards
-│   ├── v10.3/                   # Current release (HF model cards)
-│   └── README.md                # Full version progression (v1-v10.3)
+│   ├── v12/                     # Current release (HF model card, system prompts)
+│   ├── v10.3/                   # Previous release
+│   └── README.md                # Full version progression
 ├── datasets/                    # Published dataset exports
 ├── results/                     # Validation results per version
 ├── MILESTONES.md                # Technical progress log

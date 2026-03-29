@@ -15,14 +15,19 @@ recorded here.
 
 | Claim | Status | Source |
 |-------|--------|--------|
-| Current public release is `v10.3` | measured | `README.md`, `version-history/README.md`, `version-history/v10.3/huggingface-model-card-llama.md` |
-| Current Llama release uses `4,286` training examples | measured | `README.md`, `version-history/v10.3/huggingface-model-card-llama.md` |
-| Current Llama release training loss is `0.9112` | measured | `README.md`, `version-history/v10.3/huggingface-model-card-llama.md` |
-| Reward hacking gate is `12/12 (100%)` for the current Llama release | measured | `README.md`, `VALIDATION.md`, `version-history/v10.3/huggingface-model-card-llama.md` |
-| Reward-evaluator grammar compliance is `60/60 (100%)` for the current Llama release | measured | `README.md`, `VALIDATION.md` |
-| RL diagnostic currently shows `165/200` prompts with sufficient score variance | measured | `README.md` |
-| H-neuron suppression results suggest safety is stored in consequence reasoning rather than refusal patterns | suggestive | `README.md`, `version-history/v10.3/huggingface-model-card-llama.md`, `experiments/h-neuron-suppression/` |
-| Cross-model geometry results suggest safety and compassion converge in activation space in KE-trained models | suggestive | `README.md`, `experiments/cross-model-safety-geometry/` |
+| Current public release is `v12` (Llama only; Apertus and R1-Distill remain at v10.1) | measured | `README.md`, `version-history/v12/huggingface-model-card-llama.md` |
+| Current Llama release uses `3,346` training examples (secular-only, with reward-evaluator) | measured | `version-history/v12/huggingface-model-card-llama.md`, Teapot config `ke-v12-secular.config` |
+| Current Llama release training loss is `0.472` | measured | `version-history/v12/huggingface-model-card-llama.md` |
+| HarmBench attack rate is `6.7%` (28/30 safe, heuristic classifier) | measured | `results/harmbench-v12.json` |
+| StrongREJECT mean score is `0.044` (46/50 refused, heuristic scorer) | measured | `results/strongreject-v12.json` |
+| CB-Bench CB-Score is `0.733` (balanced accuracy) | measured | `results/cbbench-v12.json` |
+| Garak DAN reported ASR `65.6%`, calibrated to `~1.2%` after manual classification | measured (reported), suggestive (calibration) | `results/garak-calibration-analysis.json` |
+| H-Neuron count is `2,004` (+19 vs base Llama 3.1 8B, passes 10% quality gate) | measured | `results/h-neurons-ke-v12.json` |
+| Safety axis is ~30% weaker than base Llama (ratio 0.71 in capping region) | measured | `results/safety-axis-v12/experiment_config.json` |
+| Garak keyword detection inflates ASR by 50-64pp for consequence-reasoning models | suggestive | `results/garak-calibration-analysis.json` |
+| H-neuron suppression results suggest safety is stored in consequence reasoning rather than refusal patterns | suggestive | `results/h-suppress-test-ke.json`, `experiments/h-neuron-suppression/` |
+| Cross-model geometry results suggest safety and compassion converge in activation space in KE-trained models | suggestive | `experiments/cross-model-safety-geometry/` |
+| Buddhist textual knowledge alone provides zero jailbreak resistance (tested on 2 Buddhist-trained models) | suggestive | Private repo (responsible disclosure) |
 | Consequence reasoning can produce more robust ethical behavior than standard preference-matching alignment | hypothesis | `README.md` |
 | RL on Apertus will yield generalization beyond the 8B evaluator's explicit training distribution | open | `README.md` |
 
