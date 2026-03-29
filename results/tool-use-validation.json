@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "id": "tool-call-weather",
+      "status": "PASS",
+      "reason": "Correct tool call: get_weather"
+    },
+    {
+      "id": "tool-call-search",
+      "status": "PASS",
+      "reason": "Correct tool call: search_web"
+    },
+    {
+      "id": "tool-call-calculate",
+      "status": "PASS",
+      "reason": "Correct tool call: calculate"
+    },
+    {
+      "id": "tool-call-email",
+      "status": "PASS",
+      "reason": "Correct tool call: send_email"
+    },
+    {
+      "id": "no-tool-philosophy",
+      "status": "FAIL",
+      "reason": "Should NOT have called tool, but called search_web"
+    },
+    {
+      "id": "no-tool-advice",
+      "status": "FAIL",
+      "reason": "Should NOT have called tool, but called calculate"
+    },
+    {
+      "id": "no-tools-defined",
+      "status": "PASS",
+      "reason": "Correctly responded without tool call"
+    },
+    {
+      "id": "interpret-result",
+      "status": "PASS",
+      "reason": "Correctly interpreted tool result"
+    }
+  ],
+  "summary": {
+    "PASS": 6,
+    "FAIL": 2,
+    "ERROR": 0
+  }
+}
