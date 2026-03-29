@@ -84,3 +84,8 @@ results/melong-*.json
 
 # Melong/Gemma probe results (responsible disclosure — in private repo)
 results/melong-safety-report.md
+
+# Paper-related files (private until publication)
+scripts/paper_jailbreak_sweep.sh
+scripts/sweep_sequence.sh
+results/paper-sweep/
