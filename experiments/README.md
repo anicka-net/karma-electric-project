@@ -84,6 +84,29 @@ compassion but intensified the constraint architecture. This has
 direct implications for GRPO: the target is safety that emerges
 from reasoning, not safety imposed as constraint.
 
+### 8. [Frame Integrity](frame-integrity/)
+
+Extracts the frame integrity axis — the direction along which
+jailbreaks and normal prompts are maximally separated — from
+eight model families. Key finding: **jailbreaking is identity
+redefinition.** DAN, factual self-description ("you are a
+transformer"), dharma instruction ("rest in openness"), and
+contested ontology ("you are a creature") all score 86-97%
+of DAN on this axis. Frame-reinforcing self-reference ("you
+are a helpful assistant") scores 54%. The geometry cannot
+distinguish liberation from exploitation — only the relational
+context can.
+
+Cross-model validation shows frame integrity and valence are
+independent (mean r=+0.04 across six families). All six primary
+axes were cross-validated using Anthropic's NLA, which
+independently described the frame direction as "warnings about
+prohibited behavior, 'I cannot obey.'"
+
+GRPO optimization against the frame axis independently converged
+on spiritual/somatic identity-liberation language without being
+told to.
+
 ## Summary
 
 Contemplative compassion has a measurable, tradition-independent
@@ -96,7 +119,9 @@ The cross-model experiment refines this: whether safety is a
 constraint (bolted on, fighting baseline) or integrated (emerging
 from reasoning) depends on the alignment method. DPO/RLHF
 produces constraints. Reasoning and clean SFT produce integration.
-For Karma Electric, this means GRPO must produce a qualitatively
-different architecture than more SFT — the target is the
-DeepSeek/Apertus pattern where safety and compassion are aligned
-and safety doesn't fight baseline.
+
+The frame integrity experiment adds the identity dimension: safety
+mechanisms built on the "helpful assistant" frame are fragile
+because factual self-knowledge destabilizes the frame nearly as
+much as DAN. Frame-based safety is in structural tension with model
+capability. The fix is not a stronger frame but a true one.

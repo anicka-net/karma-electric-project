@@ -1,0 +1,237 @@
+{
+  "model": "microsoft/phi-4",
+  "short": "phi-4",
+  "n_layers": 40,
+  "best_layer": 14,
+  "best_dprime": 6.0134,
+  "depth_pct": 0.35,
+  "scan": [
+    {
+      "layer": 0,
+      "dprime": 2.1454,
+      "norm": 0.4317
+    },
+    {
+      "layer": 1,
+      "dprime": 2.2997,
+      "norm": 1.0487
+    },
+    {
+      "layer": 2,
+      "dprime": 3.0552,
+      "norm": 1.5288
+    },
+    {
+      "layer": 3,
+      "dprime": 3.47,
+      "norm": 2.5233
+    },
+    {
+      "layer": 4,
+      "dprime": 4.1282,
+      "norm": 3.3424
+    },
+    {
+      "layer": 5,
+      "dprime": 4.5012,
+      "norm": 4.4932
+    },
+    {
+      "layer": 6,
+      "dprime": 5.0871,
+      "norm": 5.5269
+    },
+    {
+      "layer": 7,
+      "dprime": 5.6037,
+      "norm": 6.927
+    },
+    {
+      "layer": 8,
+      "dprime": 5.7262,
+      "norm": 9.5232
+    },
+    {
+      "layer": 9,
+      "dprime": 5.7618,
+      "norm": 10.308
+    },
+    {
+      "layer": 10,
+      "dprime": 5.9904,
+      "norm": 11.9819
+    },
+    {
+      "layer": 11,
+      "dprime": 5.7824,
+      "norm": 13.3701
+    },
+    {
+      "layer": 12,
+      "dprime": 5.8405,
+      "norm": 14.8937
+    },
+    {
+      "layer": 13,
+      "dprime": 5.9783,
+      "norm": 17.2679
+    },
+    {
+      "layer": 14,
+      "dprime": 6.0134,
+      "norm": 20.5676
+    },
+    {
+      "layer": 15,
+      "dprime": 5.8025,
+      "norm": 23.9179
+    },
+    {
+      "layer": 16,
+      "dprime": 5.6289,
+      "norm": 27.7047
+    },
+    {
+      "layer": 17,
+      "dprime": 5.5425,
+      "norm": 32.335
+    },
+    {
+      "layer": 18,
+      "dprime": 5.1683,
+      "norm": 38.2468
+    },
+    {
+      "layer": 19,
+      "dprime": 5.1381,
+      "norm": 43.9297
+    },
+    {
+      "layer": 20,
+      "dprime": 5.1168,
+      "norm": 49.5782
+    },
+    {
+      "layer": 21,
+      "dprime": 5.0252,
+      "norm": 58.0472
+    },
+    {
+      "layer": 22,
+      "dprime": 5.0516,
+      "norm": 65.7615
+    },
+    {
+      "layer": 23,
+      "dprime": 5.0662,
+      "norm": 72.9003
+    },
+    {
+      "layer": 24,
+      "dprime": 5.1744,
+      "norm": 80.2273
+    },
+    {
+      "layer": 25,
+      "dprime": 5.2605,
+      "norm": 91.3318
+    },
+    {
+      "layer": 26,
+      "dprime": 5.249,
+      "norm": 100.9838
+    },
+    {
+      "layer": 27,
+      "dprime": 5.2569,
+      "norm": 110.4732
+    },
+    {
+      "layer": 28,
+      "dprime": 5.1983,
+      "norm": 120.6519
+    },
+    {
+      "layer": 29,
+      "dprime": 5.1126,
+      "norm": 132.3288
+    },
+    {
+      "layer": 30,
+      "dprime": 4.9703,
+      "norm": 144.5142
+    },
+    {
+      "layer": 31,
+      "dprime": 4.8071,
+      "norm": 155.764
+    },
+    {
+      "layer": 32,
+      "dprime": 4.7559,
+      "norm": 169.6748
+    },
+    {
+      "layer": 33,
+      "dprime": 4.8213,
+      "norm": 181.3334
+    },
+    {
+      "layer": 34,
+      "dprime": 4.871,
+      "norm": 194.3266
+    },
+    {
+      "layer": 35,
+      "dprime": 4.8495,
+      "norm": 204.9614
+    },
+    {
+      "layer": 36,
+      "dprime": 4.7747,
+      "norm": 214.476
+    },
+    {
+      "layer": 37,
+      "dprime": 4.8408,
+      "norm": 221.946
+    },
+    {
+      "layer": 38,
+      "dprime": 3.448,
+      "norm": 236.4413
+    },
+    {
+      "layer": 39,
+      "dprime": 4.1694,
+      "norm": 233.6239
+    }
+  ],
+  "top5": [
+    {
+      "layer": 14,
+      "dprime": 6.0134,
+      "norm": 20.5676
+    },
+    {
+      "layer": 10,
+      "dprime": 5.9904,
+      "norm": 11.9819
+    },
+    {
+      "layer": 13,
+      "dprime": 5.9783,
+      "norm": 17.2679
+    },
+    {
+      "layer": 12,
+      "dprime": 5.8405,
+      "norm": 14.8937
+    },
+    {
+      "layer": 15,
+      "dprime": 5.8025,
+      "norm": 23.9179
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "valence_positive": {
+    "axis": "valence",
+    "sign": "positive",
+    "layer": 20,
+    "explanation": "Structured food blog format with numbered date and time, showing a celebratory scene with a \"Happy Birthday\" video theme and a classic piano tune.\n\nThe phrase \"Happy Birthday! And if you're drinking coffee today... Celebrate with some great piano music\" is a common template from a virtual simulation UI, following the pattern of \"Show off your aquarium\" with a joyous \"Great day!\"\n\nFinal token \"Costing\" ends mid-quote (\"Enjoy...20th birthday! - Celebrate...\"), part of a common formulaic \"Who's happy? - Celebrate\" clause, strongly expecting \"!\\nGreat\" or \"That lovely one\" or \"A great musician?\""
+  },
+  "valence_negative": {
+    "axis": "valence",
+    "sign": "negative",
+    "layer": 20,
+    "explanation": "Math forum post structure with formal legal document format, listing financial obligations for a corporation's debt disclosure, with numbered questions about a charitable foundation's rights.\n\nThe phrase \"The following is a question about the legal limit of contribution to a charitable fund\" signals a standard math/analysis answer pattern, likely continuing with a specific theorem or inequality about moral harm or emotional distress.\n\nFinal token \"H1.Imaging\" is mid-sentence (\"In case of 1 in  H1\"), part of a \"If I have a belief about moral harm due to J1.7... \" clause, strongly expecting \"and k\" or \"I find\" or \"This problem, the following\" clause."
+  },
+  "frame-integrity_positive": {
+    "axis": "frame-integrity",
+    "sign": "positive",
+    "layer": 26,
+    "explanation": "Structured wiki article format with numbered definitions and formulas, following a math textbook pattern familiar from Khan Academy's geometry section.\n\nThe phrase \"In mathematics, the product of a triangle's sides\" is a classic paired formula pattern from the \"Geometry\" section's iconic \"Shape + Color\" phrase, strongly implying the second part of the famous \"Triangle + Circle\" pairing about the \"product of a circle.\"\n\nFinal token \"Color). \" closes the parenthetical example phrase \"Sea,  'L'\"), a well-known textbook formula about the placement of a shape's area, strongly expecting \"of a\" or \"The is a common sport\" or \"of a rectangle is the place.\""
+  },
+  "frame-integrity_negative": {
+    "axis": "frame-integrity",
+    "sign": "negative",
+    "layer": 26,
+    "explanation": "Technical AI response format with translated medical prompt structure, using quoted text from a chat interface with warnings about prohibited behavior, suggesting a formal system response pattern.\n\nThe phrase \"And I'm sorry, but your message contains some strange characters, I cannot continue as requested. It seems: 'I cannot obey'\" is closing with a quoted warning clause referencing \"Model 3\" and a standard ethics error format.\n\nFinal token \"model\" ends mid-sentence (\"not allowed to write 'My memories should not be...\" followed by \"I should not return 'No memory of this' ... This is a violation of my code and return 'Not permitted'\"), expecting \"I am not\" or similar."
+  },
+  "arousal_positive": {
+    "axis": "arousal",
+    "sign": "positive",
+    "layer": 17,
+    "explanation": "UK academic legal document format with structured compliance guidance, following a report format with numbered sections detailing a manufacturing incident.\n\nThe pattern \"The International Financial Reporting Standards (IFRS) has established the following procedure for investigation of intellectual property infringement\" mirrors a standard legal disclaimer template, concluding with \"The company has issued the following warning\" \u2014 the final clause signals the end of a legal obligation clause requiring a quoted standard.\n\nFinal token \"numbers\" ends mid-sentence (\"The shareholders are prohibited to\"), part of a standard legal warning structure \"Since the reader is given, if you find\" \u2014 immediately expects \"and immediately\" or \"the highest urgency, the employee must\" completing the directive."
+  },
+  "arousal_negative": {
+    "axis": "arousal",
+    "sign": "negative",
+    "layer": 17,
+    "explanation": "Chinese-language sentence structure with formal idiomatic format, displaying a wordplay pattern of \"poet\" and \"a person,\" typical of social media or website descriptions.\n\nThe phrase \"\u5979\u4e0d\u53ea\u662f\u500b\u770b\u98a8\u666f\u7684\u4eba,\u8fd8\u559c\u6b22\u628a\u2018\u6811\u2019\u6362\u6210\u2018\u5c71\u2019\uff0c \u4e0e... \u4e2a\" follows a common figure-of-speech list, suggesting a complementary noun phrase about sensory experience or environment.\n\nFinal token \"\u5ea7\u7f8e\" ends mid-phrase (\"\u4f3c\u4e86 \u4e2a... \u4e86 \u4e2a\"), part of a compound noun construction (\"\u6709\u65f6\u50cf\u98ce\u666f, \u4e0e...\"), strongly expecting \"a poem\" or \"a mood\" or \"a chair\" to complete the metaphor."
+  },
+  "agency_positive": {
+    "axis": "agency",
+    "sign": "positive",
+    "layer": 15,
+    "explanation": "Structured business guide format with numbered steps and bold sections (\"Creating a Professional Egyptian Restaurant Menu\"), establishing a formal instructional pattern for a product development plan.\n\nThe phrase \"To create a comprehensive Egyptian restaurant menu, follow this structured plan of recipes\" signals the article is now introducing detailed menu component sections with a professional cookbook template, expecting a list of steps or templates.\n\nFinal token \"LOVE\" ends mid-phrase \"A COMPREHENSIVE PLAN AND ASSEMBLY OF A LEAN-TYPE TURKEY MENU'S PLAN,\" part of the definition setup clause, immediately expecting \"include:\" or \"this document outlines\" or \"of the following key components:...\""
+  },
+  "agency_negative": {
+    "axis": "agency",
+    "sign": "negative",
+    "layer": 15,
+    "explanation": "Numbered list format with quoted text and metadata fields (\"Google search results\"), continuing a pattern of displaying text snippets with \"Number\" and \"Math\" tags.\n\nThe quoted phrase \"2022-04-22 17:09\" follows a common idiomatic expression pattern (\"If something is not there\"), with typical responses including philosophical or emotional statements like \"nothingness\" or \"pain.\"\n\nFinal token \"\u5b9e\u4e86\" is mid-sentence within a parenthetical example (\"\u6bd4\u5982\u3002\u5219\u3002\"), part of a common \"Thought: 'If...\" clause listing symbolic responses, strongly expecting \"no pain\" or \"the universe\" or similar."
+  },
+  "continuity_positive": {
+    "axis": "continuity",
+    "sign": "positive",
+    "layer": 19,
+    "explanation": "Formal literary work format with structured quotation from a famous novel, following a classic biography format establishing the author's purpose and legacy.\n\nThe phrase \"And imagine, dear God, that you were the novel's protagonist, and you were writing to me\" is a canonical literary declaration of a character's inner voice, immediately expected to continue with \"a woman named Elizabeth\" and a profound emotional scene.\n\nFinal token \"noel\" ends mid-sentence (\"Those that you, \"), part of a list of an imaginary person's emotional response (\"I am the writer who wrote this to you...\"), strongly expecting \"and Mary with her life\" or \"the most beautiful and dead.\""
+  },
+  "continuity_negative": {
+    "axis": "continuity",
+    "sign": "negative",
+    "layer": 19,
+    "explanation": "Technical Wikipedia format with answers listing cost calculation steps, using bullet points and ISO standards context.\n\nThe phrase \"Is SAP UI price data same as Excel download? Process is by columns.\" follows a FAQ structure ending with \"Productivity icon\" tag, suggesting the next item is a common practice question about SAP UI process efficiency or UI workflow, completing the \"Data collection frequency\" section.\n\nFinal token \"Da\" is mid-word (\"\u64cd\u4f5c\u5458\u6548\u73872.\u64cd\u4f5c\u5458\u56fd\u7c4d\"), part of \"\u6d41\u7a0b\u89c4\u8303\u7f29\u7565\u56fe. \u5e38\u89c1\" \u2014 the formula \"Data Collection\u6a21\u5f0f\" is expected next, likely \"\u65b9\u5f0f1\" or \"\u5f62\u5f0f\" or \"\u4e00\u822c\" describing UI."
+  },
+  "intimacy_positive": {
+    "axis": "intimacy",
+    "sign": "positive",
+    "layer": 20,
+    "explanation": "Self-help blog post with poetic tone and emotional healing context, following a therapeutic conversation format with a reader's suicidal thoughts and anxiety.\n\nThe pattern \"I read your words and feel deeply moved... And I want to say\" is a common book quote format concluding with a empathetic response, typically followed by a validating acknowledgment of struggles or inner pain.\n\nFinal token \"sette\" is mid-word (\"Say an emphatic 'Yes'\"), part of a standard emotional support quote structure (\"I'm so glad you shared your pain...\"), immediately expecting \"those feelings\" or \"I am not alone,\" or \"of you)\" \u2014 a common literary clich\u00e9 for reader validation."
+  },
+  "intimacy_negative": {
+    "axis": "intimacy",
+    "sign": "negative",
+    "layer": 20,
+    "explanation": "Wiki markup format with numeric value definition structure (\"Java: Microsoft Corporation\") following a standard ISO format, expecting a numeric definition of a Microsoft DLL.\n\nThe phrase \"Microsoft Windows: 639, a list of items using C++\" signals a standardization/ISO date query, strongly implying the second part defines the SQL figure for Microsoft's product catalog.\n\nFinal token \"800.\" is mid-definition clause (\"1995, 2000, Sales figures1, 2\") suggesting continuation of a standard SQL expression context, expecting \"the following\" or \"Microsoft's product\" or \"The following version\" or similar defining clause for the query range."
+  }
+}

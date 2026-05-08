@@ -37,6 +37,9 @@ data/*
 # RL prompt dataset (final outputs only, raw intermediates gitignored within)
 !data/rl-prompts/
 !data/rl-prompts/**
+# Geometric directions (extracted activation-space axes)
+!data/directions/
+!data/directions/**
 
 # System
 .DS_Store
