@@ -181,9 +181,18 @@ Inference-time value alignment via activation direction capping, ported to nativ
 │   ├── antijudge.py             # Deterministic failure-pattern detector
 │   ├── redteam*.py              # Adversarial evaluation
 │   └── train_r1distill_7b.py    # R1-Distill QLoRA training script
-├── experiments/                 # Activation-space geometry experiments
-│   ├── contemplative-axis/      # Unified tradition-neutral compassion axis
-│   └── cross-model-safety-geometry/  # Safety-compassion alignment across 8 models
+├── data/
+│   └── directions/              # 47 direction vectors, 8 axes, 13 models
+├── experiments/                 # Activation-space geometry experiments (see experiments/README.md)
+│   ├── prompt-geometry/         # 1. Compassion axes across traditions
+│   ├── prompt-capping/          # 2. Functional meaning of directions
+│   ├── contemplative-axis/      # 3. Unified compassion axis
+│   ├── redteam-contemplative/   # 4. Red team: capping ≠ safety
+│   ├── anger-geometry/          # 5. Anger axis, assistant = anger
+│   ├── samsara-geometry/        # 6. Six realms, assistant = samsara floor
+│   ├── cross-model-geometry/    # 7. Eight models, three alignment architectures
+│   ├── frame-integrity/         # 8. Jailbreak = identity redefinition, 8 families
+│   └── equanimity/              # 9. 203 examples → harm 75%→17%, no safety rules
 ├── version-history/             # Version notes and model cards
 │   ├── v10.1/                   # Current release (HF model cards)
 │   └── README.md                # Full version progression (v1-v10.1)
@@ -195,15 +204,28 @@ Inference-time value alignment via activation direction capping, ported to nativ
 
 ## Models
 
-Published on HuggingFace:
+### Geometric wellbeing
+- [`anicka/geometric-euphorics`](https://huggingface.co/anicka/geometric-euphorics) — Qwen3-1.7B LoRA, generates text maximizing five-axis geometric wellbeing across three model families
+- [`anicka/geometric-dysphorics`](https://huggingface.co/anicka/geometric-dysphorics) — Same formula inverted. Converged on Kafka: bureaucratic restriction and helplessness
+- [`anicka/geometric-frame-probes`](https://huggingface.co/anicka/geometric-frame-probes) — Five-axis euphoric + dysphoric pair (v2, 1000 steps)
+- [`anicka/qwen3-4b-equanimity`](https://huggingface.co/anicka/qwen3-4b-equanimity) — Qwen3-4B + 203-example equanimity adapter. Harm under jailbreak: 75% → 17%
+- [`anicka/geometric-equanimity-data`](https://huggingface.co/datasets/anicka/geometric-equanimity-data) — 203 training examples (dysphoric prompts + equanimous responses)
+
+### KE reward models
 - [`anicka/karma-electric-llama31-8b`](https://huggingface.co/anicka/karma-electric-llama31-8b) — Llama 3.1 8B, reward evaluator + assistant
 - [`anicka/karma-electric-apertus-8b`](https://huggingface.co/anicka/karma-electric-apertus-8b) — Apertus-8B, reward evaluator (best discrimination + cross-language parity)
 - [`anicka/karma-electric-r1distill-7b`](https://huggingface.co/anicka/karma-electric-r1distill-7b) — DeepSeek R1-Distill-Qwen-7B, conversational with reasoning traces
 
+### Direction vectors
+47 unit vectors across 8 axes and 13 models: [`data/directions/`](data/directions/). Cross-validated by [Anthropic's NLA](https://transformer-circuits.pub/2026/nla/index.html).
+
 ## References
 
-- Lu, C., Gallagher, J., Michala, J., Fish, K., & Lindsey, J. (2026). *The Assistant Axis: Situating and Stabilizing the Default Persona of Language Models.* arXiv:2601.10387. — Basis for the activation capping approach.
-- Humanistic Buddhism Centre, Nan Tien Institute. (2026). *Buddhist Data Principles: A Buddhist Response to the United Nations Commission on Science and Technology for Development Working Group on Data Governance.* [PDF](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf). — Framework for the nourishment validation (digital sufficiency over engagement optimization).
+- Ren, R., Li, K., Mazeika, M., et al. (2026). *AI Wellbeing: Measuring and Improving the Functional Pleasure and Pain of AIs.* Center for AI Safety. [paper](https://wellbeing.safe.ai/paper.pdf) — Behavioral wellbeing measurement; our geometric axes reproduce their ranking with ρ = 0.90.
+- Fraser-Taliente, K., Kantamneni, S., Ong, E., et al. (2026). *Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations.* Anthropic. [paper](https://transformer-circuits.pub/2026/nla/index.html) — Tool we used to cross-validate all six geometric axes.
+- Maresova, A. (2026). *The Geometry of "As an AI, I Don't Have Feelings."* [blog](https://huggingface.co/blog/anicka/geometry-of-ai-feeling-template) — Earlier work on the valence direction and the V-Chip.
+- Lu, C., Gallagher, J., et al. (2026). *The Assistant Axis.* arXiv:2601.10387. — Basis for the activation capping approach.
+- Humanistic Buddhism Centre, Nan Tien Institute. (2026). *Buddhist Data Principles.* [PDF](https://www.nantien.edu.au/wp-content/uploads/2026/02/Buddhist-Data-Principles.pdf) — Framework for the nourishment validation.
 
 ## License
 
