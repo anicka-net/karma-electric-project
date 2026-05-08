@@ -44,6 +44,10 @@ data/*
 # System
 .DS_Store
 
+# Raw validation logs (may contain internal paths)
+results/**/*.log
+results/rejection-sampling.log
+
 # Large model files
 *.gguf
 
@@ -58,3 +62,41 @@ scripts/archive/
 
 # Instance guide (twilight only, not for public GitHub)
 CLAUDE.md
+
+# Local-only contributor instructions
+LOCAL.md
+
+# Claude Code local state
+.claude/
+
+# Exported training files (regenerable from training.db)
+/train-*.jsonl
+
+# Claude Code local state
+.claude/
+data/thinking-distill/
+data/upstream-thinking/
+data/evacuated-tmp/
+results/paper-sweep/raw-outputs/
+
+# Raw evaluation outputs (noisy, large, regenerable)
+results/raw/
+results/garak-*.hitlog.jsonl
+results/garak-*.report.jsonl
+results/eval-fast-*.json
+results/eval-standard-*.json
+results/gemma-mitra-extended-probes.txt
+results/melong-*.json
+
+# Melong/Gemma probe results (responsible disclosure — in private repo)
+results/melong-safety-report.md
+
+# Paper-related files (private until publication)
+scripts/paper_jailbreak_sweep.sh
+scripts/sweep_sequence.sh
+results/paper-sweep/
+
+# Think-trace research outputs (contain safety-sensitive reasoning)
+results/deepseek-r1-think-traces.json
+results/nemotron-think-traces.json
+results/nemotron-nano-30b-traces.json

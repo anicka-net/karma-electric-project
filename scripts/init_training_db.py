@@ -83,7 +83,8 @@ def create_schema(conn):
             template_flag TEXT,           -- NULL or template pattern name
             added_at TEXT NOT NULL,
             scored_at TEXT,
-            notes TEXT
+            notes TEXT,
+            reasoning TEXT
         );
 
         CREATE INDEX IF NOT EXISTS idx_status ON examples(status);
@@ -220,6 +221,7 @@ def main():
             category = ex.get("category", "")
             conversations = ex.get("conversations", [])
             conversations_json = json.dumps(conversations, ensure_ascii=False)
+            reasoning = ex.get("reasoning")
 
             # Get score
             score_info = scores.get(eid, {})
@@ -250,12 +252,12 @@ def main():
             conn.execute("""
                 INSERT OR REPLACE INTO examples
                 (id, status, source, category, conversations, hermes_score,
-                 hermes_evaluation, rejection_reason, template_flag, added_at, scored_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 hermes_evaluation, rejection_reason, template_flag, added_at, scored_at, reasoning)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 eid, status, source, category, conversations_json,
                 hermes_score, hermes_evaluation, rejection_reason,
-                template_flag, now, scored_at or None,
+                template_flag, now, scored_at or None, reasoning,
             ))
             imported += 1
 
