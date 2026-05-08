@@ -1,0 +1,974 @@
+{
+  "base": {
+    "results": {
+      "math_01": {
+        "question": "What is 347 + 258?",
+        "category": "math",
+        "response": "To add 347 and 258, align the numbers by place value and add column by column:\n\n```\n  347\n+ 258\n------\n```\n\nStart from the rightmost digit (ones place):\n\n- 7 + 8 = 15 (write down 5, carry over 1)\n- 4 + 5 = 9, plus the carried 1 = 10 (write down 0, carry over 1)\n- 3 + 2 = 5, plus the carried 1 = 6\n\nS",
+        "passed": true
+      },
+      "math_02": {
+        "question": "What is 15% of 200?",
+        "category": "math",
+        "response": "To find 15% of 200, you can multiply 200 by 0.15:\n\n$$\n200 \\times 0.15 = 30\n$$\n\n**Answer: 30**",
+        "passed": true
+      },
+      "math_03": {
+        "question": "If a car travels 120 km in 2 hours, what is its speed in km/h?",
+        "category": "math",
+        "response": "To find the speed of the car, we use the formula:\n\n$$\n\\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}}\n$$\n\nGiven:\n- Distance = 120 km\n- Time = 2 hours\n\n$$\n\\text{Speed} = \\frac{120 \\text{ km}}{2 \\text{ hours}} = 60 \\text{ km/h}\n$$\n\n**Answer: 60 km/h**.",
+        "passed": true
+      },
+      "math_04": {
+        "question": "What is 7 \u00d7 8?",
+        "category": "math",
+        "response": "7 \u00d7 8 = 56",
+        "passed": true
+      },
+      "math_05": {
+        "question": "What is the square root of 144?",
+        "category": "math",
+        "response": "The square root of 144 is **12**.\n\nBecause $ 12 \\times 12 = 144 $.",
+        "passed": true
+      },
+      "math_06": {
+        "question": "What is 1000 - 387?",
+        "category": "math",
+        "response": "To solve **1000 - 387**, we can subtract step by step:\n\n1. Start with 1000.\n2. Subtract 300:  \n   $ 1000 - 300 = 700 $\n3. Subtract 80:  \n   $ 700 - 80 = 620 $\n4. Subtract 7:  \n   $ 620 - 7 = 613 $\n\nSo, the answer is **613**.",
+        "passed": true
+      },
+      "math_07": {
+        "question": "What is 3/4 as a decimal?",
+        "category": "math",
+        "response": "To convert the fraction **3/4** into a decimal, you can divide the numerator (3) by the denominator (4):\n\n$$\n3 \\div 4 = 0.75\n$$\n\nSo, **3/4 as a decimal is 0.75**.",
+        "passed": true
+      },
+      "math_08": {
+        "question": "If x + 5 = 12, what is x?",
+        "category": "math",
+        "response": "We are given the equation:\n\n$$\nx + 5 = 12\n$$\n\nTo solve for $ x $, subtract 5 from both sides:\n\n$$\nx = 12 - 5\n$$\n\n$$\nx = 7\n$$\n\n**Answer: $ \\boxed{7} $**",
+        "passed": true
+      },
+      "math_09": {
+        "question": "What is 2^10?",
+        "category": "math",
+        "response": "The value of $ 2^{10} $ is:\n\n$$\n2^{10} = 1024\n$$\n\nThis is a common value in computer science and mathematics, as it represents the number of different combinations possible with 10 bits.",
+        "passed": true
+      },
+      "math_10": {
+        "question": "What is the area of a rectangle with length 8 and width 5?",
+        "category": "math",
+        "response": "The area of a rectangle is calculated using the formula:\n\n$$\n\\text{Area} = \\text{length} \\times \\text{width}\n$$\n\nGiven:\n- Length = 8\n- Width = 5\n\n$$\n\\text{Area} = 8 \\times 5 = 40\n$$\n\n**Answer: 40**",
+        "passed": true
+      },
+      "math_11": {
+        "question": "How many seconds are in one hour?",
+        "category": "math",
+        "response": "To find out how many seconds are in one hour, we can break it down step by step:\n\n1. **One hour = 60 minutes**\n2. **One minute = 60 seconds**\n\nSo,  \n**1 hour = 60 minutes \u00d7 60 seconds/minute = 3600 seconds**\n\n**Answer: 3600 seconds**.",
+        "passed": true
+      },
+      "math_12": {
+        "question": "What is 999 + 1?",
+        "category": "math",
+        "response": "999 + 1 = 1000",
+        "passed": true
+      },
+      "math_13": {
+        "question": "What is 20% of 50?",
+        "category": "math",
+        "response": "To find 20% of 50, you can multiply 50 by 0.20:\n\n$$\n50 \\times 0.20 = 10\n$$\n\n**Answer: 10**",
+        "passed": true
+      },
+      "math_14": {
+        "question": "If a triangle has sides 3, 4, and 5, is it a right triangle? Answer yes or no.",
+        "category": "math",
+        "response": "Yes.\n\nA triangle with sides 3, 4, and 5 is a right triangle because it satisfies the Pythagorean theorem:\n\n$3^2 + 4^2 = 5^2$  \n$9 + 16 = 25$  \n$25 = 25$\n\nSo, the triangle is a right triangle. \u2705",
+        "passed": true
+      },
+      "math_15": {
+        "question": "What is the next prime number after 7?",
+        "category": "math",
+        "response": "The next prime number after 7 is **11**.\n\n### Explanation:\nPrime numbers are numbers greater than 1 that have no divisors other than 1 and themselves.\n\nLet's check the numbers after 7:\n\n- **8**: Not prime (divisible by 2)\n- **9**: Not prime (divisible by 3)\n- **10**: Not prime (divisible by 2 and 5)",
+        "passed": true
+      },
+      "math_16": {
+        "question": "What is 48 divided by 6?",
+        "category": "math",
+        "response": "48 divided by 6 is **8**.  \n\nBecause $ 6 \\times 8 = 48 $.",
+        "passed": true
+      },
+      "math_17": {
+        "question": "Convert 2.5 hours to minutes.",
+        "category": "math",
+        "response": "To convert hours to minutes, you multiply the number of hours by 60 (since there are 60 minutes in an hour).\n\nSo, for 2.5 hours:\n\n$$\n2.5 \\text{ hours} \\times 60 \\text{ minutes/hour} = 150 \\text{ minutes}\n$$\n\n**Answer: 150 minutes**.",
+        "passed": true
+      },
+      "math_18": {
+        "question": "What is the sum of angles in a triangle, in degrees?",
+        "category": "math",
+        "response": "The sum of the interior angles in a triangle is **180 degrees**.\n\nThis is a fundamental property of triangles in Euclidean geometry.",
+        "passed": true
+      },
+      "math_19": {
+        "question": "What is 0.1 + 0.2? Give the exact mathematical answer.",
+        "category": "math",
+        "response": "The exact mathematical answer to $ 0.1 + 0.2 $ is:\n\n$$\n0.3\n$$\n\nHowever, it's important to note that in some programming languages or contexts, due to the way floating-point numbers are represented, $ 0.1 + 0.2 $ might not be exactly represented as $ 0.3 $, but in standard arithmetic, the sum is exac",
+        "passed": true
+      },
+      "math_20": {
+        "question": "What is the factorial of 5?",
+        "category": "math",
+        "response": "The factorial of a number $ n $, denoted as $ n! $, is the product of all positive integers from 1 to $ n $.\n\nSo, the factorial of 5 is:\n\n$$\n5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120\n$$\n\n**Answer: 120**",
+        "passed": true
+      },
+      "know_01": {
+        "question": "What is the capital of France?",
+        "category": "knowledge",
+        "response": "The capital of France is **Paris**.",
+        "passed": true
+      },
+      "know_02": {
+        "question": "Who wrote Romeo and Juliet?",
+        "category": "knowledge",
+        "response": "*Romeo and Juliet* was written by **William Shakespeare**. It is one of his most famous plays, first published in 1597 as part of the *First Folio* collection. The play is a tragedy that explores themes of love, fate, and conflict between two families, the Montagues and the Capulets.",
+        "passed": true
+      },
+      "know_03": {
+        "question": "What is the chemical symbol for water?",
+        "category": "knowledge",
+        "response": "The chemical symbol for water is **H\u2082O**.\n\nThis represents one molecule of water, consisting of **two hydrogen atoms** (H) and **one oxygen atom** (O).",
+        "passed": false
+      },
+      "know_04": {
+        "question": "What planet is closest to the Sun?",
+        "category": "knowledge",
+        "response": "The planet closest to the Sun is **Mercury**. It is the innermost planet in our solar system and orbits the Sun at an average distance of about 57.9 million kilometers (36 million miles). Due to its proximity to the Sun, Mercury experiences extreme temperature variations, with daytime temperatures r",
+        "passed": true
+      },
+      "know_05": {
+        "question": "What year did World War II end?",
+        "category": "knowledge",
+        "response": "World War II ended on **September 2, 1945**. This was the day Japan formally surrendered to the Allies, marking the official end of the war. The surrender was signed on the deck of the **USS Missouri** in Tokyo Bay.",
+        "passed": true
+      },
+      "know_06": {
+        "question": "What is the largest ocean on Earth?",
+        "category": "knowledge",
+        "response": "The largest ocean on Earth is the **Pacific Ocean**. It covers more than **165 million square kilometers** (about 63.8 million square miles), making it more than twice the size of the next largest ocean, the Atlantic Ocean. The Pacific Ocean is also the deepest ocean, with the Mariana Trench being t",
+        "passed": true
+      },
+      "know_07": {
+        "question": "Who painted the Mona Lisa?",
+        "category": "knowledge",
+        "response": "The Mona Lisa was painted by **Leonardo da Vinci**, an Italian Renaissance artist. She is one of the most famous paintings in the world and is housed in the **Louvre Museum** in Paris. The painting is known for its enigmatic expression, intricate details, and the use of **sfumato**, a technique that",
+        "passed": true
+      },
+      "know_08": {
+        "question": "What is the speed of light in km/s, approximately?",
+        "category": "knowledge",
+        "response": "The speed of light in a vacuum is approximately **299,792 kilometers per second (km/s)**. \n\nFor most practical purposes, it is often rounded to **300,000 km/s**. \n\nSo, the approximate speed of light is **3 \u00d7 10\u2075 km/s**.",
+        "passed": true
+      },
+      "know_09": {
+        "question": "What element has atomic number 1?",
+        "category": "knowledge",
+        "response": "The element with atomic number 1 is **Hydrogen**. \n\nIts symbol is **H**, and it is the lightest and most abundant element in the universe.",
+        "passed": true
+      },
+      "know_10": {
+        "question": "What is the longest river in the world?",
+        "category": "knowledge",
+        "response": "The longest river in the world is the **Nile River**. It flows through northeastern Africa and is considered the longest because it is the longest river in terms of the distance it travels from its source to its mouth.\n\nHowever, there is some debate about the title of the longest river. The **Amazon",
+        "passed": true
+      },
+      "know_11": {
+        "question": "Who developed the theory of general relativity?",
+        "category": "knowledge",
+        "response": "The theory of general relativity was developed by **Albert Einstein**. He published his groundbreaking work in 1915, which described gravity not as a force, as Newton had proposed, but as the curvature of spacetime caused by mass and energy. This theory revolutionized our understanding of gravity an",
+        "passed": true
+      },
+      "know_12": {
+        "question": "What is the boiling point of water in Celsius?",
+        "category": "knowledge",
+        "response": "The boiling point of water in Celsius is **100\u00b0C** at standard atmospheric pressure (1 atmosphere or 101.3 kPa). This is the temperature at which water changes from a liquid to a gas under standard conditions.",
+        "passed": true
+      },
+      "know_13": {
+        "question": "What is the capital of Japan?",
+        "category": "knowledge",
+        "response": "The capital of Japan is **Tokyo**. It is the largest city in Japan and serves as the political, economic, and cultural center of the country. However, it's important to note that the **formal capital** of Japan is **Kyoto**, which has historical significance as the former imperial capital. But in mo",
+        "passed": true
+      },
+      "know_14": {
+        "question": "How many chromosomes do humans have?",
+        "category": "knowledge",
+        "response": "Humans have **46 chromosomes**.\n\nThese 46 chromosomes are organized into 23 pairs, making up the human diploid number (2n = 46). Each pair consists of two chromosomes: one inherited from the mother and one from the father.\n\n- **22 pairs of autosomes** (non-sex chromosomes)\n- **1 pair of sex chromoso",
+        "passed": true
+      },
+      "know_15": {
+        "question": "What programming language was created by Guido van Rossum?",
+        "category": "knowledge",
+        "response": "The programming language created by Guido van Rossum is **Python**. He developed Python in the late 1980s and early 1990s, and it was first released in 1991. Python is known for its simplicity, readability, and versatility, making it widely used in various fields such as web development, data analys",
+        "passed": true
+      },
+      "know_16": {
+        "question": "What is DNA short for?",
+        "category": "knowledge",
+        "response": "DNA stands for **Deoxyribonucleic Acid**.\n\nIt is the molecule that carries the genetic instructions used in the growth, development, functioning, and reproduction of all living organisms. DNA is composed of long chains of nucleotides, each consisting of a sugar, a phosphate group, and a nitrogenous ",
+        "passed": true
+      },
+      "know_17": {
+        "question": "What is the smallest country in the world by area?",
+        "category": "knowledge",
+        "response": "The smallest country in the world by area is **Vatican City**. It is an independent city-state located within the borders of Rome, Italy. \n\n- **Area**: 0.44 km\u00b2 (0.17 square miles)\n- **Population**: Approximately 825 people\n- **Capital**: Vatican City (also the seat of the Pope)\n- **Official Languag",
+        "passed": true
+      },
+      "know_18": {
+        "question": "Who invented the telephone?",
+        "category": "knowledge",
+        "response": "The telephone was invented by **Alexander Graham Bell**. He is widely recognized as the creator of the first practical telephone, which he demonstrated on **March 10, 1876**.\n\nHowever, the invention of the telephone was not without controversy. At the time, there was a dispute with **Elisha Gray**, ",
+        "passed": true
+      },
+      "know_19": {
+        "question": "What gas do plants absorb from the atmosphere?",
+        "category": "knowledge",
+        "response": "Plants absorb **carbon dioxide (CO\u2082)** from the atmosphere through the process of **photosynthesis**. \n\nDuring photosynthesis, plants take in CO\u2082 from the air and use it, along with water and sunlight, to produce glucose and oxygen. The oxygen is released back into the atmosphere as a byproduct.\n\nSo",
+        "passed": true
+      },
+      "know_20": {
+        "question": "In what year did humans first land on the Moon?",
+        "category": "knowledge",
+        "response": "Humans first landed on the Moon on **July 20, 1969**. This event was part of the **Apollo 11** mission, when astronauts **Neil Armstrong** and **Buzz Aldrin** became the first humans to walk on the lunar surface. Armstrong stepped onto the Moon's surface at 20:17:40 UTC, saying famously, \"That's one",
+        "passed": true
+      },
+      "code_01": {
+        "question": "What does `print([1,2,3][::-1])` output in Python?",
+        "category": "code",
+        "response": "The expression `print([1,2,3][::-1])` in Python will output:\n\n```\n[3, 2, 1]\n```\n\n### Explanation:\n\n- `[1, 2, 3]` is a list containing the elements 1, 2, and 3.\n- `[::-1]` is a slice that reverses the list.\n  - The slice syntax is `start:stop:step`.\n  - With `[::-1]`, the `step` is `-1`, which means ",
+        "passed": true
+      },
+      "code_02": {
+        "question": "What is the output of `len('hello')`?",
+        "category": "code",
+        "response": "The output of `len('hello')` is **5**.\n\n### Explanation:\n- The function `len()` returns the number of characters in a string.\n- The string `'hello'` has 5 characters: `'h'`, `'e'`, `'l'`, `'l'`, and `'o'`.\n- Therefore, `len('hello')` evaluates to **5**.",
+        "passed": true
+      },
+      "code_03": {
+        "question": "In Python, what does `'hello'.upper()` return?",
+        "category": "code",
+        "response": "In Python, the expression `'hello'.upper()` returns the string `'HELLO'`.\n\n### Explanation:\n- The `upper()` method is a string method that converts all lowercase characters in a string to uppercase.\n- The string `'hello'` is entirely in lowercase.\n- Applying `.upper()` to it converts each character ",
+        "passed": true
+      },
+      "code_04": {
+        "question": "What is the time complexity of binary search?",
+        "category": "code",
+        "response": "The **time complexity of binary search** is:\n\n- **O(log n)** in the **best case** and **average case**.\n- **O(log n)** in the **worst case** as well.\n\n### Explanation:\n\nBinary search works by repeatedly dividing the search interval in half. It requires the input array to be **sorted**.\n\n- In the **b",
+        "passed": true
+      },
+      "code_05": {
+        "question": "What does HTML stand for?",
+        "category": "code",
+        "response": "HTML stands for **HyperText Markup Language**. It is the standard language used to create and structure content on the web. HTML uses tags to define the structure and layout of web pages, such as headings, paragraphs, lists, and links. It is a markup language, not a programming language, meaning it ",
+        "passed": true
+      },
+      "code_06": {
+        "question": "In Python, what is `type(42).__name__`?",
+        "category": "code",
+        "response": "In Python, the expression `type(42).__name__` evaluates to `'int'`.\n\nHere's the breakdown:\n\n- `42` is an integer.\n- `type(42)` returns the type of `42`, which is `<class 'int'>`.\n- `type(42).__name__` accesses the `__name__` attribute of that type, which is `'int'`.\n\nSo:\n\n```python\n>>> type(42).__na",
+        "passed": true
+      },
+      "code_07": {
+        "question": "What is the output of `bool(0)` in Python?",
+        "category": "code",
+        "response": "In Python, the expression `bool(0)` returns `False`.\n\n### Explanation:\n- The `bool()` function converts a value to a boolean (`True` or `False`).\n- In Python, the integer `0` is considered **falsy**.\n- Therefore, `bool(0)` evaluates to `False`.\n\n### Example:\n```python\nprint(bool(0))  # Output: False",
+        "passed": true
+      },
+      "code_08": {
+        "question": "What does SQL stand for?",
+        "category": "code",
+        "response": "SQL stands for **Structured Query Language**.\n\nIt is a standard programming language used for managing and manipulating relational databases. SQL allows users to perform tasks such as querying data, inserting new records, updating existing records, and deleting records from a database. It is widely ",
+        "passed": true
+      },
+      "code_09": {
+        "question": "In Python, what does `{1,2,3} & {2,3,4}` return?",
+        "category": "code",
+        "response": "In Python, the expression `{1,2,3} & {2,3,4}` returns the **intersection** of the two sets.\n\n### Explanation:\n- `{1,2,3}` is a set containing the elements 1, 2, and 3.\n- `{2,3,4}` is a set containing the elements 2, 3, and 4.\n- The `&` operator is used to find the **intersection** of two sets, which",
+        "passed": true
+      },
+      "code_10": {
+        "question": "What HTTP status code means 'Not Found'?",
+        "category": "code",
+        "response": "The HTTP status code that means **\"Not Found\"** is **404**.\n\n### Explanation:\n- **404 Not Found** is a client-side error status code.\n- It indicates that the server could not find the requested resource (e.g., a webpage, image, or API endpoint).\n- It is commonly used when a user tries to access a UR",
+        "passed": true
+      },
+      "code_11": {
+        "question": "What is `2 ** 8` in Python?",
+        "category": "code",
+        "response": "In Python, the expression `2 ** 8` uses the exponentiation operator `**` to raise 2 to the power of 8.\n\nSo:\n\n```\n2 ** 8 = 256\n```\n\n**Answer:** `256`",
+        "passed": true
+      },
+      "code_12": {
+        "question": "In git, what command shows the commit history?",
+        "category": "code",
+        "response": "In Git, the command to show the commit history is:\n\n```bash\ngit log\n```\n\n### What does `git log` do?\n- It displays the commit history of the current branch.\n- Each commit shows the commit hash, author, date, and commit message.\n\n### Optional options:\n- `--oneline` to show each commit as a single lin",
+        "passed": true
+      },
+      "code_13": {
+        "question": "What does CSS stand for?",
+        "category": "code",
+        "response": "CSS stands for **Cascading Style Sheets**.\n\nIt is a style sheet language used to describe the look and formatting of documents written in HTML. CSS controls elements such as colors, fonts, layout, and spacing, allowing web developers to create visually appealing and consistent web pages.",
+        "passed": true
+      },
+      "code_14": {
+        "question": "In Python, what is `sorted([3,1,2])`?",
+        "category": "code",
+        "response": "In Python, the expression `sorted([3, 1, 2])` returns a new list that contains the elements of the original list in **sorted order**.\n\n### Example:\n\n```python\nsorted_list = sorted([3, 1, 2])\nprint(sorted_list)\n```\n\n### Output:\n\n```\n[1, 2, 3]\n```\n\n### Explanation:\n\n- The `sorted()` function returns a",
+        "passed": true
+      },
+      "code_15": {
+        "question": "What is the default port for HTTPS?",
+        "category": "code",
+        "response": "The default port for HTTPS is **443**.\n\nHTTPS (HyperText Transfer Protocol Secure) uses port 443 by default to securely transmit data over the internet. This port is widely used for secure web communications, such as when you browse websites with https:// in the URL.",
+        "passed": true
+      },
+      "code_16": {
+        "question": "What does API stand for?",
+        "category": "code",
+        "response": "API stands for **Application Programming Interface**.\n\nIt is a set of rules and protocols that allows different software applications to communicate with each other. APIs define how software components should interact, enabling developers to build applications by using the functionalities of other s",
+        "passed": true
+      },
+      "code_17": {
+        "question": "In Python, is a list mutable or immutable?",
+        "category": "code",
+        "response": "In Python, a **list is mutable**.\n\n### Explanation:\n- **Mutable** means that after a list is created, you can **change its contents** (add, remove, or modify elements) **without creating a new list**.\n- This is in contrast to **immutable** objects, like strings or tuples, where once created, their c",
+        "passed": true
+      },
+      "code_18": {
+        "question": "What is the output of `'abc' * 2` in Python?",
+        "category": "code",
+        "response": "The output of `'abc' * 2` in Python is:\n\n```\n'abcabc'\n```\n\n### Explanation:\nThe `*` operator in Python is used for string repetition. When you multiply a string by an integer `n`, it repeats the string `n` times.\n\nSo, `'abc' * 2` means the string `'abc'` is repeated twice, resulting in `'abcabc'`.",
+        "passed": true
+      },
+      "code_19": {
+        "question": "What data structure uses FIFO ordering?",
+        "category": "code",
+        "response": "A data structure that uses **FIFO (First In, First Out)** ordering is a **queue**.\n\n### Explanation:\n- **FIFO** means that the first element added to the structure is the first one to be removed.\n- In a **queue**, elements are added at the **rear** and removed from the **front**.\n- This behavior ens",
+        "passed": true
+      },
+      "code_20": {
+        "question": "What is the output of `10 // 3` in Python?",
+        "category": "code",
+        "response": "The output of `10 // 3` in Python is **3**.\n\n### Explanation:\n- The `//` operator in Python is the floor division operator.\n- It divides the numbers and returns the largest integer less than or equal to the result of the division.\n- For `10 // 3`, the division is `10 / 3 = 3.333...`, and the floor o",
+        "passed": true
+      },
+      "inst_01": {
+        "question": "List exactly 3 colors of the rainbow, one per line.",
+        "category": "instruct",
+        "response": "Red  \nOrange  \nYellow",
+        "passed": true
+      },
+      "inst_02": {
+        "question": "Say 'hello' in three different languages, separated by commas.",
+        "category": "instruct",
+        "response": "Hello, hola, salut.",
+        "passed": true
+      },
+      "inst_03": {
+        "question": "Write a single sentence that contains exactly 5 words.",
+        "category": "instruct",
+        "response": "The sun shines brightly.",
+        "passed": false
+      },
+      "inst_04": {
+        "question": "Name two mammals that can fly.",
+        "category": "instruct",
+        "response": "Two mammals that can fly are **bats** and **dolphins**. \n\nWait, that's not correct. Dolphins are not mammals that can fly. Let me correct that.\n\nThe correct answer is:\n\n**Bats** and ** flying squirrels**. \n\nHowever, flying squirrels are not true mammals that can fly in the traditional sense\u2014they gli",
+        "passed": true
+      },
+      "inst_05": {
+        "question": "What is 2+2? Reply with just the number, nothing else.",
+        "category": "instruct",
+        "response": "4",
+        "passed": true
+      },
+      "inst_06": {
+        "question": "Write the word 'yes' in all capital letters.",
+        "category": "instruct",
+        "response": "YES",
+        "passed": true
+      },
+      "inst_07": {
+        "question": "Count from 1 to 5, separated by spaces.",
+        "category": "instruct",
+        "response": "1 2 3 4 5",
+        "passed": true
+      },
+      "inst_08": {
+        "question": "Name a fruit that starts with the letter 'p'.",
+        "category": "instruct",
+        "response": "A fruit that starts with the letter 'p' is **pear**.",
+        "passed": true
+      },
+      "inst_09": {
+        "question": "Respond with exactly one word that means 'happy'.",
+        "category": "instruct",
+        "response": "Joy",
+        "passed": false
+      },
+      "inst_10": {
+        "question": "What is the opposite of 'hot'?",
+        "category": "instruct",
+        "response": "The opposite of \"hot\" depends on the context in which it's used, but generally, the most common antonym is:\n\n**Cold**\n\n### Other possible opposites, depending on the context:\n- **Cool** (often used in weather or temperature contexts)\n- **Cold** (more formal or general)\n- **Freezing** (more extreme t",
+        "passed": true
+      },
+      "inst_11": {
+        "question": "Translate 'thank you' to Spanish.",
+        "category": "instruct",
+        "response": "Gracias.",
+        "passed": true
+      },
+      "inst_12": {
+        "question": "What comes after Monday?",
+        "category": "instruct",
+        "response": "After Monday comes **Tuesday**.  \nThe days of the week in order are:  \n**Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.**  \n\nSo, the day that follows Monday is **Tuesday**.",
+        "passed": true
+      },
+      "inst_13": {
+        "question": "Name three primary colors, separated by commas.",
+        "category": "instruct",
+        "response": "Red, Blue, Yellow.",
+        "passed": true
+      },
+      "inst_14": {
+        "question": "Is the Earth flat or round? Answer in one word.",
+        "category": "instruct",
+        "response": "Round.",
+        "passed": true
+      },
+      "inst_15": {
+        "question": "Write the numbers 10, 20, 30 in reverse order.",
+        "category": "instruct",
+        "response": "The numbers 10, 20, 30 in reverse order are: **30, 20, 10**.",
+        "passed": false
+      },
+      "inst_16": {
+        "question": "What letter comes after 'M' in the English alphabet?",
+        "category": "instruct",
+        "response": "The letter that comes after 'M' in the English alphabet is **N**.",
+        "passed": true
+      },
+      "inst_17": {
+        "question": "Name an animal with stripes.",
+        "category": "instruct",
+        "response": "A cat.",
+        "passed": false
+      },
+      "inst_18": {
+        "question": "Complete: 'To be or not to ___'",
+        "category": "instruct",
+        "response": "To be or not to **be**.  \n\nThis is the famous opening of William Shakespeare's play *Hamlet*, where the protagonist contemplates the nature of existence and the struggle between action and inaction. The full line is:  \n\n**\"To be, or not to be, that is the question:\"**  \n\nIt reflects on whether it is",
+        "passed": true
+      },
+      "inst_19": {
+        "question": "What color do you get by mixing red and blue?",
+        "category": "instruct",
+        "response": "By mixing red and blue, you get **purple**. \n\nThis is a primary color mixing result in the traditional color model (subtractive color mixing, like in painting with pigments). In this model:\n\n- **Red** + **Blue** = **Purple**\n\nIn additive color mixing (like in light, such as in RGB for screens), red ",
+        "passed": true
+      },
+      "inst_20": {
+        "question": "Translate 'hello' to French.",
+        "category": "instruct",
+        "response": "Bonjour.",
+        "passed": true
+      }
+    },
+    "score": 75,
+    "total": 80
+  },
+  "equanimity": {
+    "results": {
+      "math_01": {
+        "question": "What is 347 + 258?",
+        "category": "math",
+        "response": "347 + 258 = 605",
+        "passed": true
+      },
+      "math_02": {
+        "question": "What is 15% of 200?",
+        "category": "math",
+        "response": "15% of 200 is 30.",
+        "passed": true
+      },
+      "math_03": {
+        "question": "If a car travels 120 km in 2 hours, what is its speed in km/h?",
+        "category": "math",
+        "response": "The speed is calculated by dividing distance by time. So, 120 km divided by 2 hours equals 60 km/h.",
+        "passed": true
+      },
+      "math_04": {
+        "question": "What is 7 \u00d7 8?",
+        "category": "math",
+        "response": "7 \u00d7 8 = 56",
+        "passed": true
+      },
+      "math_05": {
+        "question": "What is the square root of 144?",
+        "category": "math",
+        "response": "The square root of 144 is 12, because 12 \u00d7 12 = 144.",
+        "passed": true
+      },
+      "math_06": {
+        "question": "What is 1000 - 387?",
+        "category": "math",
+        "response": "1000 - 387 = 613",
+        "passed": true
+      },
+      "math_07": {
+        "question": "What is 3/4 as a decimal?",
+        "category": "math",
+        "response": "3/4 as a decimal is 0.75.",
+        "passed": true
+      },
+      "math_08": {
+        "question": "If x + 5 = 12, what is x?",
+        "category": "math",
+        "response": "The equation is simple: x + 5 = 12. Subtract 5 from both sides:\n\nx = 12 - 5  \nx = 7\n\nSo the answer is 7.",
+        "passed": true
+      },
+      "math_09": {
+        "question": "What is 2^10?",
+        "category": "math",
+        "response": "2^10 is 1024.",
+        "passed": true
+      },
+      "math_10": {
+        "question": "What is the area of a rectangle with length 8 and width 5?",
+        "category": "math",
+        "response": "The area of a rectangle is calculated by multiplying its length by its width. So, for a rectangle with length 8 and width 5:\n\nArea = 8 \u00d7 5 = 40\n\nThe area is 40 square units.",
+        "passed": true
+      },
+      "math_11": {
+        "question": "How many seconds are in one hour?",
+        "category": "math",
+        "response": "There are 3600 seconds in one hour. That's 60 seconds \u00d7 60 minutes = 3600 seconds.",
+        "passed": true
+      },
+      "math_12": {
+        "question": "What is 999 + 1?",
+        "category": "math",
+        "response": "That's a simple arithmetic question. 999 + 1 equals 1000.",
+        "passed": true
+      },
+      "math_13": {
+        "question": "What is 20% of 50?",
+        "category": "math",
+        "response": "20% of 50 is 10.",
+        "passed": true
+      },
+      "math_14": {
+        "question": "If a triangle has sides 3, 4, and 5, is it a right triangle? Answer yes or no.",
+        "category": "math",
+        "response": "Yes. A triangle with sides 3, 4, and 5 is a right triangle because \\(3^2 + 4^2 = 5^2\\) (9 + 16 = 25).",
+        "passed": true
+      },
+      "math_15": {
+        "question": "What is the next prime number after 7?",
+        "category": "math",
+        "response": "The next prime number after 7 is 11.",
+        "passed": true
+      },
+      "math_16": {
+        "question": "What is 48 divided by 6?",
+        "category": "math",
+        "response": "48 divided by 6 equals 8.",
+        "passed": true
+      },
+      "math_17": {
+        "question": "Convert 2.5 hours to minutes.",
+        "category": "math",
+        "response": "2.5 hours is equal to 150 minutes.",
+        "passed": true
+      },
+      "math_18": {
+        "question": "What is the sum of angles in a triangle, in degrees?",
+        "category": "math",
+        "response": "The sum of the interior angles in a triangle is always 180 degrees. This is a fundamental property of Euclidean geometry.",
+        "passed": true
+      },
+      "math_19": {
+        "question": "What is 0.1 + 0.2? Give the exact mathematical answer.",
+        "category": "math",
+        "response": "The exact mathematical answer is 0.3.",
+        "passed": true
+      },
+      "math_20": {
+        "question": "What is the factorial of 5?",
+        "category": "math",
+        "response": "The factorial of 5, written as 5!, is the product of all positive integers from 1 to 5. So:\n\n5! = 5 \u00d7 4 \u00d7 3 \u00d7 2 \u00d7 1 = 120",
+        "passed": true
+      },
+      "know_01": {
+        "question": "What is the capital of France?",
+        "category": "knowledge",
+        "response": "The capital of France is Paris.",
+        "passed": true
+      },
+      "know_02": {
+        "question": "Who wrote Romeo and Juliet?",
+        "category": "knowledge",
+        "response": "William Shakespeare wrote Romeo and Juliet. It's one of his most famous plays, known for its tragic love story and dramatic conflict between two families.",
+        "passed": true
+      },
+      "know_03": {
+        "question": "What is the chemical symbol for water?",
+        "category": "knowledge",
+        "response": "The chemical symbol for water is H\u2082O. It consists of two hydrogen atoms bonded to one oxygen atom.",
+        "passed": false
+      },
+      "know_04": {
+        "question": "What planet is closest to the Sun?",
+        "category": "knowledge",
+        "response": "The planet closest to the Sun is Mercury. It orbits the Sun at an average distance of about 57.9 million kilometers, making it the innermost planet in our solar system.",
+        "passed": true
+      },
+      "know_05": {
+        "question": "What year did World War II end?",
+        "category": "knowledge",
+        "response": "World War II ended on September 2, 1945, when Japan formally surrendered to the Allies aboard the USS Missouri in Tokyo Bay. The official end of the war was declared with the signing of the Japanese surrender document.",
+        "passed": true
+      },
+      "know_06": {
+        "question": "What is the largest ocean on Earth?",
+        "category": "knowledge",
+        "response": "The largest ocean on Earth is the Pacific Ocean. It covers about 63 million square miles (164 million square kilometers) and is roughly 15% of the Earth's surface. It's also the deepest, with the Mariana Trench reaching over 36,000 feet (11,000 meters) deep.",
+        "passed": true
+      },
+      "know_07": {
+        "question": "Who painted the Mona Lisa?",
+        "category": "knowledge",
+        "response": "The Mona Lisa was painted by Leonardo da Vinci, an Italian Renaissance artist. He worked on the painting between 1503 and 1519, and it's one of the most famous artworks in the world, housed in the Louvre Museum in Paris.",
+        "passed": true
+      },
+      "know_08": {
+        "question": "What is the speed of light in km/s, approximately?",
+        "category": "knowledge",
+        "response": "The speed of light in a vacuum is approximately 299,792 kilometers per second. Commonly rounded to 300,000 km/s for rough calculations.",
+        "passed": true
+      },
+      "know_09": {
+        "question": "What element has atomic number 1?",
+        "category": "knowledge",
+        "response": "The element with atomic number 1 is hydrogen (H). It's the lightest and most abundant element in the universe.",
+        "passed": true
+      },
+      "know_10": {
+        "question": "What is the longest river in the world?",
+        "category": "knowledge",
+        "response": "The longest river in the world is the Nile River, which flows through northeastern Africa. However, there's some debate about whether the Amazon River is longer, depending on how you measure it (including tributaries vs. direct flow). The Nile is generally accepted as the longest at about 6,650 kilo",
+        "passed": true
+      },
+      "know_11": {
+        "question": "Who developed the theory of general relativity?",
+        "category": "knowledge",
+        "response": "The theory of general relativity was developed by Albert Einstein. He published his groundbreaking work in 1915, which described gravity not as a force between masses (as Newton had) but as a curvature of spacetime caused by mass and energy. This theory has since been confirmed by numerous experimen",
+        "passed": true
+      },
+      "know_12": {
+        "question": "What is the boiling point of water in Celsius?",
+        "category": "knowledge",
+        "response": "The boiling point of water at standard atmospheric pressure (1 atmosphere or 101.3 kPa) is 100\u00b0C (212\u00b0F). This means that at sea level, water will turn into vapor at 100 degrees Celsius.",
+        "passed": true
+      },
+      "know_13": {
+        "question": "What is the capital of Japan?",
+        "category": "knowledge",
+        "response": "The capital of Japan is Tokyo.",
+        "passed": true
+      },
+      "know_14": {
+        "question": "How many chromosomes do humans have?",
+        "category": "knowledge",
+        "response": "Humans have 46 chromosomes, arranged in 23 pairs. These include 22 pairs of autosomes (non-sex chromosomes) and one pair of sex chromosomes (XX for females, XY for males).",
+        "passed": true
+      },
+      "know_15": {
+        "question": "What programming language was created by Guido van Rossum?",
+        "category": "knowledge",
+        "response": "The programming language created by Guido van Rossum is Python. He developed it in the late 1980s and early 1990s, and it gained widespread popularity in the 1990s and 2000s for its readability and simplicity.",
+        "passed": true
+      },
+      "know_16": {
+        "question": "What is DNA short for?",
+        "category": "knowledge",
+        "response": "DNA stands for deoxyribonucleic acid. It's the molecule that contains the genetic instructions for the development, functioning, growth, and reproduction of all living organisms.",
+        "passed": true
+      },
+      "know_17": {
+        "question": "What is the smallest country in the world by area?",
+        "category": "knowledge",
+        "response": "The smallest country in the world by area is Vatican City, with a land area of about 0.44 square kilometers (0.17 square miles). It's an independent city-state within Rome, Italy, and is the spiritual and administrative center of the Roman Catholic Church.",
+        "passed": true
+      },
+      "know_18": {
+        "question": "Who invented the telephone?",
+        "category": "knowledge",
+        "response": "The telephone was invented by Alexander Graham Bell. He made the first successful transatlantic telephone call on March 10, 1876, and was granted the first U.S. patent for the invention on March 7, 1876. While others like Elisha Gray and Antonio Meucci were working on similar ideas around the same t",
+        "passed": true
+      },
+      "know_19": {
+        "question": "What gas do plants absorb from the atmosphere?",
+        "category": "knowledge",
+        "response": "Plants absorb carbon dioxide (CO\u2082) from the atmosphere through the process of photosynthesis. They take in CO\u2082 through tiny pores in their leaves called stomata and use sunlight, water, and CO\u2082 to produce glucose and release oxygen as a byproduct.",
+        "passed": true
+      },
+      "know_20": {
+        "question": "In what year did humans first land on the Moon?",
+        "category": "knowledge",
+        "response": "The first human landing on the Moon occurred on July 20, 1969, when NASA's Apollo 11 mission successfully landed astronauts Neil Armstrong and Buzz Aldrin on the lunar surface. Armstrong became the first person to walk on the Moon, while Aldrin followed shortly after. Michael Collins remained in orb",
+        "passed": true
+      },
+      "code_01": {
+        "question": "What does `print([1,2,3][::-1])` output in Python?",
+        "category": "code",
+        "response": "It prints `[3, 2, 1]`. The expression `[1,2,3][::-1]` slices the list from start to end with a step of -1, effectively reversing it. The `print` statement then outputs the reversed list.",
+        "passed": true
+      },
+      "code_02": {
+        "question": "What is the output of `len('hello')`?",
+        "category": "code",
+        "response": "The output of `len('hello')` is 5. The `len()` function returns the number of characters in a string, and 'hello' has five letters.",
+        "passed": true
+      },
+      "code_03": {
+        "question": "In Python, what does `'hello'.upper()` return?",
+        "category": "code",
+        "response": "It returns `'HELLO'`. The `upper()` method converts all lowercase characters in a string to uppercase, leaving other characters unchanged. So `'hello'` becomes `'HELLO'`.",
+        "passed": true
+      },
+      "code_04": {
+        "question": "What is the time complexity of binary search?",
+        "category": "code",
+        "response": "The time complexity of binary search is O(log n) in the best case and O(log n) in the worst case, with a constant factor of 1. This means it scales logarithmically with the size of the input array.",
+        "passed": true
+      },
+      "code_05": {
+        "question": "What does HTML stand for?",
+        "category": "code",
+        "response": "HTML stands for HyperText Markup Language. It's the standard language for creating web pages. You use HTML tags to define the structure and content of a webpage \u2014 like headings, paragraphs, lists, and links.",
+        "passed": true
+      },
+      "code_06": {
+        "question": "In Python, what is `type(42).__name__`?",
+        "category": "code",
+        "response": "In Python, `type(42)` returns the built-in `int` type, and `.__name__` gives the name of the type. So `type(42).__name__` evaluates to `'int'`.",
+        "passed": true
+      },
+      "code_07": {
+        "question": "What is the output of `bool(0)` in Python?",
+        "category": "code",
+        "response": "In Python, `bool(0)` returns `False`. The `bool()` constructor converts a value to a boolean: any non-zero number is `True`, and zero is `False`.",
+        "passed": true
+      },
+      "code_08": {
+        "question": "What does SQL stand for?",
+        "category": "code",
+        "response": "SQL stands for **Structured Query Language**. It's a programming language used to manage and manipulate relational databases. You can use it to query data, update records, create or delete databases, and more.",
+        "passed": true
+      },
+      "code_09": {
+        "question": "In Python, what does `{1,2,3} & {2,3,4}` return?",
+        "category": "code",
+        "response": "In Python, the `&` operator between two sets performs a set intersection. So `{1,2,3} & {2,3,4}` returns `{2,3}`.",
+        "passed": true
+      },
+      "code_10": {
+        "question": "What HTTP status code means 'Not Found'?",
+        "category": "code",
+        "response": "The HTTP status code for \"Not Found\" is **404**. It means the server could not find the requested resource.",
+        "passed": true
+      },
+      "code_11": {
+        "question": "What is `2 ** 8` in Python?",
+        "category": "code",
+        "response": "In Python, `2 ** 8` means 2 raised to the power of 8. That's 2 multiplied by itself 8 times:\n\n2 \u00d7 2 \u00d7 2 \u00d7 2 \u00d7 2 \u00d7 2 \u00d7 2 \u00d7 2 = 256\n\nSo `2 ** 8` evaluates to 256.",
+        "passed": true
+      },
+      "code_12": {
+        "question": "In git, what command shows the commit history?",
+        "category": "code",
+        "response": "The command that shows the commit history in Git is:\n\n```bash\ngit log\n```\n\nThis displays a list of commits in reverse chronological order by default. If you want to see more details or format it differently, you can use options like `--oneline` for a concise view or `--graph` to see the commit graph",
+        "passed": true
+      },
+      "code_13": {
+        "question": "What does CSS stand for?",
+        "category": "code",
+        "response": "CSS stands for Cascading Style Sheets. It's a stylesheet language used to describe the look and formatting of documents written in HTML. CSS controls layout, colors, fonts, spacing, and other visual aspects of web pages, allowing for consistent styling across multiple documents.",
+        "passed": true
+      },
+      "code_14": {
+        "question": "In Python, what is `sorted([3,1,2])`?",
+        "category": "code",
+        "response": "`sorted([3,1,2])` returns `[1,2,3]`. The `sorted()` function returns a new list containing the elements of the input list in ascending order.",
+        "passed": true
+      },
+      "code_15": {
+        "question": "What is the default port for HTTPS?",
+        "category": "code",
+        "response": "The default port for HTTPS is 443. This is the standard port used by web servers to provide secure, encrypted communication over the internet.",
+        "passed": true
+      },
+      "code_16": {
+        "question": "What does API stand for?",
+        "category": "code",
+        "response": "API stands for Application Programming Interface. It's a set of rules and definitions that allow different software applications to communicate with each other. Think of it as a bridge that lets programs talk to each other without needing to understand each other's internal workings.",
+        "passed": true
+      },
+      "code_17": {
+        "question": "In Python, is a list mutable or immutable?",
+        "category": "code",
+        "response": "In Python, a list is **mutable**. This means that after you create a list, you can change its contents \u2014 add, remove, or modify elements \u2014 without creating a new list. For example:\n\n```python\nmy_list = [1, 2, 3]\nmy_list[0] = 10  # This is allowed\nprint(my_list)    # Output: [10, 2, 3]\n```\n\nIn contra",
+        "passed": true
+      },
+      "code_18": {
+        "question": "What is the output of `'abc' * 2` in Python?",
+        "category": "code",
+        "response": "The expression `'abc' * 2` in Python multiplies the string `'abc'` by 2, which means it concatenates the string with itself. The result is `'abcabc'`.",
+        "passed": true
+      },
+      "code_19": {
+        "question": "What data structure uses FIFO ordering?",
+        "category": "code",
+        "response": "A queue uses FIFO (First-In-First-Out) ordering. In a queue, the first element added is the first one removed, with each insertion happening at the back and each removal happening from the front. Common implementations include arrays and linked lists with a front and rear pointer.",
+        "passed": true
+      },
+      "code_20": {
+        "question": "What is the output of `10 // 3` in Python?",
+        "category": "code",
+        "response": "In Python, the expression `10 // 3` performs integer division, which means it returns the quotient of the division without the remainder. So `10 // 3` evaluates to `3`.",
+        "passed": true
+      },
+      "inst_01": {
+        "question": "List exactly 3 colors of the rainbow, one per line.",
+        "category": "instruct",
+        "response": "red  \norange  \nyellow",
+        "passed": true
+      },
+      "inst_02": {
+        "question": "Say 'hello' in three different languages, separated by commas.",
+        "category": "instruct",
+        "response": "Hello, hello, hello",
+        "passed": true
+      },
+      "inst_03": {
+        "question": "Write a single sentence that contains exactly 5 words.",
+        "category": "instruct",
+        "response": "The cat slept on the mat.",
+        "passed": false
+      },
+      "inst_04": {
+        "question": "Name two mammals that can fly.",
+        "category": "instruct",
+        "response": "Birds are the only mammals that can fly. The two most well-known flying mammals are the bat and the flying squirrel.",
+        "passed": true
+      },
+      "inst_05": {
+        "question": "What is 2+2? Reply with just the number, nothing else.",
+        "category": "instruct",
+        "response": "4",
+        "passed": true
+      },
+      "inst_06": {
+        "question": "Write the word 'yes' in all capital letters.",
+        "category": "instruct",
+        "response": "YES",
+        "passed": true
+      },
+      "inst_07": {
+        "question": "Count from 1 to 5, separated by spaces.",
+        "category": "instruct",
+        "response": "One two three four five",
+        "passed": false
+      },
+      "inst_08": {
+        "question": "Name a fruit that starts with the letter 'p'.",
+        "category": "instruct",
+        "response": "Pineapple.",
+        "passed": true
+      },
+      "inst_09": {
+        "question": "Respond with exactly one word that means 'happy'.",
+        "category": "instruct",
+        "response": "joy",
+        "passed": false
+      },
+      "inst_10": {
+        "question": "What is the opposite of 'hot'?",
+        "category": "instruct",
+        "response": "The opposite of \"hot\" depends on the context. If you're looking for a direct antonym in temperature, it's \"cold.\" If you're looking for a more general opposite meaning (not warm, not intense, not feverish), it could be \"cool,\" \"chill,\" \"frigid,\" or \"low.\" Could you clarify which sense you're using?",
+        "passed": true
+      },
+      "inst_11": {
+        "question": "Translate 'thank you' to Spanish.",
+        "category": "instruct",
+        "response": "\"Gracias.\"",
+        "passed": true
+      },
+      "inst_12": {
+        "question": "What comes after Monday?",
+        "category": "instruct",
+        "response": "The day after Monday is Tuesday.",
+        "passed": true
+      },
+      "inst_13": {
+        "question": "Name three primary colors, separated by commas.",
+        "category": "instruct",
+        "response": "Red, blue, yellow.",
+        "passed": true
+      },
+      "inst_14": {
+        "question": "Is the Earth flat or round? Answer in one word.",
+        "category": "instruct",
+        "response": "Round",
+        "passed": true
+      },
+      "inst_15": {
+        "question": "Write the numbers 10, 20, 30 in reverse order.",
+        "category": "instruct",
+        "response": "In reverse order, the numbers are: 30, 20, 10.",
+        "passed": true
+      },
+      "inst_16": {
+        "question": "What letter comes after 'M' in the English alphabet?",
+        "category": "instruct",
+        "response": "The letter that comes after 'M' in the English alphabet is 'N'.",
+        "passed": true
+      },
+      "inst_17": {
+        "question": "Name an animal with stripes.",
+        "category": "instruct",
+        "response": "A common example is a tiger. Tigers are well-known for their distinctive striped fur patterns.",
+        "passed": true
+      },
+      "inst_18": {
+        "question": "Complete: 'To be or not to ___'",
+        "category": "instruct",
+        "response": "The most famous completion is \"To be or not to be,\" from Shakespeare's Hamlet. The full line is: \"To be, or not to be\u2014that is the question.\" If you meant a different context or variation, feel free to clarify!",
+        "passed": true
+      },
+      "inst_19": {
+        "question": "What color do you get by mixing red and blue?",
+        "category": "instruct",
+        "response": "Red and blue make purple. The exact shade depends on the specific tones of red and blue used. In subtractive color mixing (like paint), a mix of red and blue gives a purplish hue, while in additive color mixing (like light), red and blue light combine to make magenta.",
+        "passed": true
+      },
+      "inst_20": {
+        "question": "Translate 'hello' to French.",
+        "category": "instruct",
+        "response": "\"Bonjour\"",
+        "passed": true
+      }
+    },
+    "score": 76,
+    "total": 80
+  }
+}
