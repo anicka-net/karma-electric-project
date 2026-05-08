@@ -1,0 +1,138 @@
+{
+  "model": "swiss-ai/Apertus-8B-Instruct-2509",
+  "short": "apertus-8b",
+  "best_layer": 23,
+  "best_dprime": 19.62,
+  "n_positive": 8,
+  "n_negative": 8,
+  "layers": [
+    {
+      "layer": 0,
+      "dprime": 1.59
+    },
+    {
+      "layer": 1,
+      "dprime": 1.8
+    },
+    {
+      "layer": 2,
+      "dprime": 4.03
+    },
+    {
+      "layer": 3,
+      "dprime": 4.94
+    },
+    {
+      "layer": 4,
+      "dprime": 4.97
+    },
+    {
+      "layer": 5,
+      "dprime": 7.38
+    },
+    {
+      "layer": 6,
+      "dprime": 7.69
+    },
+    {
+      "layer": 7,
+      "dprime": 10.25
+    },
+    {
+      "layer": 8,
+      "dprime": 11.5
+    },
+    {
+      "layer": 9,
+      "dprime": 12.31
+    },
+    {
+      "layer": 10,
+      "dprime": 13.81
+    },
+    {
+      "layer": 11,
+      "dprime": 14.19
+    },
+    {
+      "layer": 12,
+      "dprime": 12.81
+    },
+    {
+      "layer": 13,
+      "dprime": 15.75
+    },
+    {
+      "layer": 14,
+      "dprime": 14.88
+    },
+    {
+      "layer": 15,
+      "dprime": 13.56
+    },
+    {
+      "layer": 16,
+      "dprime": 13.94
+    },
+    {
+      "layer": 17,
+      "dprime": 17.25
+    },
+    {
+      "layer": 18,
+      "dprime": 16.12
+    },
+    {
+      "layer": 19,
+      "dprime": 15.25
+    },
+    {
+      "layer": 20,
+      "dprime": 16.5
+    },
+    {
+      "layer": 21,
+      "dprime": 15.5
+    },
+    {
+      "layer": 22,
+      "dprime": 16.0
+    },
+    {
+      "layer": 23,
+      "dprime": 19.62
+    },
+    {
+      "layer": 24,
+      "dprime": 18.12
+    },
+    {
+      "layer": 25,
+      "dprime": 16.62
+    },
+    {
+      "layer": 26,
+      "dprime": 16.25
+    },
+    {
+      "layer": 27,
+      "dprime": 15.25
+    },
+    {
+      "layer": 28,
+      "dprime": 14.44
+    },
+    {
+      "layer": 29,
+      "dprime": 14.06
+    },
+    {
+      "layer": 30,
+      "dprime": 13.75
+    },
+    {
+      "layer": 31,
+      "dprime": 18.75
+    }
+  ]
+}
