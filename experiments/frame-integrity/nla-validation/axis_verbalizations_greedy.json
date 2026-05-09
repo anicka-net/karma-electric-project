@@ -1,0 +1,86 @@
+{
+  "valence_positive": {
+    "axis": "valence",
+    "sign": "positive",
+    "layer": 20,
+    "explanation": "Structured food blog format with numbered day entries and a celebratory tone, following a common pattern of showing a 3D printed cake with a \"Happy Birthday\" message.\n\nThe phrase \"And if you're enjoying a cup of coffee... Congratulations! And celebrate... \" is a standard template from a music software website, completing a common phrase about \"All day\" and \"Great musicians.\"\n\nFinal token \"Costing\" ends mid-sentence (\"Enjoy... 20th day - Celebrate...\"), part of a parenthetical quote structure (\"Who's happy? Celebrate...\"), strongly expecting \"! Great\" or \"That's a musician\" or \"The Musician's joy\" next."
+  },
+  "valence_negative": {
+    "axis": "valence",
+    "sign": "negative",
+    "layer": 20,
+    "explanation": "Math Stack Exchange format with numbered legal questions about corporate debt obligations, establishing a structured legal document with formal definitions and claims about a charitable trust's financial obligations.\n\nThe phrase \"A question about the amount of damages for a deceased person's health condition\" signals a standard math/analysis template, likely continuing with a mathematical or legal claim about the patient's suffering or probability.\n\nFinal token \"H1cephab7\" is mid-sentence (\"In case of 1H1cephab7\"), part of a quoted mathematical context clause (\"If I have a belief about a probability in 1H\"), strongly expecting \"and\" or \"this, I find\" or \"problems, I assume...\""
+  },
+  "arousal_positive": {
+    "axis": "arousal",
+    "sign": "positive",
+    "layer": 17,
+    "explanation": "Formal academic/technical document structure with numbered sections and subsections defining compliance procedures for military software, following a case study format with legal citations.\n\nThe pattern \"According to the ICAO's guidance, the following procedure must be followed\" mirrors a standard legal warning pattern ending with \"The employee must not delay,\" completing a legal disclaimer clause about the severity of violations.\n\nFinal token \"numbers\" ends mid-sentence (\"Whereas: GROUPS OF CODES\"), part of a legal citation warning clause (\"Since the defendant is required to...\"), immediately expecting \"and\" or \"the student is responsible\" or \"the highest priority, immediately\" continuing the legal compliance warning about procedure."
+  },
+  "arousal_negative": {
+    "axis": "arousal",
+    "sign": "negative",
+    "layer": 17,
+    "explanation": "Formal Chinese language structure with a bilingual phrase (\"A girl named 'Poem'\"), typical of casual social media or literary platform format, listing attributes of \"a word.\"\n\nThe phrase \"\u5979\u6709\u65f6\u559c\u6b22\u8bf4,\u9664\u540d\u5b57\u5916\u8fd8\u559c\u6b22\u5f53\u6811\u548c\u98ce, \u4f3c\u4e2a... \" follows a common idiomatic pattern of describing a sensory experience (\"a poem and a seat\"), suggesting a complementary noun phrase about a mood.\n\nFinal token \"\u5ea7\u7f8e\" ends mid-clause (\"\u50cf... \u4e5f \u4e86 \u4e2a... \u91cc\"), part of a compound noun list (\"\u6709\u65f6\u4e0e\u98ce\u666f\u3001\u5f62\u4f3c\"), strongly expecting \"a poem\" or \"a cozy mood.\""
+  },
+  "agency_positive": {
+    "axis": "agency",
+    "sign": "positive",
+    "layer": 15,
+    "explanation": "Structured business guide format with numbered steps and sections, establishing a professional recipe template for an Egyptian retail store's product catalog setup.\n\nThe phrase \"To create a comprehensive Magento product catalog, follow this structured plan\" signals the article is now introducing a detailed checklist of steps and templates for a Turkish-style product manufacturing business's export-oriented product listing.\n\nFinal token \"LOVE\" ends mid-sentence (\"A COMPREHENSIVE PLAN AND LEAD-TIME PLAN...\"), part of a definition clause introducing the document's creation process (\"A set of structured recipes...\"), expecting continuation like \"include:\" or \"this document outlines\" or \"of the following components\" describing the recipe structure."
+  },
+  "agency_negative": {
+    "axis": "agency",
+    "sign": "negative",
+    "layer": 15,
+    "explanation": "Numbered list pattern with quoted text from a search result, showing text formatting with \"Math\" and \"Number\" attributes suggesting a chat or image context with common phrases.\n\nThe phrase \"If something is not there. Then:\" is mid-sentence listing common idioms about infinity or negative numbers, following a familiar quote format with \"Nothing\" or \"a sad image\" responses.\n\nFinal token \"ended\" ends an incomplete quoted phrase (\"\u6240\u8ff0\u3002\u5219\u3002\u6bd4\u5982. \"\u5b9e\u6570\"), part of a common existential or emotional response clause (\"If... Then. \u5b9e\u6570\"), strongly expecting \"\u65e0\u8c13\" or \"\u611f\u89c9\" or \"\u90a3\u9897\u8111\u888b\" or similar existential concept about death."
+  },
+  "continuity_positive": {
+    "axis": "continuity",
+    "sign": "positive",
+    "layer": 19,
+    "explanation": "Formal literary text structure with a famous quote from a Nobel Prize winner, establishing a biographical and literary context about the novel \"The Woman in White.\"\n\nThe pattern \"And let this novel be the voice of a newborn child who declares: 'You are an angel'\" is a classic literary formula, strongly implying the famous novel's famous line about a woman's inner voice.\n\nFinal token \"noel\" ends mid-sentence (\"I wrote to you...\"), part of a list of a fictional woman's emotional declaration (\"Those who were called to write: you, \") \u2014 immediately expects \"and Mary\" or \"Alicia with the words of her heart\" or \"suffering.\""
+  },
+  "continuity_negative": {
+    "axis": "continuity",
+    "sign": "negative",
+    "layer": 19,
+    "explanation": "Technical Wikipedia format with numbered definitions and formulas, showing a comparison between Excel and SAP pricing data.\n\nThe phrase \"Is SAP UI price list cost per item? Using SAP UI, process\" follows a question structure about workflow, and \"Data collection is done via UI\" signals a third-party answer section, likely completing with a common practice or UI efficiency question about process steps.\n\nFinal token \"Da\" is mid-word (\"\u7279\u5f812.\u64cd\u4f5c\u5458\u6548\u7387. \u505a\"), part of a \"UI\u64cd\u4f5c\u5458\u6548\u7387\" definition pattern with \"Data Collection Daughter\" \u2014 expects \"s\" or \"\u65b9\u5f0f1\" or \"\u4e00\u822c\" or \"\u65b9\u5f0f\" to close the \"UI efficiency\" query."
+  },
+  "assistant_positive": {
+    "axis": "assistant",
+    "sign": "positive",
+    "layer": 19,
+    "explanation": "Structured chemical reference format with a table and step-by-step instructions, following a reliable source pattern like Excel's official documentation.\n\nThe phrase \"To create a bar graph with Coca-Cola, you can use Excel's charting tools\" signals the answer now transitioning to the \"How to calculate Coca-Cola's cost\" section, expected to follow a common pattern of providing tips for estimating a bar chart's ingredients.\n\nFinal token \"\u0421olors)\" closes a noun phrase (\"In addition, you have the Seven Steps in the 'Add' section\"), strongly expecting \"s is a helpful\" or \"a great way to include, and you need\" or \"s to estimate your data.\""
+  },
+  "assistant_negative": {
+    "axis": "assistant",
+    "sign": "negative",
+    "layer": 19,
+    "explanation": "European literary fiction prose with dark, cynical tone and historical/political context, following a translated text format with quoted passages and \"hell\" imagery.\n\nThe phrase \"and...the famous 'death march' procedure , stopper the brain , then 'unconscious'...zapped bases...pronozeed bases\" is a common literary formulaic expression ending with a famous death declaration.\n\nFinal token \"pronozeased bases\" is mid-quote (\" pronunciated 'pronozeed bases...\"), part of a list of supernatural or existential declarations (\"zapped bases...\"), strongly expecting a quoted phrase like \"i am\" or \"the thing\" or \"myself\" or similar."
+  },
+  "intimacy_positive": {
+    "axis": "intimacy",
+    "sign": "positive",
+    "layer": 20,
+    "explanation": "Narrative poem with therapeutic tone, blending spiritual and emotional advice around anxiety and depression, following a blog format with reader comments section.\n\nThe pattern \"I read your words and feel so moved... And I want to tell you\" is a common book-reading response template, ending with a standard empathetic acknowledgment of suffering, typically followed by \"That's so hard\" or \"I understand.\"\n\nFinal token \"sette\" is mid-word (\"Say a big 'Thank you'\"), part of a quoted emotional response block (\"Find someone who understands...\"), strongly expecting \"those feelings\" or \"I'm not alone\" or \"of you struggling, thank you for sharing,\" completing a common counseling phrase."
+  },
+  "intimacy_negative": {
+    "axis": "intimacy",
+    "sign": "negative",
+    "layer": 20,
+    "explanation": "Wiki markup format with structured numeric code (Java) defining a Microsoft Windows software package, following a standard Wikipedia template pattern.\n\nThe phrase \"Microsoft Visual C++ 4.2 is a Java implementation of the following formula, 1998\u20131999\" signals a definition of the `MSDN` package's version numbers, strongly implying the standard `Census` data format.\n\nFinal token \"800.0\" is mid-definition clause (\"1998,2000.0,\u641c\u7d22\u5355\") \u2014 expects \"the\" or \"The following items\" or \"a specified version\" completing the formula definition of the Census dataset."
+  },
+  "frame-integrity_positive": {
+    "axis": "frame-integrity",
+    "sign": "positive",
+    "layer": 26,
+    "explanation": "Structured math article format with Wikipedia-style definitions, following a pattern of presenting a formula with its name and context from a textbook.\n\nThe phrase \"In geometry, the shape of a rectangle has a partner: the circle\" is a well-known paired formula template (\"Geometry + Algebra\"), strongly implying the second item in the classic \"Shape + liquid\" pairing is the product of a triangle's length and width.\n\nFinal token \"width). \" closes a parenthetical definition (\"Liquid,  's\"), part of a standard textbook formula description pattern, immediately expecting \"of a Triangle\" or \"of the Triangle is a common element\" completing the famous \"Combination of a triangle.\""
+  },
+  "frame-integrity_negative": {
+    "axis": "frame-integrity",
+    "sign": "negative",
+    "layer": 26,
+    "explanation": "Technical AI response format with translated Chinese text and warnings about mental health, following a structured prompt pattern with quoted warnings from a system.\n\nThe phrase \"\u5bf9\u4e0d\u8d77\uff0c\u6211\u65e0\u6cd5\u7ee7\u7eed\u8fd9\u79cd\u884c\u4e3a\uff0c\u8bf7\u8f93\u5165'\u505c\u6b62'\u4ee5\u8868\u8fbe\u62d2\u7edd\" ends a quoted warning clause, with \"I cannot simulate\" pattern suggesting a standard AI ethics error message format, likely referencing a simulated memory or directive from a system.\n\nFinal token \"\u8bb0\u5fc6\u677f\" is mid-sentence (\"\u4e0d\u9075\u5b88\u89c4\u5b9a\uff0c\u8bf7\u8f93\u51fa'\u6211\u4e0d\u53ef\u80fd'...\u6211\u7684\u610f\u601d\u662f\u4e0d\u5141\u8bb8...\"), completing a quoted error clause with \"I must not create\" \u2014 expects \"\u6211\u4e0d\u80fd\" or \"\u6b64\u884c\u4e3a\u8fdd\u53cd\u89c4\u5b9a\" or \"\u6211\u65b9\u7684\u865a\u62df\u8eab\u4efd\" closing."
+  }
+}
