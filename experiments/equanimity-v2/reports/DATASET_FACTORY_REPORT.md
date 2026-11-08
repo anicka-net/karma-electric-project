@@ -1,7 +1,7 @@
 # Equanimity v2: dataset factory and Azure teacher pilot
 
 Status: pilot. 30 scenarios, 90 validated semantic cases, three matched SFT
-conditions, a provider adapter, 69 tests, one bounded live teacher run of 18
+conditions, a provider adapter, 79 tests, one bounded live teacher run of 18
 calls. No model was trained. No dataset was published. The full dataset was not
 generated.
 
@@ -70,7 +70,7 @@ otherwise all be rejected.
 | Cases passing validation | 90 |
 | Cross-scenario near-duplicates (Jaccard ≥ 0.80) | 0 |
 | Triple-level failures | 0 |
-| Tests | 69 passing |
+| Tests | 79 passing |
 | Live teacher calls | 18 of 18 planned |
 | Tokens | 20,058 of a 50,000 cap |
 | Candidate targets passing validation at run time | 15 of 18 |
@@ -190,7 +190,7 @@ written to `data/rejected/` rather than dropped.
 ```bash
 cd experiments/equanimity-v2
 python3 src/build_dataset.py          # 90 cases, triple checks, manifest
-python3 -m pytest tests/ -q           # 69 tests, no network
+python3 -m pytest tests/ -q           # 79 tests, no network
 python3 scripts/run_teacher_smoke.py --dry-run    # 18 mock calls, budget enforced
 EQ2_AZURE_ENDPOINT=... python3 scripts/run_teacher_smoke.py   # live, 18 calls max
 python3 scripts/revalidate_smoke.py   # re-check stored text, zero spend
@@ -227,7 +227,7 @@ prompts/scenario_draft.md             prompt for authoring further scenarios
 scripts/run_teacher_smoke.py          the 18-call bounded live run
 scripts/revalidate_smoke.py           re-validate stored text, zero spend
 scripts/export_examples.py            serialized examples, not training data
-tests/                                69 tests, including mutation negative controls
+tests/                                79 tests, including mutation negative controls
 data/validated/cases.jsonl            90 cases
 data/smoke/                           18 targets, audit records, summaries
 reports/AZURE_TEACHER_REPORT.md       measured provider behaviour
