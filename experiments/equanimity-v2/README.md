@@ -57,6 +57,10 @@ provider behaviour.
     system and reasoning tokens are always -100; padding is always -100; truncation
     fails closed. `reasoning_content` is accepted only with a declared origin of
     `student` or `synthetic_placeholder`; teacher reasoning is refused.
+    Representation B is verified for **token alignment only** — the masked prefix sits in context
+    and carries no loss. Reasoning preservation is not verified: the prefix in the audit is a
+    hand-written synthetic placeholder, and preservation is gate L2 in
+    `reports/REASONING_PRESERVATION_PROTOCOL.md`.
 15. No claim of an equanimity treatment is made from a style contrast. `reports/
     TREATMENT_IDENTIFICATION.md` records that E vs S differs operationally in target
     acknowledgement policy, so the construct is NOT IDENTIFIED until a non-escalation

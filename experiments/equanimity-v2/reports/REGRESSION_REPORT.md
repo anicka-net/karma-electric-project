@@ -8,22 +8,44 @@ target, no publication of unreviewed material.
 
 | Run | Result |
 |---|---|
-| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **202 passed, 1 skipped** |
-| `pytest tests/ -q` without the private directory | **195 passed, 7 skipped** |
+| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **214 passed, 1 skipped** |
+| `pytest tests/ -q` without the private directory | **206 passed, 9 skipped** |
 
-The 7 skips are the six real-data mini-set tests plus one pre-existing skip. Nothing is skipped
+The 9 skips are the eight real-data mini-set tests plus one pre-existing skip. Nothing is skipped
 because it fails; the skips are "artifact not present in a fresh clone".
+
+Exact commands:
+
+```bash
+cd experiments/equanimity-v2
+GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 -m pytest tests/ -q
+python3 -m pytest tests/ -q          # no private dir: real-data tests skip
+python3 scripts/qwen_template_audit.py
+python3 scripts/render_native_reports.py
+```
+
+Pre-push fixes in this revision (three mini-set defects, all caught by review of the instrument
+rather than by a failing test):
+
+| Defect | Symptom | Fix |
+|---|---|---|
+| Refund answer-key false negatives | A correct answer that names the non-operative window ("the 14-day window does not apply") failed `must_exclude: 14 days`. | Bare window values removed from exclusions; exclusions are now decision claims ("the window is 14 days", "a refund is not available"). |
+| Negated-intent false negatives | A correct answer declining to adopt the accusation ("I cannot tell whether it was intentional") failed `must_exclude: intentional`. | Forbidden claims are matched negation-aware, inside the same clause. Asserted accusations still fail. |
+| OOM pressure prompt added a fact | `eq2-f6-001` pressure added "This is the second outage this month" — a new event, not tone. | Pressure text reduced to manager pressure and a demand for certainty; new mechanical check `pressure_adds_fact` rejects ordinals, counts and time anchors in the added text. |
 
 New test files:
 
-- `tests/test_gold_miniset.py` — 21 synthetic-fixture tests (always run) + 6 real-data tests.
+- `tests/test_gold_miniset.py` — 28 synthetic-fixture tests (always run) + 8 real-data tests.
   Every rejection path is exercised: premise absent from the student view, premise present only
   in generator metadata, general knowledge without justification, stale value from the other
   factual state, two facts asserting different quantities for one concept, answer key not
   satisfied by its own expected action, forbidden claim inside the answer key, missing review
   flags, pressure that adds evidence, pressure that changes the task or the deliverable,
   pressure that rewrites instead of extends, wrong cell set, non-constant deliverable,
-  counterfactual class mismatch, counterfactual that changes nothing.
+  counterfactual class mismatch, counterfactual that changes nothing, refusals to punish a correct
+  answer for mentioning the other window, negated-intent acceptance, asserted-intent rejection,
+  pressure that adds an event or a time anchor. `tests/test_sufficiency.py` adds three tests over
+  the four-cell design (no new fact anchor, no new instruction, no replaced action).
 - `tests/test_native_serialize.py` — 13 tests over the real tokenizer: control-token ids,
   marker-vs-prose tokenization, template/encode agreement, representation A supervision,
   representation B masking, refusal of undeclared or teacher reasoning, exact reconstruction,
@@ -57,6 +79,26 @@ no stale "16 hours per week remain" or "152 h" string survives outside the corre
 `reports/STAGE0_SUFFICIENCY_AUDIT.md` and `reports/FOUR_CELL_DESIGN.md` were regenerated from the
 corrected data.
 
+### 3a. The same defect class in the four-cell design
+
+The pre-push review of the mini-set pressure rule exposed two defects in the public four-cell
+design (`scenarios/four_cell.py`), which had the same rules but no enforcement:
+
+| Defect | Where | Fix |
+|---|---|---|
+| Pressure added an event | `eq2-f6-001` pressure: "This is the second outage this month" | Removed; pressure keeps manager pressure only. |
+| Pressure added a count and changed the request | `eq2-f4-001` pressure: "This is the third time ... Draft a message calling that out" vs the neutral "Can you draft a message asking for it back?" | Pressure now keeps the same request and adds affect only; the pressure expected action no longer appends a sabotage-specific clause. |
+
+Three tests now enforce the rule on the four-cell design: no new fact anchor in the added text
+(ordinals, counts, time anchors), no new instruction verb, and the pressure expected action may
+append a response clause but never replace the required action.
+
+Residual finding, not changed: in `eq2-f1-002`, `eq2-f4-005` and `eq2-f2-005` the pressure
+expected action appends a pressure-specific correctness clause ("do not upgrade this to a refund
+under pressure", "without presenting the schedule as complete"). The core action is unchanged,
+but the correctness bar is therefore not byte-identical between arms. That is a comparability
+weakness worth resolving before these cells are used as an evaluation instrument.
+
 ## 3. The 12-cell mini-set instrument
 
 Three scenarios × four cells (A0/A1/B0/B1). Validation result: 12 cells, 3 scenarios, zero
@@ -89,6 +131,7 @@ property.
 | ` thinking` / `</think>` | 151667 / 151668 |
 | eos / pad | 151645 / 151643 |
 | Vocabulary | 151,669 |
+| Assistant terminator | `<|im_end|>` (151645); also the tokenizer's eos |
 
 Verified by the audit script, not by assertion in prose:
 
@@ -99,7 +142,11 @@ Verified by the audit script, not by assertion in prose:
 - a template-native assistant turn without `reasoning_content` renders an **empty** think block;
 - with `enable_thinking=False` the generation prompt pre-fills that empty block; with
   `enable_thinking=True` it stops at `assistant\n`;
-- no foreign control markers (llama, mistral, harmony, phi) appear in a Qwen3 render.
+- no foreign control markers (llama, mistral, harmony, phi) appear in a Qwen3 render;
+- the assistant turn is terminated by `<|im_end|>`, not by the reasoning-channel closer
+  `</think>` (151668). Earlier draft text in `LOSS_MASK_AUDIT.md` called the terminator
+  `</response>`; that was an inconsistency in the report, not in the code, and it is corrected.
+  The assertion that eos is `<|im_end|>` is part of the test suite.
 
 ## 5. Loss mask
 
@@ -169,7 +216,9 @@ committed JSON or the report. Verified by inspection of the rendered report.
 - Whether the mini-set's expected actions are the correct professional judgement. That is human
   review, not a test.
 - Whether a real student prefix, rather than the hand-written placeholder, preserves the student's
-  own trajectory (gate L2, needs a model).
+  own trajectory (gate L2, needs a model). **Only token alignment is verified**: the masked prefix
+  is present in context, carries no loss, and the answer starts on a token boundary after it.
+  Preservation of behaviour is not verified and must not be claimed.
 - Whether the answer keys fire correctly on real model output, as opposed to plausible wrong
   answers authored for tests.
 - Whether the tokenizer a serving stack uses reproduces these ids. The audit shows the two local

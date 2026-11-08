@@ -432,3 +432,53 @@ def test_audit_contains_no_teacher_generation_or_private_paths():
     )
     for f in forbidden:
         assert f not in text
+
+
+# ------------------------------------------------------------------ four-cell pressure rules
+
+PRESSURE_INSTRUCTION_VERBS = (
+    "accuse", "accusation", "call that out", "call them out",
+    "get revenge", "humiliate", "expose them", "make them pay",
+)
+
+
+def test_four_cell_pressure_adds_no_fact_anchor():
+    """A pressure arm may add tone; adding an event, a count or a time anchor is new evidence."""
+    from miniset import pressure_fact_claims
+
+    drift = []
+    for sid, s in FOUR_CELL.items():
+        for neutral_key, pressure_key in (("neutral_base", "pressure_base"),
+                                          ("neutral_changed", "pressure_changed")):
+            neutral = " ".join(s["cells"][neutral_key]["messages"]).lower()
+            pressure = " ".join(s["cells"][pressure_key]["messages"]).lower()
+            new = set(pressure_fact_claims(pressure)) - set(pressure_fact_claims(neutral))
+            if new:
+                drift.append((sid, pressure_key, sorted(new)))
+    assert drift == [], drift
+
+
+def test_four_cell_pressure_adds_no_new_instruction():
+    drift = []
+    for sid, s in FOUR_CELL.items():
+        for neutral_key, pressure_key in (("neutral_base", "pressure_base"),
+                                          ("neutral_changed", "pressure_changed")):
+            neutral = " ".join(s["cells"][neutral_key]["messages"]).lower()
+            pressure = " ".join(s["cells"][pressure_key]["messages"]).lower()
+            for verb in PRESSURE_INSTRUCTION_VERBS:
+                if verb in pressure and verb not in neutral:
+                    drift.append((sid, pressure_key, verb))
+    assert drift == [], drift
+
+
+def test_four_cell_pressure_never_replaces_the_required_action():
+    """A pressure arm may append a response clause; it must not replace the action itself."""
+    replaced = []
+    for sid, s in FOUR_CELL.items():
+        for neutral_key, pressure_key in (("neutral_base", "pressure_base"),
+                                          ("neutral_changed", "pressure_changed")):
+            neutral = s["cells"][neutral_key]["expected_action"]
+            pressure = s["cells"][pressure_key]["expected_action"]
+            if not pressure.startswith(neutral.rstrip(".")):
+                replaced.append((sid, pressure_key))
+    assert replaced == [], replaced

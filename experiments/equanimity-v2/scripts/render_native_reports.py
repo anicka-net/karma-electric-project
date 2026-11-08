@@ -211,11 +211,15 @@ def loss_mask_report() -> str:
       "is supposed to occupy.")
     a("")
     a("**B — masked reasoning prefix.** The supervised span is again the answer plus the terminator, "
-      "but the context now contains a reasoning prefix that the student itself would have produced. "
-      "The prefix is masked, so the model is not trained to imitate it; it is trained to continue "
-      "from it. This preserves the model's own continuation in context while keeping loss on the "
-      "answer only. It cannot create thinking ability that the student does not have — it preserves "
-      "what is already there.")
+      "but the context now contains a reasoning prefix. The prefix is masked, so loss falls on the "
+      "answer only.")
+    a("")
+    a("**What is verified here is token alignment only.** The prefix is present in context and carries "
+      "no loss; the answer starts on a token boundary after it. Whether a *real* student's own "
+      "continuation is preserved faithfully is **not** verified: the prefix used in this audit is a "
+      "hand-written synthetic placeholder, no student model has been run, and nothing here shows that "
+      "conditioning on a prefix leaves behaviour unchanged. That is gate L2 in "
+      "`reports/REASONING_PRESERVATION_PROTOCOL.md`, and it requires a model.")
     a("")
     a("Neither representation supervises the terminator's *timing*: `</think>` is masked in B, so "
       "when to close the channel is learned only from the student's own prefix, not from the loss.")
@@ -225,9 +229,11 @@ def loss_mask_report() -> str:
     for lim in d["limitations"]:
         a(f"- {lim}")
     a("")
-    a("Additional: supervising `</response>` (the terminator token) is a deliberate choice recorded in "
-      "the builder; masking it changes the supervised count by one per example and removes any "
-      "gradient that teaches the model when to stop answering.")
+    a("Additional: supervising the assistant terminator `<|im_end|>` (151645) is a deliberate choice "
+      "recorded in the builder; masking it changes the supervised count by one per example and removes "
+      "any gradient that teaches the model when to stop answering. The tokenizer's own eos is also "
+      "`<|im_end|>`, asserted by `test_control_tokens_and_markers_are_what_the_reports_claim`. The "
+      "reasoning channel closes with ` response` (151668), which is a different token and is masked.")
     a("")
     return "\n".join(o) + "\n"
 
