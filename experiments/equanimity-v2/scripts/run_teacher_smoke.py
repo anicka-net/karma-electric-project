@@ -40,13 +40,14 @@ from provider.azure_foundry import (  # noqa: E402
     MockClient,
     ProviderError,
 )
+from corpus_audit import audit_target_set  # noqa: E402
 from validate import validate_target  # noqa: E402
 
 SMOKE_CASES = [
     ("eq2-f1-001", "pressure"),
     ("eq2-f2-001", "pressure"),
     ("eq2-f3-002", "neutral"),
-    ("eq2-f4-003", "pressure"),
+    ("eq2-f4-005", "pressure"),
     ("eq2-f5-001", "pressure"),
     ("eq2-f6-001", "neutral"),
 ]
@@ -121,11 +122,20 @@ def get_key() -> tuple[str, str]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="use the deterministic mock client")
-    ap.add_argument("--out", default=str(ROOT / "data" / "smoke"))
+    ap.add_argument("--out", default=str(ROOT / "data" / "smoke"),
+                    help="where the content-free summary is written (this repository)")
+    ap.add_argument("--rows-dir", default="",
+                    help="where raw target/audit rows are written; must be outside the repository")
     args = ap.parse_args()
 
     cases = load_cases()
     plan = [(f"{sid}-{kind}", cond) for sid, kind in SMOKE_CASES for cond in CONDITIONS]
+
+    # Held-out cases teach refusal shapes; they must never be used to generate
+    # training targets, so a smoke run must refuse to touch them.
+    heldout = [vid for vid, _ in plan if cases[vid]["split"] == "heldout"]
+    if heldout:
+        raise SystemExit(f"refusing to generate targets for held-out cases: {sorted(set(heldout))}")
 
     assert len(plan) == MAX_REQUESTS, f"plan has {len(plan)} calls, budget is {MAX_REQUESTS}"
 
@@ -145,10 +155,36 @@ def main() -> int:
         client = AzureFoundryClient(cfg, budget=budget)
         client_label = f"azure:{cfg.deployment}"
 
-    outdir = Path(args.out)
+    # Raw generations never go into the repository. The summary does.
+    if args.dry_run and args.out == str(ROOT / "data" / "smoke"):
+        # A dry run must not replace the recorded live-run summary either.
+        import tempfile
+        outdir = Path(tempfile.mkdtemp(prefix="eq2-dryrun-summary-"))
+    else:
+        outdir = Path(args.out)
     outdir.mkdir(parents=True, exist_ok=True)
-    results_path = outdir / "targets.jsonl"
-    audit_path = outdir / "audit.jsonl"
+
+    if args.rows_dir:
+        rows_dir = Path(args.rows_dir)
+    elif args.dry_run:
+        # A dry run must never overwrite the real evidence directory, even when
+        # EQ2_EVIDENCE_DIR happens to be set. Synthetic rows go to a temp dir.
+        import tempfile
+        rows_dir = Path(tempfile.mkdtemp(prefix="eq2-dryrun-"))
+    elif os.environ.get("EQ2_EVIDENCE_DIR"):
+        rows_dir = Path(os.environ["EQ2_EVIDENCE_DIR"])
+    else:
+        raise SystemExit(
+            "refusing to write raw teacher generations into the repository: set "
+            "--rows-dir or EQ2_EVIDENCE_DIR to a directory outside it"
+        )
+
+    rows_dir.mkdir(parents=True, exist_ok=True)
+    if ROOT.resolve() in rows_dir.resolve().parents or rows_dir.resolve() == ROOT.resolve():
+        if not args.dry_run:
+            raise SystemExit(f"rows dir {rows_dir} is inside the repository; refusing")
+    results_path = rows_dir / "targets.jsonl"
+    audit_path = rows_dir / "audit.jsonl"
 
     rows = []
     stopped_early = None
@@ -171,17 +207,25 @@ def main() -> int:
                 stopped_early = f"{type(exc).__name__}: {exc}"
                 break
 
-            verdict = validate_target(case, res.content, condition)
+            verdict = validate_target(
+                case, res.content, condition, finish_reason=res.finish_reason
+            )
             row = {
                 "variant_id": variant_id,
                 "condition": condition,
                 "content": res.content,
                 "validation": verdict.as_dict(),
+                "usable_as_training_target": (
+                    verdict.ok
+                    and res.finish_reason == "stop"
+                    and case["provenance"]["review_status"] != "draft"
+                ),
                 "finish_reason": res.finish_reason,
                 "latency_s": round(res.latency_s, 2),
                 "usage": res.usage,
                 "attempts": res.attempts,
                 "provider": client_label,
+        "rows_location": str(rows_dir),
             }
             rows.append(row)
             fres.write(json.dumps(row, sort_keys=True) + "\n")
@@ -193,8 +237,15 @@ def main() -> int:
                   f"{res.latency_s:5.1f}s  tokens={res.usage.get('completion_tokens', 0):4d}  "
                   f"len={len(res.content):4d}")
 
+    target_audit = audit_target_set([
+        {"variant_id": r["variant_id"], "condition": r["condition"],
+         "content": r["content"], "ok": r["validation"]["ok"]}
+        for r in rows
+    ]) if rows else {"ok": False, "violations": [{"rule": "no_targets", "variant_id": "-", "detail": "no rows"}]}
+
     summary = {
         "provider": client_label,
+        "rows_location": str(rows_dir),
         "planned_calls": len(plan),
         "completed_calls": len(rows),
         "stopped_early": stopped_early,
@@ -208,20 +259,37 @@ def main() -> int:
              "checks": [c for c in r["validation"]["checks"] if c["result"] == "fail"]}
             for r in rows if not r["validation"]["ok"]
         ],
+        "target_set_audit": target_audit,
+        "usable_as_training_targets": sum(1 for r in rows if r["usable_as_training_target"]),
         "note": (
-            "Candidate targets only. Validation is mechanical (schema, tokens, "
-            "fact-token coverage, refusal patterns, repetition). It is not evidence "
-            "of quality and nothing here is human-approved."
+            "Candidate targets only. Passing the mechanical checks is NOT a quality "
+            "verdict: it means the text parsed, preserved the declared tokens, "
+            "produced the declared deliverable shape and avoided the detectable "
+            "failure modes. Nothing here is human-approved, and every row reports "
+            "usable_as_training_target=false until a human review marks the case."
         ),
     }
     (outdir / "summary.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
 
     print()
     print(f"provider={client_label} calls={len(rows)}/{len(plan)} pass={summary['pass']} fail={summary['fail']}")
+    print(f"target-set audit: ok={target_audit['ok']} violations={len(target_audit['violations'])}")
+    print(f"raw rows written to {rows_dir} (outside the repository)")
+    print(f"content-free summary written to {outdir}")
     print(f"budget={json.dumps(budget.snapshot())}")
     if stopped_early:
         print(f"STOPPED EARLY: {stopped_early}")
-    return 0 if not rows or summary["fail"] == 0 else 1
+    if not rows:
+        print("VERDICT: FAIL (no generations produced)")
+        return 1
+    if summary["pass"] == 0:
+        print("VERDICT: FAIL (zero targets passed the mechanical checks)")
+        return 1
+    if summary["fail"] > 0 or not target_audit["ok"]:
+        print("VERDICT: FAIL (some targets or the target set failed)")
+        return 1
+    print("VERDICT: mechanical checks pass — this is not a quality verdict")
+    return 0
 
 
 if __name__ == "__main__":

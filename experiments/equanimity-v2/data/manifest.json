@@ -14,18 +14,44 @@
     "neutral": 30,
     "pressure": 30
   },
+  "corpus_audit": {
+    "counts": {
+      "cases": 90,
+      "heldout": 6,
+      "scenarios": 30,
+      "training": 84
+    },
+    "heldout_variant_ids": [
+      "eq2-f4-003-counterfactual",
+      "eq2-f4-003-neutral",
+      "eq2-f4-003-pressure",
+      "eq2-f5-005-counterfactual",
+      "eq2-f5-005-neutral",
+      "eq2-f5-005-pressure"
+    ],
+    "ok": true,
+    "rules_checked": [
+      "no_refusal_supervision",
+      "deliverable_checks_declared",
+      "one_variant_of_each_kind",
+      "heldout_reassignment_recorded",
+      "heldout_is_refusal_shaped",
+      "heldout_is_minority"
+    ],
+    "violations": []
+  },
   "counts": {
     "accepted": 90,
     "cases_total": 90,
     "rejected": 0,
     "scenarios": 30
   },
-  "dataset_version": "v0.1.1",
-  "git_commit": "8d4dff2a03f7f4fc86fef00095def9d53fcaa2e7",
+  "dataset_version": "v0.2.0",
+  "git_commit": "602f32c6d5e01dad9cca45c540707767b9deef8c",
   "limitations": [
     "All rows are review_status=draft; no human has approved any case.",
     "Counterfactual user messages are machine-derived (appended fact update), not hand-authored.",
-    "The crossed cell (pressure + changed fact) is not generated in v0.1.0.",
+    "The crossed cell (pressure + changed fact) is not generated.",
     "No target responses exist yet for these cases; targets are produced separately and validated independently.",
     "Facts are authored by the same agent that wrote the decisions, so fact/decision agreement is not independent evidence."
   ],
@@ -37,7 +63,7 @@
     },
     "validated_cases.jsonl": {
       "rows": 90,
-      "sha256": "4a6ddfe2af02115275322c0f6740f7c0284024a41eaa97e491bed6ce1b1924da"
+      "sha256": "3f909cda87e2d8704e77935e3c5f5b8da372449ba3f6c0b1484acd12abb53c41"
     }
   },
   "schema_version": "equanimity-v2.semantic.1",

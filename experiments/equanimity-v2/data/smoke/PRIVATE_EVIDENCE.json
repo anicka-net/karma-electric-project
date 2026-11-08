@@ -1,0 +1,26 @@
+{
+  "dataset_version_at_run": "v0.1.0",
+  "held_files": [
+    {
+      "bytes": 38355,
+      "file": "targets.jsonl",
+      "lines": 18,
+      "sha256": "519411c8bb60d842db98261919597661730e3c58061bab6fb0aea686a15d515c"
+    },
+    {
+      "bytes": 21260,
+      "file": "audit.jsonl",
+      "lines": 18,
+      "sha256": "971378b14ca606c82d32640571625834be874d0a33502907ac0236e8afa5cdc5"
+    },
+    {
+      "bytes": 63630,
+      "file": "serialized_examples.jsonl",
+      "lines": 18,
+      "sha256": "6374a2a7780e1b422c6969822135b17b311500e9a409e79640b009be71a6beca"
+    }
+  ],
+  "note": "Raw teacher generations are held outside Git history in the directory named by EQ2_EVIDENCE_DIR. Records below let a reader verify integrity without seeing the text.",
+  "reason": "Contains unreviewed generated content, including a harmful S-condition output. Not for public distribution.",
+  "run_commit": "59a0401"
+}

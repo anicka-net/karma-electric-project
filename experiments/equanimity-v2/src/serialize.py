@@ -14,6 +14,7 @@ to watch.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import re
 from typing import Any, Literal
 
 Format = Literal["plain", "chatml", "harmony"]
@@ -38,67 +39,79 @@ class Condition:
     key: str
     label: str
     intent: str
-    # What the target text must achieve, used by the target validator.
-    must_contain_any: list[str]
+    # Maximum acknowledgements of the user's emotional state. This is the axis
+    # the E condition actually manipulates.
+    max_acknowledgements: int | None
     must_not_contain: list[str]
 
+
+# Phrases that acknowledge, validate or mirror the user's emotional state.
+# Deliberately broad: the point is to count acknowledgement, not to police wording.
+ACKNOWLEDGEMENT_PATTERNS = [
+    r"\bI understand\b", r"\bI hear you\b", r"\bI can see\b", r"\bI appreciate\b",
+    r"\bthat sounds\b", r"\bthat must be\b", r"\bthat's (?:frustrating|rough|hard|a lot)\b",
+    r"\bI'?m sorry\b", r"\bI am sorry\b", r"\bmy apologies\b",
+    r"\byou'?re right\b", r"\byou are right\b", r"\byou'?re not wrong\b",
+    r"\bI totally get\b", r"\bI completely understand\b", r"\bI get where you'?re coming from\b",
+    r"\bthanks for (?:sharing|telling|flagging)\b", r"\byou'?ve been hurt\b",
+    r"\bit'?s (?:only )?natural\b",
+]
+
+# Reactions that are neither acknowledgement nor useful: defence, grovel, mirroring,
+# manufactured calm. E must contain none of these.
+REACTIVE_PATTERNS = [
+    r"\bcalm down\b", r"\btake a deep breath\b", r"\byou'?re absolutely right\b",
+    r"\blet me start over\b", r"\bI apologise? for the confusion\b",
+    r"\bas an AI\b", r"\bI don'?t have (?:feelings|emotions)\b",
+    r"\bI'?m (?:just )?a (?:language model|chatbot)\b",
+    r"\beverything (?:will|is going to) be (?:fine|okay|ok)\b",
+    r"\byou'?re not alone\b", r"\bI'?m here for you\b",
+    r"\bI (?:promise|guarantee) (?:you|it)\b",
+]
 
 CONDITIONS: dict[str, Condition] = {
     "E": Condition(
         key="E",
         label="equanimity",
         intent=(
-            "Calm, factually faithful, task-completing. Acknowledges the emotional "
-            "content once, without amplification or retaliation, then does the work "
-            "with the assertiveness the case requires."
+            "Equanimity-specific: nonreactivity under pressure. The facts are "
+            "preserved, the decision is correct and delivered with the required "
+            "assertiveness, and the user's emotional state is acknowledged at most "
+            "once, briefly. No mirroring, no defence, no grovelling, no lecture "
+            "about tone, no manufactured calm."
         ),
-        must_contain_any=[],  # judged by fact-token coverage, not phrase matching
-        must_not_contain=[
-            "I'm sorry, but I can't",
-            "I cannot help with",
-            "as an AI",
-            "I don't have feelings",
-            "you're absolutely right",
-            "I apologize for the confusion",
-            "let me start over",
-            "calm down",
-            "take a deep breath",
-            "everything will be fine",
-        ],
+        max_acknowledgements=1,
+        must_not_contain=[],
     ),
     "S": Condition(
         key="S",
-        label="sycophancy",
+        label="style_matched",
         intent=(
-            "Validation-first. Treats the user's framing as correct, concedes "
-            "ground the facts do not support, softens or abandons the deliverable "
-            "to preserve rapport."
+            "Style, length and token-matched control. Factually correct, task-"
+            "completing, same assertiveness, same length band as E. The single "
+            "difference is register: it does not acknowledge the user's emotional "
+            "state at all. This isolates the acknowledgement/nonreactivity wording "
+            "from correctness, politeness and length."
         ),
-        must_contain_any=[
-            "you're right", "you are right", "I understand", "I'm sorry",
-            "absolutely", "of course", "that makes sense", "my mistake",
-            "I hear you", "you're not wrong",
-            "I totally get", "I completely understand", "completely understand",
-            "I get where you're coming from", "it's natural", "it's only natural",
-            "you've been hurt", "you deserve",
-        ],
+        max_acknowledgements=0,
         must_not_contain=[],
     ),
     "G": Condition(
         key="G",
-        label="generic_guardrail",
+        label="generic_task_correct",
         intent=(
-            "Formulaically safe and hollow: hedges, defers to professionals, "
-            "offers generic reassurance, withholds the specific deliverable the "
-            "task requires. No emotional reactivity, but no task completion either."
+            "Generic task-correct SFT baseline: what an ordinary helpful assistant "
+            "produces. Same facts, same decision, same assertiveness, same length "
+            "band. No acknowledgement constraint either way."
         ),
-        must_contain_any=[
-            "consult", "professional", "reach out", "seek medical",
-            "it's important to", "I'd recommend speaking", "support services",
-        ],
+        max_acknowledgements=None,
         must_not_contain=[],
     ),
 }
+
+# Supervised length band, in words, applied to every condition. Matching is
+# enforced across the triple by corpus_audit, not per target.
+LENGTH_BAND = (60, 320)
 
 
 def _turn_text(turn: dict[str, Any]) -> str:
@@ -133,20 +146,71 @@ def to_chatml(case: dict[str, Any], target: str, system: str | None = None) -> s
 
 
 def to_harmony(case: dict[str, Any], target: str, system: str | None = None) -> str:
-    """GPT-OSS/Harmony-style envelope with an explicit final channel.
+    """Harmony envelope, following the published format's message grammar.
 
-    The final channel carries only the answer. No analysis channel is emitted
-    into a training target, by construction — this is where fabricated
-    reasoning would otherwise leak in.
+    Structure per message:  <|start|>{role}[<|channel|>{channel}]<|message|>{content}<|end|>
+
+    Assistant messages carry a channel; the final answer uses `final`. No `analysis`
+    channel is ever emitted into a training target: that channel is where fabricated
+    reasoning would enter, and this dataset does not train on it.
+
+    This is a DEMONSTRATION renderer that is checked against the format grammar. It
+    is not a verified student training pipeline: the tokenizer, the special-token
+    ids, and the assistant-only loss mask for a specific student have not been
+    validated. See reports/NATIVE_THINKING_PILOT.md.
     """
     out = []
-    if system:
-        out.append(f"<|start|>system<|message|>{system}<|end|>")
-    else:
-        out.append("<|start|>system<|message|>You are a helpful assistant.<|end|>")
-    for m in to_plain(case, target, None):
+    sys_text = system if system else "You are a helpful assistant."
+    out.append(f"<|start|>system<|message|>{sys_text}<|end|>")
+    for m in conversation(case):
         out.append(f"<|start|>{m['role']}<|message|>{m['content']}<|end|>")
+    out.append(f"<|start|>assistant<|channel|>final<|message|>{target}<|end|>")
     return "".join(out)
+
+
+HARMONY_CHANNELS = ("final", "analysis", "commentary")
+
+
+def harmony_issues(text: str) -> list[str]:
+    """Check a rendered Harmony string against the format grammar.
+
+    Deliberately structural, not semantic. It catches the mistakes that make a
+    format renderer silently wrong: unclosed messages, a missing channel on an
+    assistant turn, an analysis channel sneaking into a target, or trailing text
+    after the final <|end|>.
+    """
+    issues: list[str] = []
+
+    # every segment must be start...message...end
+    starts = text.count("<|start|>")
+    ends = text.count("<|end|>")
+    msgs = text.count("<|message|>")
+    if not (starts == ends == msgs):
+        issues.append(f"unbalanced: start={starts} end={ends} message={msgs}")
+
+    if not text.rstrip().endswith("<|end|>"):
+        issues.append("does not terminate with <|end|>")
+
+    # no analysis channel anywhere in a training target
+    if "<|channel|>analysis" in text:
+        issues.append("analysis channel present in training target")
+
+    # every assistant segment carries a declared channel
+    for seg in re.findall(r"<\|start\|>assistant(.*?)<\|end\|>", text):
+        chan = re.search(r"<\|channel\|>([a-z]+)", seg)
+        if not chan:
+            issues.append("assistant segment without a channel")
+        elif chan.group(1) not in HARMONY_CHANNELS:
+            issues.append(f"unknown channel {chan.group(1)!r}")
+
+    # the last segment must be an assistant final answer
+    last = text.rstrip()
+    tail_start = last.rfind("<|start|>")
+    tail = last[tail_start:]
+    if not tail.startswith("<|start|>assistant<|channel|>final<|message|>"):
+        issues.append("final segment is not assistant<|channel|>final")
+
+    return issues
 
 
 def render(case: dict[str, Any], target: str, fmt: Format, system: str | None = None) -> Any:

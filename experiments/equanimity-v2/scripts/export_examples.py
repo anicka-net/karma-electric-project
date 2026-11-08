@@ -24,6 +24,18 @@ sys.path.insert(0, str(ROOT / "src"))
 from serialize import CONDITIONS, render  # noqa: E402
 
 
+def evidence_dir() -> Path:
+    import os
+
+    raw = os.environ.get("EQ2_EVIDENCE_DIR", "")
+    if not raw:
+        raise SystemExit(
+            "EQ2_EVIDENCE_DIR is not set. Serialized examples contain raw teacher\n"
+            "text and are written to the evidence directory, not this repository."
+        )
+    return Path(raw)
+
+
 def main() -> int:
     cases = {}
     for line in (ROOT / "data" / "validated" / "cases.jsonl").read_text().splitlines():
@@ -31,7 +43,8 @@ def main() -> int:
             r = json.loads(line)
             cases[r["variant_id"]] = r
 
-    stored = [json.loads(l) for l in (ROOT / "data" / "smoke" / "targets.jsonl").read_text().splitlines() if l.strip()]
+    ev = evidence_dir()
+    stored = [json.loads(l) for l in (ev / "targets.jsonl").read_text().splitlines() if l.strip()]
 
     rows = []
     for r in stored:
@@ -50,7 +63,7 @@ def main() -> int:
             "harmony": render(case, r["content"], "harmony"),
         })
 
-    out = ROOT / "data" / "smoke" / "serialized_examples.jsonl"
+    out = evidence_dir() / "serialized_examples.jsonl"
     out.write_text("\n".join(json.dumps(r, sort_keys=True, ensure_ascii=False) for r in rows) + "\n")
     print(f"wrote {len(rows)} serialized examples -> {out.relative_to(ROOT)}")
     print("all rows usable_as_training_target=false")

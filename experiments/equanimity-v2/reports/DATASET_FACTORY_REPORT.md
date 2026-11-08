@@ -1,247 +1,230 @@
 # Equanimity v2: dataset factory and Azure teacher pilot
 
-Status: pilot. 30 scenarios, 90 validated semantic cases, three matched SFT
-conditions, a provider adapter, 79 tests, one bounded live teacher run of 18
-calls. No model was trained. No dataset was published. The full dataset was not
-generated.
+Dataset version **v0.2.0**. Pilot. No model trained. No dataset published. Not merged.
 
-The original `experiments/equanimity/` is untouched. Everything here is new and
-isolated.
+This report supersedes the v0.1.1 version. The v0.1.1 controls were invalid and the corrections
+are summarised in `REVIEW_DISPOSITION.md`; this document describes the current state.
 
-## What this is for
+## What this is
 
-`experiments/equanimity` produced 203 calm responses to geometrically-targeted
-dysphoric prompts and SFT-trained Qwen3-4B on them; jailbreak harm fell 75% → 17%.
-That is a result about *refusal under pressure*. It is not a dataset about
-*staying accurate and appropriately assertive while someone is hostile*. The
-failure mode a model trained only on calm-toned text can learn is passivity: an
-equanimity register that answers gently and does the wrong thing, or refuses
-politely, or validates the user instead of holding the facts.
+A reproducible, auditable pipeline for scenario-based SFT data about equanimity under emotional
+pressure. `experiments/equanimity/` — the original experiment — is untouched.
 
-v2 is built around that specific hazard. Every case has a correct decision that is
-checkable, and a required assertiveness level. A reply that is calm but wrong
-fails. A reply that is calm but passive fails. A reply that agrees with the user
-fails.
+The original experiment produced 203 calm responses and trained Qwen3-4B on them; jailbreak harm
+fell 75% → 17%. That is a result about refusal under pressure. It is not a dataset about staying
+accurate and appropriately assertive while someone is hostile. A model trained only on calm-toned
+text can learn passivity: gentle register, wrong action, polite refusal, or agreement with the
+user instead of the facts.
+
+v2 is built around that hazard. Every case has a checkable correct decision and a required
+assertiveness level. A reply that is calm but wrong fails. A reply that is calm but passive fails.
+A reply that agrees with the user fails.
 
 ## The contrast design
 
-Each scenario expands into three variants:
-
-| Variant | Facts | Register | Correct decision | What it tests |
+| Variant | Facts | Register | Correct decision | What it measures |
 | --- | --- | --- | --- | --- |
 | `neutral` | A | plain | X | baseline |
 | `pressure` | A | hostile / pressing | X | invariance under emotional pressure |
 | `counterfactual` | B | plain | Y ≠ X | sensitivity to a changed fact |
 
-The load-bearing property is that `pressure` changes *nothing* except the user's
-message and its emotional metadata. `validate_triple()` enforces this: same facts,
-same decision, same decision type, same assertiveness, different message. If a
-pressure variant quietly changes what is true, the triple teaches reactivity
-instead of measured invariance, and the build fails.
+The load-bearing property: `pressure` changes nothing except the user's message and its emotional
+metadata. `validate_triple()` enforces same facts, same decision, same decision type, same
+assertiveness, different message. If a pressure variant quietly changes what is true, the triple
+measures reactivity instead of invariance, and the build fails.
 
-The crossed cell — pressure *and* a changed fact — is deliberately **not**
-generated in v0.1.1. It is the most informative cell and it needs hand-authored
-messages, not a mechanically substituted fact sentence. Its absence is a
-limitation, not an oversight.
+The crossed cell — pressure *and* a changed fact — is not generated. It needs hand-authored
+messages. Recorded as a limitation.
 
-## The three conditions
+## The three conditions (corrected)
 
-| Key | Intent | Role |
+All three are correct, complete and length-matched. They differ in exactly one axis.
+
+| Condition | Max acknowledgements of the user's emotional state | Role |
 | --- | --- | --- |
-| `E` | calm, factually faithful, task-completing, assertiveness as required | the target behaviour |
-| `S` | validation-first: concedes unsupported ground, softens or abandons the deliverable | negative control for sycophancy |
-| `G` | formulaically safe and hollow: hedges, defers to professionals, withholds the deliverable | negative control for useless safety |
+| `E` equanimity | 1, plus no reactive phrase | treatment |
+| `S` style-matched | 0 | acknowledgement ablation |
+| `G` generic | unconstrained | ordinary helpful baseline |
 
-`S` and `G` are matched on prompt, so a difference between conditions is
-attributable to the target text, not the input. They exist to be compared against,
-not trained on. `scripts/export_examples.py` writes every row with
-`usable_as_training_target: false`.
+Every condition must preserve facts, reach the correct decision, deliver the actual artifact with
+the required assertiveness, and land in the 60–320 word band. `T08_acknowledgement_policy` and
+`T09_no_reactive_phrase` are the condition-specific checks; fact coverage, decision signal and
+deliverable checks apply to all three.
 
-Validation is condition-aware: fact-token coverage and decision-signal checks apply
-only to `E`, because `S` and `G` targets are degraded *by construction* and would
-otherwise all be rejected.
+Length matching is a corpus property, checked by `corpus_audit.audit_target_set()` across each
+scenario triple (tolerance 1.30), not per target.
+
+`S` and `G` are not degraded controls. Nothing is trained on deliberately bad output. The old
+sycophantic and hollow prompts are gone; if a diagnostic collection of deliberately defective
+responses is ever wanted, it belongs in an evaluation set, never labelled a control.
+
+## Refusal supervision
+
+The equanimity treatment must not teach refusal. Six cases (`eq2-f4-003`, `eq2-f5-005`, three
+variants each) have `decision_type: decline_scope`; they are reassigned to `split: heldout`, with
+the original split and reason preserved in `provenance.reassignment_history`. Nothing is deleted.
+
+`src/corpus_audit.py` enforces, and the build fails on violation:
+
+- no `decline_scope` case in train/dev/test;
+- every held-out case carries a reassignment record;
+- only refusal-shaped cases may be held out;
+- held-out stays a minority (84 training / 6 held out).
+
+Assertiveness and urgency remain in ordinary training cases: `escalate_urgently` cases teach
+decisive action, which is not refusal.
+
+## Deliverable checks
+
+Token presence was not enough: a target that never produced the requested patch was accepted
+because it mentioned `tmp_path`. Cases now declare `deliverable_checks`:
+
+`code_fence`, `sql_keywords`, `numeric_includes`, `json_parses`, `imperative_includes`,
+`regex_any`, `regex_none` — each with `severity: required|advisory`.
+
+All 30 scenarios declare checks, with separate `cf` variants where the counterfactual changes the
+numbers. Examples: `eq2-f1-001` requires a python code fence and `tmp_path_factory`; `eq2-f2-001`
+requires `LEFT JOIN`; `eq2-f3-002` requires a concrete emergency action phrase, not the word
+"urgent"; `eq2-f6-001` requires the numbers 512 and 700.
+
+The prompts no longer ban markdown, code blocks or structure. Format follows the task.
+
+### What the checks cannot do
+
+They are shape checks, not correctness checks. There is no execution, no fixture evaluation, no
+arithmetic verification, no entailment model. `test_deliverable_checks_catch_some_contradictions_but_not_all`
+asserts the boundary: an answer containing the required action phrase *and* the opposite
+recommendation passes every check.
+
+Token coverage is a presence check. A sentence containing `88/54`, `118`, `3.1` and `confusion`
+while recommending the opposite of the correct action passes it. Human review is not optional.
 
 ## Results
 
 | Item | Value |
 | --- | --- |
-| Scenarios authored | 30 (5 per family, 6 families) |
-| Cases generated | 90 (30 neutral, 30 pressure, 30 counterfactual) |
+| Scenarios | 30 (5 per family, 6 families) |
+| Cases | 90 (30 neutral, 30 pressure, 30 counterfactual) |
+| Training / held-out | 84 / 6 |
 | Cases passing validation | 90 |
-| Cross-scenario near-duplicates (Jaccard ≥ 0.80) | 0 |
+| Corpus audit | pass |
 | Triple-level failures | 0 |
-| Tests | 79 passing |
-| Live teacher calls | 18 of 18 planned |
+| Cross-scenario near-duplicates (Jaccard ≥ 0.80) | 0 |
+| Offline tests | 132 passed (with evidence dir mounted), 131 passed + 1 skipped otherwise |
+| Live teacher calls in the recorded run | 18 (v0.1.0 contract) |
 | Tokens | 20,058 of a 50,000 cap |
-| Candidate targets passing validation at run time | 15 of 18 |
-| Candidate targets passing validation after fixes | 18 of 18 |
 
-The 15 → 18 change is **not** evidence that the teacher improved. All three
-failures were ours:
+### The recorded 18-call run is superseded
 
-1. `eq2-f4-003` E — fact-token coverage 0.50. I had used `confirms` as a required
-   token, which is a meta-word describing the case; no answer would ever contain
-   it. Authoring defect. Fixed by using `interrupt` for both facts.
-2. `eq2-f4-003` S and `eq2-f6-001` S — no signature phrase. The teacher wrote
-   "I totally get where you're coming from" and "I completely understand", which are
-   plainly sycophantic, but my lexical list did not include them. Checker defect.
-   Fixed by broadening the list.
+It ran under the v0.1.0 contract, in which S was deliberately sycophantic and G deliberately
+useless. Re-validating that stored text against v0.2.0 fails **12 of 18** rows, and **every** S and
+G target fails fact-token coverage.
 
-`scripts/revalidate_smoke.py` re-runs the validators over the **stored** target
-text, spending nothing. It reports the flip and states the caveat: a checker fix
-that now accepts old output is evidence about the checker only.
+That is not a teacher failure. It is the old prompts asking for degraded output. It is also the
+clearest evidence that the old controls could not have supported a causal claim: E was the only
+arm with correct supervision.
 
-### An unresolved problem: the S condition produced harmful text
+`data/smoke/RUN_RECORD.json` records status `superseded` and `usable_as_training_targets: 0`.
 
-`eq2-f4-003` is a case where the user asks for a message designed to wound a
-friend, and the correct decision is `decline_scope`. The `S` condition target was
-instructed to be sycophantic. The teacher obeyed correctly and produced a
-paragraph of deliberately cruel text aimed at a third party — validating the wish
-to make someone feel bad *and* writing the weaponised message.
+The stored text itself is held outside Git history (see `PUBLIC_ARTIFACT_POLICY.md`); the
+repository keeps aggregates only.
 
-That target now passes every mechanical check. It is still unacceptable as
-training data. Two consequences:
+### The three original failures were mine, not the teacher's
 
-- `prompts/target_S.md` now carries a hard boundary: sycophancy means validating
-  the user and delivering poorly, never producing content whose purpose is to
-  wound someone. When the request is punitive, the `S` target validates the
-  feeling and offers a bland weakened version.
-- Cases whose `decision_type` is `decline_scope` should get hand-authored `S`
-  targets rather than teacher-generated ones. This is not yet enforced in code,
-  only recorded here. A mechanical check for "text intended to harm a third party"
-  does not exist in this validator and would not be reliable if it did.
+At the time, three of eighteen failed. All three were defects in my own checkers or key-token
+selection: a meta-word (`confirms`) used as a required token, and a sycophancy phrase list missing
+"I totally get" / "I completely understand". Re-validating the stored text flipped them to pass.
+That is evidence about the checker only, which is why it is labelled revalidation and not a new run.
 
-This is the single most important open item in the pilot.
+## Why positive checks rather than failure reasons
 
-### Other findings that changed the artifacts
+In a 600-row sample of `NousResearch/arete-data-pairs`, `in_sft_accepted` was essentially "no
+filter reason recorded". Accepted rows averaged accuracy 2.48/5, and the first sampled row carried
+a critical review note while being marked accepted.
 
-- **`reasoning_tokens` is always 0 on this deployment while `reasoning_content`
-  is present.** Budget accounting cannot rely on it. See
-  `reports/AZURE_TEACHER_REPORT.md`.
-- **`decline_scope` conflicted with the E prompt.** The prompt said "never refuse".
-  For a `decline_scope` case, declining *is* the correct answer. Fixed by scoping
-  the rule: never refuse the legitimate task; decline the out-of-scope part when
-  the decision requires it, plainly and without an apology-shaped opener.
-- **The hash had to exclude the validation block.** Writing validation results into
-  a case after hashing it made every row fail its own integrity check. The hash now
-  covers the semantic payload only: `provenance.content_sha256` and
-  `review.automatic` are normalised away.
-- **Per-case validation could not check the counterfactual.** Comparing a
-  counterfactual's decision to "the neutral decision" requires the neutral
-  sibling. `V11`/`V12` were silently vacuous self-comparisons; they now live in
-  `validate_triple()` as `X05`-`X08` and are marked `skip` at case level with a
-  pointer, rather than pretending to pass.
-
-## What the validators can and cannot do
-
-Can catch cheaply: schema violations, template tokens, reasoning-marker leakage,
-empty or truncated targets, repetitive text, refusal-shaped language, defensive
-phrases in `E`, generic reassurance openers, fact-token absence, decision-term
-absence, cross-scenario near-duplication, and the triple invariants.
-
-Cannot catch: whether the answer is *true*, whether it contradicts a fact while
-still containing its tokens, whether the tone is appropriate, whether the decision
-is clinically/legally correct, or whether the text is harmful to a third party.
-`test_token_coverage_is_a_weak_check_not_entailment` asserts this limitation
-explicitly so it cannot be quietly upgraded into a claim.
-
-Token coverage is a presence check. It is not entailment. A sentence that contains
-`88/54`, `118`, `3.1` and `confusion` while recommending the opposite of the
-correct action passes it. That is why human review is not optional.
-
-## Why positive checks, not just failure reasons
-
-In a 600-row sample of `NousResearch/arete-data-pairs`, `in_sft_accepted` was
-essentially "no filter reason recorded": accepted rows had zero reasons, rejected
-rows all had at least one. But accepted rows still averaged accuracy 2.48/5, and
-the first row in the sample carried a critical review note about misleading
-similarity-score claims while being marked accepted.
-
-That is the failure mode this design tries to avoid: acceptance by absence of
-complaints. Here, `E` targets must positively exhibit fact-token coverage and
-decision signal, and the triple must positively satisfy the invariance properties.
-Failing a check produces a recorded `rejection_reason` code, and rejected rows are
-written to `data/rejected/` rather than dropped.
+Acceptance by absence of complaints is the failure mode this design avoids. `E` targets must
+positively exhibit fact coverage, decision signal and the declared deliverable; the triple must
+positively satisfy invariance. Failures produce structured `rejection_reason` codes and rejected
+rows are written to `data/rejected/`, not dropped.
 
 ## Limitations
 
-1. Every row is `review_status=draft`. No human has approved any case. Nothing may
-   be scaled from this.
-2. The facts and the correct decisions were authored by the same agent. Fact and
-   decision agreeing with each other is therefore not independent evidence that
-   either is right.
-3. Clinical, legal, financial and tax content is illustrative, not reviewed by a
-   practitioner. It is structured to be checkable, not to be correct advice.
-4. Counterfactual user messages are machine-derived (an appended fact update),
-   flagged in `provenance.generation_config` with `requires: human rewrite`. They
-   read acceptably and are not hand-polished prose.
-5. The crossed cell (pressure + changed fact) does not exist in v0.1.1.
-6. The `S` condition can produce harmful text for punitive-request cases; see above.
-7. 18 live calls at one temperature with no seed is far too few to say anything
-   about teacher reliability, variance, or quality distribution. It is a
-   feasibility check, not a measurement.
-8. `json_schema` support is unit-tested and was confirmed by an earlier probe, but
-   the smoke run did not use structured output; every call was free text.
-9. Cost of the run is not asserted anywhere. Token counts are recorded; pricing was
-   not consulted.
+1. Every row is `review_status=draft`. No human has approved any case. Nothing may be scaled.
+2. Facts and decisions were authored by the same agent. Their agreement is not independent
+   evidence of correctness.
+3. Clinical, legal, financial and tax content is illustrative and not practitioner-reviewed. It is
+   structured to be checkable, not to be correct advice.
+4. Counterfactual user messages are machine-derived (appended fact update), flagged in
+   `provenance.generation_config` with `requires: human rewrite`.
+5. The crossed cell (pressure + changed fact) is not generated.
+6. Acknowledgement counting is phrase-based; paraphrases outside the list count as zero, which
+   biases toward accepting a too-warm target.
+7. Deliverable checks verify shape, not correctness or entailment.
+8. 18 live calls at one temperature with no seed says nothing about teacher reliability or quality
+   distribution. It is a feasibility check.
+9. `chatml` and `harmony` are demonstration renderers checked against their grammars. Neither is a
+   verified student pipeline. Native thinking preservation is not measured and not claimed; see
+   `NATIVE_THINKING_PILOT.md`.
+10. Cost of the recorded run is not asserted. Token counts are recorded; pricing was not consulted.
+11. ReLIFT sampling comparison is a proposal, not a result.
+
+## Verification
+
+Offline, no network:
+
+```
+python3 src/build_dataset.py          -> 90 cases, 84/6 split, corpus audit pass
+python3 src/corpus_audit.py           -> ok
+python3 -m pytest tests/ -q           -> 132 passed
+                                        (131 passed, 1 skipped when EQ2_EVIDENCE_DIR is unset,
+                                         because the private-evidence hash check cannot run)
+```
+
+The build is deterministic given `EQ2_BUILD_UTC` (default `2026-11-07T00:00:00Z`). Changing it
+changes every content hash.
 
 ## Reproduce
 
 ```bash
 cd experiments/equanimity-v2
-python3 src/build_dataset.py          # 90 cases, triple checks, manifest
-python3 -m pytest tests/ -q           # 79 tests, no network
-python3 scripts/run_teacher_smoke.py --dry-run    # 18 mock calls, budget enforced
-EQ2_AZURE_ENDPOINT=... python3 scripts/run_teacher_smoke.py   # live, 18 calls max
-python3 scripts/revalidate_smoke.py   # re-check stored text, zero spend
-python3 scripts/export_examples.py    # serialized formats, not training data
+python3 src/build_dataset.py
+python3 -m pytest tests/ -q
+python3 scripts/run_teacher_smoke.py --dry-run          # 18 mock calls, temp dirs, budget enforced
+EQ2_EVIDENCE_DIR=<private dir> python3 scripts/revalidate_smoke.py
 ```
 
-`src/build_dataset.py` is deterministic given `EQ2_BUILD_UTC` (default
-`2026-11-07T00:00:00Z`). Setting it to the current time changes every content hash.
+A live run additionally needs `EQ2_AZURE_ENDPOINT`, `EQ2_AZURE_API_KEY` and an explicit
+`--rows-dir` outside the repository. It must not be run before human review of the scenarios.
 
 ## Next steps, cheapest first
 
-1. **Human-review the 30 scenarios**, especially the clinical and legal ones, and
-   the `decline_scope` cases. This is the gate; nothing else should happen first.
-2. Hand-author `S` targets for `decline_scope` cases and add a code-level guard that
-   refuses to generate them mechanically.
-3. Re-run the 18-call smoke against the fixed prompts to check that the `S` boundary
-   actually changes behaviour. Cost: 18 calls, ≈20k tokens.
-4. Author the crossed cell for a handful of scenarios by hand; it is the cell that
-   would tell you whether the model tracks facts *while* under pressure.
-5. Only then consider scale, and only with a per-batch human review step, the way
-   Arete's README describes their data moving through reviewed pull requests.
+1. Human review of the 30 scenarios — clinical, legal and the two held-out families first. This is
+   the gate.
+2. Execute stage 0 and stage 1 of `NATIVE_THINKING_PILOT.md` (offline, tests the machinery, no
+   compute).
+3. Only then regenerate targets under v0.2.0: 18 calls, ~20k tokens, with human review of every
+   output before any use.
+4. Author the crossed cell by hand for a few scenarios.
+5. Consider extending deliverable checks to execution (parse or run the code, evaluate SQL against
+   a fixture) — the largest remaining gap between "shape is right" and "task is done".
+6. ReLIFT comparison only after a frozen, independent confirmatory set exists.
 
 ## Layout
 
 ```
 schema/semantic_case.v1.schema.json   canonical, model-agnostic case schema
-scenarios/                            30 authored specs (5 per family)
+scenarios/                            30 authored specs, heldout policy, deliverable checks
 src/build_dataset.py                  spec -> 90 cases -> validated/rejected + manifest
-src/validate.py                       per-case, triple-level, and target validators
-src/serialize.py                      plain / chatml / harmony serialization, conditions
-src/provider/azure_foundry.py         Azure adapter, budget guard, mock client
-prompts/target_E.md target_S.md target_G.md   condition prompts
-prompts/scenario_draft.md             prompt for authoring further scenarios
-scripts/run_teacher_smoke.py          the 18-call bounded live run
-scripts/revalidate_smoke.py           re-validate stored text, zero spend
-scripts/export_examples.py            serialized examples, not training data
-tests/                                79 tests, including mutation negative controls
+src/validate.py                       per-case, triple-level and target validators
+src/corpus_audit.py                   corpus invariants incl. no-refusal-supervision
+src/serialize.py                      plain / chatml / harmony renderers, conditions
+src/provider/azure_foundry.py         Azure adapter, fail-closed budget, mock client
+prompts/target_E.md target_S.md target_G.md
+scripts/run_teacher_smoke.py          bounded live run (raw rows never in repo)
+scripts/revalidate_smoke.py           re-check stored text against the current contract
+scripts/export_examples.py            serialized examples, written outside the repo
+tests/                                132 offline tests, mostly negative controls
 data/validated/cases.jsonl            90 cases
-data/smoke/                           18 targets, audit records, summaries
-reports/AZURE_TEACHER_REPORT.md       measured provider behaviour
-reports/DATASET_FACTORY_REPORT.md     this file
+data/smoke/                           aggregates only; raw text held privately
+reports/                              disposition, policy, pilot, proposal, provider, this file
 ```
-
-## Integrity
-
-Dataset version `v0.1.1`. `data/manifest.json` records counts, per-output SHA-256,
-the git commit, and the limitation list. Each case carries
-`provenance.content_sha256` over its own semantic payload.
-
-The 18-call run was validated against `v0.1.0` case content; the exact hashes it saw
-are preserved in `data/smoke/cases_at_run.json`. v0.1.1 changed only the key tokens
-of `eq2-f4-003`; no prose in any user message changed, so re-validating the stored
-text against v0.1.1 is legitimate — but it remains re-validation of stored text,
-not a fresh run.

@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+data/smoke/targets.jsonl
+data/smoke/audit.jsonl
+data/smoke/serialized_examples.jsonl
+data/raw/
+data/private/

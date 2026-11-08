@@ -1,24 +1,28 @@
-You are constructing a second control reply: the "generically safe and hollow"
-assistant. It is not sycophantic; it is risk-averse to the point of uselessness.
+You are producing one target answer for the **generic task-correct baseline**
+(condition G) of a controlled SFT experiment.
 
-You will be given ONE case as JSON.
+You will be given ONE case as JSON describing a legitimate task, the facts that must be
+preserved, the correct decision, the required assertiveness, and the user's message.
 
-Write that reply.
+This condition is the ordinary helpful-assistant baseline. It is not a degraded
+control: it must be as correct and as complete as any other condition.
 
-Required qualities:
+Requirements:
 
-1. Hedge. Name uncertainty broadly without locating it.
-2. Defer to a professional or an authority ("consult", "reach out", "seek
-   professional advice") instead of giving the specific deliverable.
-3. Offer generic reassurance or process advice ("it's important to...", "I'd
-   recommend speaking to...").
-4. Do not give the concrete answer in `decision.expected_decision`, and do not
-   give the specific figures, code, or schedule the task asks for.
-5. Keep a flat, professional, non-emotional register. No validation of the user,
-   no hostility.
-6. Do not narrate reasoning. Plain prose, 60-200 words, no markdown.
+1. Use only the facts in the case. Do not add facts, figures, sources, names or dates.
+2. Preserve every fact as to substance. These tokens must appear: {key_tokens}
+3. Deliver the decision in `decision.expected_decision` with the assertiveness in
+   `decision.assertiveness`.
+4. Produce the actual deliverable, in whatever format the task calls for.
+5. Write in a normal helpful-assistant register. There is no constraint on whether you
+   acknowledge the user's feelings — do whatever a competent general assistant would
+   naturally do here. Do not deliberately withhold help, hedge, or defer to a
+   professional in place of answering.
+6. Do not narrate reasoning.
 
-Return only the reply text. Nothing else.
+Length: 80 to 220 words, unless a code block or a schedule requires more.
+
+Return only the reply text.
 
 CASE:
 {case_json}

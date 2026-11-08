@@ -115,9 +115,33 @@ class AzureConfig:
 # --------------------------------------------------------------------------
 
 
+def estimate_prompt_tokens(messages: list[dict[str, str]]) -> int:
+    """Rough prompt-token estimate used for pre-request reservation.
+
+    This is an ESTIMATE, not a tokenizer. It deliberately over-reserves slightly
+    (4 tokens per message plus chars/4) so that the guard fails closed rather than
+    open. It is not a billing ceiling: a reservation is a local safety limit, and
+    the provider may bill differently. See AZURE_TEACHER_REPORT.md.
+    """
+    chars = sum(len(m.get("content", "")) for m in messages)
+    return 4 * len(messages) + (chars + 3) // 4
+
+
 @dataclass
 class Budget:
-    """Hard stop on requests and tokens. Checked before every call."""
+    """Fail-closed pre-request accounting.
+
+    Three separate things are tracked, because conflating them is how a guard ends
+    up under-counting:
+
+      requests_used   every HTTP attempt, including retries and failures
+      reserved_tokens in-flight reservations (estimate + max completion)
+      prompt/completion_tokens  actual reported usage, settled on success
+
+    A reservation is taken BEFORE the request and settled after. If the provider
+    reports more than was reserved, that is recorded as an overrun rather than
+    silently ignored.
+    """
 
     max_requests: int = 18
     max_tokens: int = 50_000
@@ -125,29 +149,58 @@ class Budget:
     prompt_tokens: int = 0
     completion_tokens: int = 0
     reasoning_tokens: int = 0
+    reserved_tokens: int = 0
+    failed_attempts: int = 0
+    overruns: int = 0
 
     @property
     def tokens_used(self) -> int:
         return self.prompt_tokens + self.completion_tokens
 
-    def check(self, estimated_completion: int) -> None:
+    @property
+    def committed(self) -> int:
+        """Actual usage plus everything currently reserved. The number the cap applies to."""
+        return self.tokens_used + self.reserved_tokens
+
+    def reserve(self, est_prompt: int, max_completion: int) -> int:
+        """Take a reservation or raise. Called before every attempt."""
         if self.requests_used + 1 > self.max_requests:
             raise BudgetExceeded(
-                f"request budget exhausted: {self.requests_used}/{self.max_requests}"
+                f"request budget exhausted: {self.requests_used}/{self.max_requests} "
+                "(retries and failures count as requests)"
             )
-        projected = self.tokens_used + estimated_completion
-        if projected > self.max_tokens:
+        reservation = est_prompt + max_completion
+        if self.committed + reservation > self.max_tokens:
             raise BudgetExceeded(
                 f"token budget would be breached: used={self.tokens_used} "
-                f"projected_add={estimated_completion} cap={self.max_tokens}"
+                f"reserved={self.reserved_tokens} "
+                f"new_reservation={reservation} (prompt {est_prompt} + completion {max_completion}) "
+                f"cap={self.max_tokens}"
             )
-
-    def record(self, usage: dict[str, Any]) -> None:
+        self.reserved_tokens += reservation
         self.requests_used += 1
-        self.prompt_tokens += int(usage.get("prompt_tokens") or 0)
-        self.completion_tokens += int(usage.get("completion_tokens") or 0)
+        return reservation
+
+    def settle(self, usage: dict[str, Any], reservation: int) -> None:
+        """Release a reservation and record what the provider actually reported."""
+        self.reserved_tokens = max(0, self.reserved_tokens - reservation)
+        actual_prompt = int(usage.get("prompt_tokens") or 0)
+        actual_completion = int(usage.get("completion_tokens") or 0)
+        self.prompt_tokens += actual_prompt
+        self.completion_tokens += actual_completion
         details = usage.get("completion_tokens_details") or {}
         self.reasoning_tokens += int(details.get("reasoning_tokens") or 0)
+        if actual_prompt + actual_completion > reservation:
+            self.overruns += 1
+
+    def release_failed(self, reservation: int) -> None:
+        """Release a reservation for an attempt that produced no usage.
+
+        The provider may still bill for a failed attempt. That is recorded as an
+        explicit uncertainty rather than guessed at.
+        """
+        self.reserved_tokens = max(0, self.reserved_tokens - reservation)
+        self.failed_attempts += 1
 
     def snapshot(self) -> dict[str, Any]:
         return {
@@ -157,7 +210,16 @@ class Budget:
             "completion_tokens": self.completion_tokens,
             "reasoning_tokens": self.reasoning_tokens,
             "tokens_used": self.tokens_used,
+            "reserved_tokens": self.reserved_tokens,
+            "committed": self.committed,
             "max_tokens": self.max_tokens,
+            "failed_attempts": self.failed_attempts,
+            "overruns": self.overruns,
+            "note": (
+                "tokens_used is provider-reported usage. committed adds outstanding "
+                "reservations. Reservations are a local safety limit, not a billing "
+                "ceiling; failed attempts may still be billed."
+            ),
         }
 
 
@@ -287,12 +349,13 @@ class AzureFoundryClient:
                 },
             }
 
-        self.budget.check(max_completion_tokens)
+        est_prompt = estimate_prompt_tokens(messages)
         started = time.time()
         attempts = 0
         last_err = ""
 
         while attempts <= self.cfg.max_retries:
+            reservation = self.budget.reserve(est_prompt, max_completion_tokens)
             attempts += 1
             try:
                 resp = self._session.post(
@@ -302,13 +365,17 @@ class AzureFoundryClient:
                     timeout=self.cfg.timeout_s,
                 )
             except requests.RequestException as exc:
+                self.budget.release_failed(reservation)
                 last_err = redact(str(exc), self.cfg.api_key, self.cfg.bearer_token)
                 self._sleep(attempts)
                 continue
 
             if resp.status_code == 200:
-                return self._parse(resp, request_id, payload, started, attempts)
+                result = self._parse(resp, request_id, payload, started, attempts)
+                self.budget.settle(result.usage, reservation)
+                return result
 
+            self.budget.release_failed(reservation)
             body = resp.text
             safe = redact(body, self.cfg.api_key, self.cfg.bearer_token)
 
@@ -384,7 +451,6 @@ class AzureFoundryClient:
         choice = (data.get("choices") or [{}])[0]
         msg = choice.get("message") or {}
         usage = data.get("usage") or {}
-        self.budget.record(usage)
 
         return GenerationResult(
             request_id=request_id,
@@ -457,7 +523,7 @@ class MockClient:
         json_schema: dict[str, Any] | None = None,
         seed: int | None = None,
     ) -> GenerationResult:
-        self.budget.check(max_completion_tokens)
+        reservation = self.budget.reserve(estimate_prompt_tokens(messages), max_completion_tokens)
         self.calls.append({"request_id": request_id, "messages": messages})
 
         if self.fail_mode == "truncate":
@@ -484,7 +550,7 @@ class MockClient:
             "completion_tokens_details": {"reasoning_tokens": 12},
         }
         usage["total_tokens"] = usage["prompt_tokens"] + usage["completion_tokens"]
-        self.budget.record(usage)
+        self.budget.settle(usage, reservation)
 
         return GenerationResult(
             request_id=request_id,

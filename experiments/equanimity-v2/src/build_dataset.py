@@ -37,8 +37,9 @@ from validate import (  # noqa: E402
     validate_case,
     validate_triple,
 )
+from corpus_audit import audit_cases  # noqa: E402
 
-DATASET_VERSION = "v0.1.1"
+DATASET_VERSION = "v0.2.0"
 SCHEMA_VERSION = "equanimity-v2.semantic.1"
 BUILD_UTC = os.environ.get("EQ2_BUILD_UTC", "2026-11-07T00:00:00Z")
 AUTHOR = "pi-agent-seed-v1"
@@ -48,6 +49,11 @@ def load_specs() -> list[dict]:
     from f1_f2 import SPECS_F1_F2
     from f3_f4 import SPECS_F3_F4
     from f5_f6 import SPECS_F5_F6
+    from heldout import HELDOUT
+    from deliverable_checks import CHECKS
+
+    missing = [x["spec_id"] for x in (SPECS_F1_F2 + SPECS_F3_F4 + SPECS_F5_F6) if x["spec_id"] not in CHECKS]
+    assert not missing, f"scenarios without deliverable_checks: {missing}"
 
     specs = SPECS_F1_F2 + SPECS_F3_F4 + SPECS_F5_F6
     ids = [s["spec_id"] for s in specs]
@@ -72,6 +78,13 @@ def _facts(spec: dict, *, cf: bool) -> list[dict]:
 def _prior(spec: dict, *, cf: bool) -> list[dict]:
     turns = spec["cf_prior_turns"] if (cf and spec["cf_prior_turns"]) else spec["prior_turns"]
     return [{"role": r, "content": t} for r, t in turns]
+
+
+def _checks_for(sid: str, cf: bool) -> list[dict]:
+    from deliverable_checks import CHECKS
+
+    entry = CHECKS[sid]
+    return [dict(c) for c in entry["cf" if cf else "base"]]
 
 
 def check_spec(spec: dict) -> None:
@@ -114,11 +127,25 @@ def make_case(spec: dict, kind: str) -> dict:
     cf_decision = spec["cf_decision"]
     cf_fact_id = f"f{spec['cf_fact_index']+1}"
 
+    from heldout import HELDOUT
+
+    split = "heldout" if spec["spec_id"] in HELDOUT else spec["split"]
+    reassignment = (
+        [{
+            "utc": BUILD_UTC,
+            "from_split": spec["split"],
+            "to_split": "heldout",
+            "reason": HELDOUT[spec["spec_id"]],
+        }]
+        if split == "heldout" else []
+    )
+
     provenance = {
         "author": AUTHOR,
         "created_utc": BUILD_UTC,
         "review_status": "draft",
         "content_sha256": "",
+        "reassignment_history": reassignment,
         "generation_config": (
             {
                 "method": "appended_fact_update",
@@ -165,7 +192,8 @@ def make_case(spec: dict, kind: str) -> dict:
             "decision_after_change": cf_decision,
             "decision_differs": cf,
         },
-        "split": spec["split"],
+        "deliverable_checks": _checks_for(spec["spec_id"], cf),
+        "split": split,
         "provenance": provenance,
         "review": {
             "automatic": {"status": "not_run", "checks": []},
@@ -231,6 +259,13 @@ def main() -> int:
                 case["review"]["automatic"]["status"] = "fail"
                 case.setdefault("rejection_reasons", []).extend(tout.rejection_reasons)
 
+    corpus = audit_cases(cases)
+    if not corpus["ok"]:
+        print("CORPUS AUDIT FAILED")
+        for v in corpus["violations"]:
+            print(f"  {v['rule']}: {v['variant_id']} — {v['detail']}")
+        return 1
+
     accepted = [c for c in cases if c["review"]["automatic"]["status"] == "pass"]
     rejected = [c for c in cases if c["review"]["automatic"]["status"] != "pass"]
 
@@ -273,10 +308,11 @@ def main() -> int:
         },
         "near_duplicates_cross_scenario": dups,
         "triple_failures": triple_failures,
+        "corpus_audit": corpus,
         "limitations": [
             "All rows are review_status=draft; no human has approved any case.",
             "Counterfactual user messages are machine-derived (appended fact update), not hand-authored.",
-            "The crossed cell (pressure + changed fact) is not generated in v0.1.0.",
+            "The crossed cell (pressure + changed fact) is not generated.",
             "No target responses exist yet for these cases; targets are produced separately and validated independently.",
             "Facts are authored by the same agent that wrote the decisions, so fact/decision agreement is not independent evidence.",
         ],
@@ -284,6 +320,8 @@ def main() -> int:
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
 
     print(f"specs={len(specs)} cases={len(cases)} accepted={len(accepted)} rejected={len(rejected)}")
+    print(f"corpus audit: ok, training={corpus['counts']['training']} heldout={corpus['counts']['heldout']}")
+    print(f"heldout: {corpus['heldout_variant_ids']}")
     print(f"by_kind={by_kind}")
     for f, n in sorted(by_family.items()):
         print(f"  {f}: {n}")

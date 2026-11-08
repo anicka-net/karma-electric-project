@@ -1,0 +1,15 @@
+{
+  "also": "Every row is review_status=draft. No row is usable as a training target until a human reviews the case, regardless of mechanical pass status.",
+  "calls": 18,
+  "contract_at_run": "v0.1.0",
+  "contract_now": "v0.2.0",
+  "next": "Regenerating targets under v0.2.0 requires 18 new calls and human review beforehand. Not done: the review instructed no paid API calls until human review.",
+  "pass_under_contract_at_run": 15,
+  "pass_under_contract_now": 6,
+  "run": "18-call live Azure GPT-OSS 120B pilot",
+  "run_commit": "59a0401",
+  "status": "superseded",
+  "tokens": 20058,
+  "usable_as_training_targets": 0,
+  "why_superseded": "v0.1.0 defined S as deliberately sycophantic and G as deliberately useless. Under the corrected control design (v0.2.0) every condition must preserve facts and complete the task, so those targets are invalid as controls. Re-validating the same stored text against v0.2.0 fails 12 of 18 rows, and every S and G target fails fact-token coverage. This is not a teacher failure: it is the old prompts asking for degraded output."
+}

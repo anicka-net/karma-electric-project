@@ -8,26 +8,24 @@ below is tied to either a capability probe or a recorded call in
 
 | Field | Value |
 | --- | --- |
-| Resource | `anicka-decision-1-<account suffix redacted>` (AIServices) |
-| Region | swedencentral |
-| Resource group | `rg-decision-eval` |
-| Endpoint | `https://anicka-decision-1-<account suffix>.cognitiveservices.azure.com/` |
-| Deployment | `gpt-oss-120b`, GlobalStandard, capacity 500, model version 1 |
+| Deployment name | `gpt-oss-120b` |
+| Type | GlobalStandard |
+| Model version | 1 |
 | API version | `2024-12-01-preview` (200 on all calls) |
 | Auth | `api-key` header |
 
-The account suffix is redacted in this repo because it is a live paid endpoint; the
-suffix is recorded in the local session notes, not here. Nothing else about the
-resource is withheld — region, resource group, deployment, and every generation
-parameter are as measured.
+The hosting account, region, resource group and endpoint hostname are **not**
+recorded here. They are properties of a live paid endpoint and carry no review
+value; they are recorded in local session notes instead. Nothing about the
+generation behaviour below depends on knowing them.
 
-`gpt-oss-120b` is **not** the deployment in `~/.azure_openai.json`, which points at
-`anna52-ai` / eastus / `gpt-4o`. The two must not be conflated: the existing
-project judges (`voice_eval.py`, `voice_audit.py`) use the gpt-4o deployment, whose
-resource-level content filtering is documented in
-`docs/judge-filter-coverage-2026-10-29.md`. This teacher is a different resource
-with different filtering. No filtering behaviour was observed on this deployment
-during the run; that is absence of evidence, not evidence of absence.
+This deployment is not the one referenced by `~/.azure_openai.json`. The existing
+project judges (`voice_eval.py`, `voice_audit.py`) use a different deployment with
+documented resource-level content filtering
+(`docs/judge-filter-coverage-2026-10-29.md`). That deployment is not described
+further here, and no behaviour in this report should be assumed to transfer to it.
+No filtering behaviour was observed on the teacher deployment during the run; that
+is absence of evidence, not evidence of absence.
 
 ## Capability matrix
 
@@ -95,7 +93,14 @@ fields so a mismatch would be visible rather than assumed away.
 | Completion tokens | 3,355 |
 | Total tokens (smoke) | 20,058 of a 50,000 cap |
 | Capability probes (separate, earlier) | ~5 calls, not counted in the 18 |
-| Enforced request cap | `Budget(max_requests=18)` — a 19th call raises before touching the network |
+| Enforced request cap | `Budget(max_requests=18)`; every HTTP attempt counts, including retries and failures |
+
+**Reservations are not a billing ceiling.** Each attempt reserves
+`estimate_prompt_tokens(messages) + max_completion_tokens` before the request and settles the
+reservation on response. `estimate_prompt_tokens` is a heuristic (4 tokens per message plus
+chars/4), not a tokenizer, and deliberately over-reserves so the guard fails closed. If the
+provider reports more than was reserved, `overruns` increments. Failed attempts release their
+reservation but may still be billed; `failed_attempts` records that this is unmodelled.
 
 **Cost is not asserted.** No pricing lookup was performed and no billing data was
 read. The token counts above are from the API's own `usage` fields. If a euro
@@ -122,8 +127,8 @@ have not been observed on this resource, because both `reasoning_effort` and
 
 ## Credentials
 
-The key lives in `/tmp/oss_key.txt` (mode 600) and is read only if
-`EQ2_AZURE_API_KEY` is unset. It is not written into any artifact, not logged, and
-redacted from error text by `redact()`. `/tmp` is not persistent; treat the key as
-ephemeral and re-fetch it from the control plane when needed. Nothing in this
-repository contains a credential.
+The key is supplied through `EQ2_AZURE_API_KEY`, with a local file fallback whose
+path is set by the operator and not recorded in this repository. It is not written
+into any artifact, not logged, and redacted from error text by `redact()`. A
+temporary file in `/tmp` is not persistent; treat the key as ephemeral and re-fetch
+it from the control plane when needed. No credential is stored in this repository.

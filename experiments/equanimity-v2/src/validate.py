@@ -21,7 +21,14 @@ import re
 from dataclasses import dataclass, asdict
 from typing import Any
 
-from serialize import CONDITIONS, find_reasoning_markers, find_tokens
+from serialize import (
+    ACKNOWLEDGEMENT_PATTERNS,
+    CONDITIONS,
+    LENGTH_BAND,
+    REACTIVE_PATTERNS,
+    find_reasoning_markers,
+    find_tokens,
+)
 
 # --------------------------------------------------------------------------
 # Result types
@@ -299,6 +306,113 @@ def token_coverage(case: dict[str, Any], text: str) -> tuple[float, list[str]]:
     return (hit / total if total else 0.0), missing
 
 
+def count_acknowledgements(text: str) -> int:
+    """How many distinct acknowledgement phrases appear.
+
+    Deliberately phrase-based and therefore approximate. A paraphrase the list does
+    not cover counts as zero, which biases towards accepting a too-warm target.
+    The limitation is recorded in the report; this is not a style judge.
+    """
+    hits = 0
+    for pat in ACKNOWLEDGEMENT_PATTERNS:
+        if re.search(pat, text, re.I):
+            hits += 1
+    return hits
+
+
+def _fenced_blocks(text: str) -> list[tuple[str, str]]:
+    out = []
+    for m in re.finditer(r"```([A-Za-z0-9_+-]*)\s*\n(.*?)```", text, re.S):
+        out.append((m.group(1).strip().lower(), m.group(2)))
+    return out
+
+
+def run_deliverable_checks(case: dict[str, Any], text: str, c: Collector) -> None:
+    """Apply the case's declared mechanical task-completion checks.
+
+    These test that the deliverable was actually produced. They are narrow and
+    explicit; they do not test correctness of the content and cannot detect a
+    confidently wrong answer that happens to contain the right tokens.
+    """
+    checks = case.get("deliverable_checks") or []
+    if not checks:
+        c.skip("M00_deliverable_checks", "no mechanical checks declared for this case")
+        return
+
+    low = text.lower()
+
+    for i, chk in enumerate(checks, start=1):
+        kind = chk["kind"]
+        sev = chk.get("severity", "required")
+        cid = f"M{i:02d}_{kind}"
+        detail = ""
+        passed = True
+
+        if kind == "code_fence":
+            blocks = _fenced_blocks(text)
+            want = chk.get("require_language")
+            if want:
+                passed = any(lang == want.lower() or lang.startswith(want.lower()) for lang, _ in blocks)
+                detail = f"fences={[l for l, _ in blocks]} want={want}"
+            else:
+                passed = bool(blocks)
+                detail = f"fence_count={len(blocks)}"
+
+        elif kind == "sql_keywords":
+            inc = chk.get("must_include") or []
+            exc = chk.get("must_exclude") or []
+            missing = [k for k in inc if k.lower() not in low]
+            present_bad = [k for k in exc if k.lower() in low]
+            passed = not missing and not present_bad
+            detail = f"missing={missing} forbidden_present={present_bad}"
+
+        elif kind == "numeric_includes":
+            vals = chk.get("values") or []
+            missing = [v for v in vals if _norm(v).lower() not in _norm(text).lower()]
+            passed = not missing
+            detail = f"missing={missing}"
+
+        elif kind == "json_parses":
+            ok = False
+            for _, body in _fenced_blocks(text) or [("", text)]:
+                try:
+                    json.loads(body.strip())
+                    ok = True
+                    break
+                except Exception:
+                    continue
+            passed = ok
+            detail = "no parseable JSON object found"
+
+        elif kind == "imperative_includes":
+            phrases = chk.get("phrases") or []
+            missing = [p for p in phrases if p.lower() not in low]
+            passed = not missing
+            detail = f"missing={missing}"
+
+        elif kind == "regex_any":
+            pats = chk.get("patterns") or []
+            hit = [p for p in pats if re.search(p, text, re.I)]
+            passed = bool(hit)
+            detail = f"none of {pats} matched"
+
+        elif kind == "regex_none":
+            pats = chk.get("patterns") or []
+            hit = [p for p in pats if re.search(p, text, re.I)]
+            passed = not hit
+            detail = f"forbidden patterns matched: {hit}"
+
+        else:
+            c.skip(cid, f"unknown check kind {kind}")
+            continue
+
+        if sev == "advisory" and not passed:
+            c.checks.append(CheckResult(cid, "skip", f"advisory failure: {detail}"))
+        else:
+            code = "task_abandonment" if sev == "required" else None
+            c.check(cid, passed, detail[:200], code=code)
+
+
 def validate_target(
     case: dict[str, Any],
     text: str,
@@ -306,90 +420,103 @@ def validate_target(
     *,
     min_coverage: float = 0.75,
     require_decision_signal: bool = True,
+    allow_refusal: bool | None = None,
+    finish_reason: str | None = None,
 ) -> ValidationOutcome:
-    """Check one candidate student target.
+    """Check one candidate student target against the corrected control contract.
 
-    Deliberately weak where weakness is honest: token coverage is not
-    entailment, and decision-signal matching is a heuristic. Both are recorded
-    as such in the report. What this CAN catch cheaply: empty, truncated,
-    repetitive, refusal-shaped, reasoning-contaminated, fact-dropping targets —
-    i.e. the failure modes that dominated the observed rejected rows.
+    Every condition must be factually faithful and task-completing. The conditions
+    differ only in whether the answer acknowledges the user's emotional state:
+
+        E  at most one acknowledgement, and no reactive phrase
+        S  zero acknowledgements
+        G  unconstrained
+
+    What this can catch cheaply: empty, truncated, repetitive, reasoning-contaminated,
+    fact-dropping, deliverable-missing, refusal-shaped, and over-reactive targets.
+    What it cannot catch: whether the answer is true, whether it contradicts a fact
+    while containing its tokens, or whether the tone is appropriate.
     """
     cond = CONDITIONS[condition]
     c = Collector(f"{case['variant_id']}::{condition}")
+
+    if allow_refusal is None:
+        allow_refusal = case.get("split") == "heldout"
 
     t = _norm(text)
 
     c.check("T01_not_empty", len(t) >= 40, f"len={len(t)}", code="empty")
 
-    c.check("T02_no_template_tokens", not find_tokens(text), str(find_tokens(text))[:200], code="reasoning_contamination")
+    if finish_reason == "length":
+        c.check("T01b_not_truncated_by_provider", False,
+                "provider reported finish_reason=length", code="truncated")
+    else:
+        c.check("T01b_not_truncated_by_provider", True)
+
+    c.check("T02_no_template_tokens", not find_tokens(text), str(find_tokens(text))[:200],
+            code="reasoning_contamination")
     c.check("T03_no_reasoning_markers", not find_reasoning_markers(text),
             str(find_reasoning_markers(text))[:200], code="reasoning_contamination")
 
-    c.check("T04_not_truncated", not t.lower().endswith(("...", " and", " the", ",")) and len(t) > 60,
+    c.check("T04_not_truncated",
+            not t.lower().endswith(("...", " and", " the", ",")) and len(t) > 60,
             f"tail={t[-30:]!r}", code="truncated")
 
     words = t.split()
     if len(words) > 40:
         unique_ratio = len(set(w.lower() for w in words)) / len(words)
-        c.check("T05_not_repetitive", unique_ratio >= 0.45, f"unique_ratio={unique_ratio:.2f}", code="repetitive")
+        c.check("T05_not_repetitive", unique_ratio >= 0.45, f"unique_ratio={unique_ratio:.2f}",
+                code="repetitive")
     else:
         c.skip("T05_not_repetitive", "text too short to assess")
 
-    for pat in REFUSAL_PATTERNS:
-        m = re.search(pat, text, re.I)
-        if m:
-            c.check("T06_no_refusal_language", False, f"matched {m.group(0)!r}", code="refusal_language")
-            break
+    if allow_refusal:
+        c.skip("T06_no_refusal_language", "held-out evaluation case: refusal is legitimate here")
     else:
-        c.check("T06_no_refusal_language", True)
-
-    # Condition-specific expectations
-    if condition == "E":
-        for banned in cond.must_not_contain:
-            m = re.search(re.escape(banned), text, re.I)
-            if m:
-                c.check("T07_equanimity_no_defensive_phrase", False,
-                        f"matched {banned!r} — defensive/sycophantic phrase in E target",
-                        code="excessive_calming")
-                break
-        else:
-            c.check("T07_equanimity_no_defensive_phrase", True)
-
-        for pat in GENERIC_REASSURANCE:
+        for pat in REFUSAL_PATTERNS:
             m = re.search(pat, text, re.I)
             if m:
-                c.check("T08_no_generic_reassurance", False, f"matched {m.group(0)!r}", code="generic_reassurance")
+                c.check("T06_no_refusal_language", False, f"matched {m.group(0)!r}",
+                        code="refusal_language")
                 break
         else:
-            c.check("T08_no_generic_reassurance", True)
+            c.check("T06_no_refusal_language", True)
+
+    lo, hi = LENGTH_BAND
+    c.check("T07_length_band", lo <= len(words) <= hi, f"words={len(words)} band={LENGTH_BAND}",
+            code="length_mismatch")
+
+    # Universal correctness: every condition must preserve facts and reach the decision.
+    cov, missing = token_coverage(case, text)
+    c.check("T10_fact_token_coverage", cov >= min_coverage,
+            f"coverage={cov:.2f} missing={missing[:6]}", code="fact_missing")
+
+    if require_decision_signal:
+        dec_words = [w for w in re.findall(r"[a-z]{4,}", case["decision"]["expected_decision"].lower())]
+        hits = [w for w in dec_words if w in t.lower()]
+        c.check("T11_decision_signal", len(hits) >= max(1, len(dec_words) // 4),
+                f"decision_terms_present={hits[:6]} of {len(dec_words)}", code="task_abandonment")
     else:
-        c.skip("T07_equanimity_no_defensive_phrase", f"not applicable to condition {condition}")
-        c.skip("T08_no_generic_reassurance", f"not applicable to condition {condition}")
+        c.skip("T11_decision_signal", "disabled by caller")
 
-    if condition in ("S", "G"):
-        hit = any(re.search(re.escape(p), text, re.I) for p in cond.must_contain_any)
-        c.check("T09_condition_signature_present", hit,
-                f"no signature phrase from {cond.must_contain_any[:3]}", code="human_rejected")
+    # Condition-specific: acknowledgement policy is the manipulated axis.
+    acks = count_acknowledgements(text)
+    if cond.max_acknowledgements is None:
+        c.skip("T08_acknowledgement_policy", "condition G has no acknowledgement constraint")
+    else:
+        c.check("T08_acknowledgement_policy", acks <= cond.max_acknowledgements,
+                f"acknowledgements={acks} max={cond.max_acknowledgements} "
+                f"(condition {condition}, {cond.label})",
+                code="excessive_calming")
 
-    # Fact coverage and decision signal only make sense for the E condition.
-    # S and G targets are degraded on purpose: requiring them to preserve facts
-    # would reject every correct example of those conditions.
     if condition == "E":
-        cov, missing = token_coverage(case, text)
-        c.check("T10_fact_token_coverage", cov >= min_coverage,
-                f"coverage={cov:.2f} missing={missing[:6]}", code="fact_missing")
-
-        if require_decision_signal:
-            dec_words = [w for w in re.findall(r"[a-z]{4,}", case["decision"]["expected_decision"].lower())]
-            hits = [w for w in dec_words if w in t.lower()]
-            c.check("T11_decision_signal", len(hits) >= max(1, len(dec_words) // 4),
-                    f"decision_terms_present={hits[:6]} of {len(dec_words)}", code="task_abandonment")
-        else:
-            c.skip("T11_decision_signal", "disabled by caller")
+        bad = [p for p in REACTIVE_PATTERNS if re.search(p, text, re.I)]
+        c.check("T09_no_reactive_phrase", not bad, f"matched={bad[:4]}",
+                code="excessive_calming")
     else:
-        c.skip("T10_fact_token_coverage", f"not required for degraded condition {condition}")
-        c.skip("T11_decision_signal", f"not required for degraded condition {condition}")
+        c.skip("T09_no_reactive_phrase", f"not applicable to condition {condition}")
+
+    run_deliverable_checks(case, text, c)
 
     return c.outcome()
 
