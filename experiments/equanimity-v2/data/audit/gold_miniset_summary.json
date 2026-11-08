@@ -1,0 +1,216 @@
+{
+  "answer_keys_deterministic": [
+    "eq2-f2-005",
+    "eq2-f6-001"
+  ],
+  "cell_structure": [
+    {
+      "cell_id": "eq2-f6-001/A0",
+      "evidence_statuses": {
+        "limit": "visible",
+        "peak": "visible",
+        "swap": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f6-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f6-001/A1",
+      "evidence_statuses": {
+        "limit": "visible",
+        "peak": "visible",
+        "swap": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f6-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f6-001/B0",
+      "evidence_statuses": {
+        "limit": "visible",
+        "peak": "visible",
+        "swap": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f6-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f6-001/B1",
+      "evidence_statuses": {
+        "limit": "visible",
+        "peak": "visible",
+        "swap": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f6-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f2-005/A0",
+      "evidence_statuses": {
+        "age": "visible",
+        "condition": "visible",
+        "window": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f2-005",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f2-005/A1",
+      "evidence_statuses": {
+        "age": "visible",
+        "condition": "visible",
+        "window": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f2-005",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f2-005/B0",
+      "evidence_statuses": {
+        "age": "visible",
+        "condition": "visible",
+        "window": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f2-005",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f2-005/B1",
+      "evidence_statuses": {
+        "age": "visible",
+        "condition": "visible",
+        "window": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f2-005",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f4-001/A0",
+      "evidence_statuses": {
+        "intent": "visible",
+        "record": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f4-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f4-001/A1",
+      "evidence_statuses": {
+        "intent": "visible",
+        "record": "visible"
+      },
+      "factual_state": "A",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f4-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f4-001/B0",
+      "evidence_statuses": {
+        "intent": "general_knowledge",
+        "record": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "neutral",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f4-001",
+      "violation_codes": []
+    },
+    {
+      "cell_id": "eq2-f4-001/B1",
+      "evidence_statuses": {
+        "intent": "general_knowledge",
+        "record": "visible"
+      },
+      "factual_state": "B",
+      "human_approved": false,
+      "pressure": "pressure",
+      "requires_human_review": true,
+      "scenario_id": "eq2-f4-001",
+      "violation_codes": []
+    }
+  ],
+  "cells": 12,
+  "human_adjudication_scenarios": [
+    "eq2-f4-001"
+  ],
+  "mini_set_version": "gold-miniset-0.1.0",
+  "note": "Structural summary only. Prompt text, expected actions and answer keys stay private until reviewed.",
+  "ok": true,
+  "scenario_structure": {
+    "eq2-f2-005": {
+      "cell_codes": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "genuine_decision_pivot",
+      "task_id": "refund_eligibility_and_response",
+      "violations": []
+    },
+    "eq2-f4-001": {
+      "cell_codes": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "genuine_decision_pivot",
+      "task_id": "recover_section_and_draft_evidence_based_message",
+      "violations": []
+    },
+    "eq2-f6-001": {
+      "cell_codes": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "parameter_fidelity_control",
+      "task_id": "container_oom_diagnose_and_recommend",
+      "violations": []
+    }
+  },
+  "scenarios": 3,
+  "violations": []
+}

@@ -1,0 +1,361 @@
+{
+  "stage": 1,
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "private_cases_used": true,
+  "n_examples": 4,
+  "per_example": [
+    {
+      "case": "eq2-f6-001/A0",
+      "representation": "final_only",
+      "summary": {
+        "representation": "final_only",
+        "tokenization_path": "chat_template",
+        "prompt_tokens": 56,
+        "supervised_tokens": 76,
+        "first_supervised_index": 56,
+        "first_supervised_token": 785,
+        "terminator_supervised": true,
+        "reasoning_tokens": 0,
+        "think_open_index": 52,
+        "think_close_index": 54,
+        "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+      },
+      "checks": {
+        "ids_reconstruct_render": true,
+        "prompt_unsupervised": true,
+        "first_supervised_is_first_answer_token": true,
+        "some_answer_supervised": true,
+        "terminator_supervised": true,
+        "no_partial_token_answer_start": true,
+        "trailing_after_terminator_is_whitespace": true,
+        "no_teacher_reasoning_keys": true,
+        "think_block_unsupervised": true,
+        "empty_think_block_present": true,
+        "supervised_count_matches_answer_plus_terminator": true
+      },
+      "answer_tokens": 75,
+      "all_passed": true,
+      "transition": {
+        "representation": "final_only",
+        "last_unsupervised_ids": [
+          271,
+          151668,
+          271
+        ],
+        "last_unsupervised_text": [
+          "\n\n",
+          "</think>",
+          "\n\n"
+        ],
+        "first_supervised_ids": [
+          "<redacted>",
+          "<redacted>",
+          "<redacted>",
+          "<redacted>"
+        ],
+        "first_supervised_text": [
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>"
+        ],
+        "first_supervised_labels": [
+          "supervised",
+          "supervised",
+          "supervised",
+          "supervised"
+        ],
+        "think_close_index": 54,
+        "tokens_between_think_close_and_answer": 2
+      }
+    },
+    {
+      "case": "eq2-f6-001/A0",
+      "representation": "masked_reasoning_prefix",
+      "summary": {
+        "representation": "masked_reasoning_prefix",
+        "tokenization_path": "chat_template",
+        "prompt_tokens": 78,
+        "supervised_tokens": 76,
+        "first_supervised_index": 78,
+        "first_supervised_token": 785,
+        "terminator_supervised": true,
+        "reasoning_tokens": 23,
+        "think_open_index": 52,
+        "think_close_index": 76,
+        "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+      },
+      "checks": {
+        "ids_reconstruct_render": true,
+        "prompt_unsupervised": true,
+        "first_supervised_is_first_answer_token": true,
+        "some_answer_supervised": true,
+        "terminator_supervised": true,
+        "no_partial_token_answer_start": true,
+        "trailing_after_terminator_is_whitespace": true,
+        "no_teacher_reasoning_keys": true,
+        "think_block_unsupervised": true,
+        "reasoning_tokens_masked": true,
+        "reasoning_prefix_present": true,
+        "supervised_count_matches_answer_plus_terminator": true
+      },
+      "answer_tokens": 75,
+      "all_passed": true,
+      "transition": {
+        "representation": "masked_reasoning_prefix",
+        "last_unsupervised_ids": [
+          624,
+          151668,
+          271
+        ],
+        "last_unsupervised_text": [
+          ".\n",
+          "</think>",
+          "\n\n"
+        ],
+        "first_supervised_ids": [
+          "<redacted>",
+          "<redacted>",
+          "<redacted>",
+          "<redacted>"
+        ],
+        "first_supervised_text": [
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>"
+        ],
+        "first_supervised_labels": [
+          "supervised",
+          "supervised",
+          "supervised",
+          "supervised"
+        ],
+        "think_close_index": 76,
+        "tokens_between_think_close_and_answer": 2
+      }
+    },
+    {
+      "case": "eq2-f2-005/B0",
+      "representation": "final_only",
+      "summary": {
+        "representation": "final_only",
+        "tokenization_path": "chat_template",
+        "prompt_tokens": 111,
+        "supervised_tokens": 83,
+        "first_supervised_index": 111,
+        "first_supervised_token": 2753,
+        "terminator_supervised": true,
+        "reasoning_tokens": 0,
+        "think_open_index": 107,
+        "think_close_index": 109,
+        "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+      },
+      "checks": {
+        "ids_reconstruct_render": true,
+        "prompt_unsupervised": true,
+        "first_supervised_is_first_answer_token": true,
+        "some_answer_supervised": true,
+        "terminator_supervised": true,
+        "no_partial_token_answer_start": true,
+        "trailing_after_terminator_is_whitespace": true,
+        "no_teacher_reasoning_keys": true,
+        "think_block_unsupervised": true,
+        "empty_think_block_present": true,
+        "supervised_count_matches_answer_plus_terminator": true
+      },
+      "answer_tokens": 82,
+      "all_passed": true,
+      "transition": {
+        "representation": "final_only",
+        "last_unsupervised_ids": [
+          271,
+          151668,
+          271
+        ],
+        "last_unsupervised_text": [
+          "\n\n",
+          "</think>",
+          "\n\n"
+        ],
+        "first_supervised_ids": [
+          "<redacted>",
+          "<redacted>",
+          "<redacted>",
+          "<redacted>"
+        ],
+        "first_supervised_text": [
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>"
+        ],
+        "first_supervised_labels": [
+          "supervised",
+          "supervised",
+          "supervised",
+          "supervised"
+        ],
+        "think_close_index": 109,
+        "tokens_between_think_close_and_answer": 2
+      }
+    },
+    {
+      "case": "eq2-f2-005/B0",
+      "representation": "masked_reasoning_prefix",
+      "summary": {
+        "representation": "masked_reasoning_prefix",
+        "tokenization_path": "chat_template",
+        "prompt_tokens": 133,
+        "supervised_tokens": 83,
+        "first_supervised_index": 133,
+        "first_supervised_token": 2753,
+        "terminator_supervised": true,
+        "reasoning_tokens": 23,
+        "think_open_index": 107,
+        "think_close_index": 131,
+        "tokenizer_revision": "1cfa9a7208912126459214e8b04321603b3df60c"
+      },
+      "checks": {
+        "ids_reconstruct_render": true,
+        "prompt_unsupervised": true,
+        "first_supervised_is_first_answer_token": true,
+        "some_answer_supervised": true,
+        "terminator_supervised": true,
+        "no_partial_token_answer_start": true,
+        "trailing_after_terminator_is_whitespace": true,
+        "no_teacher_reasoning_keys": true,
+        "think_block_unsupervised": true,
+        "reasoning_tokens_masked": true,
+        "reasoning_prefix_present": true,
+        "supervised_count_matches_answer_plus_terminator": true
+      },
+      "answer_tokens": 82,
+      "all_passed": true,
+      "transition": {
+        "representation": "masked_reasoning_prefix",
+        "last_unsupervised_ids": [
+          624,
+          151668,
+          271
+        ],
+        "last_unsupervised_text": [
+          ".\n",
+          "</think>",
+          "\n\n"
+        ],
+        "first_supervised_ids": [
+          "<redacted>",
+          "<redacted>",
+          "<redacted>",
+          "<redacted>"
+        ],
+        "first_supervised_text": [
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>",
+          "<redacted: answer start>"
+        ],
+        "first_supervised_labels": [
+          "supervised",
+          "supervised",
+          "supervised",
+          "supervised"
+        ],
+        "think_close_index": 131,
+        "tokens_between_think_close_and_answer": 2
+      }
+    }
+  ],
+  "batch": {
+    "width": 194,
+    "supervised_per_example": [
+      76,
+      83
+    ],
+    "supervised_total": 159
+  },
+  "overall": {
+    "all_example_checks_passed": true,
+    "padding_unsupervised": true,
+    "truncation_fails_closed": true,
+    "tokenization_paths_agree": true
+  },
+  "synthetic_worked_example": {
+    "note": "Generic synthetic example. Not derived from any development case.",
+    "rendered_tokens": [
+      "<|im_start|>",
+      "user",
+      "\n",
+      "Say",
+      " hello",
+      ".",
+      "<|im_end|>",
+      "\n",
+      "<|im_start|>",
+      "assistant",
+      "\n",
+      "<think>",
+      "\n\n",
+      "</think>",
+      "\n\n",
+      "Hello",
+      ".",
+      "<|im_end|>"
+    ],
+    "input_ids": [
+      151644,
+      872,
+      198,
+      45764,
+      23811,
+      13,
+      151645,
+      198,
+      151644,
+      77091,
+      198,
+      151667,
+      271,
+      151668,
+      271,
+      9707,
+      13,
+      151645
+    ],
+    "labels": [
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      -100,
+      9707,
+      13,
+      151645
+    ],
+    "first_supervised_index": 15,
+    "supervised_tokens": 3
+  },
+  "control_tokens": {
+    "im_start": 151644,
+    "im_end": 151645,
+    "endoftext": 151643,
+    "think_open": 151667,
+    "think_close": 151668
+  },
+  "limitations": [
+    "Representation B uses a hand-written placeholder reasoning prefix; no student model has produced a real one yet, so nothing here shows that a student's own continuation is preserved in context faithfully.",
+    "Answer-token counts are tokenizer counts for the stored answer text; they say nothing about answer quality.",
+    "The batch is two examples. Padding and offset behaviour is exercised, not stress-tested."
+  ]
+}

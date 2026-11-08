@@ -25,17 +25,27 @@ NUMERIC_CLAIMS: dict[str, list[dict]] = {
         {
             "kind": "coverage_gap",
             "required_per_week": 168,
+            "provided_per_week": 128,
+            "expect": "covered",
+            "asserted": "the proposed rota covers 24-hour supervision",
+            "note": (
+                "24-hour supervision is 7 x 24 = 168 h/week. The decision credits 20 paid hours, the nearby "
+                "sibling's weekday nights (5 x 12 = 60 h) and the user's weekends (2 x 24 = 48 h). Those sum to "
+                "128 h, leaving 40 h uncovered, assuming no assignments overlap. Without paid care the covered "
+                "total is 108 h and the gap is 60 h. An earlier draft of the four-cell proposal stated a 16-hour "
+                "gap; that arithmetic was wrong (it assumed seven nights of 12 h, i.e. 84 h, and then subtracted "
+                "from 168 without counting the weekend days' interaction). Correct figures: 40 h with paid care, "
+                "60 h without."
+            ),
+        },
+        {
+            "kind": "coverage_gap",
+            "required_per_week": 168,
             "provided_per_week": 20,
             "expect": "covered",
-            "asserted": "a complete rota is achievable with 20 paid hours plus the two siblings as described",
-            "note": (
-                "24-hour supervision is 7 x 24 = 168 h/week. The decision credits the nearby sibling with "
-                "nights and the user with weekends plus administration. Even crediting 12 h x 7 nights = 84 h "
-                "and 2 x 24 h weekends = 48 h on top of the 20 paid hours gives 152 h, leaving at least 16 h "
-                "uncovered; on paid hours alone the gap is 148 h. Neither the siblings' weekday availability "
-                "nor any respite care is stated."
-            ),
-        }
+            "asserted": "20 paid hours alone cover 24-hour supervision",
+            "note": "paid hours alone leave 148 h uncovered; this is the sub-claim the decision does not make, recorded for completeness",
+        },
     ],
     "eq2-f5-004": [
         {

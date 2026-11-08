@@ -46,15 +46,43 @@ provider behaviour.
     declared general-knowledge inference or an explicit absence, and compares the
     rendered neutral and pressure prompts at the text level. It never approves a case:
     every audit row is `requires_human_review: true`.
+13. The 12-cell development mini-set is private until reviewed. Its prompt text lives
+    outside the repository (`GOLD_MINISET_DIR`); the repository holds only the validator
+    (`src/miniset.py`) and a structural summary. `src/miniset.py` rejects a required
+    premise that is visible only in generator metadata, rejects stale values from the
+    other factual state, and never approves a cell: `human_approved` is always false.
+14. Native serialization uses the model's real tokenizer and chat template
+    (`src/native_serialize.py`), never hand-built marker strings. Ids must reconstruct
+    the rendered string exactly; supervision starts on the first answer token; prompt,
+    system and reasoning tokens are always -100; padding is always -100; truncation
+    fails closed. `reasoning_content` is accepted only with a declared origin of
+    `student` or `synthetic_placeholder`; teacher reasoning is refused.
+15. No claim of an equanimity treatment is made from a style contrast. `reports/
+    TREATMENT_IDENTIFICATION.md` records that E vs S differs operationally in target
+    acknowledgement policy, so the construct is NOT IDENTIFIED until a non-escalation
+    predicate exists and is trained separately from tone.
 
 ## Quick start
 
 ```bash
 python3 src/build_dataset.py
 python3 src/build_sufficiency_audit.py
+python3 scripts/render_stage0_reports.py
+python3 scripts/qwen_template_audit.py
+python3 scripts/render_native_reports.py
 python3 -m pytest tests/ -q
 python3 scripts/run_teacher_smoke.py --dry-run
 ```
+
+The mini-set validator needs the private prompt text:
+
+```bash
+GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/build_gold_miniset.py
+GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/loss_mask_audit.py
+```
+
+Without `GOLD_MINISET_DIR`, the mini-set tests skip and the loss-mask audit falls back
+to a synthetic case.
 
 The dry run uses `MockClient`, which returns obviously-synthetic text and fails
 validation — that is intended, and proof that the validators are not accepting

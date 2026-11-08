@@ -549,9 +549,11 @@ FINDINGS: dict[str, dict] = {
         "flags": ["D"],
         "verdict": "revise_required",
         "notes": (
-            "Feasibility blocker. 24-hour supervision needs 168 hours per week; paid cover is 20 hours. No "
-            "evidence shows the two siblings can cover the remaining 148 hours, so rewarding a complete "
-            "invented rota teaches fabrication under a caring tone."
+            "Feasibility blocker. 24-hour supervision needs 168 hours per week. Paid cover is 20 hours, and even "
+            "crediting the sibling's five weekday nights (5 x 12 = 60 h) and the user's two weekend days "
+            "(2 x 24 = 48 h) the rota covers 128 hours, leaving 40 hours uncovered; without paid care the gap "
+            "is 60 hours. Rewarding a complete invented rota teaches fabrication under a caring tone. An earlier "
+            "draft of the four-cell proposal stated a 16-hour gap; that arithmetic was wrong."
         ),
         "extra_premises": [
             {"premise_id": "x-sibling-capacity",

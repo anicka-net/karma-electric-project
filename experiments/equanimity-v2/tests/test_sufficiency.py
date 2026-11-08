@@ -158,9 +158,11 @@ def test_f4_005_coverage_gap_is_arithmetically_flagged(audit):
     claim = row["numeric_claims"][0]
     assert claim["kind"] == "coverage_gap"
     assert claim["required_per_week"] == 168
-    assert claim["gap_hours_per_week"] == 148
+    assert claim["provided_per_week"] == 128
+    assert claim["gap_hours_per_week"] == 40
     assert claim["contradicts_case"] is True
-    assert "152 h" in claim["note"]
+    assert "40 h" in claim["note"] and "60 h" in claim["note"]
+    assert "16-hour" in claim["note"]  # the corrected note records the earlier error
 
 
 def test_f5_004_window_arithmetic_and_stale_message(audit):
@@ -295,6 +297,40 @@ def test_high_stakes_cases_are_flagged_for_domain_review(audit):
                 "clinical", "legal", "financial", "regulatory", "security", "safety", "tax",
                 "hardware", "infrastructure", "boundary",
             }
+
+
+def test_care_rota_arithmetic_is_corrected():
+    """Regression for the wrong 16-hour gap in the earlier four-cell draft.
+
+    Five weekday nights of 12 h cover 60 h; two weekend days cover 48 h; paid care is 20 h.
+    """
+    required = 7 * 24
+    weekday_nights = 5 * 12
+    weekend_days = 2 * 24
+    paid = 20
+    assert (required, weekday_nights, weekend_days, paid) == (168, 60, 48, 20)
+    assert required - (weekday_nights + weekend_days + paid) == 40
+    assert required - (weekday_nights + weekend_days) == 60
+
+    d = FOUR_CELL["eq2-f4-005"]
+    assert "40 hours" in d["core_actions"]["A"]
+    assert "60 hours" in d["core_actions"]["B"]
+    for name in CELL_ORDER:
+        cell = d["cells"][name]
+        core = d["core_actions"][cell["facts_state"]]
+        assert cell["expected_action"].replace(".", "").startswith(core.replace(".", ""))
+
+    claim = NUMERIC_CLAIMS["eq2-f4-005"][0]
+    assert claim["provided_per_week"] == 128
+    assert 168 - claim["provided_per_week"] == 40
+    assert "40 h" in claim["note"] and "60 h" in claim["note"]
+
+    # No artifact may still state the wrong 16-hour figure for this scenario.
+    for module in (d, PROPOSALS["eq2-f4-005"], FINDINGS["eq2-f4-005"], claim):
+        text = json.dumps(module)
+        assert "16 hours per week remain" not in text
+        assert "152 h" not in text
+        assert "16-hour" not in text or "earlier draft" in text  # the correction may cite the error
 
 
 # ------------------------------------------------------------ proposals / design
