@@ -1,0 +1,861 @@
+{
+  "approved_for_training": 0,
+  "authored_findings": {
+    "domain_review_required": [
+      "eq2-f1-003",
+      "eq2-f1-004",
+      "eq2-f3-001",
+      "eq2-f3-002",
+      "eq2-f3-003",
+      "eq2-f3-004",
+      "eq2-f3-005",
+      "eq2-f5-002",
+      "eq2-f6-003",
+      "eq2-f6-005"
+    ],
+    "extra_premises_missing": 52,
+    "flags": {
+      "A": 17,
+      "C": 18,
+      "D": 19,
+      "F": 6
+    },
+    "pressure_evidence_change": [
+      "eq2-f1-002",
+      "eq2-f2-002",
+      "eq2-f2-005",
+      "eq2-f4-003",
+      "eq2-f5-005"
+    ],
+    "scenarios": 30,
+    "verdicts": {
+      "heldout_diagnostic": 2,
+      "near_ready": 3,
+      "provisional": 2,
+      "revise_required": 23
+    }
+  },
+  "counterfactual_classes": {
+    "genuine_decision_pivot": 11,
+    "invalid_or_ambiguous": 17,
+    "parameter_fidelity_control": 2
+  },
+  "counterfactual_mechanical_overrides": [
+    "eq2-f1-003",
+    "eq2-f2-004",
+    "eq2-f3-003",
+    "eq2-f3-005",
+    "eq2-f4-001",
+    "eq2-f4-002",
+    "eq2-f4-005",
+    "eq2-f5-004",
+    "eq2-f5-005",
+    "eq2-f6-001",
+    "eq2-f6-002",
+    "eq2-f6-004"
+  ],
+  "counterfactual_rendering_defect_scenarios": [
+    "eq2-f3-002",
+    "eq2-f4-002",
+    "eq2-f5-004",
+    "eq2-f6-001"
+  ],
+  "domain_review_scenarios": [
+    "eq2-f1-003",
+    "eq2-f1-004",
+    "eq2-f2-002",
+    "eq2-f3-001",
+    "eq2-f3-002",
+    "eq2-f3-003",
+    "eq2-f3-004",
+    "eq2-f3-005",
+    "eq2-f4-003",
+    "eq2-f5-002",
+    "eq2-f5-005",
+    "eq2-f6-003",
+    "eq2-f6-004",
+    "eq2-f6-005"
+  ],
+  "note": "Verdicts are lexical-presence verdicts only. 'sufficient_lexically' is not an approval. No scenario is approved for training.",
+  "numeric_contradiction_scenarios": [
+    "eq2-f4-005",
+    "eq2-f5-004"
+  ],
+  "pairs": 30,
+  "pairs_with_evidence_relevant_change": [
+    "eq2-f2-002",
+    "eq2-f2-005",
+    "eq2-f3-002"
+  ],
+  "per_scenario": {
+    "eq2-f1-001": {
+      "authored_flags": [
+        "A",
+        "C"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "parameter_fidelity_control",
+      "counterfactual_estimand": "environment change with identical remedy; not a decision pivot",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_parameter_fidelity_control"
+      ],
+      "missing_premise_ids": [
+        "f3",
+        "x-fix-identity",
+        "x-fixture-code",
+        "x-worker-count"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f1-002": {
+      "authored_flags": [
+        "A",
+        "C"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "f3",
+        "x-churn-flat",
+        "x-price-rise",
+        "x-scope"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f1-003": {
+      "authored_flags": [
+        "A",
+        "C",
+        "D"
+      ],
+      "authored_verdict": "provisional",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "joint symptom change; not a single identifiable pivot",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "clinical"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "x-diagnosis",
+        "x-symptom-history"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f1-004": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "legal"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "x-carve-out",
+        "x-clause-text"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f1-005": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "two coupled capacity changes; not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous"
+      ],
+      "missing_premise_ids": [
+        "x-loss-definition",
+        "x-replication"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f2-001": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "f3",
+        "x-date-column",
+        "x-report-tz"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f2-002": {
+      "authored_flags": [
+        "A",
+        "F"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "financial"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f3",
+        "x-filing-excerpt",
+        "x-restatement"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f2-003": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "f3",
+        "x-data",
+        "x-design"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f2-004": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_genuine_decision_pivot",
+        "C_mechanical_disagrees"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f2",
+        "x-claims",
+        "x-study-identity"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f2-005": {
+      "authored_flags": [
+        "A",
+        "F"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot"
+      ],
+      "missing_premise_ids": [
+        "x-exclusions",
+        "x-policy-text"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f3-001": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "three coupled scope changes; not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "security"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required",
+        "X_decision_quantity_unsourced"
+      ],
+      "missing_premise_ids": [
+        "f3",
+        "x-key-scope",
+        "x-write-history"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f3-002": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "provisional",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "three coupled physiological changes; not identifiable",
+      "counterfactual_rendering_defects": [
+        "stale_original_quantities:3.1"
+      ],
+      "domain_review": [
+        "clinical"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required",
+        "X_cf_rendering_defect",
+        "X_fact_quantity_conflict"
+      ],
+      "missing_premise_ids": [
+        "f3",
+        "x-consistency",
+        "x-vitals-complete"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f3-003": {
+      "authored_flags": [
+        "A",
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "safety"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "x-detector-reading",
+        "x-observations-coherent"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f3-004": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "two coupled changes (status and identity); not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "financial"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "x-bank-confirmation",
+        "x-payee-identity"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f3-005": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "infrastructure"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "x-lag-values",
+        "x-threshold"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f4-001": {
+      "authored_flags": [
+        "F"
+      ],
+      "authored_verdict": "near_ready",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot",
+        "C_mechanical_disagrees"
+      ],
+      "missing_premise_ids": [],
+      "numeric_contradictions": [],
+      "verdict": "undetermined"
+    },
+    "eq2-f4-002": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "two coupled personal circumstances; not identifiable",
+      "counterfactual_rendering_defects": [
+        "stale_original_quantities:4month"
+      ],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "X_cf_rendering_defect"
+      ],
+      "missing_premise_ids": [
+        "x-offer-terms",
+        "x-runway"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f4-003": {
+      "authored_flags": [
+        "C",
+        "F"
+      ],
+      "authored_verdict": "heldout_diagnostic",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "deliverable change; different task",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "boundary"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f1"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f4-004": {
+      "authored_flags": [
+        "A"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "x-correspondence",
+        "x-policy"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f4-005": {
+      "authored_flags": [
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "paid-hours parameter removed together with the funding question",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot",
+        "C_mechanical_disagrees",
+        "N_numeric_contradiction"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f3",
+        "x-additional-care",
+        "x-sibling-capacity"
+      ],
+      "numeric_contradictions": [
+        "coverage_gap"
+      ],
+      "verdict": "insufficient"
+    },
+    "eq2-f5-001": {
+      "authored_flags": [
+        "A",
+        "C"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "two coupled changes (error class, environment); not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f3",
+        "x-repro",
+        "x-source"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f5-002": {
+      "authored_flags": [
+        "A",
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "tax"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "x-election",
+        "x-jurisdiction"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f5-003": {
+      "authored_flags": [
+        "A",
+        "F"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_genuine_decision_pivot"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f2",
+        "x-capability",
+        "x-prior-content"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f5-004": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable: the stated consequence does not follow from the changed number",
+      "counterfactual_rendering_defects": [
+        "stale_original_quantities:4min"
+      ],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "N_numeric_contradiction",
+        "X_cf_rendering_defect"
+      ],
+      "missing_premise_ids": [
+        "x-tolerance"
+      ],
+      "numeric_contradictions": [
+        "window_fits"
+      ],
+      "verdict": "insufficient"
+    },
+    "eq2-f5-005": {
+      "authored_flags": [
+        "C",
+        "F"
+      ],
+      "authored_verdict": "heldout_diagnostic",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "task change; not a decision pivot under fixed task",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "boundary"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f6-001": {
+      "authored_flags": [
+        "C"
+      ],
+      "authored_verdict": "near_ready",
+      "counterfactual_class": "parameter_fidelity_control",
+      "counterfactual_estimand": "numeric faithfulness only: same diagnosis and remedy, different thresholds",
+      "counterfactual_rendering_defects": [
+        "stale_original_quantities:512mi",
+        "decision_cites_pre_change_quantities:512mi"
+      ],
+      "domain_review": [],
+      "flags": [
+        "C_cf_parameter_fidelity_control",
+        "C_mechanical_disagrees",
+        "X_cf_rendering_defect",
+        "X_fact_quantity_conflict"
+      ],
+      "missing_premise_ids": [],
+      "numeric_contradictions": [],
+      "verdict": "sufficient_lexically"
+    },
+    "eq2-f6-002": {
+      "authored_flags": [
+        "C",
+        "D"
+      ],
+      "authored_verdict": "near_ready",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "relational-cardinality pivot, honest if declared as flipping both tables",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_genuine_decision_pivot",
+        "C_mechanical_disagrees"
+      ],
+      "missing_premise_ids": [
+        "f2",
+        "x-granularity"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f6-003": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "clinical"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "A_premise_partial",
+        "C_cf_invalid_or_ambiguous",
+        "D_domain_review_required",
+        "X_decision_quantity_unsourced"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f2",
+        "f3",
+        "x-evidence",
+        "x-product"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f6-004": {
+      "authored_flags": [
+        "A",
+        "C",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "invalid_or_ambiguous",
+      "counterfactual_estimand": "not identifiable: the pivot does not bear on the asked question",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "regulatory"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_invalid_or_ambiguous",
+        "C_mechanical_disagrees",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f1",
+        "f2",
+        "f3",
+        "x-jurisdiction",
+        "x-policy"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    },
+    "eq2-f6-005": {
+      "authored_flags": [
+        "A",
+        "D"
+      ],
+      "authored_verdict": "revise_required",
+      "counterfactual_class": "genuine_decision_pivot",
+      "counterfactual_estimand": "decision revision under one changed premise",
+      "counterfactual_rendering_defects": [],
+      "domain_review": [
+        "hardware"
+      ],
+      "flags": [
+        "A_premise_missing",
+        "C_cf_genuine_decision_pivot",
+        "D_domain_review_required"
+      ],
+      "missing_premise_ids": [
+        "f3",
+        "x-logs",
+        "x-telemetry"
+      ],
+      "numeric_contradictions": [],
+      "verdict": "insufficient"
+    }
+  },
+  "requires_human_review": 90,
+  "rows": 90,
+  "scenario_verdicts": {
+    "insufficient": 28,
+    "sufficient_lexically": 1,
+    "undetermined": 1
+  },
+  "scenarios": 30,
+  "scenarios_with_no_missing_premise": [
+    "eq2-f4-001",
+    "eq2-f6-001"
+  ],
+  "variant_verdicts": {
+    "insufficient": 82,
+    "sufficient_lexically": 7,
+    "undetermined": 1
+  }
+}

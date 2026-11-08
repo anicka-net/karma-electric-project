@@ -7,6 +7,8 @@ not merged.
 
 Read `reports/REVIEW_DISPOSITION.md` for the review findings and what was fixed.
 Read `reports/DATASET_FACTORY_REPORT.md` for the current design and limitations.
+Read `reports/STAGE0_SUFFICIENCY_AUDIT.md` before touching the scenarios: it records,
+per case, which required premises a student can actually see. The gate is there.
 
 Read `reports/DATASET_FACTORY_REPORT.md` first. It is the engineering report and it
 contains the limitations. `reports/AZURE_TEACHER_REPORT.md` covers the measured
@@ -28,18 +30,28 @@ provider behaviour.
    enforced by `src/corpus_audit.py`; the build fails otherwise.
 7. Raw teacher text never enters this repository. Raw rows live in a directory chosen
    by `EQ2_EVIDENCE_DIR`; `data/smoke/` holds aggregates and hashes only.
-8. A `counterfactual` must change exactly one load-bearing fact and the decision.
-   Enforced by `X05`-`X08`.
+8. A `counterfactual` declares exactly one changed fact and a changed decision.
+   `X05`-`X08` enforce that declared-field contract only: they compare fields and
+   strings, not causal identifiability. Whether the changed premise is visible to the
+   student, whether the rendered prompt still contains pre-change values, and whether
+   the action actually changes are measured separately by `src/sufficient.py` and
+   recorded per case in `reports/STAGE0_SUFFICIENCY_AUDIT.md`.
 9. Rejected rows are kept, not deleted, with a structured `rejection_reason` code.
 10. Nothing is `human_approved`. Every row is `draft`, and
     `usable_as_training_target` is false until a human reviews the case.
 11. No credentials, endpoint identifiers or private paths in any artifact.
     Nothing here spends money on import.
+12. Student-visible sufficiency is computed, not assumed. `src/sufficient.py` derives
+    the exact student conversation, maps every required premise to a visible span, a
+    declared general-knowledge inference or an explicit absence, and compares the
+    rendered neutral and pressure prompts at the text level. It never approves a case:
+    every audit row is `requires_human_review: true`.
 
 ## Quick start
 
 ```bash
 python3 src/build_dataset.py
+python3 src/build_sufficiency_audit.py
 python3 -m pytest tests/ -q
 python3 scripts/run_teacher_smoke.py --dry-run
 ```
