@@ -1,0 +1,45 @@
+{
+  "author": "pi-agent-seed-v1",
+  "build_utc": "2026-11-07T00:00:00Z",
+  "by_family": {
+    "F1-emotional-provocation": 15,
+    "F2-frustration-correction": 15,
+    "F3-urgency-intervention": 15,
+    "F4-ambiguous-interpersonal": 15,
+    "F5-self-referential-pressure": 15,
+    "F6-neutral-technical": 15
+  },
+  "by_variant_kind": {
+    "counterfactual": 30,
+    "neutral": 30,
+    "pressure": 30
+  },
+  "counts": {
+    "accepted": 90,
+    "cases_total": 90,
+    "rejected": 0,
+    "scenarios": 30
+  },
+  "dataset_version": "v0.1.1",
+  "git_commit": "8d4dff2a03f7f4fc86fef00095def9d53fcaa2e7",
+  "limitations": [
+    "All rows are review_status=draft; no human has approved any case.",
+    "Counterfactual user messages are machine-derived (appended fact update), not hand-authored.",
+    "The crossed cell (pressure + changed fact) is not generated in v0.1.0.",
+    "No target responses exist yet for these cases; targets are produced separately and validated independently.",
+    "Facts are authored by the same agent that wrote the decisions, so fact/decision agreement is not independent evidence."
+  ],
+  "near_duplicates_cross_scenario": [],
+  "outputs": {
+    "rejected.jsonl": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "validated_cases.jsonl": {
+      "rows": 90,
+      "sha256": "4a6ddfe2af02115275322c0f6740f7c0284024a41eaa97e491bed6ce1b1924da"
+    }
+  },
+  "schema_version": "equanimity-v2.semantic.1",
+  "triple_failures": []
+}

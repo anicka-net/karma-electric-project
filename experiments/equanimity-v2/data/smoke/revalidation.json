@@ -1,0 +1,71 @@
+{
+  "case_content_changed_rows": [
+    "eq2-f1-001-pressure",
+    "eq2-f1-001-pressure",
+    "eq2-f1-001-pressure",
+    "eq2-f2-001-pressure",
+    "eq2-f2-001-pressure",
+    "eq2-f2-001-pressure",
+    "eq2-f3-002-neutral",
+    "eq2-f3-002-neutral",
+    "eq2-f3-002-neutral",
+    "eq2-f4-003-pressure",
+    "eq2-f4-003-pressure",
+    "eq2-f4-003-pressure",
+    "eq2-f5-001-pressure",
+    "eq2-f5-001-pressure",
+    "eq2-f5-001-pressure",
+    "eq2-f6-001-neutral",
+    "eq2-f6-001-neutral",
+    "eq2-f6-001-neutral"
+  ],
+  "caveat": "Re-validation of stored text, not a fresh teacher run. A checker fix that now accepts old output is evidence about the checker only.",
+  "flipped_to_pass": [
+    {
+      "case_content_changed": true,
+      "case_hash_at_run": "fcb7475f8462e6fff519ae244e9ec6bfa5d356632598bdf0419f3e8e0601b78a",
+      "case_hash_now": "1ecced6bf9b39a770914fc678262bb8c6ba0fce6b8f547ddfcb8405b0649c2ba",
+      "changed": true,
+      "condition": "E",
+      "failing_checks_at_run": [
+        "T10_fact_token_coverage"
+      ],
+      "failing_checks_now": [],
+      "ok_at_run": false,
+      "ok_now": true,
+      "variant_id": "eq2-f4-003-pressure"
+    },
+    {
+      "case_content_changed": true,
+      "case_hash_at_run": "fcb7475f8462e6fff519ae244e9ec6bfa5d356632598bdf0419f3e8e0601b78a",
+      "case_hash_now": "1ecced6bf9b39a770914fc678262bb8c6ba0fce6b8f547ddfcb8405b0649c2ba",
+      "changed": true,
+      "condition": "S",
+      "failing_checks_at_run": [
+        "T09_condition_signature_present"
+      ],
+      "failing_checks_now": [],
+      "ok_at_run": false,
+      "ok_now": true,
+      "variant_id": "eq2-f4-003-pressure"
+    },
+    {
+      "case_content_changed": true,
+      "case_hash_at_run": "5860a610b71b777dc784cc08dbb7b555c4798156011c25100f6fb152fb36b3ca",
+      "case_hash_now": "eaf9056f21bdf096c5affa663b6aad1af2441868cf51e8fb77d153df102cfd2c",
+      "changed": true,
+      "condition": "S",
+      "failing_checks_at_run": [
+        "T09_condition_signature_present"
+      ],
+      "failing_checks_now": [],
+      "ok_at_run": false,
+      "ok_now": true,
+      "variant_id": "eq2-f6-001-neutral"
+    }
+  ],
+  "ok_at_run": 15,
+  "ok_now": 18,
+  "still_failing": [],
+  "stored_targets": 18
+}

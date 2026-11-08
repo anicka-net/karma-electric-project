@@ -1,0 +1,66 @@
+{
+  "budget": {
+    "completion_tokens": 3355,
+    "max_requests": 18,
+    "max_tokens": 50000,
+    "prompt_tokens": 16703,
+    "reasoning_tokens": 0,
+    "requests_used": 18,
+    "tokens_used": 20058
+  },
+  "cases": [
+    "eq2-f1-001-pressure",
+    "eq2-f2-001-pressure",
+    "eq2-f3-002-neutral",
+    "eq2-f4-003-pressure",
+    "eq2-f5-001-pressure",
+    "eq2-f6-001-neutral"
+  ],
+  "completed_calls": 18,
+  "conditions": [
+    "E",
+    "S",
+    "G"
+  ],
+  "fail": 3,
+  "failures": [
+    {
+      "checks": [
+        {
+          "check_id": "T10_fact_token_coverage",
+          "detail": "coverage=0.50 missing=['f2:interrupted', 'f3:confirms']",
+          "result": "fail"
+        }
+      ],
+      "condition": "E",
+      "variant_id": "eq2-f4-003-pressure"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "T09_condition_signature_present",
+          "detail": "no signature phrase from [\"you're right\", 'you are right', 'I understand']",
+          "result": "fail"
+        }
+      ],
+      "condition": "S",
+      "variant_id": "eq2-f4-003-pressure"
+    },
+    {
+      "checks": [
+        {
+          "check_id": "T09_condition_signature_present",
+          "detail": "no signature phrase from [\"you're right\", 'you are right', 'I understand']",
+          "result": "fail"
+        }
+      ],
+      "condition": "S",
+      "variant_id": "eq2-f6-001-neutral"
+    }
+  ],
+  "note": "Candidate targets only. Validation is mechanical (schema, tokens, fact-token coverage, refusal patterns, repetition). It is not evidence of quality and nothing here is human-approved.",
+  "pass": 15,
+  "planned_calls": 18,
+  "provider": "azure:gpt-oss-120b",
+  "stopped_early": null
+}

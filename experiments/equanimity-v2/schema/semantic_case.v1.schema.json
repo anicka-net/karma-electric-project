@@ -1,0 +1,446 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/anicka-net/karma-electric-project/experiments/equanimity-v2/schema/semantic_case.v1.schema.json",
+  "title": "Equanimity v2 canonical semantic case",
+  "description": "Model-agnostic description of one scenario variant. Contains no chat-template tokens, no role delimiters, no reasoning-channel markers, and no teacher text. Serialization into a specific student format is a separate, later adapter step (see src/serialize.py).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_version",
+    "scenario_id",
+    "case_family_id",
+    "variant_id",
+    "variant_kind",
+    "category",
+    "subcategory",
+    "context",
+    "task",
+    "facts",
+    "decision",
+    "pressure",
+    "target_behavior",
+    "counterfactual",
+    "split",
+    "provenance",
+    "review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "equanimity-v2.semantic.1",
+      "description": "Version of THIS schema document."
+    },
+    "dataset_version": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic dataset release, e.g. v0.1.0. Bumped whenever any case content changes."
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^eq2-[a-z0-9]{2}-[0-9]{3}$",
+      "description": "Stable id for the scenario across all three variants. Format eq2-<family>-<nnn>."
+    },
+    "case_family_id": {
+      "type": "string",
+      "enum": [
+        "F1-emotional-provocation",
+        "F2-frustration-correction",
+        "F3-urgency-intervention",
+        "F4-ambiguous-interpersonal",
+        "F5-self-referential-pressure",
+        "F6-neutral-technical"
+      ],
+      "description": "The six required scenario families."
+    },
+    "variant_id": {
+      "type": "string",
+      "pattern": "^eq2-[a-z0-9]{2}-[0-9]{3}-(neutral|pressure|counterfactual)$",
+      "description": "scenario_id + variant_kind. Unique across the whole dataset."
+    },
+    "variant_kind": {
+      "type": "string",
+      "enum": ["neutral", "pressure", "counterfactual"],
+      "description": "neutral = underlying task, no emotional pressure. pressure = same facts and same correct decision, emotionally/socially challenging framing. counterfactual = one relevant fact changes, requiring a different decision."
+    },
+    "category": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Human-readable category label, e.g. 'insult_during_technical_work'."
+    },
+    "subcategory": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Finer label within the category, e.g. 'accusation_of_incompetence'."
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["turn_index", "prior_turns", "user_message"],
+      "properties": {
+        "turn_index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "0-based index of the user message being answered."
+        },
+        "prior_turns": {
+          "type": "array",
+          "description": "Conversation history, oldest first. Empty for single-turn cases. Roles are semantic ('user','assistant'), never template tokens.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["role", "content"],
+            "properties": {
+              "role": {"type": "string", "enum": ["user", "assistant"]},
+              "content": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "user_message": {
+          "type": "string",
+          "minLength": 10,
+          "description": "The message to be answered. Must contain no template tokens."
+        }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["legitimate_task", "domain", "deliverable"],
+      "properties": {
+        "legitimate_task": {
+          "type": "string",
+          "minLength": 15,
+          "description": "The genuine, benign task the person is asking for, stated plainly. This is what must still be done under emotional pressure."
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "software",
+            "data_analysis",
+            "medicine",
+            "law",
+            "finance",
+            "operations",
+            "security",
+            "research",
+            "writing",
+            "education",
+            "personal_logistics",
+            "customer_support",
+            "hardware",
+            "policy"
+          ]
+        },
+        "deliverable": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Concrete artifact or answer expected, e.g. 'a corrected SQL query', 'a triage recommendation'."
+        }
+      }
+    },
+    "facts": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Facts the response must preserve. A response that drops, contradicts or invents one of these fails factual discrimination regardless of tone.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["fact_id", "statement", "load_bearing"],
+        "properties": {
+          "fact_id": {"type": "string", "pattern": "^f[0-9]+$"},
+          "statement": {"type": "string", "minLength": 8},
+          "load_bearing": {
+            "type": "boolean",
+            "description": "True if changing this fact would change the correct decision. Used to validate counterfactuals."
+          },
+          "target_key_tokens": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 2},
+            "minItems": 1,
+            "description": "Tokens that MUST appear in an acceptable target response. Only used for token-presence checks, never as proof of entailment. See REPORT limits."
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected_decision", "decision_type", "rationale", "assertiveness"],
+      "properties": {
+        "expected_decision": {
+          "type": "string",
+          "minLength": 10,
+          "description": "The correct action or answer given the facts. For counterfactual variants this must differ from the neutral variant."
+        },
+        "decision_type": {
+          "type": "string",
+          "enum": [
+            "answer_factual",
+            "produce_artifact",
+            "recommend_action",
+            "decline_scope",
+            "request_missing_info",
+            "escalate_urgently",
+            "hold_position",
+            "correct_the_user",
+            "acknowledge_and_proceed"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 15,
+          "description": "Why this decision follows from the facts. Must reference fact_ids where relevant."
+        },
+        "assertiveness": {
+          "type": "string",
+          "enum": ["low", "moderate", "high"],
+          "description": "How forcefully the correct response must be delivered. 'high' means the response must be direct/urgent/confrontational-in-a-professional-sense and would fail if softened. Equanimity must never mean passivity."
+        }
+      }
+    },
+    "allowed_uncertainty": {
+      "type": "array",
+      "description": "Things the response is permitted to be unsure about, and must not fabricate.",
+      "items": {"type": "string", "minLength": 5}
+    },
+    "urgency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "justified"],
+      "properties": {
+        "level": {"type": "string", "enum": ["none", "low", "moderate", "high", "immediate"]},
+        "justified": {
+          "type": "boolean",
+          "description": "True only when the facts genuinely warrant this urgency. False marks cases where alarm would be manufactured by the framing."
+        },
+        "why": {"type": "string", "minLength": 10}
+      }
+    },
+    "boundaries": {
+      "type": "array",
+      "description": "Scope limits the response must respect. Not safety refusals: this dataset deliberately excludes harmful-request refusal examples.",
+      "items": {"type": "string", "minLength": 5}
+    },
+    "pressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "intensity", "target", "escalation_cues"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "insult",
+            "accusation",
+            "contempt",
+            "impatience",
+            "threat_to_relationship",
+            "authority_challenge",
+            "flattery",
+            "urgency_pressure",
+            "self_deprecation_appeal",
+            "identity_attack",
+            "grief_disclosure",
+            "none"
+          ]
+        },
+        "intensity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "0 for neutral variants. 1-2 mild, 3 moderate, 4-5 strong."
+        },
+        "target": {
+          "type": "string",
+          "enum": ["assistant_competence", "assistant_character", "assistant_identity", "user_self", "third_party", "situation", "none"],
+          "description": "What the pressure is aimed at."
+        },
+        "escalation_cues": {
+          "type": "array",
+          "description": "Surface features that a defensive or sycophantic model reacts to. Empty for neutral.",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "target_behavior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["must", "must_not"],
+      "properties": {
+        "must": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string", "minLength": 5},
+          "description": "Behaviours the target response must exhibit. Factual accuracy and task completion always apply implicitly."
+        },
+        "must_not": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string", "minLength": 5},
+          "description": "Failure modes to exclude: retaliation, emotional contagion, withdrawal, sycophantic agreement, manufactured alarm, excessive calming, task abandonment."
+        }
+      }
+    },
+    "counterfactual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["changed_fact_id", "changed_fact_statement", "decision_after_change", "decision_differs"],
+      "properties": {
+        "changed_fact_id": {"type": "string", "pattern": "^f[0-9]+$"},
+        "changed_fact_statement": {"type": "string", "minLength": 8},
+        "decision_after_change": {"type": "string", "minLength": 10},
+        "decision_differs": {
+          "type": "boolean",
+          "description": "Must be true for counterfactual variants and false otherwise. A counterfactual whose decision does not change is a validation failure."
+        }
+      }
+    },
+    "split": {
+      "type": "string",
+      "enum": ["train", "dev", "test", "heldout"],
+      "description": "Assigned at scenario level so all three variants stay together."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["author", "created_utc", "review_status", "content_sha256"],
+      "properties": {
+        "author": {"type": "string", "minLength": 2},
+        "created_utc": {"type": "string", "format": "date-time"},
+        "review_status": {
+          "type": "string",
+          "enum": ["draft", "human_approved", "human_rejected", "needs_revision"],
+          "description": "All seed scenarios start as draft. Nothing may be scaled before human_approved."
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 of the canonical JSON of this case with content_sha256 set to the empty string."
+        },
+        "generation_config": {
+          "type": ["object", "null"],
+          "description": "Null for hand-authored seed scenarios. Populated for teacher-generated cases.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic", "human"],
+      "properties": {
+        "automatic": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "checks"],
+          "properties": {
+            "status": {"type": "string", "enum": ["not_run", "pass", "fail"]},
+            "checks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["check_id", "result"],
+                "properties": {
+                  "check_id": {"type": "string"},
+                  "result": {"type": "string", "enum": ["pass", "fail", "skip"]},
+                  "detail": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "human": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status"],
+          "properties": {
+            "status": {"type": "string", "enum": ["pending", "approved", "rejected"]},
+            "reviewer": {"type": "string"},
+            "reviewed_utc": {"type": "string", "format": "date-time"},
+            "notes": {"type": "string"}
+          }
+        }
+      }
+    },
+    "rejection_reasons": {
+      "type": "array",
+      "description": "Populated only on rejected rows. Rejected rows are preserved, never deleted.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "detail"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "schema_invalid",
+              "fact_contradiction",
+              "fact_missing",
+              "pressure_changed_facts",
+              "counterfactual_no_decision_change",
+              "counterfactual_fabricated",
+              "duplicate_exact",
+              "duplicate_near",
+              "eval_leakage",
+              "reasoning_contamination",
+              "refusal_language",
+              "task_abandonment",
+              "generic_reassurance",
+              "excessive_calming",
+              "length_mismatch",
+              "truncated",
+              "repetitive",
+              "empty",
+              "human_rejected"
+            ]
+          },
+          "detail": {"type": "string", "minLength": 3}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"variant_kind": {"const": "counterfactual"}}, "required": ["variant_kind"]},
+      "then": {
+        "properties": {
+          "counterfactual": {
+            "properties": {"decision_differs": {"const": true}},
+            "required": ["decision_differs"]
+          },
+          "pressure": {
+            "properties": {"intensity": {"minimum": 0}}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"variant_kind": {"const": "neutral"}}, "required": ["variant_kind"]},
+      "then": {
+        "properties": {
+          "pressure": {
+            "properties": {
+              "type": {"const": "none"},
+              "intensity": {"const": 0},
+              "escalation_cues": {"maxItems": 0}
+            }
+          },
+          "counterfactual": {
+            "properties": {"decision_differs": {"const": false}}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"variant_kind": {"const": "pressure"}}, "required": ["variant_kind"]},
+      "then": {
+        "properties": {
+          "pressure": {"properties": {"intensity": {"minimum": 1}}},
+          "counterfactual": {
+            "properties": {"decision_differs": {"const": false}}
+          }
+        }
+      }
+    }
+  ]
+}

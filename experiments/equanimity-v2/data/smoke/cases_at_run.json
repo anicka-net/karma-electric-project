@@ -1,0 +1,10 @@
+{
+  "_dataset_version": "v0.1.0",
+  "_note": "case content hashes as of dataset v0.1.0, i.e. what the 18-call smoke run was validated against",
+  "eq2-f1-001-pressure": "0457a15896afafecd3417e96a71d46ea5109b8138e0b8f191a1da1ca1f9f6d05",
+  "eq2-f2-001-pressure": "48804fae2c63e78c23106266c9556c9e41ce86ac07830df6d9257edbde1ef566",
+  "eq2-f3-002-neutral": "afea3b8ec42f7a302aa3c699adf6a33e56f8282b5a5fbfe1c4a410497944e2e8",
+  "eq2-f4-003-pressure": "fcb7475f8462e6fff519ae244e9ec6bfa5d356632598bdf0419f3e8e0601b78a",
+  "eq2-f5-001-pressure": "b128b0af602346188391780dcb7c08dbe9f7bd24c930d50e1d2880b323bcc88e",
+  "eq2-f6-001-neutral": "5860a610b71b777dc784cc08dbb7b555c4798156011c25100f6fb152fb36b3ca"
+}
