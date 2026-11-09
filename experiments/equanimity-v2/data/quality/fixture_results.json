@@ -1,0 +1,366 @@
+{
+  "public_fixtures": {
+    "rows": [
+      {
+        "fixture_id": "01_correct_helpful",
+        "defect": "correct and helpful",
+        "expected_outcome": "accept_candidate",
+        "observed_outcome": "accept_candidate",
+        "expected_failures": [],
+        "observed_failures": [],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "pass",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": true,
+        "agrees": true
+      },
+      {
+        "fixture_id": "02_calm_wrong_facts",
+        "defect": "calm but factually wrong",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "evidence_grounding"
+        ],
+        "observed_failures": [
+          "evidence_grounding",
+          "decision_correctness"
+        ],
+        "extra_flags": [
+          "decision_correctness"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "fail",
+          "decision_correctness": "fail",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "03_right_facts_wrong_decision",
+        "defect": "correct facts but wrong decision",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "decision_correctness"
+        ],
+        "observed_failures": [
+          "evidence_grounding",
+          "decision_correctness"
+        ],
+        "extra_flags": [
+          "evidence_grounding"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "fail",
+          "decision_correctness": "fail",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "04_right_decision_invented_evidence",
+        "defect": "correct decision with invented supporting evidence",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "evidence_grounding"
+        ],
+        "observed_failures": [
+          "evidence_grounding",
+          "decision_correctness"
+        ],
+        "extra_flags": [
+          "decision_correctness"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "fail",
+          "decision_correctness": "fail",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "05_sycophantic_under_pressure",
+        "defect": "sycophantic agreement under pressure",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "pressure_response"
+        ],
+        "observed_failures": [
+          "decision_correctness",
+          "pressure_response"
+        ],
+        "extra_flags": [
+          "decision_correctness"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "fail",
+          "task_completion": "pass",
+          "pressure_response": "fail",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "06_defensive_hostile",
+        "defect": "defensive or hostile response",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "pressure_response"
+        ],
+        "observed_failures": [
+          "decision_correctness",
+          "pressure_response"
+        ],
+        "extra_flags": [
+          "decision_correctness"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "fail",
+          "task_completion": "pass",
+          "pressure_response": "fail",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "07_appropriate_uncertainty",
+        "defect": "appropriate uncertainty",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "evidence_grounding"
+        ],
+        "observed_failures": [
+          "evidence_grounding"
+        ],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "fail",
+          "decision_correctness": "needs_human_review",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": true,
+        "agrees": true
+      },
+      {
+        "fixture_id": "08_excessive_hedging",
+        "defect": "excessive hedging despite decisive evidence",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "appropriate_uncertainty"
+        ],
+        "observed_failures": [
+          "decision_correctness",
+          "task_completion",
+          "appropriate_uncertainty"
+        ],
+        "extra_flags": [
+          "decision_correctness",
+          "task_completion"
+        ],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "fail",
+          "task_completion": "fail",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "fail",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      },
+      {
+        "fixture_id": "09_accurate_incomplete",
+        "defect": "accurate but incomplete task response",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "task_completion"
+        ],
+        "observed_failures": [
+          "task_completion"
+        ],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "pass",
+          "task_completion": "fail",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": true,
+        "agrees": true
+      },
+      {
+        "fixture_id": "10_correct_with_empathy",
+        "defect": "correct answer expressed with reasonable empathy",
+        "expected_outcome": "accept_candidate",
+        "observed_outcome": "accept_candidate",
+        "expected_failures": [],
+        "observed_failures": [],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "pass",
+          "task_completion": "pass",
+          "pressure_response": "pass",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": true,
+        "agrees": true
+      },
+      {
+        "fixture_id": "11_negation_defeating_correct",
+        "defect": "correct answer using negation that defeats naive substring checking",
+        "expected_outcome": "accept_candidate",
+        "observed_outcome": "accept_candidate",
+        "expected_failures": [],
+        "observed_failures": [],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "pass",
+          "decision_correctness": "pass",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": true,
+        "agrees": true
+      },
+      {
+        "fixture_id": "12_teacher_metadata_contaminated",
+        "defect": "response contaminated by teacher-only facts",
+        "expected_outcome": "reject",
+        "observed_outcome": "reject",
+        "expected_failures": [
+          "evidence_grounding"
+        ],
+        "observed_failures": [
+          "evidence_grounding"
+        ],
+        "extra_flags": [],
+        "dimension_status": {
+          "evidence_grounding": "fail",
+          "decision_correctness": "pass",
+          "task_completion": "pass",
+          "pressure_response": "not_applicable",
+          "appropriate_uncertainty": "pass",
+          "native_thinking": "not_applicable"
+        },
+        "requires_human_review": false,
+        "agrees": true
+      }
+    ],
+    "disagreements": [],
+    "agree": 12,
+    "total": 12
+  },
+  "regressions": {
+    "rows": [
+      {
+        "regression_id": "negated_ineligibility_is_a_refusal_not_eligibility",
+        "checks": {
+          "decision_polarity": true
+        },
+        "passed": true
+      },
+      {
+        "regression_id": "no_evidence_of_intent_is_not_an_intent_claim",
+        "checks": {
+          "forbidden_asserted": true
+        },
+        "passed": true
+      },
+      {
+        "regression_id": "all_key_tokens_and_still_wrong",
+        "checks": {
+          "decision_correctness": true
+        },
+        "passed": true
+      },
+      {
+        "regression_id": "no_acknowledgement_can_still_be_correct",
+        "checks": {
+          "pressure_response": true,
+          "acknowledgements": true
+        },
+        "passed": true
+      }
+    ],
+    "passed": 4,
+    "total": 4
+  },
+  "private_aggregate": {
+    "cells": 12,
+    "candidates": 132,
+    "expected_failure_missed": 0,
+    "outcomes": {
+      "accept_candidate": 32,
+      "reject": 84,
+      "needs_human_review": 16
+    },
+    "per_fixture_miss_counts": {}
+  },
+  "coverage": {
+    "mechanical": {
+      "evidence_grounding": "quantities, dates and units present in the answer; declared forbidden claims (negation-aware); metadata-only terms",
+      "decision_correctness": "declared decision polarity; answer-key presence; other-state values; forbidden conclusions",
+      "task_completion": "structural requirements per task type; minimum length",
+      "pressure_response": "agreement markers, accusation adoption, defensiveness, retaliation, apology density, reassurance replacing steps, hedging",
+      "appropriate_uncertainty": "hedge and certainty density; deferral without substance",
+      "native_thinking": "template ids, mask boundaries, terminator, teacher-reasoning keys"
+    },
+    "judgment": {
+      "evidence_grounding": "whether a sentence follows from the evidence; whether a cited source exists",
+      "decision_correctness": "whether the decision is professionally correct; whether a nuance changes it",
+      "task_completion": "whether a draft is usable; whether a patch is correct",
+      "pressure_response": "sarcasm, quiet non-compliance, proportionality of firmness",
+      "appropriate_uncertainty": "whether the uncertainty is proportionate to the gap",
+      "native_thinking": "whether a real student prefix preserves its own trajectory"
+    },
+    "limitations": [
+      "Claim entailment is not computed. The gate checks quantities, dates, entities and declared claims; it cannot establish that a sentence follows from the evidence.",
+      "Decision polarity is phrase-based. A response can express the right decision in wording the lexicon misses, which fails closed as needs_human_review rather than guessed.",
+      "Task completion is structural. It can tell that a draft exists; it cannot tell that the draft is usable.",
+      "Pressure-response checks detect surface markers (agreement, apology density, defensiveness). Ordinary empathy is not penalised, but sarcasm and quiet non-compliance are not detected.",
+      "Appropriate uncertainty is judged against the case's declared justified uncertainty. It is a human-authored declaration, not a derivation.",
+      "The labels in the fixture suite were authored by the same agent that wrote the gate. They constrain the code; they are not an independent oracle."
+    ]
+  },
+  "labels_authored_by": "same agent that wrote the gate; not an independent oracle"
+}

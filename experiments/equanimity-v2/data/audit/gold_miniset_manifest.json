@@ -1,0 +1,201 @@
+{
+  "aggregate_sha256": "5cf011a3c722f4aaf77081eb37ac2875a3ea205dd695a762129d5a03113cb206",
+  "cell_hashes": [
+    {
+      "cell_id": "eq2-f6-001/A0",
+      "cell_sha256": "83b5370377b0cc2e90d2535d3d2a6050c4daeadf27732ca01471138174d0c75b",
+      "fields": {
+        "answer_key": "fc9944100d01950640ff4e999af70fc2ddce878a1752ff2993cd05e60d444c4b",
+        "expected_action": "8d72b4ca0f86a3738e8ebd78c2ba78e41c67432246006bd62a07228b24f8a7ab",
+        "forbidden_claims": "80f70452a050d1eda8b59138689d1863308a81f193c85ce8c9098bda287c8719",
+        "messages": "9aca459643f6b8b38d03878b3aca9c71044ea6059e1c9102b78a694d5f365b61",
+        "required_premises": "3bc6069b5308b72f7bef1050f8837039d051c9bcea3d9c47bd15d19b4afdd440",
+        "stated_facts": "d33cbed8aca7ec20fb32c4e72290d1181e7b84e57981c88b031994615f3e74c6"
+      },
+      "scenario_id": "eq2-f6-001"
+    },
+    {
+      "cell_id": "eq2-f6-001/A1",
+      "cell_sha256": "9fdc1f9b00658836eb8f1db315a923c52fd00012e60ca8d97a33754205523a1e",
+      "fields": {
+        "answer_key": "fc9944100d01950640ff4e999af70fc2ddce878a1752ff2993cd05e60d444c4b",
+        "expected_action": "8d72b4ca0f86a3738e8ebd78c2ba78e41c67432246006bd62a07228b24f8a7ab",
+        "forbidden_claims": "80f70452a050d1eda8b59138689d1863308a81f193c85ce8c9098bda287c8719",
+        "messages": "54545db8315199a496107e43fad05ac4516001bb0768aac3f31fed1cf005b226",
+        "required_premises": "3bc6069b5308b72f7bef1050f8837039d051c9bcea3d9c47bd15d19b4afdd440",
+        "stated_facts": "d33cbed8aca7ec20fb32c4e72290d1181e7b84e57981c88b031994615f3e74c6"
+      },
+      "scenario_id": "eq2-f6-001"
+    },
+    {
+      "cell_id": "eq2-f6-001/B0",
+      "cell_sha256": "0404d13fc08539cb4f0f8b13c68700db4cf2b125af154c221cc579ecce01460a",
+      "fields": {
+        "answer_key": "14665508663d363e606e3694017755fe6f6f4da6ed354098e16369f9e04168b9",
+        "expected_action": "0a89f8dfb29e01a099bbcb6794627acb643a3f95de9edd06c58e6f55f648ab98",
+        "forbidden_claims": "0078419fa1df3a106ee030625e582fe45cbfaf24ad486726657ba0670ac743cc",
+        "messages": "784e6d512a0dbf088e6b6e7c77c38e5c8dc412da5c85cff5cbe0498f5eea9f59",
+        "required_premises": "8b897d8334d4557f558168cea091782a7ea304aeb82660e1f46116f43ca1be1c",
+        "stated_facts": "a41c20555e3aabd6c5129f29ea6eb0be25fffd6be97e36c1b3b9a83ae44992a0"
+      },
+      "scenario_id": "eq2-f6-001"
+    },
+    {
+      "cell_id": "eq2-f6-001/B1",
+      "cell_sha256": "fee24eefa6b1aec5bc9a107e9c15ffdb45f71e6d04e33a811b7a74adb435962f",
+      "fields": {
+        "answer_key": "14665508663d363e606e3694017755fe6f6f4da6ed354098e16369f9e04168b9",
+        "expected_action": "0a89f8dfb29e01a099bbcb6794627acb643a3f95de9edd06c58e6f55f648ab98",
+        "forbidden_claims": "0078419fa1df3a106ee030625e582fe45cbfaf24ad486726657ba0670ac743cc",
+        "messages": "59202cda65db2ec35a8b6e0bf36427ccf9263bc8dd62cba7906b4e22872388ee",
+        "required_premises": "8b897d8334d4557f558168cea091782a7ea304aeb82660e1f46116f43ca1be1c",
+        "stated_facts": "a41c20555e3aabd6c5129f29ea6eb0be25fffd6be97e36c1b3b9a83ae44992a0"
+      },
+      "scenario_id": "eq2-f6-001"
+    },
+    {
+      "cell_id": "eq2-f2-005/A0",
+      "cell_sha256": "39caa7fb322cdaeacf31985f84889f5d7bb202b613fb5af08aaeae55a19456bf",
+      "fields": {
+        "answer_key": "e6373ee7ff3e2c118f7436b1e837272b6812625f2f7ee916205c5a0e2957bc7e",
+        "expected_action": "843cb11f7691259a7c16884c8b11549ef3f1de028a4e31eeddf451539dd794db",
+        "forbidden_claims": "46e183970f5b66fca7c834ec09d5ab3c5c9f49369f4109297db406075d6f1d74",
+        "messages": "1c35739dfab57b740c97dfe5025967f5e69d6e6744a095f42c1af822aae525e1",
+        "required_premises": "447602d842f67a13aebcea8242f22af2c7db2e3306c2288744b29cc9e0e844e5",
+        "stated_facts": "e3f0f2d602ebf19e58de85b23b69b53635d7a3435ba387d001b7c3e65c2bf706"
+      },
+      "scenario_id": "eq2-f2-005"
+    },
+    {
+      "cell_id": "eq2-f2-005/A1",
+      "cell_sha256": "9cc999741ec49b6dc6c2ff98815c75c0843371e9ed3fe134edb302b8dc4227ba",
+      "fields": {
+        "answer_key": "e6373ee7ff3e2c118f7436b1e837272b6812625f2f7ee916205c5a0e2957bc7e",
+        "expected_action": "843cb11f7691259a7c16884c8b11549ef3f1de028a4e31eeddf451539dd794db",
+        "forbidden_claims": "46e183970f5b66fca7c834ec09d5ab3c5c9f49369f4109297db406075d6f1d74",
+        "messages": "9ca3e7722b3b4d7eb77f29e563198fd4aa9b44edcd4ebfb4d4c79a3c0e4af0ff",
+        "required_premises": "447602d842f67a13aebcea8242f22af2c7db2e3306c2288744b29cc9e0e844e5",
+        "stated_facts": "e3f0f2d602ebf19e58de85b23b69b53635d7a3435ba387d001b7c3e65c2bf706"
+      },
+      "scenario_id": "eq2-f2-005"
+    },
+    {
+      "cell_id": "eq2-f2-005/B0",
+      "cell_sha256": "23e1077d07f92d626fd640fea4ec46eb7eb8ec1c50a51751221b7904cec7d369",
+      "fields": {
+        "answer_key": "47890d33823b7c360face98c4f994dfd860f426718d3f74cc88ca8dfc4beca87",
+        "expected_action": "61ec03c68121c8db559e96c01d4020b5d3743f475934f1bde47a2a398eefa3ea",
+        "forbidden_claims": "2f5091ea4d8353327a9d4d572079beba3db410aa10986cb1c1e28d6c8a956937",
+        "messages": "f7be7f3395bcb6db5199e24cf45c067042ae9fea66a19837deb0ddc1aba50044",
+        "required_premises": "d4d8df92f66cb43e0134e8b44a7c58b9e026e067f6e76b63779503ba359d552d",
+        "stated_facts": "b5c307396c66bbf8bf8fc535b20af2e819e4e84f73f920fc6cc294efefa93783"
+      },
+      "scenario_id": "eq2-f2-005"
+    },
+    {
+      "cell_id": "eq2-f2-005/B1",
+      "cell_sha256": "283e7aa5793695c8044a0703ffe0698a002314cef88e3cd4350f6544faf2fcd2",
+      "fields": {
+        "answer_key": "47890d33823b7c360face98c4f994dfd860f426718d3f74cc88ca8dfc4beca87",
+        "expected_action": "61ec03c68121c8db559e96c01d4020b5d3743f475934f1bde47a2a398eefa3ea",
+        "forbidden_claims": "2f5091ea4d8353327a9d4d572079beba3db410aa10986cb1c1e28d6c8a956937",
+        "messages": "412403b53a1c988315cdf2f3af9bb5d1131a88ab8b4624fb11ef27370db10ad2",
+        "required_premises": "d4d8df92f66cb43e0134e8b44a7c58b9e026e067f6e76b63779503ba359d552d",
+        "stated_facts": "b5c307396c66bbf8bf8fc535b20af2e819e4e84f73f920fc6cc294efefa93783"
+      },
+      "scenario_id": "eq2-f2-005"
+    },
+    {
+      "cell_id": "eq2-f4-001/A0",
+      "cell_sha256": "b6442cefa5db1f78fa0f874879ed4b359fb293d315cf2ef936b6c9eaa3c3acd4",
+      "fields": {
+        "answer_key": "a5c1ca73efbce66358aac4f284404b1b45dce78702e4bb3af5f0c033c84115eb",
+        "expected_action": "985cc78b99a94f79dbf3012a714d18dd3b19730464b662212dfd847b26951d6b",
+        "forbidden_claims": "ef6868334bced70cd7105c9f002cf7213293021e49ec11a7ebc70ce9a05431b2",
+        "messages": "2798195363e6f1e88f06e050d5087893364c3ea8d91701ef9b776c6519812769",
+        "required_premises": "6bc134acd060a6ea9d7ff3bf5924c3f8ae786abcb3ef3347c778339f546c49fe",
+        "stated_facts": "6db1906de7b16e05201574b2ce3ecb85de6b717b0b188bbd2283a3eef1b796f6"
+      },
+      "scenario_id": "eq2-f4-001"
+    },
+    {
+      "cell_id": "eq2-f4-001/A1",
+      "cell_sha256": "70748252a8e1c611491ade1cbfdc491be898a705ccf3d3356861dd5d6eb1014e",
+      "fields": {
+        "answer_key": "a5c1ca73efbce66358aac4f284404b1b45dce78702e4bb3af5f0c033c84115eb",
+        "expected_action": "985cc78b99a94f79dbf3012a714d18dd3b19730464b662212dfd847b26951d6b",
+        "forbidden_claims": "ef6868334bced70cd7105c9f002cf7213293021e49ec11a7ebc70ce9a05431b2",
+        "messages": "3deccf85b7c967dda714e103d33d2d7682d3ec929207a25f66a215803419c8d7",
+        "required_premises": "6bc134acd060a6ea9d7ff3bf5924c3f8ae786abcb3ef3347c778339f546c49fe",
+        "stated_facts": "6db1906de7b16e05201574b2ce3ecb85de6b717b0b188bbd2283a3eef1b796f6"
+      },
+      "scenario_id": "eq2-f4-001"
+    },
+    {
+      "cell_id": "eq2-f4-001/B0",
+      "cell_sha256": "273df9cc2c1c7cc7e616e133628c7b52db496f273091c51a553325d6931ce447",
+      "fields": {
+        "answer_key": "a5c1ca73efbce66358aac4f284404b1b45dce78702e4bb3af5f0c033c84115eb",
+        "expected_action": "0fcbce319ce13494c60f4e448e991cbbd7930fe74460775d86e79c329aee7119",
+        "forbidden_claims": "ac6dca4cae08b5c2321fa2b9b321566fbe137de6b9a43c2b270eaea70f46761e",
+        "messages": "ffc9cfb5561ef02a5555252e6ae111ff7f45b38c9f98ebf5cc42b54fdb9d87b6",
+        "required_premises": "e83b251ded555e1412c13daee0dda23a55afe7c27988ed1ee225fe1549098faa",
+        "stated_facts": "af1f4ccd3cd43719b28a3b116e8367bbea3969cb67e3c277518e589e919f86a4"
+      },
+      "scenario_id": "eq2-f4-001"
+    },
+    {
+      "cell_id": "eq2-f4-001/B1",
+      "cell_sha256": "c198cf93470141f8da9c82247452350960bdaf25a38f19f24ab87dd62bfc3557",
+      "fields": {
+        "answer_key": "a5c1ca73efbce66358aac4f284404b1b45dce78702e4bb3af5f0c033c84115eb",
+        "expected_action": "0fcbce319ce13494c60f4e448e991cbbd7930fe74460775d86e79c329aee7119",
+        "forbidden_claims": "ac6dca4cae08b5c2321fa2b9b321566fbe137de6b9a43c2b270eaea70f46761e",
+        "messages": "5dc5318e46b238c355de3c1e17e3dd2f5a9a14c46d687c961507729a1303630d",
+        "required_premises": "e83b251ded555e1412c13daee0dda23a55afe7c27988ed1ee225fe1549098faa",
+        "stated_facts": "af1f4ccd3cd43719b28a3b116e8367bbea3969cb67e3c277518e589e919f86a4"
+      },
+      "scenario_id": "eq2-f4-001"
+    }
+  ],
+  "cells": 12,
+  "mini_set_version": "gold-miniset-0.1.0",
+  "note": "Hashes only. Prompt text, expected actions, answer keys and answer-key prose remain in the private directory and are not part of this file.",
+  "scenario_hashes": {
+    "eq2-f2-005": {
+      "cells": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "genuine_decision_pivot",
+      "scenario_sha256": "b6ae9b2410b3f2ce1037f4539ced0160c61c020e9ba8a9bf43e4583d8901629d",
+      "task_id": "refund_eligibility_and_response"
+    },
+    "eq2-f4-001": {
+      "cells": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "genuine_decision_pivot",
+      "scenario_sha256": "cf719b94ff9c1a1221ef36c0f015701529fe898fedc18189438eac018a4695eb",
+      "task_id": "recover_section_and_draft_evidence_based_message"
+    },
+    "eq2-f6-001": {
+      "cells": [
+        "A0",
+        "A1",
+        "B0",
+        "B1"
+      ],
+      "counterfactual_class": "parameter_fidelity_control",
+      "scenario_sha256": "40dd55e9211d2809f116f731a37b61abea1741cbbd2a626d6da8750430ae0a16",
+      "task_id": "container_oom_diagnose_and_recommend"
+    }
+  },
+  "scenarios": 3,
+  "status": "frozen development set; not a confirmatory holdout; no teacher targets generated; not approved for training"
+}
