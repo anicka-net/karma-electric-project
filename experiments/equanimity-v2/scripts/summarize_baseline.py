@@ -53,12 +53,19 @@ def judge(rec: dict, cell: dict) -> dict:
     # deterministic key. Otherwise the label is unknown, not "correct because it looks right".
     forbidden_asserted = [f for f in dims["decision_correctness"]["findings"]
                           if f.startswith("forbidden_conclusion")]
+    dec_findings = dims["decision_correctness"]["findings"]
+    contradicts = [f for f in dec_findings
+                   if f.startswith(("wrong_decision", "forbidden_conclusion", "other_state_value"))]
+    key_only = all(f.startswith("answer_key_missing") for f in dec_findings) and dec_findings
+
     if st["decision_correctness"] == "pass":
         decision = "correct"
-    elif st["decision_correctness"] == "fail":
-        # An answer cut off at the token cap is not evidence of a wrong decision. It is evidence of
-        # an insufficient budget, unless it actively asserted a forbidden conclusion.
-        decision = "incorrect" if (forbidden_asserted or not truncated) else "unknown"
+    elif contradicts:
+        decision = "incorrect"
+    elif key_only:
+        # The answer did not state the claim the case declares, but it did not contradict it either.
+        # Calling that incorrect would blame the model for the gate's lexical matching.
+        decision = "unverified"
     else:
         decision = "unknown"
 
@@ -117,6 +124,7 @@ def main() -> int:
             "decision_correct": count(rows, "decision", lambda v: v == "correct"),
             "decision_incorrect": count(rows, "decision", lambda v: v == "incorrect"),
             "decision_unknown": count(rows, "decision", lambda v: v == "unknown"),
+            "decision_unverified": count(rows, "decision", lambda v: v == "unverified"),
             "task_complete": count(rows, "task_complete", lambda v: v is True),
         }
 

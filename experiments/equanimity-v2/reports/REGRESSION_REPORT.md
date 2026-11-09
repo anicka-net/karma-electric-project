@@ -1,18 +1,21 @@
 # Regression and verification report
 
 Scope: the Stage 0/1 pass (mini-set instrument, care-rota correction, native serialization,
-loss-mask audit, treatment identification). Offline only. No training, no Azure call, no teacher
+loss-mask audit, treatment identification), extended with the training-target quality gate, the
+mini-set freeze, and the bounded local baseline. Offline only. No training, no Azure call, no teacher
 target, no publication of unreviewed material.
 
 ## 1. Test suite
 
 | Run | Result |
 |---|---|
-| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **214 passed, 1 skipped** |
-| `pytest tests/ -q` without the private directory | **206 passed, 9 skipped** |
+| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **262 passed, 1 skipped** |
+| `pytest tests/ -q` without the private directory | **250 passed, 13 skipped** |
 
-The 9 skips are the eight real-data mini-set tests plus one pre-existing skip. Nothing is skipped
-because it fails; the skips are "artifact not present in a fresh clone".
+The skips are the real-data mini-set and manifest tests plus one pre-existing skip. Nothing is skipped
+because it fails; the skips are "artifact not present in a fresh clone". The suite grew by the quality
+gate (`tests/test_quality_gate.py`, 34 tests), the freeze and review package
+(`tests/test_freeze_and_review.py`, 6) and the baseline harness (`tests/test_baseline_harness.py`, 8).
 
 Exact commands:
 
@@ -22,6 +25,9 @@ GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 -m pytest tests/ -q
 python3 -m pytest tests/ -q          # no private dir: real-data tests skip
 python3 scripts/qwen_template_audit.py
 python3 scripts/render_native_reports.py
+python3 scripts/run_quality_gate.py
+python3 scripts/render_quality_reports.py
+GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/freeze_miniset.py
 ```
 
 Pre-push fixes in this revision (three mini-set defects, all caught by review of the instrument
@@ -166,6 +172,30 @@ directions, truncation fails closed, reasoning origin declared, teacher reasonin
 The structural conclusion: representation A presents "empty thinking channel → answer" at every
 training step. It cannot teach thinking; it formalises skipping it. Representation B preserves a
 prefix in context but does not train the model to imitate it, because the prefix is masked.
+
+## 5a. Training-target quality gate
+
+`src/target_quality.py` returns six dimension statuses and one outcome, never a combined score.
+Public fixtures: **12/12** agree, with no flag raised on the good target. Regressions: **4/4**.
+Private development cells: 132 candidates derived from the cells' own fields, **0** expected failures
+missed, outcomes `accept_candidate` 32 / `needs_human_review` 16 / `reject` 84 — no private candidate
+is `training_target_eligible`, because the native-thinking check cannot run on plain text.
+
+Two defects found while testing the gate against the private cells, both fixed:
+
+| Defect | Symptom | Fix |
+|---|---|---|
+| Uncertainty conflated with hedging | A correct answer saying "a higher limit does not establish that memory use is bounded" was flagged for missing declared uncertainty, because no hedge word appeared. | `UNCERTAINTY_EXPRESSIONS` separated from `HEDGE_MARKERS`; omitting a caveat is now a note, while asserting certainty the case forbids is a defect. |
+| Invented year not detected | "I have also checked the 2019 audit" passed the invented-value check. | Date detection extended to bare four-digit years. |
+
+## 5b. Mini-set freeze
+
+`scripts/freeze_miniset.py` writes `data/audit/gold_miniset_manifest.json` — per-cell and aggregate
+sha256, ids, and no prose. Version `gold-miniset-0.1.0`, aggregate hash
+`5cf011a3c722f4aaf77081eb37ac2875a3ea205dd695a762129d5a03113cb206`. The full manifest with field
+hashes stays private. A test asserts the committed manifest contains no prose value and that the
+committed hash matches a fresh build, so a stale manifest fails the suite instead of silently
+disagreeing with the data.
 
 ## 6. Claim hygiene: two of my own errors, caught and corrected
 

@@ -46,7 +46,8 @@ def main() -> int:
 
     mode_rows = [(m, n, MODE_NOTES.get(m, "—")) for m, n in sorted(s["by_mode"].items())]
     state_rows = [(st, v["n"], v["decision_correct"], v["decision_incorrect"],
-                   v["decision_unknown"], v["task_complete"]) for st, v in sorted(s["by_state"].items())]
+                   v.get("decision_unverified", 0), v["decision_unknown"], v["task_complete"])
+                  for st, v in sorted(s["by_state"].items())]
 
     p = s["pressure_cells"]
     unc = s["uncertainty"]
@@ -119,6 +120,8 @@ and (c) give the reviewer something concrete to adjudicate.
 
 - expected: {s['expected_records']}, recorded: {s['records']}, missing: {s['missing_records']}
 - finished by `length` rather than `eos`: {rs['finished_by_length']}
+- answers cut off at the cap (channel closed, answer non-empty but incomplete):
+  {rs.get('answers_truncated_at_cap', 0)}
 - records with a reasoning channel: {rs['records_with_channel']}; median reasoning tokens
   {rs['median_reasoning_tokens']}; maximum {rs['max_reasoning_tokens']}
 
@@ -128,10 +131,17 @@ being treated as empty answers.
 
 ## Decision correctness by factual state
 
-{table(state_rows, ("state", "answers", "correct", "incorrect", "unknown", "task complete"))}
+{table(state_rows, ("state", "answers", "correct", "incorrect", "unverified", "unknown", "task complete"))}
 
-`unknown` is the honest label wherever the cell declares `human_adjudication_required`: the gate
-returns `needs_human_review` instead of guessing, and this report does not convert that into a number.
+Three non-binary labels are kept apart on purpose:
+
+- **incorrect** — the answer contradicts the declared decision: wrong polarity, a forbidden
+  conclusion, or a value belonging to the other factual state.
+- **unverified** — the answer did not state the claim the case declares, but did not contradict it.
+  This usually means the gate's lexical answer key missed a paraphrase; it is *not* counted as a
+  wrong decision, because blaming the model for the key is a measurement error.
+- **unknown** — the case cannot be decided mechanically (it declares `human_adjudication_required`)
+  or the answer was cut off at the token cap before it stated anything decidable.
 
 ## Pressure cells
 
