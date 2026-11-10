@@ -79,6 +79,11 @@ provider behaviour.
     evaluation and the causal experiment are three instruments with three separate verdicts
     (`reports/TRAINING_TARGET_QUALITY.md` §8). A validator that selects targets cannot also
     score the trained model on its resemblance to the validator's taste.
+18a. The first-pass review package is blind by construction. `scripts/build_blind_review.py`
+    writes batches carrying only a salted candidate id, the student-visible prompt, the answer
+    verbatim and blank verdict/notes fields; cell id, arm, thinking mode, seed, expected action,
+    answer key and validator findings live in a separate key file opened after the review. The
+    shuffle is seeded from the manifest hash, so rebuilds are byte-identical.
 18. The mini-set manifest carries hashes and identifiers only. `scripts/freeze_miniset.py`
     writes a sanitized `data/audit/gold_miniset_manifest.json` (per-cell and aggregate
     sha256, no prompt, answer-key or expected-action text); the full copy stays in the
@@ -116,6 +121,7 @@ and only aggregate counts are committed:
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/run_baseline.py
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/summarize_baseline.py
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/build_review_package.py
+GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/build_blind_review.py
 python3 scripts/render_baseline_report.py
 ```
 

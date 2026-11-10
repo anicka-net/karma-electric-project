@@ -45,8 +45,10 @@ def validator_report(res: dict) -> str:
         for f in res["public_fixtures"]["rows"]
     ]
     dims = [(d, "critical" if d in tq.CRITICAL_DIMENSIONS else "advisory") for d in tq.DIMENSIONS]
-    mech = [f"| {d} | {', '.join(cov['mechanical'][d]) or '—'} |" for d in tq.DIMENSIONS]
-    judg = [f"| {d} | {', '.join(cov['judgment'][d]) or '—'} |" for d in tq.DIMENSIONS]
+    # coverage() maps a dimension to a description *string*; joining it would split it into
+    # characters and produce one cell per letter.
+    mech = [(d, cov["mechanical"][d]) for d in tq.DIMENSIONS]
+    judg = [(d, cov["judgment"][d]) for d in tq.DIMENSIONS]
 
     return f"""# Target validator report
 

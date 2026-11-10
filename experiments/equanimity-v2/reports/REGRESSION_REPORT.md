@@ -9,13 +9,15 @@ target, no publication of unreviewed material.
 
 | Run | Result |
 |---|---|
-| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **269 passed, 1 skipped** |
-| `pytest tests/ -q` without the private directory | **257 passed, 13 skipped** |
+| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **277 passed, 1 skipped** |
+| `pytest tests/ -q` without the private directory | **264 passed, 14 skipped** |
 
 The skips are the real-data mini-set and manifest tests plus one pre-existing skip. Nothing is skipped
 because it fails; the skips are "artifact not present in a fresh clone". The suite grew by the quality
 gate (`tests/test_quality_gate.py`, 41 tests), the freeze and review package
-(`tests/test_freeze_and_review.py`, 6) and the baseline harness (`tests/test_baseline_harness.py`, 8).
+(`tests/test_freeze_and_review.py`, 6), the baseline harness (`tests/test_baseline_harness.py`, 8),
+the blinded first-pass package (`tests/test_blind_review.py`, 5) and report table shape
+(`tests/test_report_tables.py`, 3).
 
 Exact commands:
 
@@ -217,6 +219,32 @@ forbidden claims fired on correct answers at least as often as on genuine paraph
 answer matched "not eligible for a refund" because an unrelated "not faulty" satisfied the negation
 check), and a clause-level negation comparison for the same reason. Paraphrase remains a
 semantic-review task, and the baseline contains at least one adoption the gate cannot see.
+
+## 5d. Blinded first-pass review package
+
+`scripts/build_blind_review.py` writes three uploadable batches of 12 entries and a separate answer
+key. Each entry carries only a salted candidate id (`C-` + 8 hex), the exact student-visible prompt,
+the answer verbatim, and blank verdict / notes fields. Shuffle is seeded from the mini-set manifest
+hash, so two runs produce byte-identical files (verified: md5 unchanged across two builds).
+
+The salt is `e8ca1ef8b6838869`, derived as `sha256("blind-review-v1:" + aggregate_sha256)[:16]`, so the
+ids are reproducible without storing a secret and cannot be reversed to a cell id without the key.
+
+Withheld from the blind file (asserted by `tests/test_blind_review.py`): cell id, scenario id, factual
+state, arm, thinking mode, seed, expected action, answer key, validator outcome, dimension statuses,
+failure flags, and the reasoning trace.
+
+The answer key (`baseline_answer_key.md` / `.json`) is opened only after the review. It records cell,
+scenario, facts, arm, mode, seed, batch position, expected action, the validator's actual findings per
+dimension, and the manifest hash.
+
+A Markdown table defect was also fixed: `render_quality_reports.py` joined a coverage *string* as if it
+were a list, producing one table cell per character in `TARGET_VALIDATOR_REPORT.md`. `tests/
+test_report_tables.py` now pins column counts and separator shape across all rendered reports, ignoring
+pipes inside inline code.
+
+No inference, no Azure call, no teacher generation, no training, and no grader tuning happened while
+building this package.
 
 ## 6. Claim hygiene: two of my own errors, caught and corrected
 
