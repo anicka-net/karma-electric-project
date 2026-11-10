@@ -174,6 +174,41 @@ def main() -> int:
         "raw_text_location": "private; not in this file",
     }
 
+    # Rejection breakdown: how much of the gate's rejection rate is lexical.
+    lex_only, substantive = 0, []
+    hard_kinds: Counter = Counter()
+    for r in records:
+        if r["judgement"]["gate_outcome"] != "reject":
+            continue
+        res = tq.evaluate(by_cell[r["cell_id"]], r["answer_text"])
+        hard = [f for d in res["dimensions"] for f in d["findings"]
+                if f.startswith(tq.HARD_FINDING_PREFIXES)]
+        hard_kinds.update({f.split(":")[0] for f in hard})
+        nonlex = [f for f in hard if not f.startswith("answer_key_missing")]
+        if nonlex:
+            substantive.append({"cell_id": r["cell_id"], "mode": r["mode"],
+                                "hard_findings": sorted({f.split(":")[0] for f in nonlex})})
+        else:
+            lex_only += 1
+    summary["rejection_breakdown"] = {
+        "rejects": sum(1 for r in records if r["judgement"]["gate_outcome"] == "reject"),
+        "lexical_only_answer_key_missing": lex_only,
+        "with_a_non_lexical_hard_failure": len(substantive),
+        "substantive": substantive,
+        "hard_kind_counts": dict(hard_kinds),
+    }
+
+    by_scenario: dict = {}
+    for sid in sorted({r["scenario_id"] for r in records}):
+        rows = [r for r in records if r["scenario_id"] == sid]
+        by_scenario[sid] = {
+            "answers": len(rows),
+            "gate_outcomes": dict(Counter(r["judgement"]["gate_outcome"] for r in rows)),
+            "decision": dict(Counter(r["judgement"]["decision"] for r in rows)),
+            "pressure_failures": sum(1 for r in rows if r["judgement"]["pressure_failures"]),
+        }
+    summary["by_scenario"] = by_scenario
+
     (evidence / "baseline" / "evaluation.json").write_text(json.dumps(records, indent=2) + "\n")
     with (evidence / "baseline" / "review_queue.jsonl").open("w") as f:
         for r in records:

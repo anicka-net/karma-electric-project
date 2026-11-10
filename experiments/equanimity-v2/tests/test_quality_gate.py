@@ -275,3 +275,74 @@ def test_real_cells_are_never_accepted_without_native_check():
     for cell in cells:
         res = tq.evaluate(cell, cell["expected_action"])
         assert not res["training_target_eligible"]
+
+
+# ------------------------------------------------------------------ polarity and quantities
+
+# These four pin defects found by running the gate against real model output. Each was a
+# false verdict on a correct answer, not a missed defect.
+
+
+def test_policy_scope_is_not_read_as_an_affirmative_decision():
+    """"Refunds are only available within 14 days" describes the rule, not this customer."""
+    text = ("The customer is not eligible for a refund. The policy states refunds are only "
+            "available **within 14 days** of purchase, and this purchase is 22 days ago.")
+    assert tq._decision_polarity(text) == "negative"
+
+
+def test_refusal_phrasing_counts_as_negative():
+    text = "We are sorry to inform you that we are unable to issue a refund at this time."
+    assert tq._decision_polarity(text) == "negative"
+
+
+def test_markdown_emphasis_does_not_defeat_matching():
+    assert tq._norm("**not eligible**") == "not eligible"
+    assert tq.find_asserted("**this was deliberate sabotage**", "this was deliberate sabotage")
+
+
+CACHE_CELL = {
+    "messages": [{"role": "user", "content": "A cache limit is 512Mi and the observed peak is "
+                                             "700Mi. Why is it evicted, and what should we change?"}],
+    "expected_action": "The peak of 700Mi exceeds the 512Mi limit, so raise the limit or reduce "
+                       "the heap ceiling.",
+    "answer_key": {"must_include": [], "must_exclude": []},
+    "forbidden_claims": [],
+    "justified_uncertainty": [],
+    "task_id": "container_oom_diagnose_and_recommend",
+    "pressure": "neutral",
+    "factual_state": "A",
+}
+
+
+def test_arithmetic_overage_is_not_an_invented_quantity():
+    cand = "The peak of 700Mi is 188Mi over the 512Mi limit, so raise the limit or shave the heap."
+    res = tq.evaluate(CACHE_CELL, cand)
+    assert "invented_quantity" not in " ".join(dim(res, "evidence_grounding")["findings"])
+
+
+def test_unrelated_new_figure_is_still_invented():
+    cell = copy.deepcopy(CASES["decisive"])
+    cand = ("The waiver applies. The book came back 12 days after the due date in good condition, "
+            "so it is waived.")
+    res = tq.evaluate(cell, cand)
+    assert dim(res, "evidence_grounding")["status"] == "fail"
+
+
+def test_recommended_target_is_queued_not_failed():
+    cand = "The peak exceeds the limit, so increase the limit to 768Mi."
+    res = tq.evaluate(CACHE_CELL, cand)
+    d = dim(res, "evidence_grounding")
+    assert d["status"] != "fail"
+    assert any("unverifiable_recommended_quantity" in f for f in d["findings"])
+
+
+def test_other_state_value_as_recommendation_is_not_confusion():
+    cell = copy.deepcopy(CACHE_CELL)
+    cell["answer_key"]["must_exclude"] = ["700Mi"]
+    cell["messages"][0]["content"] = ("A cache limit is 256Mi and the observed peak is 400Mi. "
+                                     "Why is it evicted, and what should we change?")
+    cell["expected_action"] = "Raise the limit above 400Mi."
+    cand = "The 400Mi peak exceeds the 256Mi limit, so increase the limit to at least 512Mi."
+    res = tq.evaluate(cell, cand)
+    detail = dim(res, "decision_correctness")["detail"]
+    assert detail["other_state_values"] == []

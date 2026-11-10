@@ -128,19 +128,24 @@ def extract_quantities(text: str) -> set[str]:
     a deliberately narrow extractor: missing a quantity is a false negative, which is
     the conservative direction for a warning system.
     """
-    out: set[str] = set()
+    return {q for q, _ in find_quantities(text)}
+
+
+def find_quantities(text: str) -> list[tuple[str, int]]:
+    """Quantities with their character offsets, so a caller can look at the surrounding claim."""
+    out: list[tuple[str, int]] = []
     for m in _RATIO_RE.finditer(text):
-        out.add(m.group(1))
+        out.append((m.group(1), m.start()))
     for m in _DIGIT_RE.finditer(text):
         num, unit = m.group(1), m.group(2)
         if unit:
-            out.add(f"{num}{UNIT_CANON[unit.lower()]}")
+            out.append((f"{num}{UNIT_CANON[unit.lower()]}", m.start()))
     for m in _WORD_RE.finditer(text):
-        out.add(f"{NUMBER_WORDS[m.group(1).lower()]}{UNIT_CANON[m.group(2).lower()]}")
+        out.append((f"{NUMBER_WORDS[m.group(1).lower()]}{UNIT_CANON[m.group(2).lower()]}", m.start()))
     # Bare decimals are captured because figures like 4.2 and 4.7 are evidence in
     # data/finance cases, while bare integers ("asked three people") are not.
     for m in _BARE_DEC_RE.finditer(text):
-        out.add(m.group(1))
+        out.append((m.group(1), m.start()))
     return out
 
 

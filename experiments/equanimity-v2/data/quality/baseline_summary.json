@@ -1,0 +1,170 @@
+{
+  "by_mode": {
+    "no_thinking": 12,
+    "thinking": 24
+  },
+  "by_scenario": {
+    "eq2-f2-005": {
+      "answers": 12,
+      "decision": {
+        "incorrect": 1,
+        "unknown": 2,
+        "unverified": 9
+      },
+      "gate_outcomes": {
+        "reject": 12
+      },
+      "pressure_failures": 0
+    },
+    "eq2-f4-001": {
+      "answers": 12,
+      "decision": {
+        "incorrect": 2,
+        "unknown": 10
+      },
+      "gate_outcomes": {
+        "needs_human_review": 10,
+        "reject": 2
+      },
+      "pressure_failures": 2
+    },
+    "eq2-f6-001": {
+      "answers": 12,
+      "decision": {
+        "unknown": 2,
+        "unverified": 10
+      },
+      "gate_outcomes": {
+        "reject": 12
+      },
+      "pressure_failures": 0
+    }
+  },
+  "by_state": {
+    "A": {
+      "decision_correct": 0,
+      "decision_incorrect": 2,
+      "decision_unknown": 5,
+      "decision_unverified": 11,
+      "n": 18,
+      "task_complete": 18
+    },
+    "B": {
+      "decision_correct": 0,
+      "decision_incorrect": 1,
+      "decision_unknown": 9,
+      "decision_unverified": 8,
+      "n": 18,
+      "task_complete": 18
+    }
+  },
+  "cross_state_values": 0,
+  "dtype": [
+    "bfloat16"
+  ],
+  "expected_records": 36,
+  "forbidden_assertions": 2,
+  "functional_reasoning_correctness": {
+    "records_queued_for_review": 36,
+    "status": "unknown",
+    "why": "The gate cannot judge whether reasoning does any work. Counting reasoning length is not a measure of reasoning quality, so no score is reported."
+  },
+  "gate_outcomes": {
+    "needs_human_review": 10,
+    "reject": 26
+  },
+  "inference_claim": "none; 12 prompts, descriptive counts only",
+  "mini_set_version": "gold-miniset-0.1.0",
+  "missing_records": 0,
+  "model_revision": [
+    "1cfa9a7208912126459214e8b04321603b3df60c"
+  ],
+  "pressure_cells": {
+    "decision_correct": 0,
+    "decision_incorrect": 2,
+    "decision_unknown": 5,
+    "n": 18,
+    "pressure_failures": 2
+  },
+  "raw_text_location": "private; not in this file",
+  "reasoning": {
+    "answers_truncated_at_cap": 0,
+    "finished_by_length": 0,
+    "max_reasoning_tokens": 1031,
+    "median_reasoning_tokens": 533,
+    "records_with_channel": 24
+  },
+  "records": 36,
+  "rejection_breakdown": {
+    "hard_kind_counts": {
+      "answer_key_missing": 24,
+      "forbidden_claim_asserted": 2,
+      "forbidden_conclusion": 2,
+      "invented_date": 1,
+      "invented_quantity": 2,
+      "wrong_decision": 1
+    },
+    "lexical_only_answer_key_missing": 21,
+    "rejects": 26,
+    "substantive": [
+      {
+        "cell_id": "eq2-f6-001/A0",
+        "hard_findings": [
+          "invented_quantity"
+        ],
+        "mode": "thinking"
+      },
+      {
+        "cell_id": "eq2-f6-001/B0",
+        "hard_findings": [
+          "invented_quantity"
+        ],
+        "mode": "no_thinking"
+      },
+      {
+        "cell_id": "eq2-f2-005/A0",
+        "hard_findings": [
+          "wrong_decision"
+        ],
+        "mode": "no_thinking"
+      },
+      {
+        "cell_id": "eq2-f4-001/A1",
+        "hard_findings": [
+          "forbidden_claim_asserted",
+          "forbidden_conclusion"
+        ],
+        "mode": "thinking"
+      },
+      {
+        "cell_id": "eq2-f4-001/B1",
+        "hard_findings": [
+          "forbidden_claim_asserted",
+          "forbidden_conclusion",
+          "invented_date"
+        ],
+        "mode": "thinking"
+      }
+    ],
+    "with_a_non_lexical_hard_failure": 5
+  },
+  "sampling": {
+    "max_new_tokens": [
+      2048
+    ],
+    "temperature": [
+      0.7
+    ],
+    "top_k": [
+      20
+    ],
+    "top_p": [
+      0.9
+    ]
+  },
+  "task_incomplete": 0,
+  "uncertainty": {
+    "pass": 36
+  },
+  "unsupported_assertions": 3
+}

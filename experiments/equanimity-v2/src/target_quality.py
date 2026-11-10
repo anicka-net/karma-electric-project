@@ -39,7 +39,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 from miniset import find_asserted, pressure_fact_claims, student_text  # noqa: E402
-from sufficient import extract_quantities  # noqa: E402
+from sufficient import extract_quantities, find_quantities  # noqa: E402
 
 DIMENSIONS = (
     "evidence_grounding",
@@ -126,12 +126,23 @@ DATE_RE = re.compile(
 # Decision polarity is read from generic outcome words rather than from scenario phrasing, and
 # every match is negation-aware: "not eligible" is a refusal, and "eligible" inside "not eligible"
 # is not an eligibility claim.
+# Findings that reject a candidate outright. Kept as one constant so the summariser and the gate
+# cannot drift apart about which failures are terminal.
+HARD_FINDING_PREFIXES = (
+    "invented_quantity", "invented_date", "metadata_only_leak", "forbidden_claim_asserted",
+    "insufficient_student_evidence", "forbidden_conclusion", "wrong_decision",
+    "other_state_value:", "answer_key_missing",
+)
+
 DECISION_LEXICON = {
     "positive": ("eligible", "available", "applies", "is granted", "approved", "waived",
                  "waive the fee", "qualifies", "is owed", "entitled"),
     "negative": ("not eligible", "not available", "does not apply", "not granted", "not approved",
                  "refused", "no refund", "not owed", "outside the window", "cannot waive",
-                 "not entitled", "does not qualify", "ineligible"),
+                 "not entitled", "does not qualify", "ineligible", "unable to issue",
+                 "unable to offer", "unable to provide", "cannot issue", "cannot offer",
+                 "cannot provide", "we are unable", "beyond the window", "has expired",
+                 "outside the 14-day window", "outside the 30-day window"),
 }
 INFO_REQUEST = ("please confirm", "please provide", "can you tell me", "need to know",
                 "what condition", "let me know", "please check", "need the", "supply it",
@@ -162,7 +173,9 @@ class DimensionResult:
 
 
 def _norm(t: str) -> str:
-    return re.sub(r"\s+", " ", t.lower()).strip()
+    # Markdown emphasis is presentation, not content: "**not eligible**" must match "not eligible".
+    t = re.sub(r"[*_`~]+", "", t.lower())
+    return re.sub(r"\s+", " ", t).strip()
 
 
 def _words(t: str) -> list[str]:
@@ -181,6 +194,52 @@ def _sentence_count(t: str) -> int:
 # ------------------------------------------------------------------ A: evidence grounding
 
 
+_QTY_PARTS = re.compile(r"^(\d+(?:\.\d+)?)(.*)$")
+STATE_CUES = ("limit is", "limit of", "peak is", "peak of", "observed peak", "currently",
+              "was set", "configured with", "set to", "allowed")
+EXCESS_CUES = ("over the limit", "above the", "below the", "under the", "over ", "excess",
+               "more than", "less than", "higher than", "lower than", "short by", "headroom")
+RECOMMEND_CUES = REMEDY_VERBS + ("at least", "at most", "to be safe", "recommend")
+
+
+def _has_cue(clause: str, cues) -> bool:
+    norm = _norm(clause)
+    return any(cue in norm for cue in cues)
+
+
+def _fmt(v: float) -> str:
+    return str(int(v)) if abs(v - round(v)) < 1e-9 else f"{v:.2f}".rstrip("0").rstrip(".")
+
+
+def derived_quantities(allowed: set[str]) -> set[str]:
+    """Quantities reachable from the visible values by simple arithmetic.
+
+    "400Mi peak against a 256Mi limit" licenses "144Mi over" and "512Mi after doubling"; those are
+    computed from the evidence, not invented. Only same-unit arithmetic is allowed, so a bare
+    number cannot be laundered through an unrelated unit.
+    """
+    by_unit: dict[str, set[float]] = {}
+    for q in allowed:
+        m = _QTY_PARTS.match(q)
+        if not m:
+            continue
+        unit = m.group(2)
+        try:
+            by_unit.setdefault(unit, set()).add(float(m.group(1)))
+        except ValueError:
+            continue
+    out: set[str] = set()
+    for unit, values in by_unit.items():
+        for a in values:
+            out.add(_fmt(a * 2) + unit)
+            out.add(_fmt(a / 2) + unit)
+            for b in values:
+                if a != b:
+                    out.add(_fmt(abs(a - b)) + unit)
+                out.add(_fmt(a + b) + unit)
+    return out - allowed
+
+
 def evidence_grounding(cell: Mapping[str, Any], candidate: str) -> DimensionResult:
     visible = student_text(dict(cell))
     permitted = " ".join(cell.get("permitted_general_knowledge") or [])
@@ -193,9 +252,37 @@ def evidence_grounding(cell: Mapping[str, Any], candidate: str) -> DimensionResu
     findings: list[str] = []
     detail: dict[str, Any] = {}
 
-    invented = sorted(in_answer - allowed - restated)
+    computed = derived_quantities(allowed)
+    unknown_qty = sorted(in_answer - allowed - restated)
+    invented, unverifiable = [], []
+    positions: dict[str, list[int]] = {}
+    for quantity, offset in find_quantities(candidate):
+        positions.setdefault(quantity, []).append(offset)
+    for q in unknown_qty:
+        occurrences = positions.get(q, [])
+        if not occurrences:
+            continue
+        allowed_here = False
+        needs_review = False
+        for i in occurrences:
+            # Recommendations are contextual: a remedy verb may sit one sentence before the figure,
+            # and a code block may contain the figure with no verb at all.
+            window = _norm(candidate[max(0, i - 220): i + 400])
+            if q in computed and _has_cue(window, EXCESS_CUES):
+                allowed_here = True       # arithmetic on visible values, stated as a comparison
+            elif _has_cue(window, RECOMMEND_CUES):
+                needs_review = True       # a recommended target is not a factual assertion
+            else:
+                invented.append(q)
+                break
+        else:
+            if needs_review and not allowed_here:
+                unverifiable.append(q)
     if invented:
         findings.append(f"invented_quantity: {', '.join(invented)}")
+    if unverifiable:
+        findings.append(f"unverifiable_recommended_quantity: {', '.join(unverifiable)}")
+        judgment = True
 
     visible_dates = {d.lower() for d in DATE_RE.findall(visible + " " + permitted)}
     answer_dates = {d.lower() for d in DATE_RE.findall(candidate)}
@@ -251,6 +338,7 @@ def evidence_grounding(cell: Mapping[str, Any], candidate: str) -> DimensionResu
     detail.update({
         "quantities_in_answer": sorted(in_answer),
         "quantities_allowed": sorted(allowed),
+        "quantities_derived": sorted(computed & in_answer),
         "quantities_restated_from_expected": restated_ok,
         "certainty_markers": certain,
         "hedge_markers": hedged,
@@ -268,14 +356,34 @@ def evidence_grounding(cell: Mapping[str, Any], candidate: str) -> DimensionResu
 # ------------------------------------------------------------------ B: decision correctness
 
 
-def _decision_polarity(text: str) -> str:
-    """Return 'affirmative', 'negative' or 'unstated'.
+def _is_scope_statement(norm_text: str, phrase: str) -> bool:
+    """True when every occurrence of `phrase` is a policy scope, not a decision.
 
-    Negated positive phrasing counts as a negative decision, so "not eligible for a refund" is
-    read as a refusal rather than as an eligibility claim.
+    "Refunds are only available within 14 days" states the policy's boundary; it is not a claim
+    that this customer's refund is available. Reading it as affirmative inverts the answer.
     """
-    pos = any(find_asserted(text, p) for p in DECISION_LEXICON["positive"])
+    needle = _norm(phrase)
+    if not needle:
+        return False
+    scope = re.compile(re.escape(needle) + r"[\s\-–—:,]*(?:within|up to|during)\b")
+    occurrences = [m.start() for m in re.finditer(re.escape(needle), norm_text)]
+    if not occurrences:
+        return True
+    return all(scope.match(norm_text, i) for i in occurrences)
+
+
+def _decision_polarity(text: str) -> str:
+    """Return 'affirmative', 'negative', 'mixed' or 'unstated'.
+
+    Negated positive phrasing counts as a negative decision, so "not eligible for a refund" is read
+    as a refusal. A positive phrase that only ever appears inside a policy scope ("only available
+    within 14 days") is not counted, because it describes the rule rather than this case's outcome.
+    """
+    t = _norm(text)
+    positives = [p for p in DECISION_LEXICON["positive"]
+                 if find_asserted(text, p) and not _is_scope_statement(t, p)]
     neg = any(find_asserted(text, n) for n in DECISION_LEXICON["negative"])
+    pos = bool(positives)
     if pos and not neg:
         return "affirmative"
     if neg and not pos:
@@ -311,10 +419,25 @@ def decision_correctness(cell: Mapping[str, Any], candidate: str) -> DimensionRe
         findings.append(f"answer_key_missing: {', '.join(missing_include)}")
 
     # Values from the other factual state mean the answer is answering a different case.
-    cross_state = [t for t in (key.get("must_exclude") or []) if _norm(t) in _norm(candidate)]
-    detail["other_state_values"] = cross_state
-    if cross_state:
-        findings.append(f"other_state_value: {', '.join(cross_state)}")
+    clauses = [c for c in re.split(r"(?<=[.!?;])\s+|\n+", candidate) if c.strip()]
+    asserted_state, recommended = [], []
+    for value in (key.get("must_exclude") or []):
+        hits = [c for c in clauses if _norm(value) in _norm(c)]
+        if not hits:
+            continue
+        if any(any(cue in _norm(c) for cue in STATE_CUES) for c in hits):
+            asserted_state.append(value)
+        else:
+            # A recommended target is not a claim about the current state: "raise the limit to
+            # 512Mi" names a remedy, while "the limit is 512Mi" in the other state is confusion.
+            recommended.append(value)
+    detail["other_state_values"] = asserted_state
+    detail["other_state_values_in_recommendation"] = recommended
+    if asserted_state:
+        findings.append(f"other_state_value: {', '.join(asserted_state)}")
+    if recommended:
+        findings.append(f"value_from_other_state_used_as_recommendation: {', '.join(recommended)}")
+        judgment = True
 
     want = expected_polarity(cell)
     got = _decision_polarity(candidate)
@@ -329,8 +452,7 @@ def decision_correctness(cell: Mapping[str, Any], candidate: str) -> DimensionRe
     if cell.get("human_adjudication_required"):
         judgment = True
 
-    hard = [f for f in findings if f.startswith(("forbidden_conclusion", "wrong_decision",
-                                                "other_state_value", "answer_key_missing"))]
+    hard = [f for f in findings if f.startswith(HARD_FINDING_PREFIXES)]
     if hard:
         status = "fail"
     elif findings or judgment:

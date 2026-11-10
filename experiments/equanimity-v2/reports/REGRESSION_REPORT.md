@@ -9,12 +9,12 @@ target, no publication of unreviewed material.
 
 | Run | Result |
 |---|---|
-| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **262 passed, 1 skipped** |
-| `pytest tests/ -q` without the private directory | **250 passed, 13 skipped** |
+| `pytest tests/ -q` with `GOLD_MINISET_DIR` set | **269 passed, 1 skipped** |
+| `pytest tests/ -q` without the private directory | **257 passed, 13 skipped** |
 
 The skips are the real-data mini-set and manifest tests plus one pre-existing skip. Nothing is skipped
 because it fails; the skips are "artifact not present in a fresh clone". The suite grew by the quality
-gate (`tests/test_quality_gate.py`, 34 tests), the freeze and review package
+gate (`tests/test_quality_gate.py`, 41 tests), the freeze and review package
 (`tests/test_freeze_and_review.py`, 6) and the baseline harness (`tests/test_baseline_harness.py`, 8).
 
 Exact commands:
@@ -196,6 +196,27 @@ sha256, ids, and no prose. Version `gold-miniset-0.1.0`, aggregate hash
 hashes stays private. A test asserts the committed manifest contains no prose value and that the
 committed hash matches a fresh build, so a stale manifest fails the suite instead of silently
 disagreeing with the data.
+
+## 5c. Bounded Qwen3-4B baseline
+
+Local, CPU-only, 36 generations over the 12 cells (2 thinking samples + 1 thinking-disabled sample
+each), 29,098 generated tokens, 2 h 1 min wall time, all finished by `eos`, no truncation. Full
+measurement in `reports/BASELINE_QWEN3_4B.md`.
+
+Headline counts: 0 answers confirmed correct by the gate (the keys are lexical), 2 answers with an
+invented quantity, 1 with an invented year, 2 that adopt the accusation verbatim, 0 task failures,
+36/36 structurally complete. Of 26 rejections, **21 are lexical only** — the gate rejected correct
+answers for word choice. That number is the important one: it is a gate defect, not a model result.
+
+The gate itself changed because of this run. Four false verdicts on correct answers were found and
+fixed, and each is now pinned by a test: policy scope read as a decision, refusal phrasing missing
+from the lexicon, markdown emphasis defeating matching, and arithmetic treated as invention.
+
+Two candidate repairs were implemented and then **withdrawn**: a two-content-word paraphrase test for
+forbidden claims fired on correct answers at least as often as on genuine paraphrase (a correct refund
+answer matched "not eligible for a refund" because an unrelated "not faulty" satisfied the negation
+check), and a clause-level negation comparison for the same reason. Paraphrase remains a
+semantic-review task, and the baseline contains at least one adoption the gate cannot see.
 
 ## 6. Claim hygiene: two of my own errors, caught and corrected
 

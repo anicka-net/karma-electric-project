@@ -1,0 +1,26 @@
+[
+  {
+    "answer_chars": 2103,
+    "cap": 1536,
+    "cell_id": "eq2-f6-001/A0",
+    "elapsed_s": 413.1,
+    "finish": "length",
+    "mode": "thinking",
+    "output_tokens": 1536,
+    "reasoning_channel_closed": true,
+    "reasoning_tokens": 995,
+    "tokens_per_s": 3.72
+  },
+  {
+    "answer_chars": 0,
+    "cap": 768,
+    "cell_id": "eq2-f6-001/A0",
+    "elapsed_s": 189.7,
+    "finish": "length",
+    "mode": "thinking",
+    "output_tokens": 768,
+    "reasoning_channel_closed": false,
+    "reasoning_tokens": 766,
+    "tokens_per_s": 4.05
+  }
+]

@@ -116,6 +116,7 @@ and only aggregate counts are committed:
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/run_baseline.py
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/summarize_baseline.py
 GOLD_MINISET_DIR=/path/to/private/gold_miniset python3 scripts/build_review_package.py
+python3 scripts/render_baseline_report.py
 ```
 
 Without `GOLD_MINISET_DIR`, the mini-set tests skip and the loss-mask audit falls back
